@@ -3,7 +3,7 @@ import React from 'react'
 import { fetchEntries } from '../services/contentful'
 import { Layout } from '../components/Layout'
 import { Post } from '../components/Post'
-import { PostType } from '../interfaces'
+import { PostType } from '../common'
 
 export default function Home({ posts }) {
   return (
