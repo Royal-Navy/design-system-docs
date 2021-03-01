@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint components/* --ext .js --ext .jsx --ext .ts --ext .tsx",
+    "lint:ci": "eslint -f ../../node_modules/eslint-junit/index.js src/* --ext .js --ext .jsx --ext .ts --ext .tsx",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
     "test": "NODE_ENV=test jest --testPathIgnorePatterns=./a11y/index.test.tsx",
