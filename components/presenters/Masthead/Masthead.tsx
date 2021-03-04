@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Badge } from '@royalnavy/react-component-library'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
@@ -10,14 +10,21 @@ import { StyledContent } from './partials/StyledContent'
 interface MastheadProps extends ComponentWithClass {
   title: string
   version: string
+  onToggle: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
-export const Masthead: React.FC<MastheadProps> = ({ title, version }) => {
-  const [menuToggle, setMenuToggle] = useState(false)
-
+export const Masthead: React.FC<MastheadProps> = ({
+  title,
+  version,
+  onToggle,
+}) => {
   return (
     <StyledMasthead>
-      <StyledButton type="button" onClick={() => setMenuToggle(!menuToggle)}>
+      <StyledButton
+        type="button"
+        onClick={(e: React.MouseEvent<HTMLButtonElement>) => onToggle(e)}
+        data-testid="masthead-toggle-button"
+      >
         Menu
       </StyledButton>
       <StyledContent>
