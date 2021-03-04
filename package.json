@@ -20,6 +20,7 @@
     "@royalnavy/fonts": "^2.35.0",
     "@royalnavy/icon-library": "^2.35.0",
     "@royalnavy/react-component-library": "^2.35.0",
+    "@types/lodash": "^4.14.168",
     "contentful": "^8.1.7",
     "next": "^10.0.0",
     "react": "17.0.1",
