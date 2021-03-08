@@ -1,19 +1,17 @@
 import React from 'react'
 
 import { fetchEntries } from '../services/contentful'
-import { Layout } from '../components/Layout'
+import { LayoutFramework } from '../components/layouts/Framework'
 import { Post } from '../components/Post'
 import { PostType } from '../common'
 
 export default function Home({ posts }) {
   return (
-    <Layout title="NextJS + Contentful Boilerplate">
-      <main>
-        {posts.map(({ title }: PostType) => {
-          return <Post title={title} />
-        })}
-      </main>
-    </Layout>
+    <LayoutFramework>
+      {posts.map(({ title }: PostType) => {
+        return <Post title={title} />
+      })}
+    </LayoutFramework>
   )
 }
 
