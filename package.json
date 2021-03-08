@@ -22,7 +22,9 @@
     "@royalnavy/react-component-library": "^2.35.0",
     "@types/lodash": "^4.14.168",
     "contentful": "^8.1.7",
+    "firacode": "^5.2.0",
     "next": "^10.0.0",
+    "prism-react-renderer": "^1.2.0",
     "react": "17.0.1",
     "react-dom": "17.0.1",
     "styled-components": "^5.2.1"
