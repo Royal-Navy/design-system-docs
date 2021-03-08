@@ -1,0 +1,13 @@
+@use "@royalnavy/css-framework"as rn with (
+  $breakpoints: (
+    "xl": (
+      "baseFontSize": 100%,
+    ),
+    "xxl": (
+      "baseFontSize": 100%,
+    ),
+  ),
+  $typography: (
+    "code": 0.813rem
+  )
+);

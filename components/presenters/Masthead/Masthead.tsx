@@ -28,9 +28,7 @@ export const Masthead: React.FC<MastheadProps> = ({
         Menu
       </StyledButton>
       <StyledContent>
-        <StyledTitle className="rn_mr-4" data-testid="masthead-title">
-          {title}
-        </StyledTitle>
+        <StyledTitle data-testid="masthead-title">{title}</StyledTitle>
         <Badge color="action" data-testid="masthead-version">
           v{version}
         </Badge>
