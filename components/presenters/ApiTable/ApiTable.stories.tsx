@@ -7,7 +7,7 @@ import { ApiTableDescription } from './ApiTableDescription'
 import { ApiTableItem } from './ApiTableItem'
 import { ApiTableFunctionParameter } from './ApiTableFunctionParameter'
 
-const stories = storiesOf('API Table', module)
+const stories = storiesOf('ApiTable', module)
 
 stories.add('Default', () => (
   <ApiTable>
