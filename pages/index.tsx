@@ -1,30 +1,100 @@
 import React from 'react'
 
-import { fetchEntries } from '../services/contentful'
+import { fetchContent } from '../services/contentful'
 import { LayoutFramework } from '../components/layouts/Framework'
-import { Post } from '../components/Post'
-import { PostType } from '../common'
+import { Hero } from '../components/presenters/Hero'
+import {
+  ContentPanel,
+  LeftCol,
+  RightCol,
+} from '../components/presenters/ContentPanel'
 
-export default function Home({ posts }) {
+/**
+ * Map content types to components and fields to props
+ *
+ */
+function getPresenter(type, fields) {
+  const componentMap = {
+    Hero: (
+      <Hero id="" title={fields.title} description={fields.heroDescription} />
+    ),
+    ContentBlock: (
+      <ContentPanel id="">
+        <LeftCol>LeftCol</LeftCol>
+        <RightCol>RightCol</RightCol>
+      </ContentPanel>
+    ),
+    // ...
+  }
+
+  return componentMap[type]
+}
+
+export default function Home({ sections }) {
+  const articleCollection = sections.flatMap(
+    (item) => item.articleCollection.items
+  )
+
+  const contentCollection = articleCollection.flatMap(
+    (item) => item.contentCollection.items
+  )
+
   return (
     <LayoutFramework>
-      {posts.map(({ title }: PostType) => {
-        return <Post title={title} />
+      {contentCollection.map(({ __typename, ...fields }: any) => {
+        return getPresenter(__typename, { ...fields })
       })}
     </LayoutFramework>
   )
 }
 
 export async function getStaticProps() {
-  const res = await fetchEntries()
-
-  const posts = await res.map((post: any) => {
-    return post.fields
-  })
+  const response = await fetchContent(`
+    {
+      sectionCollection(limit: 10) {
+        items {
+          title
+          articleCollection(limit: 10) {
+            items {
+              ... on Article {
+                contentCollection(limit: 10) {
+                  items {
+                    __typename
+                    ... on Hero {
+                      title
+                      heroDescription: description
+                    }
+                    ... on ContentBlock {
+                      title
+                      description {
+                        json
+                      }
+                    }
+                    ... on LiveExample {
+                      title
+                      description {
+                        json
+                      }
+                    }
+                    ... on CodeBlock {
+                      title
+                      description {
+                        json
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
 
   return {
     props: {
-      posts,
+      sections: response.sectionCollection.items,
     },
   }
 }
