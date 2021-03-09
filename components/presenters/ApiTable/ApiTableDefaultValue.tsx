@@ -5,10 +5,7 @@ import { ApiTableFunctionParameterProps } from './ApiTableFunctionParameter'
 import { StyledBodyRow } from './partials/StyledBodyRow'
 import { StyledBodyRowItem } from './partials/StyledBodyRowItem'
 import { StyledBodyRowValue } from './partials/StyledBodyRowValue'
-import { StyledParameter } from './partials/StyledParameter'
-import { StyledParameterName } from './partials/StyledParameterName'
 import { StyledParameters } from './partials/StyledParameters'
-import { StyledParameterType } from './partials/StyledParameterType'
 
 export interface ApiTableDefaultValueProps {
   children?:
