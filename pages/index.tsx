@@ -1,51 +1,21 @@
 import React from 'react'
+import camelCase from 'lodash/camelCase'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { fetchContent } from '../services/contentful'
 import { LayoutFramework } from '../components/layouts/Framework'
 import { Hero } from '../components/presenters/Hero'
-import {
-  ContentPanel,
-  LeftCol,
-  RightCol,
-} from '../components/presenters/ContentPanel'
+import { ContentPanel, LeftCol } from '../components/presenters/ContentPanel'
 
-/**
- * Map content types to components and fields to props
- *
- */
-function getPresenter(type, fields) {
-  const componentMap = {
-    Hero: (
-      <Hero id="" title={fields.title} description={fields.heroDescription} />
-    ),
-    ContentBlock: (
-      <ContentPanel id="">
-        <LeftCol>LeftCol</LeftCol>
-        <RightCol>RightCol</RightCol>
-      </ContentPanel>
-    ),
-    // ...
-  }
+export type ContentType =
+  | 'Hero'
+  | 'ContentBlock'
+  | 'LiveExample'
+  | 'CodeBlock'
+  | 'APITable'
 
-  return componentMap[type]
-}
-
-export default function Home({ sections }) {
-  const articleCollection = sections.flatMap(
-    (item) => item.articleCollection.items
-  )
-
-  const contentCollection = articleCollection.flatMap(
-    (item) => item.contentCollection.items
-  )
-
-  return (
-    <LayoutFramework>
-      {contentCollection.map(({ __typename, ...fields }: any) => {
-        return getPresenter(__typename, { ...fields })
-      })}
-    </LayoutFramework>
-  )
+interface HomeProps {
+  sections: any
 }
 
 export async function getStaticProps() {
@@ -98,3 +68,49 @@ export async function getStaticProps() {
     },
   }
 }
+
+/**
+ * Map content types to components and fields to props
+ *
+ */
+function renderPresenter(type: ContentType, fields: any): React.ReactElement {
+  const id = camelCase(fields.title)
+
+  const componentMap = {
+    Hero: (
+      <Hero id={id} title={fields.title} description={fields.heroDescription} />
+    ),
+    ContentBlock: (
+      <ContentPanel id={id}>
+        <LeftCol>
+          {fields.title && <h2>{fields.title}</h2>}
+          {fields?.description?.json &&
+            documentToReactComponents(fields.description.json)}
+        </LeftCol>
+      </ContentPanel>
+    ),
+    // ...
+  }
+
+  return componentMap[type]
+}
+
+export const Home: React.FC<HomeProps> = ({ sections }) => {
+  const articleCollection = sections.flatMap(
+    (item) => item.articleCollection.items
+  )
+
+  const contentCollection = articleCollection.flatMap(
+    (item) => item.contentCollection.items
+  )
+
+  return (
+    <LayoutFramework>
+      {contentCollection.map(({ __typename, ...fields }: any) => {
+        return renderPresenter(__typename, { ...fields })
+      })}
+    </LayoutFramework>
+  )
+}
+
+export default Home
