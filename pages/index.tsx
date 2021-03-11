@@ -1,18 +1,19 @@
 import React from 'react'
-import camelCase from 'lodash/camelCase'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { fetchContent } from '../services/contentful'
 import { LayoutFramework } from '../components/layouts/Framework'
-import { Hero } from '../components/presenters/Hero'
-import { ContentPanel, LeftCol } from '../components/presenters/ContentPanel'
+import { HeroAdapter } from '../components/presenters/Hero/adapters/HeroAdapter'
+import { ContentBlockAdapter } from '../components/presenters/ContentPanel/adapters/ContentBlockAdapter'
+import { LiveExampleAdapter } from '../components/presenters/LiveExample/adapters/LiveExampleAdapter'
+import { CodeBlockAdapter } from '../components/presenters/CodeBlock/adapters/CodeBlockAdapter'
+import { ApiTableAdapter } from '../components/presenters/ApiTable/adapters/ApiTableAdapter'
 
 export type ContentType =
   | 'Hero'
   | 'ContentBlock'
   | 'LiveExample'
   | 'CodeBlock'
-  | 'APITable'
+  | 'ApiTable'
 
 interface HomeProps {
   sections: any
@@ -21,7 +22,7 @@ interface HomeProps {
 export async function getStaticProps() {
   const response = await fetchContent(`
     {
-      sectionCollection(limit: 10) {
+      sectionCollection(limit: 5) {
         items {
           title
           articleCollection(limit: 10) {
@@ -51,6 +52,23 @@ export async function getStaticProps() {
                       description {
                         json
                       }
+                      filename
+                      sourceCode
+                    }
+                    ... on ApiTable {
+                      title
+                      apiTableDescription: description
+                      apiFieldCollection(limit: 10) {
+                        items {
+                          ... on ApiField {
+                            name
+                            dataType
+                            defaultValue
+                            description
+                            required
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -64,31 +82,22 @@ export async function getStaticProps() {
 
   return {
     props: {
-      sections: response.sectionCollection.items,
+      sections: response?.sectionCollection?.items ?? [],
     },
   }
 }
 
 /**
- * Map content types to components and fields to props
+ * Map content types to components using adapters
  *
  */
 function renderPresenter(type: ContentType, fields: any): React.ReactElement {
-  const id = camelCase(fields.title)
-
   const componentMap = {
-    Hero: (
-      <Hero id={id} title={fields.title} description={fields.heroDescription} />
-    ),
-    ContentBlock: (
-      <ContentPanel id={id}>
-        <LeftCol>
-          {fields.title && <h2>{fields.title}</h2>}
-          {fields?.description?.json &&
-            documentToReactComponents(fields.description.json)}
-        </LeftCol>
-      </ContentPanel>
-    ),
+    Hero: <HeroAdapter fields={fields} />,
+    ContentBlock: <ContentBlockAdapter fields={fields} />,
+    LiveExample: <LiveExampleAdapter fields={fields} />,
+    CodeBlock: <CodeBlockAdapter fields={fields} />,
+    ApiTable: <ApiTableAdapter fields={fields} />,
     // ...
   }
 
@@ -97,17 +106,18 @@ function renderPresenter(type: ContentType, fields: any): React.ReactElement {
 
 export const Home: React.FC<HomeProps> = ({ sections }) => {
   const articleCollection = sections.flatMap(
-    (item) => item.articleCollection.items
+    (item) => item?.articleCollection?.items ?? []
   )
 
   const contentCollection = articleCollection.flatMap(
-    (item) => item.contentCollection.items
+    (item) => item?.contentCollection?.items ?? []
   )
 
   return (
     <LayoutFramework>
       {contentCollection.map(({ __typename, ...fields }: any) => {
-        return renderPresenter(__typename, { ...fields })
+        const { title: key } = fields
+        return React.cloneElement(renderPresenter(__typename, fields), { key })
       })}
     </LayoutFramework>
   )
