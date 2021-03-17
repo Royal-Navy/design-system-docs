@@ -21,7 +21,8 @@ export async function fetchContent(query: string): Promise<any> {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error(
-      `There was a problem retrieving entries with the query ${query}`,
+      `There was a problem retrieving entries with the query`,
+      query,
       error
     )
   }

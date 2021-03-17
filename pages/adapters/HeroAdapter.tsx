@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { ComponentWithClass } from '../../../../common/ComponentWithClass'
-import { Hero } from '..'
+import { ComponentWithClass } from '../../common/ComponentWithClass'
+import { Hero } from '../../components/presenters/Hero'
 
 interface HeroAdapterProps extends ComponentWithClass {
   fields: any
