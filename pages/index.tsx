@@ -1,12 +1,16 @@
 import React from 'react'
+import camelCase from 'lodash/camelCase'
 
 import { fetchContent } from '../services/contentful'
+
 import { LayoutFramework } from '../components/layouts/Framework'
-import { HeroAdapter } from '../components/presenters/Hero/adapters/HeroAdapter'
-import { ContentBlockAdapter } from '../components/presenters/ContentPanel/adapters/ContentBlockAdapter'
-import { LiveExampleAdapter } from '../components/presenters/LiveExample/adapters/LiveExampleAdapter'
-import { CodeBlockAdapter } from '../components/presenters/CodeBlock/adapters/CodeBlockAdapter'
-import { ApiTableAdapter } from '../components/presenters/ApiTable/adapters/ApiTableAdapter'
+import { SidebarMenu, SidebarMenuItem } from '../components/presenters/Sidebar'
+
+import { HeroAdapter } from './adapters/HeroAdapter'
+import { ContentBlockAdapter } from './adapters/ContentBlockAdapter'
+import { LiveExampleAdapter } from './adapters/LiveExampleAdapter'
+import { CodeBlockAdapter } from './adapters/CodeBlockAdapter'
+import { ApiTableAdapter } from './adapters/ApiTableAdapter'
 
 export type ContentType =
   | 'Hero'
@@ -16,7 +20,7 @@ export type ContentType =
   | 'ApiTable'
 
 interface HomeProps {
-  sections: any
+  sectionCollection: any
 }
 
 export async function getStaticProps() {
@@ -28,6 +32,7 @@ export async function getStaticProps() {
           articleCollection(limit: 10) {
             items {
               ... on Article {
+                title
                 contentCollection(limit: 10) {
                   items {
                     __typename
@@ -82,9 +87,35 @@ export async function getStaticProps() {
 
   return {
     props: {
-      sections: response?.sectionCollection?.items ?? [],
+      sectionCollection: response?.sectionCollection?.items ?? [],
     },
   }
+}
+
+/**
+ * Generate navigation based on content structure
+ *
+ */
+function renderNavigation(sectionCollection: any): React.ReactElement {
+  return (
+    sectionCollection &&
+    sectionCollection.map(({ title, articleCollection }) => {
+      return (
+        <SidebarMenu key={title} title={title}>
+          {articleCollection?.items &&
+            articleCollection?.items.map(({ title: articleTitle }) => {
+              return (
+                <SidebarMenuItem
+                  key={articleTitle}
+                  href={`#${camelCase(articleTitle)}`}
+                  title={articleTitle}
+                />
+              )
+            })}
+        </SidebarMenu>
+      )
+    })
+  )
 }
 
 /**
@@ -93,7 +124,7 @@ export async function getStaticProps() {
  */
 function renderPresenter(type: ContentType, fields: any): React.ReactElement {
   const componentMap = {
-    Hero: <HeroAdapter fields={fields} />,
+    Hero: <HeroAdapter id="home" fields={fields} />,
     ContentBlock: <ContentBlockAdapter fields={fields} />,
     LiveExample: <LiveExampleAdapter fields={fields} />,
     CodeBlock: <CodeBlockAdapter fields={fields} />,
@@ -104,8 +135,8 @@ function renderPresenter(type: ContentType, fields: any): React.ReactElement {
   return componentMap[type]
 }
 
-export const Home: React.FC<HomeProps> = ({ sections }) => {
-  const articleCollection = sections.flatMap(
+export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
+  const articleCollection = sectionCollection.flatMap(
     (item) => item?.articleCollection?.items ?? []
   )
 
@@ -114,7 +145,7 @@ export const Home: React.FC<HomeProps> = ({ sections }) => {
   )
 
   return (
-    <LayoutFramework>
+    <LayoutFramework navigation={renderNavigation(sectionCollection)}>
       {contentCollection.map(({ __typename, ...fields }: any) => {
         const { title: key } = fields
         return React.cloneElement(renderPresenter(__typename, fields), { key })

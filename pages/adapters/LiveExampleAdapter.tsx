@@ -14,9 +14,13 @@ import {
   TimelineEvent,
 } from '@royalnavy/react-component-library'
 
-import { ComponentWithClass } from '../../../../common/ComponentWithClass'
-import { ContentPanel, LeftCol, RightCol } from '../../ContentPanel'
-import { LiveExample } from '../LiveExample'
+import { ComponentWithClass } from '../../common/ComponentWithClass'
+import {
+  ContentPanel,
+  LeftCol,
+  RightCol,
+} from '../../components/presenters/ContentPanel'
+import { LiveExample } from '../../components/presenters/LiveExample/LiveExample'
 
 interface LiveExampleAdapterProps extends ComponentWithClass {
   fields: any

@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 import Head from 'next/head'
 
 import { Masthead } from '../../presenters/Masthead'
-import { Sidebar, SidebarMenu, SidebarMenuItem } from '../../presenters/Sidebar'
+import { Sidebar } from '../../presenters/Sidebar'
 import { StyledMain } from './partials/StyledMain'
 
 interface LayoutFrameworkProps {
   children: React.ReactNode
   title?: string
+  navigation?: React.ReactNode | React.ReactNode[]
 }
 
 export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
   children,
   title = 'Royal Navy Design System',
+  navigation,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -33,9 +35,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
         onToggle={(_) => setIsOpen(!isOpen)}
         isOpen={isOpen}
       >
-        <SidebarMenu title="Introduction">
-          <SidebarMenuItem href="#home" title="Home" />
-        </SidebarMenu>
+        {navigation}
       </Sidebar>
       <StyledMain>{children}</StyledMain>
     </>
