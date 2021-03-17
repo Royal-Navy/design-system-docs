@@ -1,7 +1,6 @@
 import React from 'react'
+import { GetStaticProps } from 'next'
 import camelCase from 'lodash/camelCase'
-
-import { fetchContent } from '../services/contentful'
 
 import { LayoutFramework } from '../components/layouts/Framework'
 import { SidebarMenu, SidebarMenuItem } from '../components/presenters/Sidebar'
@@ -12,82 +11,60 @@ import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
 import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
 import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
 
-export type ContentType =
-  | 'Hero'
-  | 'ContentBlock'
-  | 'LiveExample'
-  | 'CodeBlock'
-  | 'ApiTable'
+import { contentful } from '../services/contentful'
+import { SectionCollection, Section, SectionContentItem } from '../graphql'
+import PAGE_STRUCTURE_QUERY from '../graphql/queries/PageStructure.graphql'
+import SECTION_CONTENT_QUERY from '../graphql/queries/SectionContent.graphql'
 
 interface HomeProps {
-  sectionCollection: any
+  sectionCollection: SectionCollection
 }
 
-export async function getStaticProps() {
-  const response = await fetchContent(`
-    {
-      sectionCollection(limit: 5) {
-        items {
-          title
-          articleCollection(limit: 10) {
-            items {
-              ... on Article {
-                title
-                contentCollection(limit: 10) {
-                  items {
-                    __typename
-                    ... on Hero {
-                      title
-                      heroDescription: description
-                    }
-                    ... on ContentBlock {
-                      title
-                      description {
-                        json
-                      }
-                    }
-                    ... on LiveExample {
-                      title
-                      description {
-                        json
-                      }
-                    }
-                    ... on CodeBlock {
-                      title
-                      description {
-                        json
-                      }
-                      filename
-                      sourceCode
-                    }
-                    ... on ApiTable {
-                      title
-                      apiTableDescription: description
-                      apiFieldCollection(limit: 10) {
-                        items {
-                          ... on ApiField {
-                            name
-                            dataType
-                            defaultValue
-                            description
-                            required
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `)
+/**
+ * Fetch a content collection for a parent entry (by ID)
+ *
+ */
+async function fetchContentCollection(item: Section): Promise<Section> {
+  const {
+    sys: { id },
+  } = item
+
+  const {
+    section: { contentCollection },
+  } = await contentful(SECTION_CONTENT_QUERY, { id })
+
+  return {
+    ...item,
+    contentCollection,
+  }
+}
+
+/**
+ * Hydrate a collection of entries with content collections
+ *
+ */
+async function hydrateContentCollections(items: Section[]): Promise<Section[]> {
+  return Promise.all(items.map((item) => fetchContentCollection(item)))
+}
+
+/**
+ * Fetch data from Contentful for static site generation (SSG)
+ *
+ */
+export const getStaticProps: GetStaticProps = async () => {
+  const {
+    page: {
+      sectionCollection: { items },
+    },
+  } = await contentful(PAGE_STRUCTURE_QUERY, {
+    id: '7ltwNe3eIZtPNZ2xrHMAuw',
+  })
 
   return {
     props: {
-      sectionCollection: response?.sectionCollection?.items ?? [],
+      sectionCollection: {
+        items: await hydrateContentCollections(items),
+      },
     },
   }
 }
@@ -96,35 +73,36 @@ export async function getStaticProps() {
  * Generate navigation based on content structure
  *
  */
-function renderNavigation(sectionCollection: any): React.ReactElement {
-  return (
-    sectionCollection &&
-    sectionCollection.map(({ title, articleCollection }) => {
-      return (
-        <SidebarMenu key={title} title={title}>
-          {articleCollection?.items &&
-            articleCollection?.items.map(({ title: articleTitle }) => {
-              return (
-                <SidebarMenuItem
-                  key={articleTitle}
-                  href={`#${camelCase(articleTitle)}`}
-                  title={articleTitle}
-                />
-              )
-            })}
-        </SidebarMenu>
-      )
-    })
-  )
+function renderNavigation(
+  sectionCollection: SectionCollection
+): React.ReactElement | React.ReactElement[] {
+  return sectionCollection?.items?.map(({ title, contentCollection }) => {
+    return (
+      <SidebarMenu key={title} title={title}>
+        {contentCollection?.items?.map(({ title: contentTitle }) => {
+          return (
+            <SidebarMenuItem
+              key={contentTitle}
+              href={`#${camelCase(contentTitle)}`}
+              title={contentTitle}
+            />
+          )
+        })}
+      </SidebarMenu>
+    )
+  })
 }
 
 /**
  * Map content types to components using adapters
  *
  */
-function renderPresenter(type: ContentType, fields: any): React.ReactElement {
+function renderPresenter(
+  type: keyof SectionContentItem,
+  fields: SectionContentItem
+): React.ReactElement {
   const componentMap = {
-    Hero: <HeroAdapter id="home" fields={fields} />,
+    Hero: <HeroAdapter fields={fields} />,
     ContentBlock: <ContentBlockAdapter fields={fields} />,
     LiveExample: <LiveExampleAdapter fields={fields} />,
     CodeBlock: <CodeBlockAdapter fields={fields} />,
@@ -135,21 +113,29 @@ function renderPresenter(type: ContentType, fields: any): React.ReactElement {
   return componentMap[type]
 }
 
+/**
+ * Render page using data from `getStaticProps`
+ *
+ */
 export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
-  const articleCollection = sectionCollection.flatMap(
-    (item) => item?.articleCollection?.items ?? []
-  )
-
-  const contentCollection = articleCollection.flatMap(
+  const contentCollection = sectionCollection?.items?.flatMap(
     (item) => item?.contentCollection?.items ?? []
   )
 
   return (
     <LayoutFramework navigation={renderNavigation(sectionCollection)}>
-      {contentCollection.map(({ __typename, ...fields }: any) => {
-        const { title: key } = fields
-        return React.cloneElement(renderPresenter(__typename, fields), { key })
-      })}
+      {contentCollection.map(
+        ({ __typename, ...fields }: SectionContentItem) => {
+          const { title: key } = fields
+
+          return React.cloneElement(
+            renderPresenter(__typename as keyof SectionContentItem, fields),
+            {
+              key,
+            }
+          )
+        }
+      )}
     </LayoutFramework>
   )
 }

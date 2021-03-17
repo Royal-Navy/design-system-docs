@@ -1,0 +1,16 @@
+overwrite: true
+schema:
+  - https://graphql.contentful.com/content/v1/spaces/SPACE_ID:
+headers:
+  Authorization: Bearer TOKEN
+documents: './graphql/queries/**/*.graphql'
+generates:
+    ./graphql/index.ts:
+      config:
+        withComponent: false
+        withHOC: false
+        withHooks: false
+        withMutationFn: false
+      plugins:
+        - 'typescript'
+        - 'typescript-operations'
