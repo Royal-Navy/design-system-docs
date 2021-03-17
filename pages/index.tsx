@@ -6,11 +6,11 @@ import { fetchContent } from '../services/contentful'
 import { LayoutFramework } from '../components/layouts/Framework'
 import { SidebarMenu, SidebarMenuItem } from '../components/presenters/Sidebar'
 
-import { HeroAdapter } from './adapters/HeroAdapter'
-import { ContentBlockAdapter } from './adapters/ContentBlockAdapter'
-import { LiveExampleAdapter } from './adapters/LiveExampleAdapter'
-import { CodeBlockAdapter } from './adapters/CodeBlockAdapter'
-import { ApiTableAdapter } from './adapters/ApiTableAdapter'
+import { HeroAdapter } from '../components/adapters/HeroAdapter'
+import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
+import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
+import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
+import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
 
 export type ContentType =
   | 'Hero'
