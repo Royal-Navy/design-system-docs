@@ -14,6 +14,7 @@
     "test:watch": "NODE_ENV=test jest --watch"
   },
   "dependencies": {
+    "@contentful/rich-text-react-renderer": "^14.1.2",
     "@royalnavy/css-framework": "^2.35.0",
     "@royalnavy/design-tokens": "^2.35.0",
     "@royalnavy/eslint-config-react": "^2.35.0",
@@ -23,6 +24,7 @@
     "@types/lodash": "^4.14.168",
     "contentful": "^8.1.7",
     "firacode": "^5.2.0",
+    "lodash": "^4.17.21",
     "next": "^10.0.0",
     "prism-react-renderer": "^1.2.0",
     "react": "17.0.1",
@@ -31,6 +33,10 @@
   },
   "devDependencies": {
     "@babel/core": "^7.13.1",
+    "@babel/plugin-proposal-class-properties": "^7.13.0",
+    "@babel/plugin-proposal-nullish-coalescing-operator": "^7.13.8",
+    "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+    "@babel/plugin-proposal-optional-chaining": "^7.13.8",
     "@babel/plugin-transform-modules-commonjs": "^7.13.0",
     "@babel/preset-typescript": "^7.13.0",
     "@octokit/rest": "^18.1.1",
@@ -52,6 +58,7 @@
     "@typescript-eslint/eslint-plugin": "^4.15.0",
     "babel-jest": "^26.6.3",
     "babel-loader": "^8.2.2",
+    "babel-plugin-styled-components": "^1.12.0",
     "babel-polyfill": "^6.26.0",
     "eslint": "^7.20.0",
     "eslint-config-prettier": "^7.2.0",

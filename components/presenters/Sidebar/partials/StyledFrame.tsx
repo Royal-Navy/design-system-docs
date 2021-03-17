@@ -9,7 +9,7 @@ interface StyledFrameProps {
 
 const { mq } = selectors
 
-export const StyledFrame = styled.aside<StyledFrameProps>`
+export const StyledFrame = styled.div<StyledFrameProps>`
   position: fixed;
   top: 0;
   left: 0;

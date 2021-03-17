@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-const { spacing, color } = selectors
+const { spacing, color, fontSize } = selectors
 
 export const StyledNavLink = styled.a`
   position: relative;
@@ -11,7 +11,8 @@ export const StyledNavLink = styled.a`
   border-left: ${spacing('2')} solid transparent;
   padding: ${spacing('4')} ${spacing('12')} ${spacing('4')} calc(2rem - 4px);
   color: ${color('neutral', 'white')};
-  font-weight: 300;
+  font-weight: normal;
+  font-size: ${fontSize('m')};
   z-index: 1;
 
   &:hover,
