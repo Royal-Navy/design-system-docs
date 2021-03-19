@@ -1,0 +1,27 @@
+query PageStructure($id: String!) {
+  page(id: $id) {
+    title
+    sectionCollection(limit: 10) {
+      items {
+        title
+        ... on Entry {
+          sys {
+            id
+          }
+        }
+        ... on Section {
+          contentCollection(limit: 20) {
+            items {
+              __typename
+              ... on Entry {
+                sys {
+                  id
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
