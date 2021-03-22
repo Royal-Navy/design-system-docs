@@ -1,4 +1,4 @@
-const { Octokit } = require('../check-fixup/node_modules/@octokit/rest')
+const { Octokit } = require('@octokit/rest')
 const { default: lint } = require('@commitlint/lint')
 
 const { rules } = require('../../commitlint.config')
