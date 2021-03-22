@@ -9,7 +9,7 @@ import { ComponentWithClass } from '../../common/ComponentWithClass'
 import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
-  fields: any
+  fields: Record<string, any>
 }
 
 export type AssetType = {

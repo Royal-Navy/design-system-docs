@@ -7,7 +7,7 @@ import { ContentPanel, LeftCol } from '../presenters/ContentPanel'
 import { CodeBlock } from '../presenters/CodeBlock'
 
 interface CodeBlockAdapterProps extends ComponentWithClass {
-  fields: any
+  fields: Record<string, any>
 }
 
 export const CodeBlockAdapter: React.FC<CodeBlockAdapterProps> = ({

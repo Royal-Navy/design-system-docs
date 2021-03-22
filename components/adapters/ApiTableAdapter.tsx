@@ -11,7 +11,7 @@ import {
 } from '../presenters/ApiTable'
 
 interface ApiTableAdapterProps extends ComponentWithClass {
-  fields: any
+  fields: Record<string, any>
 }
 
 export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
