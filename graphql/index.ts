@@ -30,6 +30,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  hero?: Maybe<Hero>;
+  heroCollection?: Maybe<HeroCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
   section?: Maybe<Section>;
@@ -40,8 +42,6 @@ export type Query = {
   liveExampleCollection?: Maybe<LiveExampleCollection>;
   contentBlock?: Maybe<ContentBlock>;
   contentBlockCollection?: Maybe<ContentBlockCollection>;
-  hero?: Maybe<Hero>;
-  heroCollection?: Maybe<HeroCollection>;
   apiField?: Maybe<ApiField>;
   apiFieldCollection?: Maybe<ApiFieldCollection>;
   apiTable?: Maybe<ApiTable>;
@@ -63,6 +63,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryHeroArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryHeroCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<HeroFilter>;
+  order?: Maybe<Array<Maybe<HeroOrder>>>;
 };
 
 
@@ -148,23 +165,6 @@ export type QueryContentBlockCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<ContentBlockFilter>;
   order?: Maybe<Array<Maybe<ContentBlockOrder>>>;
-};
-
-
-export type QueryHeroArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryHeroCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<HeroFilter>;
-  order?: Maybe<Array<Maybe<HeroOrder>>>;
 };
 
 
@@ -497,51 +497,64 @@ export type AssetCollection = {
   items: Array<Maybe<Asset>>;
 };
 
-/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type Page = Entry & {
-  __typename?: 'Page';
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type Hero = Entry & {
+  __typename?: 'Hero';
   sys: Sys;
-  linkedFrom?: Maybe<PageLinkingCollections>;
+  linkedFrom?: Maybe<HeroLinkingCollections>;
   title?: Maybe<Scalars['String']>;
-  sectionCollection?: Maybe<PageSectionCollection>;
+  heading?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 
-/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type PageLinkedFromArgs = {
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type PageTitleArgs = {
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroTitleArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type PageSectionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroHeadingArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type PageLinkingCollections = {
-  __typename?: 'PageLinkingCollections';
+
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type HeroLinkingCollections = {
+  __typename?: 'HeroLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  sectionCollection?: Maybe<SectionCollection>;
 };
 
 
-export type PageLinkingCollectionsEntryCollectionArgs = {
+export type HeroLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-export type PageSectionCollection = {
-  __typename?: 'PageSectionCollection';
+
+export type HeroLinkingCollectionsSectionCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SectionCollection = {
+  __typename?: 'SectionCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
@@ -606,6 +619,57 @@ export type PageCollection = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
   items: Array<Maybe<Page>>;
+};
+
+/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type Page = Entry & {
+  __typename?: 'Page';
+  sys: Sys;
+  linkedFrom?: Maybe<PageLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  sectionCollection?: Maybe<PageSectionCollection>;
+};
+
+
+/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a single navigable route. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageSectionCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PageLinkingCollections = {
+  __typename?: 'PageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type PageLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type PageSectionCollection = {
+  __typename?: 'PageSectionCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Section>>;
 };
 
 export type SectionContentCollection = {
@@ -675,14 +739,6 @@ export type ApiTableLinkingCollectionsSectionCollectionArgs = {
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-};
-
-export type SectionCollection = {
-  __typename?: 'SectionCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Section>>;
 };
 
 export type ApiTableApiFieldCollection = {
@@ -856,55 +912,6 @@ export type ContentBlockDescriptionAssets = {
   block: Array<Maybe<Asset>>;
 };
 
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type Hero = Entry & {
-  __typename?: 'Hero';
-  sys: Sys;
-  linkedFrom?: Maybe<HeroLinkingCollections>;
-  title?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type HeroLinkingCollections = {
-  __typename?: 'HeroLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-  sectionCollection?: Maybe<SectionCollection>;
-};
-
-
-export type HeroLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type HeroLinkingCollectionsSectionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
 /** Display an interactive example of component or collection of components. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/liveExample) */
 export type LiveExample = Entry & {
   __typename?: 'LiveExample';
@@ -977,6 +984,56 @@ export type LiveExampleDescriptionAssets = {
   __typename?: 'LiveExampleDescriptionAssets';
   hyperlink: Array<Maybe<Asset>>;
   block: Array<Maybe<Asset>>;
+};
+
+export type HeroFilter = {
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  heading_exists?: Maybe<Scalars['Boolean']>;
+  heading?: Maybe<Scalars['String']>;
+  heading_not?: Maybe<Scalars['String']>;
+  heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heading_contains?: Maybe<Scalars['String']>;
+  heading_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<HeroFilter>>>;
+  AND?: Maybe<Array<Maybe<HeroFilter>>>;
+};
+
+export enum HeroOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  HeadingAsc = 'heading_ASC',
+  HeadingDesc = 'heading_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type HeroCollection = {
+  __typename?: 'HeroCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Hero>>;
 };
 
 export type PageFilter = {
@@ -1158,47 +1215,6 @@ export type ContentBlockCollection = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
   items: Array<Maybe<ContentBlock>>;
-};
-
-export type HeroFilter = {
-  sys?: Maybe<SysFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<HeroFilter>>>;
-  AND?: Maybe<Array<Maybe<HeroFilter>>>;
-};
-
-export enum HeroOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type HeroCollection = {
-  __typename?: 'HeroCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<Hero>>;
 };
 
 /** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
@@ -1441,20 +1457,21 @@ export type SectionContentQuery = (
       { __typename?: 'SectionContentCollection' }
       & { items: Array<Maybe<(
         { __typename: 'ApiTable' }
+        & Pick<ApiTable, 'title'>
         & { apiTableDescription: ApiTable['description'] }
         & { sys: (
           { __typename?: 'Sys' }
           & Pick<Sys, 'id'>
         ), apiFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiFieldCollection' }
-          & { items: Array<Maybe<{ __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'LiveExample' } | (
+          & { items: Array<Maybe<{ __typename?: 'Hero' } | { __typename?: 'Section' } | { __typename?: 'Page' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'LiveExample' } | (
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
           )>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }
-        & Pick<CodeBlock, 'filename' | 'sourceCode'>
+        & Pick<CodeBlock, 'title' | 'filename' | 'sourceCode'>
         & { sys: (
           { __typename?: 'Sys' }
           & Pick<Sys, 'id'>
@@ -1464,6 +1481,7 @@ export type SectionContentQuery = (
         )> }
       ) | (
         { __typename: 'ContentBlock' }
+        & Pick<ContentBlock, 'title'>
         & { sys: (
           { __typename?: 'Sys' }
           & Pick<Sys, 'id'>
@@ -1476,7 +1494,7 @@ export type SectionContentQuery = (
               { __typename?: 'ContentBlockDescriptionAssets' }
               & { block: Array<Maybe<(
                 { __typename?: 'Asset' }
-                & Pick<Asset, 'fileName' | 'title' | 'description' | 'url'>
+                & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
                 & { sys: (
                   { __typename?: 'Sys' }
                   & Pick<Sys, 'id'>
@@ -1487,6 +1505,7 @@ export type SectionContentQuery = (
         )> }
       ) | (
         { __typename: 'Hero' }
+        & Pick<Hero, 'title' | 'heading'>
         & { heroDescription: Hero['description'] }
         & { sys: (
           { __typename?: 'Sys' }
@@ -1494,6 +1513,7 @@ export type SectionContentQuery = (
         ) }
       ) | (
         { __typename: 'LiveExample' }
+        & Pick<LiveExample, 'title'>
         & { sys: (
           { __typename?: 'Sys' }
           & Pick<Sys, 'id'>
