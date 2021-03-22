@@ -2,7 +2,7 @@ import React from 'react'
 import { camelCase } from 'lodash'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import { Hero } from '../../components/presenters/Hero'
+import { Hero } from '../presenters/Hero'
 
 interface HeroAdapterProps extends ComponentWithClass {
   fields: any

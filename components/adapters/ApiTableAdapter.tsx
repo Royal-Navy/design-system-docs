@@ -2,17 +2,13 @@ import React from 'react'
 import camelCase from 'lodash/camelCase'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import {
-  ContentPanel,
-  LeftCol,
-  RightCol,
-} from '../../components/presenters/ContentPanel'
+import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
 import {
   ApiTable,
   ApiTableItem,
   ApiTableDefaultValue,
   ApiTableDescription,
-} from '../../components/presenters/ApiTable'
+} from '../presenters/ApiTable'
 
 interface ApiTableAdapterProps extends ComponentWithClass {
   fields: any
