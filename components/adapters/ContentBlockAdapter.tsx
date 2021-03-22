@@ -3,11 +3,7 @@ import camelCase from 'lodash/camelCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import {
-  ContentPanel,
-  LeftCol,
-  RightCol,
-} from '../../components/presenters/ContentPanel'
+import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: any
