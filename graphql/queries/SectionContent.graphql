@@ -25,6 +25,8 @@ query SectionContent($id: String!) {
                   title
                   description
                   url
+                  width
+                  height
                   sys {
                     id
                   }

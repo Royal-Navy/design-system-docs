@@ -19,7 +19,7 @@ import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
 import { LiveExample } from '../presenters/LiveExample/LiveExample'
 
 interface LiveExampleAdapterProps extends ComponentWithClass {
-  fields: any
+  fields: Record<string, any>
 }
 
 export const LiveExampleAdapter: React.FC<LiveExampleAdapterProps> = ({

@@ -5,8 +5,7 @@ import { ComponentWithClass } from '../../common/ComponentWithClass'
 import { Hero } from '../presenters/Hero'
 
 interface HeroAdapterProps extends ComponentWithClass {
-  fields: any
-  id?: string
+  fields: Record<string, any>
 }
 
 export const HeroAdapter: React.FC<HeroAdapterProps> = ({ fields }) => {
