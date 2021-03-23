@@ -78,9 +78,16 @@ jobs:
             NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
           run: |
             yarn build
+
         - name: Jest
           env:
             JEST_JUNIT_OUTPUT_DIR: test-results/jest
             JEST_JUNIT_OUTPUT_NAME: docs-site-results.xml
           run: |
             yarn test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand
+
+        - name: SonarCloud Scan
+          uses: Royal-Navy/sonarcloud-github-action@master
+          env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
