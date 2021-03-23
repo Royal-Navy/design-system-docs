@@ -14,6 +14,14 @@
     "test:watch": "NODE_ENV=test jest --watch",
     "codegen": "gql-gen --config codegen.yml"
   },
+  "jest": {
+    "testResultsProcessor": "jest-sonar-reporter"
+  },
+  "jestSonar": {
+    "reportPath": "coverage",
+    "reportFile": "sonar-report.xml",
+    "indent": 4
+  },
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.2",
     "@graphql-codegen/typescript": "^1.21.1",
@@ -75,6 +83,7 @@
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.3.1",
     "jest-junit": "^12.0.0",
+    "jest-sonar-reporter": "^2.0.0",
     "jest-styled-components": "^7.0.3",
     "prettier": "^2.2.1",
     "sass": "^1.32.8",
