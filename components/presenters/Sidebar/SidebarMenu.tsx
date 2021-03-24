@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
-import { StyledSidebarMenu } from './partials/StyledSidebarMenu'
 import { StyledNavSection } from './partials/StyledNavSection'
 import { StyledNavSectionTitle } from './partials/StyledNavSectionTitle'
 import { StyledNavList } from './partials/StyledNavList'
@@ -15,13 +14,11 @@ export const SidebarMenu: React.FC<SidebarMenuProps> = ({
   title,
 }) => {
   return (
-    <StyledSidebarMenu>
-      <StyledNavSection>
-        <StyledNavSectionTitle data-testid="sidebar-menu-title">
-          {title}
-        </StyledNavSectionTitle>
-        <StyledNavList>{children}</StyledNavList>
-      </StyledNavSection>
-    </StyledSidebarMenu>
+    <StyledNavSection>
+      <StyledNavSectionTitle data-testid="sidebar-menu-title">
+        {title}
+      </StyledNavSectionTitle>
+      <StyledNavList>{children}</StyledNavList>
+    </StyledNavSection>
   )
 }

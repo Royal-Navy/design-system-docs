@@ -9,6 +9,7 @@ import { StyledHomeLink } from './partials/StyledHomeLink'
 import { StyledHeader } from './partials/StyledHeader'
 import { StyledTitle } from './partials/StyledTitle'
 import { StyledButton } from './partials/StyledButton'
+import { StyledSidebarMenu } from './partials/StyledSidebarMenu'
 
 interface SidebarProps extends ComponentWithClass {
   title: string
@@ -44,7 +45,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             Close
           </StyledButton>
         </div>
-        {children}
+        <StyledSidebarMenu>{children}</StyledSidebarMenu>
       </StyledSidebar>
     </StyledFrame>
   )
