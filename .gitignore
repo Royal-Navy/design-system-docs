@@ -8,6 +8,7 @@
 # testing
 /coverage
 eslint-junit.xml
+/storybook-static
 
 # next.js
 /.next/
