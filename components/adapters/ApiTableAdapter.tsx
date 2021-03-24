@@ -7,11 +7,40 @@ import {
   ApiTable,
   ApiTableItem,
   ApiTableDefaultValue,
+  ApiTableFunctionParameter,
   ApiTableDescription,
 } from '../presenters/ApiTable'
 
+type ApiFieldDefaultValueType = {
+  type: string
+  value?: string | number | boolean
+  args?: Record<string, string>[]
+}
+
 interface ApiTableAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
+}
+
+function renderDefaultValue(
+  defaultValue: ApiFieldDefaultValueType
+): React.ReactElement {
+  const { value, args } = defaultValue || {}
+
+  if (args) {
+    return (
+      <ApiTableDefaultValue>
+        {args.map(({ type, name }) => {
+          return (
+            <ApiTableFunctionParameter key={name} type={type}>
+              {name}
+            </ApiTableFunctionParameter>
+          )
+        })}
+      </ApiTableDefaultValue>
+    )
+  }
+
+  return <ApiTableDefaultValue>{String(value)}</ApiTableDefaultValue>
 }
 
 export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
@@ -34,7 +63,7 @@ export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
                     name={name}
                     type={dataType}
                   >
-                    <ApiTableDefaultValue>{defaultValue}</ApiTableDefaultValue>
+                    {renderDefaultValue(defaultValue)}
                     {description && (
                       <ApiTableDescription>{description}</ApiTableDescription>
                     )}

@@ -30,6 +30,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  apiField?: Maybe<ApiField>;
+  apiFieldCollection?: Maybe<ApiFieldCollection>;
   hero?: Maybe<Hero>;
   heroCollection?: Maybe<HeroCollection>;
   page?: Maybe<Page>;
@@ -42,8 +44,6 @@ export type Query = {
   liveExampleCollection?: Maybe<LiveExampleCollection>;
   contentBlock?: Maybe<ContentBlock>;
   contentBlockCollection?: Maybe<ContentBlockCollection>;
-  apiField?: Maybe<ApiField>;
-  apiFieldCollection?: Maybe<ApiFieldCollection>;
   apiTable?: Maybe<ApiTable>;
   apiTableCollection?: Maybe<ApiTableCollection>;
 };
@@ -63,6 +63,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryApiFieldArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryApiFieldCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ApiFieldFilter>;
+  order?: Maybe<Array<Maybe<ApiFieldOrder>>>;
 };
 
 
@@ -165,23 +182,6 @@ export type QueryContentBlockCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<ContentBlockFilter>;
   order?: Maybe<Array<Maybe<ContentBlockOrder>>>;
-};
-
-
-export type QueryApiFieldArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryApiFieldCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ApiFieldFilter>;
-  order?: Maybe<Array<Maybe<ApiFieldOrder>>>;
 };
 
 
@@ -495,6 +495,125 @@ export type AssetCollection = {
   skip: Scalars['Int'];
   limit: Scalars['Int'];
   items: Array<Maybe<Asset>>;
+};
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiField = Entry & {
+  __typename?: 'ApiField';
+  sys: Sys;
+  linkedFrom?: Maybe<ApiFieldLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  dataType?: Maybe<Scalars['String']>;
+  defaultValue?: Maybe<Scalars['JSON']>;
+  description?: Maybe<Scalars['String']>;
+  required?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDataTypeArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDefaultValueArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldRequiredArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ApiFieldLinkingCollections = {
+  __typename?: 'ApiFieldLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ApiFieldLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ApiFieldFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  dataType_exists?: Maybe<Scalars['Boolean']>;
+  dataType?: Maybe<Scalars['String']>;
+  dataType_not?: Maybe<Scalars['String']>;
+  dataType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  dataType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  dataType_contains?: Maybe<Scalars['String']>;
+  dataType_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  required_exists?: Maybe<Scalars['Boolean']>;
+  required?: Maybe<Scalars['Boolean']>;
+  required_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ApiFieldFilter>>>;
+  AND?: Maybe<Array<Maybe<ApiFieldFilter>>>;
+};
+
+export enum ApiFieldOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  DataTypeAsc = 'dataType_ASC',
+  DataTypeDesc = 'dataType_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  RequiredAsc = 'required_ASC',
+  RequiredDesc = 'required_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ApiFieldCollection = {
+  __typename?: 'ApiFieldCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<ApiField>>;
 };
 
 /** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
@@ -817,7 +936,6 @@ export type CodeBlockDescription = {
   json: Scalars['JSON'];
   links: CodeBlockDescriptionLinks;
 };
-
 
 export type CodeBlockDescriptionLinks = {
   __typename?: 'CodeBlockDescriptionLinks';
@@ -1217,133 +1335,6 @@ export type ContentBlockCollection = {
   items: Array<Maybe<ContentBlock>>;
 };
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiField = Entry & {
-  __typename?: 'ApiField';
-  sys: Sys;
-  linkedFrom?: Maybe<ApiFieldLinkingCollections>;
-  name?: Maybe<Scalars['String']>;
-  dataType?: Maybe<Scalars['String']>;
-  defaultValue?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-  required?: Maybe<Scalars['Boolean']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldNameArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDataTypeArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDefaultValueArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldRequiredArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type ApiFieldLinkingCollections = {
-  __typename?: 'ApiFieldLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type ApiFieldLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type ApiFieldFilter = {
-  sys?: Maybe<SysFilter>;
-  name_exists?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  dataType_exists?: Maybe<Scalars['Boolean']>;
-  dataType?: Maybe<Scalars['String']>;
-  dataType_not?: Maybe<Scalars['String']>;
-  dataType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  dataType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  dataType_contains?: Maybe<Scalars['String']>;
-  dataType_not_contains?: Maybe<Scalars['String']>;
-  defaultValue_exists?: Maybe<Scalars['Boolean']>;
-  defaultValue?: Maybe<Scalars['String']>;
-  defaultValue_not?: Maybe<Scalars['String']>;
-  defaultValue_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  defaultValue_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  defaultValue_contains?: Maybe<Scalars['String']>;
-  defaultValue_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  required_exists?: Maybe<Scalars['Boolean']>;
-  required?: Maybe<Scalars['Boolean']>;
-  required_not?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<ApiFieldFilter>>>;
-  AND?: Maybe<Array<Maybe<ApiFieldFilter>>>;
-};
-
-export enum ApiFieldOrder {
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  DataTypeAsc = 'dataType_ASC',
-  DataTypeDesc = 'dataType_DESC',
-  DefaultValueAsc = 'defaultValue_ASC',
-  DefaultValueDesc = 'defaultValue_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  RequiredAsc = 'required_ASC',
-  RequiredDesc = 'required_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type ApiFieldCollection = {
-  __typename?: 'ApiFieldCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<ApiField>>;
-};
-
 export type ApiTableFilter = {
   sys?: Maybe<SysFilter>;
   title_exists?: Maybe<Scalars['Boolean']>;
@@ -1464,10 +1455,10 @@ export type SectionContentQuery = (
           & Pick<Sys, 'id'>
         ), apiFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiFieldCollection' }
-          & { items: Array<Maybe<{ __typename?: 'Hero' } | { __typename?: 'Section' } | { __typename?: 'Page' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'LiveExample' } | (
+          & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          )>> }
+          ) | { __typename?: 'Hero' } | { __typename?: 'Section' } | { __typename?: 'Page' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'LiveExample' }>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }
