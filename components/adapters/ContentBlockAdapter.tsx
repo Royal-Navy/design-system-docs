@@ -21,10 +21,13 @@ export type AssetType = {
   width: number
 }
 
-const { spacing } = selectors
+const { spacing, color } = selectors
 
 const StyledImage = styled.img`
   margin-top: ${spacing('12')};
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  border: 1px solid ${color('neutral', '100')};
+  border-radius: 3px;
 `
 
 function getRichTextRenderOptions(links) {
