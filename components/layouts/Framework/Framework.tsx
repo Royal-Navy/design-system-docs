@@ -5,6 +5,9 @@ import { Masthead } from '../../presenters/Masthead'
 import { Sidebar } from '../../presenters/Sidebar'
 import { StyledMain } from './partials/StyledMain'
 
+// eslint-disable-next-line import/extensions
+import { version } from '../../../package.json'
+
 interface LayoutFrameworkProps {
   children: React.ReactNode
   title?: string
@@ -27,7 +30,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
       </Head>
       <Masthead
         title={title}
-        version="2.36.3"
+        version={version}
         onToggle={(_) => setIsOpen(!isOpen)}
       />
       <Sidebar

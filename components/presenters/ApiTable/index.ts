@@ -1,4 +1,5 @@
 export * from './ApiTable'
 export * from './ApiTableDefaultValue'
+export * from './ApiTableFunctionParameter'
 export * from './ApiTableDescription'
 export * from './ApiTableItem'
