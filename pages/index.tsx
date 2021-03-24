@@ -127,7 +127,10 @@ function renderPresenter(
  */
 export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
   return (
-    <LayoutFramework navigation={renderNavigation(sectionCollection)}>
+    <LayoutFramework
+      title="Compound Timeline | Royal Navy Design System"
+      navigation={renderNavigation(sectionCollection)}
+    >
       {sectionCollection?.items.map(
         ({ title, contentCollection: { items } }) => {
           return (
