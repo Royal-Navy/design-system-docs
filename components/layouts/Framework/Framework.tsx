@@ -29,7 +29,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Masthead
-        title={title}
+        title="Royal Navy Design System"
         version={version}
         onToggle={(_) => setIsOpen(!isOpen)}
       />
