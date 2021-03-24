@@ -16,6 +16,7 @@ import {
   SectionCollection as SectionCollectionType,
   Section as SectionType,
   SectionContentItem as SectionContentItemType,
+  SectionContentCollection as SectionContentCollectionType,
 } from '../graphql'
 
 import PAGE_STRUCTURE_QUERY from '../graphql/queries/PageStructure.graphql'
@@ -122,6 +123,27 @@ function renderPresenter(
 }
 
 /**
+ * Render content collection using presenters
+ *
+ */
+function renderContentCollection(
+  contentCollection: SectionContentCollectionType
+): React.ReactElement | React.ReactElement[] {
+  return contentCollection?.items.map(
+    ({ __typename, ...fields }: SectionContentItemType) => {
+      const { title: key } = fields
+
+      return React.cloneElement(
+        renderPresenter(__typename as keyof SectionContentItemType, fields),
+        {
+          key,
+        }
+      )
+    }
+  )
+}
+
+/**
  * Render page using data from `getStaticProps`
  *
  */
@@ -131,29 +153,13 @@ export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
       title="Compound Timeline | Royal Navy Design System"
       navigation={renderNavigation(sectionCollection)}
     >
-      {sectionCollection?.items.map(
-        ({ title, contentCollection: { items } }) => {
-          return (
-            <Section key={title}>
-              {items.map(
-                ({ __typename, ...fields }: SectionContentItemType) => {
-                  const { title: key } = fields
-
-                  return React.cloneElement(
-                    renderPresenter(
-                      __typename as keyof SectionContentItemType,
-                      fields
-                    ),
-                    {
-                      key,
-                    }
-                  )
-                }
-              )}
-            </Section>
-          )
-        }
-      )}
+      {sectionCollection?.items.map(({ title, contentCollection }) => {
+        return (
+          <Section key={title}>
+            {renderContentCollection(contentCollection)}
+          </Section>
+        )
+      })}
     </LayoutFramework>
   )
 }
