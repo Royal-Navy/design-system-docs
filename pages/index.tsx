@@ -10,21 +10,27 @@ import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
 import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
 import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
 import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
+import { Section } from '../components/presenters/Section'
 
-import { contentful } from '../services/contentful'
-import { SectionCollection, Section, SectionContentItem } from '../graphql'
+import {
+  SectionCollection as SectionCollectionType,
+  Section as SectionType,
+  SectionContentItem as SectionContentItemType,
+} from '../graphql'
+
 import PAGE_STRUCTURE_QUERY from '../graphql/queries/PageStructure.graphql'
 import SECTION_CONTENT_QUERY from '../graphql/queries/SectionContent.graphql'
+import { contentful } from '../services/contentful'
 
 interface HomeProps {
-  sectionCollection: SectionCollection
+  sectionCollection: SectionCollectionType
 }
 
 /**
  * Fetch a content collection for a parent entry (by ID)
  *
  */
-async function fetchContentCollection(item: Section): Promise<Section> {
+async function fetchContentCollection(item: SectionType): Promise<SectionType> {
   const {
     sys: { id },
   } = item
@@ -43,7 +49,9 @@ async function fetchContentCollection(item: Section): Promise<Section> {
  * Hydrate a collection of entries with content collections
  *
  */
-async function hydrateContentCollections(items: Section[]): Promise<Section[]> {
+async function hydrateContentCollections(
+  items: SectionType[]
+): Promise<SectionType[]> {
   return Promise.all(items.map((item) => fetchContentCollection(item)))
 }
 
@@ -74,7 +82,7 @@ export const getStaticProps: GetStaticProps = async () => {
  *
  */
 function renderNavigation(
-  sectionCollection: SectionCollection
+  sectionCollection: SectionCollectionType
 ): React.ReactElement | React.ReactElement[] {
   return sectionCollection?.items?.map(({ title, contentCollection }) => {
     return (
@@ -98,8 +106,8 @@ function renderNavigation(
  *
  */
 function renderPresenter(
-  type: keyof SectionContentItem,
-  fields: SectionContentItem
+  type: keyof SectionContentItemType,
+  fields: SectionContentItemType
 ): React.ReactElement {
   const componentMap = {
     Hero: <HeroAdapter fields={fields} />,
@@ -118,21 +126,28 @@ function renderPresenter(
  *
  */
 export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
-  const contentCollection = sectionCollection?.items?.flatMap(
-    (item) => item?.contentCollection?.items ?? []
-  )
-
   return (
     <LayoutFramework navigation={renderNavigation(sectionCollection)}>
-      {contentCollection.map(
-        ({ __typename, ...fields }: SectionContentItem) => {
-          const { title: key } = fields
+      {sectionCollection?.items.map(
+        ({ title, contentCollection: { items } }) => {
+          return (
+            <Section key={title}>
+              {items.map(
+                ({ __typename, ...fields }: SectionContentItemType) => {
+                  const { title: key } = fields
 
-          return React.cloneElement(
-            renderPresenter(__typename as keyof SectionContentItem, fields),
-            {
-              key,
-            }
+                  return React.cloneElement(
+                    renderPresenter(
+                      __typename as keyof SectionContentItemType,
+                      fields
+                    ),
+                    {
+                      key,
+                    }
+                  )
+                }
+              )}
+            </Section>
           )
         }
       )}

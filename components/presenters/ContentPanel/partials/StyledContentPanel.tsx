@@ -3,7 +3,7 @@ import { selectors } from '@royalnavy/design-tokens'
 
 const { mq, color, spacing, fontSize } = selectors
 
-export const StyledContentPanel = styled.section`
+export const StyledContentPanel = styled.article`
   padding-top: 60px;
   margin-top: -60px;
   display: flex;
