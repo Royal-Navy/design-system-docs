@@ -51,7 +51,7 @@ export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
     <ContentPanel id={id}>
       <LeftCol>
         {title && <h2>{title}</h2>}
-        {apiTableDescription}
+        <p>{apiTableDescription}</p>
         <ApiTable>
           {apiFieldCollection &&
             apiFieldCollection.items.map(
