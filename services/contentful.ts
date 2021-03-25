@@ -21,7 +21,11 @@ export async function contentful(
       }
     )
 
-    const { data } = await res.json()
+    const { data, errors } = await res.json()
+
+    if (errors) {
+      throw new Error(JSON.stringify(errors, null, 2))
+    }
 
     return data
   } catch (error) {
