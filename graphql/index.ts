@@ -30,6 +30,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  contentBlock?: Maybe<ContentBlock>;
+  contentBlockCollection?: Maybe<ContentBlockCollection>;
   apiField?: Maybe<ApiField>;
   apiFieldCollection?: Maybe<ApiFieldCollection>;
   hero?: Maybe<Hero>;
@@ -42,8 +44,6 @@ export type Query = {
   codeBlockCollection?: Maybe<CodeBlockCollection>;
   liveExample?: Maybe<LiveExample>;
   liveExampleCollection?: Maybe<LiveExampleCollection>;
-  contentBlock?: Maybe<ContentBlock>;
-  contentBlockCollection?: Maybe<ContentBlockCollection>;
   apiTable?: Maybe<ApiTable>;
   apiTableCollection?: Maybe<ApiTableCollection>;
 };
@@ -63,6 +63,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryContentBlockArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryContentBlockCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ContentBlockFilter>;
+  order?: Maybe<Array<Maybe<ContentBlockOrder>>>;
 };
 
 
@@ -165,23 +182,6 @@ export type QueryLiveExampleCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<LiveExampleFilter>;
   order?: Maybe<Array<Maybe<LiveExampleOrder>>>;
-};
-
-
-export type QueryContentBlockArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryContentBlockCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ContentBlockFilter>;
-  order?: Maybe<Array<Maybe<ContentBlockOrder>>>;
 };
 
 
@@ -339,10 +339,19 @@ export enum ImageFormat {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  contentBlockCollection?: Maybe<ContentBlockCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsContentBlockCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -361,303 +370,57 @@ export type Entry = {
   sys: Sys;
 };
 
-export type AssetFilter = {
-  sys?: Maybe<SysFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  url_exists?: Maybe<Scalars['Boolean']>;
-  url?: Maybe<Scalars['String']>;
-  url_not?: Maybe<Scalars['String']>;
-  url_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  url_contains?: Maybe<Scalars['String']>;
-  url_not_contains?: Maybe<Scalars['String']>;
-  size_exists?: Maybe<Scalars['Boolean']>;
-  size?: Maybe<Scalars['Int']>;
-  size_not?: Maybe<Scalars['Int']>;
-  size_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  size_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  size_gt?: Maybe<Scalars['Int']>;
-  size_gte?: Maybe<Scalars['Int']>;
-  size_lt?: Maybe<Scalars['Int']>;
-  size_lte?: Maybe<Scalars['Int']>;
-  contentType_exists?: Maybe<Scalars['Boolean']>;
-  contentType?: Maybe<Scalars['String']>;
-  contentType_not?: Maybe<Scalars['String']>;
-  contentType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  contentType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  contentType_contains?: Maybe<Scalars['String']>;
-  contentType_not_contains?: Maybe<Scalars['String']>;
-  fileName_exists?: Maybe<Scalars['Boolean']>;
-  fileName?: Maybe<Scalars['String']>;
-  fileName_not?: Maybe<Scalars['String']>;
-  fileName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  fileName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  fileName_contains?: Maybe<Scalars['String']>;
-  fileName_not_contains?: Maybe<Scalars['String']>;
-  width_exists?: Maybe<Scalars['Boolean']>;
-  width?: Maybe<Scalars['Int']>;
-  width_not?: Maybe<Scalars['Int']>;
-  width_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  width_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  width_gt?: Maybe<Scalars['Int']>;
-  width_gte?: Maybe<Scalars['Int']>;
-  width_lt?: Maybe<Scalars['Int']>;
-  width_lte?: Maybe<Scalars['Int']>;
-  height_exists?: Maybe<Scalars['Boolean']>;
-  height?: Maybe<Scalars['Int']>;
-  height_not?: Maybe<Scalars['Int']>;
-  height_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  height_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
-  height_gt?: Maybe<Scalars['Int']>;
-  height_gte?: Maybe<Scalars['Int']>;
-  height_lt?: Maybe<Scalars['Int']>;
-  height_lte?: Maybe<Scalars['Int']>;
-  OR?: Maybe<Array<Maybe<AssetFilter>>>;
-  AND?: Maybe<Array<Maybe<AssetFilter>>>;
-};
-
-export type SysFilter = {
-  id_exists?: Maybe<Scalars['Boolean']>;
-  id?: Maybe<Scalars['String']>;
-  id_not?: Maybe<Scalars['String']>;
-  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  id_contains?: Maybe<Scalars['String']>;
-  id_not_contains?: Maybe<Scalars['String']>;
-  publishedAt_exists?: Maybe<Scalars['Boolean']>;
-  publishedAt?: Maybe<Scalars['DateTime']>;
-  publishedAt_not?: Maybe<Scalars['DateTime']>;
-  publishedAt_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  publishedAt_not_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  publishedAt_gt?: Maybe<Scalars['DateTime']>;
-  publishedAt_gte?: Maybe<Scalars['DateTime']>;
-  publishedAt_lt?: Maybe<Scalars['DateTime']>;
-  publishedAt_lte?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_exists?: Maybe<Scalars['Boolean']>;
-  firstPublishedAt?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_not?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  firstPublishedAt_not_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
-  firstPublishedAt_gt?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_gte?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_lt?: Maybe<Scalars['DateTime']>;
-  firstPublishedAt_lte?: Maybe<Scalars['DateTime']>;
-  publishedVersion_exists?: Maybe<Scalars['Boolean']>;
-  publishedVersion?: Maybe<Scalars['Float']>;
-  publishedVersion_not?: Maybe<Scalars['Float']>;
-  publishedVersion_in?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  publishedVersion_not_in?: Maybe<Array<Maybe<Scalars['Float']>>>;
-  publishedVersion_gt?: Maybe<Scalars['Float']>;
-  publishedVersion_gte?: Maybe<Scalars['Float']>;
-  publishedVersion_lt?: Maybe<Scalars['Float']>;
-  publishedVersion_lte?: Maybe<Scalars['Float']>;
-};
-
-export enum AssetOrder {
-  UrlAsc = 'url_ASC',
-  UrlDesc = 'url_DESC',
-  SizeAsc = 'size_ASC',
-  SizeDesc = 'size_DESC',
-  ContentTypeAsc = 'contentType_ASC',
-  ContentTypeDesc = 'contentType_DESC',
-  FileNameAsc = 'fileName_ASC',
-  FileNameDesc = 'fileName_DESC',
-  WidthAsc = 'width_ASC',
-  WidthDesc = 'width_DESC',
-  HeightAsc = 'height_ASC',
-  HeightDesc = 'height_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type AssetCollection = {
-  __typename?: 'AssetCollection';
+export type ContentBlockCollection = {
+  __typename?: 'ContentBlockCollection';
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Maybe<Asset>>;
+  items: Array<Maybe<ContentBlock>>;
 };
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiField = Entry & {
-  __typename?: 'ApiField';
+/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
+export type ContentBlock = Entry & {
+  __typename?: 'ContentBlock';
   sys: Sys;
-  linkedFrom?: Maybe<ApiFieldLinkingCollections>;
-  name?: Maybe<Scalars['String']>;
-  dataType?: Maybe<Scalars['String']>;
-  defaultValue?: Maybe<Scalars['JSON']>;
-  description?: Maybe<Scalars['String']>;
-  required?: Maybe<Scalars['Boolean']>;
+  linkedFrom?: Maybe<ContentBlockLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<ContentBlockDescription>;
+  image?: Maybe<Asset>;
 };
 
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldLinkedFromArgs = {
+/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
+export type ContentBlockLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldNameArgs = {
+/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
+export type ContentBlockTitleArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDataTypeArgs = {
+/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
+export type ContentBlockDescriptionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDefaultValueArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
-export type ApiFieldRequiredArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type ApiFieldLinkingCollections = {
-  __typename?: 'ApiFieldLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type ApiFieldLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
+/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
+export type ContentBlockImageArgs = {
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
-
-export type ApiFieldFilter = {
-  sys?: Maybe<SysFilter>;
-  name_exists?: Maybe<Scalars['Boolean']>;
-  name?: Maybe<Scalars['String']>;
-  name_not?: Maybe<Scalars['String']>;
-  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  name_contains?: Maybe<Scalars['String']>;
-  name_not_contains?: Maybe<Scalars['String']>;
-  dataType_exists?: Maybe<Scalars['Boolean']>;
-  dataType?: Maybe<Scalars['String']>;
-  dataType_not?: Maybe<Scalars['String']>;
-  dataType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  dataType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  dataType_contains?: Maybe<Scalars['String']>;
-  dataType_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description?: Maybe<Scalars['String']>;
-  description_not?: Maybe<Scalars['String']>;
-  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  required_exists?: Maybe<Scalars['Boolean']>;
-  required?: Maybe<Scalars['Boolean']>;
-  required_not?: Maybe<Scalars['Boolean']>;
-  OR?: Maybe<Array<Maybe<ApiFieldFilter>>>;
-  AND?: Maybe<Array<Maybe<ApiFieldFilter>>>;
-};
-
-export enum ApiFieldOrder {
-  NameAsc = 'name_ASC',
-  NameDesc = 'name_DESC',
-  DataTypeAsc = 'dataType_ASC',
-  DataTypeDesc = 'dataType_DESC',
-  DescriptionAsc = 'description_ASC',
-  DescriptionDesc = 'description_DESC',
-  RequiredAsc = 'required_ASC',
-  RequiredDesc = 'required_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type ApiFieldCollection = {
-  __typename?: 'ApiFieldCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<ApiField>>;
-};
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type Hero = Entry & {
-  __typename?: 'Hero';
-  sys: Sys;
-  linkedFrom?: Maybe<HeroLinkingCollections>;
-  title?: Maybe<Scalars['String']>;
-  heading?: Maybe<Scalars['String']>;
-  description?: Maybe<Scalars['String']>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroHeadingArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
-export type HeroDescriptionArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type HeroLinkingCollections = {
-  __typename?: 'HeroLinkingCollections';
+export type ContentBlockLinkingCollections = {
+  __typename?: 'ContentBlockLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
-export type HeroLinkingCollectionsEntryCollectionArgs = {
+export type ContentBlockLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -665,7 +428,7 @@ export type HeroLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type HeroLinkingCollectionsSectionCollectionArgs = {
+export type ContentBlockLinkingCollectionsSectionCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -937,6 +700,7 @@ export type CodeBlockDescription = {
   links: CodeBlockDescriptionLinks;
 };
 
+
 export type CodeBlockDescriptionLinks = {
   __typename?: 'CodeBlockDescriptionLinks';
   entries: CodeBlockDescriptionEntries;
@@ -956,41 +720,48 @@ export type CodeBlockDescriptionAssets = {
   block: Array<Maybe<Asset>>;
 };
 
-/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
-export type ContentBlock = Entry & {
-  __typename?: 'ContentBlock';
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type Hero = Entry & {
+  __typename?: 'Hero';
   sys: Sys;
-  linkedFrom?: Maybe<ContentBlockLinkingCollections>;
+  linkedFrom?: Maybe<HeroLinkingCollections>;
   title?: Maybe<Scalars['String']>;
-  description?: Maybe<ContentBlockDescription>;
+  heading?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
 };
 
 
-/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
-export type ContentBlockLinkedFromArgs = {
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
-export type ContentBlockTitleArgs = {
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroTitleArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** Display arbitrary markdown content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentBlock) */
-export type ContentBlockDescriptionArgs = {
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroHeadingArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
-export type ContentBlockLinkingCollections = {
-  __typename?: 'ContentBlockLinkingCollections';
+
+/** Display introduction at the very top of the page. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/hero) */
+export type HeroDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type HeroLinkingCollections = {
+  __typename?: 'HeroLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
-export type ContentBlockLinkingCollectionsEntryCollectionArgs = {
+export type HeroLinkingCollectionsEntryCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -998,36 +769,11 @@ export type ContentBlockLinkingCollectionsEntryCollectionArgs = {
 };
 
 
-export type ContentBlockLinkingCollectionsSectionCollectionArgs = {
+export type HeroLinkingCollectionsSectionCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
-};
-
-export type ContentBlockDescription = {
-  __typename?: 'ContentBlockDescription';
-  json: Scalars['JSON'];
-  links: ContentBlockDescriptionLinks;
-};
-
-export type ContentBlockDescriptionLinks = {
-  __typename?: 'ContentBlockDescriptionLinks';
-  entries: ContentBlockDescriptionEntries;
-  assets: ContentBlockDescriptionAssets;
-};
-
-export type ContentBlockDescriptionEntries = {
-  __typename?: 'ContentBlockDescriptionEntries';
-  inline: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  block: Array<Maybe<Entry>>;
-};
-
-export type ContentBlockDescriptionAssets = {
-  __typename?: 'ContentBlockDescriptionAssets';
-  hyperlink: Array<Maybe<Asset>>;
-  block: Array<Maybe<Asset>>;
 };
 
 /** Display an interactive example of component or collection of components. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/liveExample) */
@@ -1102,6 +848,315 @@ export type LiveExampleDescriptionAssets = {
   __typename?: 'LiveExampleDescriptionAssets';
   hyperlink: Array<Maybe<Asset>>;
   block: Array<Maybe<Asset>>;
+};
+
+export type ContentBlockDescription = {
+  __typename?: 'ContentBlockDescription';
+  json: Scalars['JSON'];
+  links: ContentBlockDescriptionLinks;
+};
+
+export type ContentBlockDescriptionLinks = {
+  __typename?: 'ContentBlockDescriptionLinks';
+  entries: ContentBlockDescriptionEntries;
+  assets: ContentBlockDescriptionAssets;
+};
+
+export type ContentBlockDescriptionEntries = {
+  __typename?: 'ContentBlockDescriptionEntries';
+  inline: Array<Maybe<Entry>>;
+  hyperlink: Array<Maybe<Entry>>;
+  block: Array<Maybe<Entry>>;
+};
+
+export type ContentBlockDescriptionAssets = {
+  __typename?: 'ContentBlockDescriptionAssets';
+  hyperlink: Array<Maybe<Asset>>;
+  block: Array<Maybe<Asset>>;
+};
+
+export type AssetFilter = {
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  url_exists?: Maybe<Scalars['Boolean']>;
+  url?: Maybe<Scalars['String']>;
+  url_not?: Maybe<Scalars['String']>;
+  url_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  url_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  url_contains?: Maybe<Scalars['String']>;
+  url_not_contains?: Maybe<Scalars['String']>;
+  size_exists?: Maybe<Scalars['Boolean']>;
+  size?: Maybe<Scalars['Int']>;
+  size_not?: Maybe<Scalars['Int']>;
+  size_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  size_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  size_gt?: Maybe<Scalars['Int']>;
+  size_gte?: Maybe<Scalars['Int']>;
+  size_lt?: Maybe<Scalars['Int']>;
+  size_lte?: Maybe<Scalars['Int']>;
+  contentType_exists?: Maybe<Scalars['Boolean']>;
+  contentType?: Maybe<Scalars['String']>;
+  contentType_not?: Maybe<Scalars['String']>;
+  contentType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentType_contains?: Maybe<Scalars['String']>;
+  contentType_not_contains?: Maybe<Scalars['String']>;
+  fileName_exists?: Maybe<Scalars['Boolean']>;
+  fileName?: Maybe<Scalars['String']>;
+  fileName_not?: Maybe<Scalars['String']>;
+  fileName_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  fileName_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  fileName_contains?: Maybe<Scalars['String']>;
+  fileName_not_contains?: Maybe<Scalars['String']>;
+  width_exists?: Maybe<Scalars['Boolean']>;
+  width?: Maybe<Scalars['Int']>;
+  width_not?: Maybe<Scalars['Int']>;
+  width_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  width_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  width_gt?: Maybe<Scalars['Int']>;
+  width_gte?: Maybe<Scalars['Int']>;
+  width_lt?: Maybe<Scalars['Int']>;
+  width_lte?: Maybe<Scalars['Int']>;
+  height_exists?: Maybe<Scalars['Boolean']>;
+  height?: Maybe<Scalars['Int']>;
+  height_not?: Maybe<Scalars['Int']>;
+  height_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  height_not_in?: Maybe<Array<Maybe<Scalars['Int']>>>;
+  height_gt?: Maybe<Scalars['Int']>;
+  height_gte?: Maybe<Scalars['Int']>;
+  height_lt?: Maybe<Scalars['Int']>;
+  height_lte?: Maybe<Scalars['Int']>;
+  OR?: Maybe<Array<Maybe<AssetFilter>>>;
+  AND?: Maybe<Array<Maybe<AssetFilter>>>;
+};
+
+export type SysFilter = {
+  id_exists?: Maybe<Scalars['Boolean']>;
+  id?: Maybe<Scalars['String']>;
+  id_not?: Maybe<Scalars['String']>;
+  id_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  id_contains?: Maybe<Scalars['String']>;
+  id_not_contains?: Maybe<Scalars['String']>;
+  publishedAt_exists?: Maybe<Scalars['Boolean']>;
+  publishedAt?: Maybe<Scalars['DateTime']>;
+  publishedAt_not?: Maybe<Scalars['DateTime']>;
+  publishedAt_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  publishedAt_not_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  publishedAt_gt?: Maybe<Scalars['DateTime']>;
+  publishedAt_gte?: Maybe<Scalars['DateTime']>;
+  publishedAt_lt?: Maybe<Scalars['DateTime']>;
+  publishedAt_lte?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_exists?: Maybe<Scalars['Boolean']>;
+  firstPublishedAt?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_not?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  firstPublishedAt_not_in?: Maybe<Array<Maybe<Scalars['DateTime']>>>;
+  firstPublishedAt_gt?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_gte?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_lt?: Maybe<Scalars['DateTime']>;
+  firstPublishedAt_lte?: Maybe<Scalars['DateTime']>;
+  publishedVersion_exists?: Maybe<Scalars['Boolean']>;
+  publishedVersion?: Maybe<Scalars['Float']>;
+  publishedVersion_not?: Maybe<Scalars['Float']>;
+  publishedVersion_in?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  publishedVersion_not_in?: Maybe<Array<Maybe<Scalars['Float']>>>;
+  publishedVersion_gt?: Maybe<Scalars['Float']>;
+  publishedVersion_gte?: Maybe<Scalars['Float']>;
+  publishedVersion_lt?: Maybe<Scalars['Float']>;
+  publishedVersion_lte?: Maybe<Scalars['Float']>;
+};
+
+export enum AssetOrder {
+  UrlAsc = 'url_ASC',
+  UrlDesc = 'url_DESC',
+  SizeAsc = 'size_ASC',
+  SizeDesc = 'size_DESC',
+  ContentTypeAsc = 'contentType_ASC',
+  ContentTypeDesc = 'contentType_DESC',
+  FileNameAsc = 'fileName_ASC',
+  FileNameDesc = 'fileName_DESC',
+  WidthAsc = 'width_ASC',
+  WidthDesc = 'width_DESC',
+  HeightAsc = 'height_ASC',
+  HeightDesc = 'height_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type AssetCollection = {
+  __typename?: 'AssetCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Asset>>;
+};
+
+export type ContentBlockFilter = {
+  sys?: Maybe<SysFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  image_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ContentBlockFilter>>>;
+  AND?: Maybe<Array<Maybe<ContentBlockFilter>>>;
+};
+
+export enum ContentBlockOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiField = Entry & {
+  __typename?: 'ApiField';
+  sys: Sys;
+  linkedFrom?: Maybe<ApiFieldLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  dataType?: Maybe<Scalars['String']>;
+  defaultValue?: Maybe<Scalars['JSON']>;
+  description?: Maybe<Scalars['String']>;
+  required?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDataTypeArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDefaultValueArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Singular API Field (makes up API Table). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/apiField) */
+export type ApiFieldRequiredArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ApiFieldLinkingCollections = {
+  __typename?: 'ApiFieldLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type ApiFieldLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ApiFieldFilter = {
+  sys?: Maybe<SysFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  dataType_exists?: Maybe<Scalars['Boolean']>;
+  dataType?: Maybe<Scalars['String']>;
+  dataType_not?: Maybe<Scalars['String']>;
+  dataType_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  dataType_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  dataType_contains?: Maybe<Scalars['String']>;
+  dataType_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  required_exists?: Maybe<Scalars['Boolean']>;
+  required?: Maybe<Scalars['Boolean']>;
+  required_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<ApiFieldFilter>>>;
+  AND?: Maybe<Array<Maybe<ApiFieldFilter>>>;
+};
+
+export enum ApiFieldOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  DataTypeAsc = 'dataType_ASC',
+  DataTypeDesc = 'dataType_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  RequiredAsc = 'required_ASC',
+  RequiredDesc = 'required_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type ApiFieldCollection = {
+  __typename?: 'ApiFieldCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<ApiField>>;
 };
 
 export type HeroFilter = {
@@ -1298,43 +1353,6 @@ export type LiveExampleCollection = {
   items: Array<Maybe<LiveExample>>;
 };
 
-export type ContentBlockFilter = {
-  sys?: Maybe<SysFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  description_exists?: Maybe<Scalars['Boolean']>;
-  description_contains?: Maybe<Scalars['String']>;
-  description_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<ContentBlockFilter>>>;
-  AND?: Maybe<Array<Maybe<ContentBlockFilter>>>;
-};
-
-export enum ContentBlockOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-export type ContentBlockCollection = {
-  __typename?: 'ContentBlockCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<ContentBlock>>;
-};
-
 export type ApiTableFilter = {
   sys?: Maybe<SysFilter>;
   title_exists?: Maybe<Scalars['Boolean']>;
@@ -1455,10 +1473,10 @@ export type SectionContentQuery = (
           & Pick<Sys, 'id'>
         ), apiFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiFieldCollection' }
-          & { items: Array<Maybe<(
+          & { items: Array<Maybe<{ __typename?: 'ContentBlock' } | { __typename?: 'Section' } | { __typename?: 'Page' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'Hero' } | { __typename?: 'LiveExample' } | (
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'Hero' } | { __typename?: 'Section' } | { __typename?: 'Page' } | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'LiveExample' }>> }
+          )>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }
@@ -1479,20 +1497,9 @@ export type SectionContentQuery = (
         ), description?: Maybe<(
           { __typename?: 'ContentBlockDescription' }
           & Pick<ContentBlockDescription, 'json'>
-          & { links: (
-            { __typename?: 'ContentBlockDescriptionLinks' }
-            & { assets: (
-              { __typename?: 'ContentBlockDescriptionAssets' }
-              & { block: Array<Maybe<(
-                { __typename?: 'Asset' }
-                & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
-                & { sys: (
-                  { __typename?: 'Sys' }
-                  & Pick<Sys, 'id'>
-                ) }
-              )>> }
-            ) }
-          ) }
+        )>, image?: Maybe<(
+          { __typename?: 'Asset' }
+          & Pick<Asset, 'title' | 'url'>
         )> }
       ) | (
         { __typename: 'Hero' }

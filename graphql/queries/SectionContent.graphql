@@ -1,7 +1,7 @@
 query SectionContent($id: String!) {
   section(id: $id) {
     title
-    contentCollection(limit: 10) {
+    contentCollection(limit: 20) {
       items {
         __typename
         ... on Entry {
@@ -18,21 +18,10 @@ query SectionContent($id: String!) {
           title
           description {
             json
-            links {
-              assets {
-                block {
-                  fileName
-                  title
-                  description
-                  url
-                  width
-                  height
-                  sys {
-                    id
-                  }
-                }
-              }
-            }
+          }
+          image {
+            title
+            url
           }
         }
         ... on LiveExample {

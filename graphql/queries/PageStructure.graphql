@@ -1,7 +1,7 @@
 query PageStructure($id: String!) {
   page(id: $id) {
     title
-    sectionCollection(limit: 10) {
+    sectionCollection(limit: 20) {
       items {
         title
         ... on Entry {

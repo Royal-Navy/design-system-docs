@@ -30,6 +30,15 @@ const StyledImage = styled.img`
   border-radius: 3px;
 `
 
+/**
+ * Rich Text Field embedded asset rendering has been disabled
+ * for now because it dramatically increases query complexity.
+ *
+ * In the meantime, ensure that assets have their own fields.
+ *
+ * https://www.contentful.com/developers/docs/references/graphql/#/introduction/query-complexity-limits
+ *
+ */
 function getRichTextRenderOptions(links) {
   const assetBlockMap = new Map<string, AssetType>(
     links?.assets?.block?.map((asset) => [asset.sys.id, asset])
@@ -58,7 +67,7 @@ function getRichTextRenderOptions(links) {
 export const ContentBlockAdapter: React.FC<ContentBlockAdapterProps> = ({
   fields,
 }) => {
-  const { title, description } = fields
+  const { title, description, image } = fields
   const id = camelCase(title)
 
   return (
@@ -67,9 +76,10 @@ export const ContentBlockAdapter: React.FC<ContentBlockAdapterProps> = ({
         {title && <h2>{title}</h2>}
         {description?.json &&
           documentToReactComponents(
-            description.json,
-            getRichTextRenderOptions(description.links)
+            description.json
+            // getRichTextRenderOptions(description.links)
           )}
+        {image && <StyledImage alt={image.title} src={image.url} />}
       </LeftCol>
       <RightCol />
     </ContentPanel>
