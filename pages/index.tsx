@@ -88,15 +88,18 @@ function renderNavigation(
   return sectionCollection?.items?.map(({ title, contentCollection }) => {
     return (
       <SidebarMenu key={title} title={title}>
-        {contentCollection?.items?.map(({ title: contentTitle }) => {
-          return (
-            <SidebarMenuItem
-              key={contentTitle}
-              href={`#${camelCase(contentTitle)}`}
-              title={contentTitle}
-            />
-          )
-        })}
+        {contentCollection?.items?.map(
+          ({ __typename, title: contentTitle }) => {
+            return (
+              <SidebarMenuItem
+                key={contentTitle}
+                href={`#${camelCase(contentTitle)}`}
+                title={contentTitle}
+                isCode={__typename === 'ApiTable'}
+              />
+            )
+          }
+        )}
       </SidebarMenu>
     )
   })

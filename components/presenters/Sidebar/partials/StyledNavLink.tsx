@@ -1,9 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
+
+interface StyledNavLinkProps {
+  $isCode?: boolean
+}
 
 const { spacing, color, fontSize } = selectors
 
-export const StyledNavLink = styled.a`
+export const StyledNavLink = styled.a<StyledNavLinkProps>`
   position: relative;
   display: flex;
   justify-content: center;
@@ -33,4 +37,13 @@ export const StyledNavLink = styled.a`
       z-index: -1;
     }
   }
+
+  ${({ $isCode }) =>
+    $isCode &&
+    css`
+      font-weight: 300;
+      font-size: ${fontSize('base')};
+      font-family: 'Fira Code', 'Courier New', Courier, monospace;
+      padding-top: ${spacing('5')};
+    `}
 `
