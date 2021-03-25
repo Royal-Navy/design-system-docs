@@ -1,5 +1,4 @@
 import React from 'react'
-import capitalize from 'lodash/capitalize'
 import {
   Badge,
   BADGE_COLOR,
@@ -54,7 +53,7 @@ export const ApiTableItem: React.FC<ApiTableItemProps> = ({
           colorVariant={BADGE_COLOR_VARIANT.FADED}
           size={BADGE_SIZE.SMALL}
         >
-          {capitalize(type)}
+          {type}
         </Badge>
       </StyledHeader>
       <StyledBody>{children}</StyledBody>
