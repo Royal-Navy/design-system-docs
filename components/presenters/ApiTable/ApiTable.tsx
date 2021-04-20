@@ -10,7 +10,7 @@ export interface ApiTableProps extends ComponentWithClass {
 }
 
 export const ApiTable: React.FC<ApiTableProps> = ({ children }) => (
-  <>{children}</>
+  <div data-testid="api-table">{children}</div>
 )
 
 ApiTable.displayName = 'ApiTable'

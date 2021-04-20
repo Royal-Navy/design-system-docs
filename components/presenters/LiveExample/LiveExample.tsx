@@ -13,10 +13,10 @@ export const LiveExample: React.FC<LiveExampleProps> = ({
   title,
   children,
 }) => (
-  <StyledLiveExample>
+  <StyledLiveExample data-testid="live-example">
     {title && (
       <StyledHeader>
-        <StyledTitle data-testid="liveexample-title">{title}</StyledTitle>
+        <StyledTitle>{title}</StyledTitle>
       </StyledHeader>
     )}
     {children}

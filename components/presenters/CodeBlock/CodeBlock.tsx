@@ -19,7 +19,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({
   language = 'jsx',
 }) => {
   return (
-    <StyledCodeBlock className={className}>
+    <StyledCodeBlock className={className} data-testid="codeblock">
       {filename && (
         <StyledHeader>
           <StyledFilename data-testid="codeblock-filename">

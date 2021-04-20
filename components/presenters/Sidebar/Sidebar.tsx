@@ -24,7 +24,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   onToggle,
 }) => {
   return (
-    <StyledFrame $isOpen={isOpen}>
+    <StyledFrame data-testid="sidebar" $isOpen={isOpen}>
       <StyledSidebar>
         <div>
           <StyledHomeLink href="/">
