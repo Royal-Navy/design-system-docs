@@ -1,0 +1,48 @@
+name: Manual Release
+
+on: [workflow_dispatch]
+
+jobs:
+  release:
+    name: 'Release & Publish'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+        with:
+        # pulls all commits (needed for semantic release to correctly version)
+         fetch-depth: 0
+         token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name:  Pull all tags
+        # pulls all tags (needed for semantic release to correctly version)
+        run: git fetch --all --tags
+
+      - name: Cache Node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Get version before release step
+        id: initversion
+        run: |
+          echo "::set-output name=version::$(git describe --tags $(git rev-list --tags --max-count=1))"
+
+      - name: Create a Release
+        run: npx semantic-release
+        env:
+           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Get version following release step
+        id: postversion
+        run: |
+          echo "::set-output name=version::$(git describe --tags $(git rev-list --tags --max-count=1))"
+
+      - name: Publish Site
+        if: steps.initversion.outputs.version != steps.postversion.outputs.version
+        run: |
+          curl -X POST -d {} ${{ secrets.TIMELINE_TOKEN }}
