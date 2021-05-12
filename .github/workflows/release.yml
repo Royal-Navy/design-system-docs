@@ -14,7 +14,7 @@ jobs:
         with:
         # pulls all commits (needed for semantic release to correctly version)
          fetch-depth: 0
-         token: ${{ secrets.GITHUB_TOKEN }}
+         token: ${{ secrets.GH_TOKEN }}
 
       - name:  Pull all tags
         # pulls all tags (needed for semantic release to correctly version)
@@ -36,7 +36,7 @@ jobs:
       - name: Create a Release
         run: npx semantic-release
         env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Get version following release step
         id: postversion
