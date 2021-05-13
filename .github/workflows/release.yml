@@ -33,8 +33,9 @@ jobs:
         id: initversion
         run: |
           echo "::set-output name=version::$(git describe --tags $(git rev-list --tags --max-count=1))"
+
       - name: Create a Release
-        run: npx semantic-release
+        run: npx semantic-release --tag-format "\${version}"
         env:
            GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -42,6 +43,7 @@ jobs:
         id: postversion
         run: |
           echo "::set-output name=version::$(git describe --tags $(git rev-list --tags --max-count=1))"
+
       - name: Publish Site
         if: steps.initversion.outputs.version != steps.postversion.outputs.version
         run: |
