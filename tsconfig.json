@@ -17,8 +17,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "allowSyntheticDefaultImports": true,
-    "types": ["cypress"]
+    "allowSyntheticDefaultImports": true
   },
   "include": [
     "next-env.d.ts",
@@ -26,6 +25,7 @@
     "**/*.tsx"
   ],
   "exclude": [
+    "cypress",
     "node_modules",
   ]
 }
