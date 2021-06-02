@@ -1,3 +1,5 @@
+/* eslint-disable jest/expect-expect */
+import { describe, cy, it, before } from 'local-cypress'
 // eslint-disable-next-line import/extensions
 import { baseUrl } from '../../../cypress.json'
 import selectors from '../../selectors'
