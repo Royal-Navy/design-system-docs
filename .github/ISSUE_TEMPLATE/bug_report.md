@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: 'Type: Bug'
+labels: 'Type: Bug, Status: Awaiting triage'
 assignees: ''
 
 ---
@@ -28,4 +28,3 @@ yarn create react-app my-app --template royalnavy
 
 ### Screenshot
 *Add a screenshot*
-
