@@ -59,10 +59,17 @@ function mapApiTableItem({
 }
 
 export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
-  const { title, apiTableDescription, apiFieldCollection } = fields
+  const {
+    title,
+    apiTableDescription,
+    apiFieldCollection,
+    apiReturnFieldCollection,
+  } = fields
   const id = camelCase(title)
   const hasApiFieldItems =
     apiFieldCollection && !!apiFieldCollection.items.length
+  const hasApiReturnFieldItems =
+    apiReturnFieldCollection && !!apiReturnFieldCollection.items.length
 
   return (
     <ContentPanel id={id}>
@@ -71,6 +78,16 @@ export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
         <p>{apiTableDescription}</p>
         {hasApiFieldItems && (
           <ApiTable>{apiFieldCollection.items.map(mapApiTableItem)}</ApiTable>
+        )}
+        {hasApiReturnFieldItems && (
+          <>
+            <h3>
+              Return <code>Object</code>
+            </h3>
+            <ApiTable data-testid="api-return-table">
+              {apiReturnFieldCollection.items.map(mapApiTableItem)}
+            </ApiTable>
+          </>
         )}
       </LeftCol>
       <RightCol />

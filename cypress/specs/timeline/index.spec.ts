@@ -23,9 +23,22 @@ const content = [
   { text: 'Advanced Custom Layouts', link: 'advancedCustomLayouts' },
   { text: 'Hook APIs', link: 'hookApIs' },
   {
+    text: 'useTimelineFrame',
+    link: 'useTimelineFrame',
+    hasApiTable: true,
+    hasApiReturnTable: true,
+  },
+  {
     text: 'useTimelinePosition',
     link: 'useTimelinePosition',
     hasApiTable: true,
+    hasApiReturnTable: true,
+  },
+  {
+    text: 'useTimelineZoom',
+    link: 'useTimelineZoom',
+    hasApiTable: true,
+    hasApiReturnTable: true,
   },
   { text: 'Component APIs', link: 'componentApIs' },
   { text: 'Timeline', link: 'timeline', hasApiTable: true },
@@ -74,7 +87,17 @@ describe('Compound Timeline', () => {
     })
 
     content.forEach(
-      ({ text, link, hasApiTable, hasLiveExample, hasCodeBlock }, index) => {
+      (
+        {
+          text,
+          link,
+          hasApiTable,
+          hasApiReturnTable,
+          hasLiveExample,
+          hasCodeBlock,
+        },
+        index
+      ) => {
         describe(`${text} content`, () => {
           beforeEach(() => {
             cy.get(selectors.sidebar.link).eq(index).click()
@@ -95,6 +118,14 @@ describe('Compound Timeline', () => {
           if (hasApiTable) {
             it(`should render the ${text} API table`, () => {
               cy.get(`#${link} [data-testid="api-table"]`).should('be.visible')
+            })
+          }
+
+          if (hasApiReturnTable) {
+            it(`should render the ${text} API return table`, () => {
+              cy.get(`#${link} ${selectors.apiTable.apiReturnTable}`).should(
+                'be.visible'
+              )
             })
           }
 
