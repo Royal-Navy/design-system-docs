@@ -49,6 +49,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <script type="text/javascript" src="/static/newrelic.js" />
       </Head>
       <Masthead
         title="Royal Navy Design System"
