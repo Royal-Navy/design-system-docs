@@ -105,7 +105,7 @@ describe('Compound Timeline', () => {
 
           it(`should render the sidebar ${text} link`, () => {
             cy.get(selectors.sidebar.link).eq(index).should('have.text', text)
-            cy.url().should('eq', `${baseUrl}/#${link}`) // todo
+            cy.url().should('eq', `${baseUrl}/#${link}`)
           })
 
           if (text !== 'Home') {
@@ -117,7 +117,9 @@ describe('Compound Timeline', () => {
 
           if (hasApiTable) {
             it(`should render the ${text} API table`, () => {
-              cy.get(`#${link} [data-testid="api-table"]`).should('be.visible')
+              cy.get(`#${link} ${selectors.apiTable.apiTable}`).should(
+                'be.visible'
+              )
             })
           }
 
@@ -131,15 +133,17 @@ describe('Compound Timeline', () => {
 
           if (hasLiveExample) {
             it(`should render the ${text} live example`, () => {
-              cy.get(`#${link} [data-testid="live-example"]`).should(
+              cy.get(`#${link} ${selectors.liveExample.liveExample}`).should(
                 'be.visible'
               )
             })
           }
 
           if (hasCodeBlock) {
-            it(`should render the ${text} codeblock`, () => {
-              cy.get(`#${link} [data-testid="codeblock"]`).should('be.visible')
+            it(`should render the ${text} code block`, () => {
+              cy.get(`#${link} ${selectors.codeBlock.codeBlock}`).should(
+                'be.visible'
+              )
             })
           }
         })
