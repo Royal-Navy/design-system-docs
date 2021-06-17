@@ -25,7 +25,6 @@ const content = [
   {
     text: 'useTimelineFrame',
     link: 'useTimelineFrame',
-    hasApiTable: true,
     hasApiReturnTable: true,
   },
   {
@@ -37,7 +36,6 @@ const content = [
   {
     text: 'useTimelineZoom',
     link: 'useTimelineZoom',
-    hasApiTable: true,
     hasApiReturnTable: true,
   },
   { text: 'Component APIs', link: 'componentApIs' },
@@ -70,7 +68,7 @@ describe('Compound Timeline', () => {
   describe('when browsing on desktop', () => {
     before(() => {
       // Block newrelic.js due to issues with Cypress networking
-      cy.intercept("**/newrelic.js", (req) => {
+      cy.intercept('**/newrelic.js', (req) => {
         req.reply("console.log('Fake New Relic script loaded');")
       })
 
