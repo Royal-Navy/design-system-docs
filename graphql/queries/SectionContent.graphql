@@ -52,6 +52,17 @@ query SectionContent($id: String!) {
               }
             }
           }
+          apiReturnFieldCollection(limit: 20) {
+            items {
+              ... on ApiField {
+                name
+                dataType
+                defaultValue
+                description
+                required
+              }
+            }
+          }
         }
       }
     }

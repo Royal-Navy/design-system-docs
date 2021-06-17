@@ -105,4 +105,8 @@ export const StyledContentPanel = styled.article`
       margin-top: ${spacing('7')};
     }
   }
+
+  div + h3 {
+    margin-top: ${spacing('12')};
+  }
 `

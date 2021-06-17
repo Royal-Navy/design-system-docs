@@ -43,35 +43,52 @@ function renderDefaultValue(
   return <ApiTableDefaultValue>{String(value)}</ApiTableDefaultValue>
 }
 
+function mapApiTableItem({
+  dataType,
+  defaultValue,
+  description,
+  name,
+  required,
+}) {
+  return (
+    <ApiTableItem key={name} isRequired={required} name={name} type={dataType}>
+      {renderDefaultValue(defaultValue)}
+      {description && <ApiTableDescription>{description}</ApiTableDescription>}
+    </ApiTableItem>
+  )
+}
+
 export const ApiTableAdapter: React.FC<ApiTableAdapterProps> = ({ fields }) => {
-  const { title, apiTableDescription, apiFieldCollection } = fields
+  const {
+    title,
+    apiTableDescription,
+    apiFieldCollection,
+    apiReturnFieldCollection,
+  } = fields
   const id = camelCase(title)
+  const hasApiFieldItems =
+    apiFieldCollection && !!apiFieldCollection.items.length
+  const hasApiReturnFieldItems =
+    apiReturnFieldCollection && !!apiReturnFieldCollection.items.length
 
   return (
     <ContentPanel id={id}>
       <LeftCol>
         {title && <h2>{title}</h2>}
         <p>{apiTableDescription}</p>
-        <ApiTable>
-          {apiFieldCollection &&
-            apiFieldCollection.items.map(
-              ({ dataType, defaultValue, description, name, required }) => {
-                return (
-                  <ApiTableItem
-                    key={name}
-                    isRequired={required}
-                    name={name}
-                    type={dataType}
-                  >
-                    {renderDefaultValue(defaultValue)}
-                    {description && (
-                      <ApiTableDescription>{description}</ApiTableDescription>
-                    )}
-                  </ApiTableItem>
-                )
-              }
-            )}
-        </ApiTable>
+        {hasApiFieldItems && (
+          <ApiTable>{apiFieldCollection.items.map(mapApiTableItem)}</ApiTable>
+        )}
+        {hasApiReturnFieldItems && (
+          <>
+            <h3>
+              Return <code>Object</code>
+            </h3>
+            <ApiTable data-testid="api-return-table">
+              {apiReturnFieldCollection.items.map(mapApiTableItem)}
+            </ApiTable>
+          </>
+        )}
       </LeftCol>
       <RightCol />
     </ContentPanel>
