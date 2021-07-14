@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledContentPanel } from './partials/StyledContentPanel'
 
 interface ContentPanelProps extends ComponentWithClass {

@@ -3,14 +3,17 @@ import { GetStaticProps } from 'next'
 import camelCase from 'lodash/camelCase'
 
 import { LayoutFramework } from '../components/layouts/Framework'
-import { SidebarMenu, SidebarMenuItem } from '../components/presenters/Sidebar'
+import {
+  SidebarMenu,
+  SidebarMenuItem,
+} from '../components/presenters/Framework/Sidebar'
 
 import { HeroAdapter } from '../components/adapters/HeroAdapter'
 import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
 import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
 import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
 import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
-import { Section } from '../components/presenters/Section'
+import { Section } from '../components/presenters/Framework/Section'
 
 import {
   SectionCollection as SectionCollectionType,

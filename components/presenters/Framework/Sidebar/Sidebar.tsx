@@ -2,7 +2,7 @@ import React from 'react'
 import { Badge } from '@royalnavy/react-component-library'
 import { IconChevronLeft } from '@royalnavy/icon-library'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledFrame } from './partials/StyledFrame'
 import { StyledSidebar } from './partials/StyledSidebar'
 import { StyledHomeLink } from './partials/StyledHomeLink'
