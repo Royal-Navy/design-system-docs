@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import { Hero } from '.'
 
-const stories = storiesOf('Hero', module)
+const stories = storiesOf('Framework/Hero', module)
 
 stories.add('Default', () => (
   <Hero

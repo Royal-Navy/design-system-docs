@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react'
 
 import { Badge, BADGE_VARIANT } from '.'
 
-const stories = storiesOf('Badge', module)
+const stories = storiesOf('Docs/Badge', module)
 
 stories.add('Default', () => <Badge>3.0.0</Badge>)
 

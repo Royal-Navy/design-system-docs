@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 
 import { Masthead } from '.'
 
-const stories = storiesOf('Masthead', module)
+const stories = storiesOf('Framework/Masthead', module)
 
 stories.add('Default', () => (
   <Masthead
