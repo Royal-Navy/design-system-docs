@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { OnThisPageItem, OnThisPageItemProps } from './OnThisPageItem'
 import { StyledHeading } from './partials/StyledHeading'
 import { StyledItems } from './partials/StyledItems'
 import { StyledOnThisPage } from './partials/StyledOnThisPage'
-import { warnIfOverwriting } from '../../helpers'
+import { warnIfOverwriting } from '../../../helpers'
 
 export interface OnThisPageProps extends ComponentWithClass {
   children:
