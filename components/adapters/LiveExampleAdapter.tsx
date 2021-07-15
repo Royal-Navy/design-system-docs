@@ -15,8 +15,12 @@ import {
 } from '@royalnavy/react-component-library'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
-import { LiveExample } from '../presenters/LiveExample/LiveExample'
+import {
+  ContentPanel,
+  LeftCol,
+  RightCol,
+} from '../presenters/Framework/ContentPanel'
+import { LiveExample } from '../presenters/Framework/LiveExample/LiveExample'
 
 interface LiveExampleAdapterProps extends ComponentWithClass {
   fields: Record<string, any>

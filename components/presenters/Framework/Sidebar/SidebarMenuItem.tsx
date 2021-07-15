@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledSidebarMenuItem } from './partials/StyledSidebarMenuItem'
 import { StyledNavLink } from './partials/StyledNavLink'
 

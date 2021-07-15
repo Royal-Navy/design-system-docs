@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledLiveExample } from './partials/StyledLiveExample'
 import { StyledHeader } from './partials/StyledHeader'
 import { StyledTitle } from './partials/StyledTitle'

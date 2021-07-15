@@ -6,7 +6,11 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
+import {
+  ContentPanel,
+  LeftCol,
+  RightCol,
+} from '../presenters/Framework/ContentPanel'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: Record<string, any>

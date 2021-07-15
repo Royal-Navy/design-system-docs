@@ -4,7 +4,7 @@ import Highlight, { defaultProps, Language } from 'prism-react-renderer'
 import github from 'prism-react-renderer/themes/github'
 import 'firacode'
 
-import { ComponentWithClass } from '../../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../../common/ComponentWithClass'
 
 interface StyledHighlightProps extends ComponentWithClass {
   $code: string

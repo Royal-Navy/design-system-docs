@@ -2,14 +2,18 @@ import React from 'react'
 import camelCase from 'lodash/camelCase'
 
 import { ComponentWithClass } from '../../common/ComponentWithClass'
-import { ContentPanel, LeftCol, RightCol } from '../presenters/ContentPanel'
+import {
+  ContentPanel,
+  LeftCol,
+  RightCol,
+} from '../presenters/Framework/ContentPanel'
 import {
   ApiTable,
   ApiTableItem,
   ApiTableDefaultValue,
   ApiTableFunctionParameter,
   ApiTableDescription,
-} from '../presenters/ApiTable'
+} from '../presenters/Framework/ApiTable'
 
 type ApiFieldDefaultValueType = {
   type: string

@@ -2,8 +2,8 @@
 import React, { useState, useEffect } from 'react'
 import Head from 'next/head'
 
-import { Masthead } from '../../presenters/Masthead'
-import { Sidebar } from '../../presenters/Sidebar'
+import { Masthead } from '../../presenters/Framework/Masthead'
+import { Sidebar } from '../../presenters/Framework/Sidebar'
 import { StyledMain } from './partials/StyledMain'
 
 interface LayoutFrameworkProps {

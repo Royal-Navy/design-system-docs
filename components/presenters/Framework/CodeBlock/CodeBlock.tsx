@@ -1,7 +1,7 @@
 import React from 'react'
 import { Language } from 'prism-react-renderer'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledCodeBlock } from './partials/StyledCodeBlock'
 import { StyledHeader } from './partials/StyledHeader'
 import { StyledFilename } from './partials/StyledFilename'
