@@ -14,9 +14,9 @@ module.exports = {
         [
           'styled-components',
           {
-            ssr: true,
-            displayName: true,
-            preprocess: false,
+            ssr: false,
+            displayName: false,
+            namespace: 'sc',
           },
         ],
       ],
