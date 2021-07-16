@@ -1,13 +1,30 @@
 import React from 'react'
 import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
+import { IconBookmark } from '@royalnavy/icon-library'
 
-import { Sidebar, SidebarMenu, SidebarMenuItem } from '.'
+import {
+  Sidebar,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarOverview,
+  SidebarOverviewMenuItem,
+} from '.'
 
 const stories = storiesOf('Docs/Sidebar', module)
 
 stories.add('Default', () => (
   <Sidebar title="Components">
+    <SidebarOverview>
+      <SidebarOverviewMenuItem
+        icon={<IconBookmark />}
+        link={<Link href="#storybook">Storybook</Link>}
+      />
+      <SidebarOverviewMenuItem
+        icon={<IconBookmark />}
+        link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+      />
+    </SidebarOverview>
     <SidebarMenu>
       <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
       <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />
