@@ -3,17 +3,30 @@ import '@testing-library/jest-dom/extend-expect'
 import { IconBookmark } from '@royalnavy/icon-library'
 import Link from 'next/link'
 import { render, RenderResult } from '@testing-library/react'
+import userEvent from '@testing-library/user-event'
 
 import { Sidebar } from './Sidebar'
+import { SidebarFilter } from './SidebarFilter'
 import { SidebarMenu } from './SidebarMenu'
 import { SidebarMenuItem } from './SidebarMenuItem'
 import { SidebarOverview } from './SidebarOverview'
 import { SidebarOverviewMenuItem } from './SidebarOverviewMenuItem'
 
 describe('Sidebar', () => {
+  let onChangeSpy: jest.SpyInstance
+  let onSubmitSpy: jest.SpyInstance
   let wrapper: RenderResult
 
   beforeEach(() => {
+    const filterProps = {
+      onChange: (e: React.ChangeEvent<HTMLInputElement>) => undefined,
+      onSubmit: (e: React.MouseEvent<HTMLButtonElement>, value: string) =>
+        undefined,
+    }
+
+    onChangeSpy = jest.spyOn(filterProps, 'onChange')
+    onSubmitSpy = jest.spyOn(filterProps, 'onSubmit')
+
     wrapper = render(
       <Sidebar title="Components">
         <SidebarOverview>
@@ -26,6 +39,7 @@ describe('Sidebar', () => {
             link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
           />
         </SidebarOverview>
+        <SidebarFilter {...filterProps} />
         <SidebarMenu>
           <SidebarMenuItem link={<Link href="#1">Item 1</Link>} />
           <SidebarMenuItem link={<Link href="#2">Item 2</Link>} />
@@ -57,5 +71,35 @@ describe('Sidebar', () => {
     expect(links[1]).toHaveTextContent('Item 2')
     expect(links[1]).toHaveAttribute('href', '/#2')
     expect(links).toHaveLength(2)
+  })
+
+  describe('when typing into the filter', () => {
+    beforeEach(async () => {
+      const input = wrapper.getByTestId('sidebar-filter-input')
+
+      await userEvent.type(input, 'a')
+      await userEvent.type(input, 'b')
+      await userEvent.type(input, 'c')
+    })
+
+    it('should call the `onChange` callback', () => {
+      expect(onChangeSpy.mock.calls[0][1]).toEqual('a')
+      expect(onChangeSpy.mock.calls[1][1]).toEqual('ab')
+      expect(onChangeSpy.mock.calls[2][1]).toEqual('abc')
+
+      expect(onChangeSpy).toHaveBeenCalledTimes(3)
+    })
+
+    describe('when the submit button is clicked', () => {
+      beforeEach(() => {
+        userEvent.click(wrapper.getByTestId('sidebar-filter-button'))
+      })
+
+      it('should call the `onSubmit` callback', () => {
+        expect(onSubmitSpy.mock.calls[0][1]).toEqual('abc')
+
+        expect(onSubmitSpy).toHaveBeenCalledTimes(1)
+      })
+    })
   })
 })

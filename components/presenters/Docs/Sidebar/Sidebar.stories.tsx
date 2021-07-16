@@ -1,7 +1,8 @@
 import React from 'react'
+import { action } from '@storybook/addon-actions'
+import { IconBookmark } from '@royalnavy/icon-library'
 import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
-import { IconBookmark } from '@royalnavy/icon-library'
 
 import {
   Sidebar,
@@ -10,6 +11,7 @@ import {
   SidebarOverview,
   SidebarOverviewMenuItem,
 } from '.'
+import { SidebarFilter } from './SidebarFilter'
 
 const stories = storiesOf('Docs/Sidebar', module)
 
@@ -25,6 +27,10 @@ stories.add('Default', () => (
         link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
       />
     </SidebarOverview>
+    <SidebarFilter
+      onChange={action('filter onChange')}
+      onSubmit={action('filter onSubmit')}
+    />
     <SidebarMenu>
       <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
       <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />
