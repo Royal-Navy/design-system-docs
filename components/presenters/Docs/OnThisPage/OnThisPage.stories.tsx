@@ -2,7 +2,7 @@ import React from 'react'
 import { action } from '@storybook/addon-actions'
 import { storiesOf } from '@storybook/react'
 
-import { OnThisPage } from '.'
+import { OnThisPage } from './index'
 import { OnThisPageItem } from './OnThisPageItem'
 
 const stories = storiesOf('OnThisPage', module)

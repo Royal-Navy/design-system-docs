@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledItem } from './partials/StyledItem'
 
 export interface OnThisPageItemProps extends ComponentWithClass {
