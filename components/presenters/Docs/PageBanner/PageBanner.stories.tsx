@@ -4,7 +4,7 @@ import { storiesOf } from '@storybook/react'
 import { PageBanner } from '.'
 import { Badge, BADGE_VARIANT } from '../Badge'
 
-const stories = storiesOf('PageBanner', module)
+const stories = storiesOf('Docs/PageBanner', module)
 
 stories.add('Default', () => (
   <PageBanner>

@@ -2,6 +2,7 @@ process.env.RNDS_LOG_LEVEL = 'debug'
 
 module.exports = {
   moduleNameMapper: {
+    '^.+\\.svg': '<rootDir>/jest/__mocks__/svgrMock.js',
     '@royalnavy/fonts': '<rootDir>/jest/__mocks__/fileMock.js',
     firacode: '<rootDir>/jest/__mocks__/fileMock.js',
     '.+\\.(css|styl|less|sass|scss)$': 'identity-obj-proxy',

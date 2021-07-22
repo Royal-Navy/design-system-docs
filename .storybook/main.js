@@ -16,4 +16,22 @@ module.exports = {
     },
     '@storybook/preset-scss',
   ],
+  webpackFinal: async (config) => {
+    config.module.rules.unshift({
+      test: /\.svg$/i,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            prettier: false,
+            svgo: true,
+            svgoConfig: { plugins: [{ removeViewBox: false }] },
+            titleProp: true,
+          },
+        },
+      ],
+    })
+
+    return config
+  },
 }

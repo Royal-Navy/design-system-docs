@@ -4,7 +4,7 @@ import { action } from '@storybook/addon-actions'
 
 import { Sidebar, SidebarMenu, SidebarMenuItem } from '.'
 
-const stories = storiesOf('Sidebar', module)
+const stories = storiesOf('Framework/Sidebar', module)
 
 stories.add('Default', () => (
   <Sidebar title="Compound Timeline" onToggle={action('onToggle')}>
