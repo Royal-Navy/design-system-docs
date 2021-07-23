@@ -1,3 +1,15 @@
+# [1.4.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.3.0...1.4.0) (2021-07-23)
+
+
+### Features
+
+* **ContentBanner:** Create base component ([b5cffb4](https://github.com/Royal-Navy/docs.royalnavy.io/commit/b5cffb4c43a0bb0939a63eb7c350cec2e8bc5b7f))
+* **Masthead:** Create base component ([bcede74](https://github.com/Royal-Navy/docs.royalnavy.io/commit/bcede74f863409a5edec2f2c19c46f5441af8a76))
+* **Sidebar:** Add basic component ([323633d](https://github.com/Royal-Navy/docs.royalnavy.io/commit/323633dde2abe7bb2da30ee48180c0657fcbd4a4))
+* **Sidebar:** Add filter ([580b049](https://github.com/Royal-Navy/docs.royalnavy.io/commit/580b049948d0266efeb4765b9ba0f8a3caee7905))
+* **Sidebar:** Add overview ([de1b545](https://github.com/Royal-Navy/docs.royalnavy.io/commit/de1b5454228b90c5d64bd32ce37d7337e8463c02))
+* **Storybook:** Namespace stories ([bf534f2](https://github.com/Royal-Navy/docs.royalnavy.io/commit/bf534f29c1ca5351a49c57539e5f6febe867dc22))
+
 # [1.3.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.2.0...1.3.0) (2021-07-16)
 
 
