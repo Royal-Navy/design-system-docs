@@ -61,7 +61,6 @@ export const Footer: React.FC<ComponentNameProps> = ({
             )}
           </StyledLinkList>
         </div>
-        <StyledNelsonLogoClip />
       </StyledFooterLogo>
       <StyledSubFooter>
         <div>
@@ -75,6 +74,7 @@ export const Footer: React.FC<ComponentNameProps> = ({
           </StyledCopyright>
         </div>
       </StyledSubFooter>
+      <StyledNelsonLogoClip />
     </StyledFooter>
   </>
 )

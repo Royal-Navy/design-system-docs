@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components'
 import hexRgb from 'hex-rgb'
 import { selectors } from '@royalnavy/design-tokens'
 
-const { color, spacing } = selectors
+const { color, mq, spacing, zIndex } = selectors
 
 function getColorWithOpacity(hexColor: string) {
   const values = hexRgb(hexColor, { format: 'object' })
@@ -17,10 +17,20 @@ export const StyledSubFooter = styled.div`
   align-items: center;
   background-color: ${getColorWithOpacity(color('neutral', '600'))};
   color: ${color('neutral', '100')};
-  height: 205px;
+  height: 265px;
   padding: 0 ${spacing('12')};
 
   & > div {
+    text-align: center;
     width: 100%;
+    z-index: ${zIndex('overlay', 1)};
+
+    ${mq({ gte: 's' })`
+      text-align: unset;
+    `}
   }
+
+  ${mq({ gte: 's' })`
+    height: 205px;
+  `}
 `
