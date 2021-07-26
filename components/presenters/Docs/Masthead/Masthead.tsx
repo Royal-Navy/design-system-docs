@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { IconMenu } from '@royalnavy/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
@@ -9,25 +9,30 @@ import { ReactComponent as RNDSLogo } from '../../../../public/RNDSLogo.svg'
 
 export interface MastheadProps extends ComponentWithClass {
   version?: string
-  onToggle: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const Masthead: React.FC<MastheadProps> = ({
   children,
   version = '0.1.0',
-  onToggle,
 }) => {
+  const [isOpen, setIsOpen] = useState<boolean>(false)
+
   return (
-    <StyledMasthead>
+    <StyledMasthead $isOpen={isOpen}>
       <div>
         <RNDSLogo />
         <Badge variant="light">{version}</Badge>
       </div>
       <div>
-        {children}
+        {React.Children.map(children, (child: React.ReactElement) => {
+          return React.cloneElement(child, {
+            onClose: (_: React.MouseEvent<HTMLButtonElement>) =>
+              setIsOpen(false),
+          })
+        })}
         <StyledMenuButton
           type="button"
-          onClick={onToggle}
+          onClick={(_) => setIsOpen(!isOpen)}
           data-testid="masthead-toggle-button"
         >
           <IconMenu width={22} height={22} />

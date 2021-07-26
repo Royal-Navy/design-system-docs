@@ -1,24 +1,11 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-const { color, shadow, mq } = selectors
+import { StyledButton } from './StyledButton'
 
-export const StyledMenuButton = styled.button`
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 30px;
-  height: 28px;
-  border: 1px solid ${color('neutral', '200')};
-  background-color: ${color('neutral', 'white')};
-  border-radius: 4px;
-  padding: 0;
-  box-shadow: ${shadow('2')};
+const { mq } = selectors
 
-  svg {
-    fill: ${color('neutral', '400')};
-  }
-
+export const StyledMenuButton = styled(StyledButton)`
   ${mq({ gte: 'm' })`
     display: none;
   `}

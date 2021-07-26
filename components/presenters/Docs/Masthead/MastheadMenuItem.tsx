@@ -16,26 +16,31 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   children,
 }) => {
   const [showChildren, setShowChildren] = useState<boolean>(false)
+  const hasChildren = !!children
 
   return (
-    <StyledMastheadMenuItem>
-      {React.cloneElement(link, {
-        passHref: true,
-        children: (
-          <StyledMastheadMenuLink>{link.props.children}</StyledMastheadMenuLink>
-        ),
-      })}
-      {children && (
-        <>
+    <StyledMastheadMenuItem $hasChildren={hasChildren}>
+      <div>
+        {React.cloneElement(link, {
+          passHref: true,
+          children: (
+            <StyledMastheadMenuLink>
+              {link.props.children}
+            </StyledMastheadMenuLink>
+          ),
+        })}
+        {children && (
           <StyledExpandButton
-            onClick={(_) => setShowChildren(!showChildren)}
+            onClick={(_: React.MouseEvent<HTMLButtonElement>) =>
+              setShowChildren(!showChildren)
+            }
             data-testid="masthead-menu-expand-button"
           >
             {!showChildren ? <IconExpandMore /> : <IconExpandLess />}
           </StyledExpandButton>
-          {showChildren && children}
-        </>
-      )}
+        )}
+      </div>
+      {hasChildren && showChildren && children}
     </StyledMastheadMenuItem>
   )
 }
