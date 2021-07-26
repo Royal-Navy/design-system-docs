@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-const { color, spacing } = selectors
+const { color, mq, spacing } = selectors
 
 export const StyledLinkList = styled.ul`
   display: flex;
+  justify-content: center;
   list-style-type: none;
   padding: 0;
-  margin-top: ${spacing('6')};
+  margin: ${spacing('6')} 0;
 
   & > li {
     position: relative;
@@ -32,4 +33,8 @@ export const StyledLinkList = styled.ul`
       padding-left: ${spacing('12')};
     }
   }
+
+  ${mq({ gte: 's' })`
+    justify-content: unset;
+  `}
 `
