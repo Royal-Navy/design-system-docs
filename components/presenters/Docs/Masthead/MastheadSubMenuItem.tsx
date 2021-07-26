@@ -2,6 +2,7 @@ import React from 'react'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 
+import { StyledMastheadSubMenuItem } from './partials/StyledMastheadSubMenuItem'
 import { StyledMastheadMenuLink } from './partials/StyledMastheadMenuLink'
 
 export interface MastheadSubMenuItemProps extends ComponentWithClass {
@@ -12,14 +13,14 @@ export const MastheadSubMenuItem: React.FC<MastheadSubMenuItemProps> = ({
   link,
 }) => {
   return (
-    <li>
+    <StyledMastheadSubMenuItem>
       {React.cloneElement(link, {
         passHref: true,
         children: (
           <StyledMastheadMenuLink>{link.props.children}</StyledMastheadMenuLink>
         ),
       })}
-    </li>
+    </StyledMastheadSubMenuItem>
   )
 }
 

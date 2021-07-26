@@ -13,14 +13,11 @@ import {
 
 describe('Masthead', () => {
   let wrapper: RenderResult
-  let onToggleSpy: (e: React.MouseEvent<HTMLButtonElement>) => void
 
   describe('with required props', () => {
     beforeEach(() => {
-      onToggleSpy = jest.fn()
-
       wrapper = render(
-        <Masthead version="3.0.0" onToggle={() => null}>
+        <Masthead version="3.0.0">
           <MastheadMenu>
             <MastheadMenuItem link={<Link href="#guidance">Guidance</Link>} />
             <MastheadMenuItem
@@ -56,16 +53,6 @@ describe('Masthead', () => {
 
       it('should display the sub navigation', () => {
         expect(wrapper.queryByText('Design Tokens')).toBeInTheDocument()
-      })
-    })
-
-    describe.skip('and the end user clicks the mobile menu button', () => {
-      beforeEach(() => {
-        fireEvent.click(wrapper.getByTestId('masthead-toggle-button'))
-      })
-
-      it('should show the mobile navigation', () => {
-        expect(onToggleSpy).toHaveBeenCalledTimes(1)
       })
     })
   })

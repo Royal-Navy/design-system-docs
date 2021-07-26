@@ -13,7 +13,7 @@ import {
 const stories = storiesOf('Docs/Masthead', module)
 
 stories.add('Default', () => (
-  <Masthead version="3.0.0" onToggle={() => null}>
+  <Masthead version="3.0.0">
     <MastheadMenu>
       <MastheadMenuItem link={<Link href="#guidance">Guidance</Link>} />
       <MastheadMenuItem link={<Link href="#principles">Principles</Link>} />
@@ -21,6 +21,13 @@ stories.add('Default', () => (
         <MastheadSubMenu>
           <MastheadSubMenuItem
             link={<Link href="#design-tokens">Design Tokens</Link>}
+          />
+          <MastheadSubMenuItem
+            link={<Link href="#components">Components</Link>}
+          />
+          <MastheadSubMenuItem link={<Link href="#patterns">Patterns</Link>} />
+          <MastheadSubMenuItem
+            link={<Link href="#frameworks">Frameworks</Link>}
           />
         </MastheadSubMenu>
       </MastheadMenuItem>

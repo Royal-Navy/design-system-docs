@@ -1,9 +1,15 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
+import { StyledMastheadMenu } from './StyledMastheadMenu'
+
 const { spacing, shadow, mq } = selectors
 
-export const StyledMasthead = styled.div`
+interface StyledMastheadProps {
+  $isOpen?: boolean
+}
+
+export const StyledMasthead = styled.div<StyledMastheadProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -24,7 +30,7 @@ export const StyledMasthead = styled.div`
     align-items: center;
   }
 
-  div:first-of-type svg {
+  > div:first-of-type svg {
     margin-right: ${spacing('2')};
     height: 22px;
     width: auto;
@@ -33,4 +39,36 @@ export const StyledMasthead = styled.div`
       height: auto;
     `}
   }
+
+  &::before {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: block;
+    content: '';
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(000, 000, 000, 0.25);
+    pointer-events: none;
+
+    ${mq({ gte: 'm' })`
+      display: none;
+    `}
+  }
+
+  ${({ $isOpen }) =>
+    !$isOpen &&
+    `
+    &::before {
+      display: none;
+    }
+
+    &&& ${StyledMastheadMenu} {
+      visibility: hidden;
+
+      ${mq({ gte: 'm' })`
+        visibility: visible;
+      `}
+    }
+  `}
 `
