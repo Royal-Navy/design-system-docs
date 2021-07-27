@@ -1,3 +1,12 @@
+# [1.5.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.4.0...1.5.0) (2021-07-27)
+
+
+### Features
+
+* **Footer:** Create component ([0a52a05](https://github.com/Royal-Navy/docs.royalnavy.io/commit/0a52a0506c44d30f9fb5e181ef32b68598dfd22d))
+* **Footer:** Implement mobile CSS ([95200c6](https://github.com/Royal-Navy/docs.royalnavy.io/commit/95200c6c4e178457795fbb5023d6735a1d13cbd4))
+* **Masthead:** Add mobile navigation ([77d3c41](https://github.com/Royal-Navy/docs.royalnavy.io/commit/77d3c414f304236004387ef2913041a1ae3b9644))
+
 # [1.4.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.3.0...1.4.0) (2021-07-23)
 
 
