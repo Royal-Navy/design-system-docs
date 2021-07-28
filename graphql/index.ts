@@ -1757,3 +1757,34 @@ export type SectionContentQuery = (
     )> }
   )> }
 );
+
+export type SimplePageByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type SimplePageByIdQuery = (
+  { __typename?: 'Query' }
+  & { contentPage?: Maybe<(
+    { __typename?: 'ContentPage' }
+    & Pick<ContentPage, 'title' | 'isLegacy'>
+    & { bodyContent?: Maybe<(
+      { __typename?: 'ContentPageBodyContent' }
+      & Pick<ContentPageBodyContent, 'json'>
+      & { links: (
+        { __typename?: 'ContentPageBodyContentLinks' }
+        & { assets: (
+          { __typename?: 'ContentPageBodyContentAssets' }
+          & { block: Array<Maybe<(
+            { __typename?: 'Asset' }
+            & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ) }
+          )>> }
+        ) }
+      ) }
+    )> }
+  )> }
+);
