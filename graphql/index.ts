@@ -1788,3 +1788,27 @@ export type SimplePageByIdQuery = (
     )> }
   )> }
 );
+
+export type SimplePagesQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type SimplePagesQuery = (
+  { __typename?: 'Query' }
+  & { contentPageCollection?: Maybe<(
+    { __typename?: 'ContentPageCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'ContentPage' }
+      & Pick<ContentPage, 'title'>
+      & { sys: (
+        { __typename?: 'Sys' }
+        & Pick<Sys, 'id'>
+      ), contentfulMetadata: (
+        { __typename?: 'ContentfulMetadata' }
+        & { tags: Array<Maybe<(
+          { __typename?: 'ContentfulTag' }
+          & Pick<ContentfulTag, 'id' | 'name'>
+        )>> }
+      ) }
+    )>> }
+  )> }
+);
