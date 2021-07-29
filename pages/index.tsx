@@ -22,8 +22,8 @@ import {
   SectionContentCollection as SectionContentCollectionType,
 } from '../graphql'
 
-import PAGE_STRUCTURE_QUERY from '../graphql/queries/PageStructure.graphql'
-import SECTION_CONTENT_QUERY from '../graphql/queries/SectionContent.graphql'
+import PAGE_STRUCTURE_BY_ID_QUERY from '../graphql/queries/PageStructureByID.graphql'
+import SECTION_CONTENT_BY_ID_QUERY from '../graphql/queries/SectionContentByID.graphql'
 import { contentful } from '../services/contentful'
 
 interface HomeProps {
@@ -41,7 +41,7 @@ async function fetchContentCollection(item: SectionType): Promise<SectionType> {
 
   const {
     section: { contentCollection },
-  } = await contentful(SECTION_CONTENT_QUERY, { id })
+  } = await contentful(SECTION_CONTENT_BY_ID_QUERY, { id })
 
   return {
     ...item,
@@ -68,7 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
     page: {
       sectionCollection: { items },
     },
-  } = await contentful(PAGE_STRUCTURE_QUERY, {
+  } = await contentful(PAGE_STRUCTURE_BY_ID_QUERY, {
     id: '7ltwNe3eIZtPNZ2xrHMAuw',
   })
 

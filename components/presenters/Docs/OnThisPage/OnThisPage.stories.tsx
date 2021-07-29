@@ -5,7 +5,7 @@ import { storiesOf } from '@storybook/react'
 import { OnThisPage } from './index'
 import { OnThisPageItem } from './OnThisPageItem'
 
-const stories = storiesOf('OnThisPage', module)
+const stories = storiesOf('Docs/OnThisPage', module)
 
 stories.add('Default', () => (
   <OnThisPage>
@@ -13,10 +13,10 @@ stories.add('Default', () => (
     <OnThisPageItem onClick={action('onClick')}>Usage</OnThisPageItem>
     <OnThisPageItem onClick={action('onClick')}>Anatomy</OnThisPageItem>
     <OnThisPageItem onClick={action('onClick')}>
-      Hierarchy & placement
+      Hierarchy &amp; placement
     </OnThisPageItem>
     <OnThisPageItem onClick={action('onClick')}>
-      Sizing & spacing
+      Sizing &amp; spacing
     </OnThisPageItem>
   </OnThisPage>
 ))
