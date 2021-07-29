@@ -3,16 +3,17 @@ import { selectors } from '@royalnavy/design-tokens'
 
 import { StyledMastheadMenu } from './StyledMastheadMenu'
 
-const { spacing, shadow, mq } = selectors
+const { color, spacing, shadow, mq } = selectors
 
 interface StyledMastheadProps {
   $isOpen?: boolean
 }
 
-export const StyledMasthead = styled.div<StyledMastheadProps>`
+export const StyledMasthead = styled.header<StyledMastheadProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: ${color('neutral', 'white')};
   height: 48px;
   padding: 0 ${spacing('10')};
   box-shadow: ${shadow('2')};
