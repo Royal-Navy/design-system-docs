@@ -22,7 +22,7 @@ type ExternalLinksType =
   | React.ReactElement<FooterExternalLinkProps>
   | React.ReactElement<FooterExternalLinkProps>[]
 
-export interface ComponentNameProps extends ComponentWithClass {
+export interface FooterProps extends ComponentWithClass {
   description: string
   externalLinks: ExternalLinksType
   license: string
@@ -41,7 +41,7 @@ function mapLinks(
   })
 }
 
-export const Footer: React.FC<ComponentNameProps> = ({
+export const Footer: React.FC<FooterProps> = ({
   description,
   externalLinks,
   license,

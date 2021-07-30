@@ -5,7 +5,7 @@ import { StyledNavList } from './partials/StyledNavList'
 import { StyledNavSection } from './partials/StyledNavSection'
 import { StyledNavSectionTitle } from './partials/StyledNavSectionTitle'
 
-interface SidebarMenuProps extends ComponentWithClass {
+export interface SidebarMenuProps extends ComponentWithClass {
   title?: string
 }
 
