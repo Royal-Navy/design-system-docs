@@ -1,3 +1,16 @@
+# [1.6.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.5.0...1.6.0) (2021-07-30)
+
+
+### Bug Fixes
+
+* **OnThisPage:** Nest story correctly ([b522e93](https://github.com/Royal-Navy/docs.royalnavy.io/commit/b522e93acc050565cf43bec322008f018afa8ccd))
+
+
+### Features
+
+* **GraphQL:** Add `SimplePageByID` query ([f498b55](https://github.com/Royal-Navy/docs.royalnavy.io/commit/f498b55f5e6cdca613ef9dfd5fc59b173f7c4366))
+* **GraphQL:** Add `SimplePages` query ([047fc2d](https://github.com/Royal-Navy/docs.royalnavy.io/commit/047fc2dd0548a0cf1528b6db4530b93165885406))
+
 # [1.5.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.4.0...1.5.0) (2021-07-27)
 
 
