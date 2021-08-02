@@ -1,3 +1,10 @@
+# [1.7.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.6.0...1.7.0) (2021-08-02)
+
+
+### Features
+
+* **Component:** Add layout ([4b779ad](https://github.com/Royal-Navy/docs.royalnavy.io/commit/4b779ad4065e258cb282927ab82299d21aa58181))
+
 # [1.6.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.5.0...1.6.0) (2021-07-30)
 
 
