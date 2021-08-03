@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-import { ReactComponent as NelsonLogoClip } from '../../../../../public/NelsonLogoClip.svg'
+import NelsonLogoClip from '../../../../../public/NelsonLogoClip.svg'
 
 const { mq } = selectors
 

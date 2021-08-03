@@ -6,7 +6,7 @@ import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMastheadMenu } from './partials/StyledMastheadMenu'
 import { StyledMastheadMobile } from './partials/StyledMastheadMobile'
 import { StyledMenuButton } from './partials/StyledMenuButton'
-import { ReactComponent as RNDSMobileLogo } from '../../../../public/RNDSMobileLogo.svg'
+import RNDSMobileLogo from '../../../../public/RNDSMobileLogo.svg'
 
 export interface MastheadMenuProps extends ComponentWithClass {
   onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void
@@ -19,7 +19,7 @@ export const MastheadMenu: React.FC<MastheadMenuProps> = ({
   return (
     <StyledMastheadMenu>
       <StyledMastheadMobile>
-        {/* <RNDSMobileLogo /> */}
+        <RNDSMobileLogo />
         <StyledMenuButton onClick={onClose}>
           <IconClose />
         </StyledMenuButton>
