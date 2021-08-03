@@ -31,7 +31,7 @@ import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
 import { PageBanner } from '../components/presenters/Docs/PageBanner'
 import { LayoutComponent } from '../components/layouts/Docs'
 
-import SIMPLE_PAGE_BY_ID_QUERY from '../graphql/queries/SimplePageByID.graphql'
+import SIMPLE_PAGE_BY_SLUG_QUERY from '../graphql/queries/SimplePageBySlug.graphql'
 import { contentful } from '../services/contentful'
 
 interface ComponentProps {
@@ -45,13 +45,15 @@ interface ComponentProps {
  *
  */
 export const getStaticProps: GetStaticProps = async (context) => {
-  const pid = context.params.pid
+  const slug = context.params.slug
 
   const {
-    contentPage: { bodyContent, isLegacy, title },
-  } = await contentful(SIMPLE_PAGE_BY_ID_QUERY, {
-    id: pid,
+    contentPageCollection: { items },
+  } = await contentful(SIMPLE_PAGE_BY_SLUG_QUERY, {
+    slug,
   })
+
+  const { bodyContent, isLegacy, title } = items[0]
 
   return {
     props: {
@@ -68,10 +70,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
  */
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
-    paths: [
-      { params: { pid: '7F2XWrHDH8WVr1r4Bfbab8' } },
-      { params: { pid: 'example-component-1' } },
-    ],
+    paths: [{ params: { slug: 'sidebar' } }, { params: { slug: 'alert' } }],
     fallback: false,
   }
 }
@@ -241,8 +240,6 @@ export const Test: React.FC<ComponentProps> = ({
       </SidebarMenu>
     </Sidebar>
   )
-
-  console.log(bodyContent)
 
   return (
     <LayoutComponent
