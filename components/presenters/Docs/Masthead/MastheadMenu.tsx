@@ -19,7 +19,7 @@ export const MastheadMenu: React.FC<MastheadMenuProps> = ({
   return (
     <StyledMastheadMenu>
       <StyledMastheadMobile>
-        <RNDSMobileLogo />
+        {/* <RNDSMobileLogo /> */}
         <StyledMenuButton onClick={onClose}>
           <IconClose />
         </StyledMenuButton>
