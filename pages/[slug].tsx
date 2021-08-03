@@ -32,6 +32,7 @@ import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
 import { PageBanner } from '../components/presenters/Docs/PageBanner'
 import { LayoutComponent } from '../components/layouts/Docs'
 
+import { ContentPage as ContentPageType } from '../graphql'
 import SIMPLE_PAGES_WITH_COMPONENT_TAGS from '../graphql/queries/SimplePagesWithComponentTags.graphql'
 import SIMPLE_PAGE_BY_SLUG_QUERY from '../graphql/queries/SimplePageBySlug.graphql'
 import { contentful } from '../services/contentful'
@@ -39,15 +40,17 @@ import { contentful } from '../services/contentful'
 import { useDesignSystemVersion } from '../hooks/useDesignSystemVersion'
 
 interface ComponentProps {
-  componentPageCollection: any
-  pageContent: any
+  contentPageCollection: ContentPageType[]
+  contentPage: ContentPageType
 }
 
 /**
- * Fetch content for individual page from contentful by slug
+ * Fetch content for individual page from Contentful by slug
  *
  */
-const fetchPageContent = async (slug: string | string[]) => {
+const fetchComponentPage = async (
+  slug: string | string[]
+): Promise<ContentPageType> => {
   const {
     contentPageCollection: { items },
   } = await contentful(SIMPLE_PAGE_BY_SLUG_QUERY, {
@@ -65,7 +68,7 @@ const fetchPageContent = async (slug: string | string[]) => {
  * Fetch all component pages based on relevant tag(s)
  *
  */
-const fetchComponentPages = async () => {
+const fetchComponentPages = async (): Promise<ContentPageType[]> => {
   const {
     contentPageCollection: { items },
   } = await contentful(SIMPLE_PAGES_WITH_COMPONENT_TAGS)
@@ -82,20 +85,20 @@ export const getStaticProps: GetStaticProps = async (context) => {
 
   return {
     props: {
-      componentPageCollection: await fetchComponentPages(),
-      pageContent: await fetchPageContent(slug),
+      contentPageCollection: await fetchComponentPages(),
+      contentPage: await fetchComponentPage(slug),
     },
   }
 }
 
 /**
- * Specify dynamic routes to pre-render pages based on data
+ * Specify dynamic routes to pre-render based on Contentful manifest
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
-  const componentPageCollection = await fetchComponentPages()
+  const contentPageCollection = await fetchComponentPages()
 
-  const paths = componentPageCollection.map(({ slug }) => {
+  const paths = contentPageCollection.map(({ slug }) => {
     return {
       params: { slug },
     }
@@ -108,12 +111,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 /**
- * Generate Sidebar based on component tagging
+ * Generate Sidebar based on component category tags (`Component Page: Forms`)
  *
  */
-function renderSidebarItems(componentPageCollection) {
+function renderSidebarItems(
+  contentPageCollection: ContentPageType[]
+): React.ReactElement | React.ReactElement[] {
   const grouped = groupBy(
-    componentPageCollection,
+    contentPageCollection,
     'contentfulMetadata.tags[0].name'
   )
 
@@ -124,7 +129,10 @@ function renderSidebarItems(componentPageCollection) {
       <SidebarMenu key={categoryTitle} title={categoryTitle}>
         {group[1].map(({ title, slug }) => {
           return (
-            <SidebarMenuItem link={<Link href={`/${slug}`}>{title}</Link>} />
+            <SidebarMenuItem
+              key={title}
+              link={<Link href={`/${slug}`}>{title}</Link>}
+            />
           )
         })}
       </SidebarMenu>
@@ -133,15 +141,60 @@ function renderSidebarItems(componentPageCollection) {
 }
 
 /**
- * Render page using data from `getStaticProps`
+ * Compose page using data from `getStaticProps`
  *
  */
-export const Test: React.FC<ComponentProps> = ({
-  componentPageCollection,
-  pageContent,
+export const Component: React.FC<ComponentProps> = ({
+  contentPageCollection,
+  contentPage,
 }) => {
   const { version } = useDesignSystemVersion()
-  const { bodyContent, isLegacy, title, storybookUrl } = pageContent || {}
+  const { bodyContent, isLegacy, title, storybookUrl } = contentPage || {}
+
+  const pageBanner = (
+    <PageBanner>
+      Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
+      released!&nbsp;
+      <a href="/upgrade-guide">
+        Read the <strong>upgrade guide</strong>
+      </a>
+    </PageBanner>
+  )
+
+  const masthead = (
+    <Masthead version={version}>
+      <MastheadMenu>
+        <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
+          <MastheadSubMenu>
+            <MastheadSubMenuItem
+              link={<Link href="/components">Components</Link>}
+            />
+          </MastheadSubMenu>
+        </MastheadMenuItem>
+      </MastheadMenu>
+    </Masthead>
+  )
+
+  const sidebar = (
+    <Sidebar title="Components">
+      <SidebarOverview>
+        <SidebarOverviewMenuItem
+          icon={<IconBookmark />}
+          link={
+            <Link href={storybookUrl || 'https://storybook.royalnavy.io'}>
+              Storybook
+            </Link>
+          }
+        />
+        <SidebarOverviewMenuItem
+          icon={<IconBookmark />}
+          link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+        />
+      </SidebarOverview>
+      <SidebarFilter onChange={() => undefined} onSubmit={() => undefined} />
+      {renderSidebarItems(contentPageCollection)}
+    </Sidebar>
+  )
 
   const breadcrumbs = (
     <Breadcrumbs>
@@ -151,6 +204,20 @@ export const Test: React.FC<ComponentProps> = ({
         link={<Link href={`/components/${title}`}>{title}</Link>}
       />
     </Breadcrumbs>
+  )
+
+  const onThisPage = (
+    <OnThisPage>
+      <OnThisPageItem onClick={() => undefined}>Overview</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>Usage</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>Anatomy</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>
+        Hierarchy &amp; placement
+      </OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>
+        Sizing &amp; spacing
+      </OnThisPageItem>
+    </OnThisPage>
   )
 
   const contentBanner = (
@@ -192,78 +259,19 @@ export const Test: React.FC<ComponentProps> = ({
     />
   )
 
-  const masthead = (
-    <Masthead version={version}>
-      <MastheadMenu>
-        <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
-          <MastheadSubMenu>
-            <MastheadSubMenuItem
-              link={<Link href="/components">Components</Link>}
-            />
-          </MastheadSubMenu>
-        </MastheadMenuItem>
-      </MastheadMenu>
-    </Masthead>
-  )
-
-  const onThisPage = (
-    <OnThisPage>
-      <OnThisPageItem onClick={() => undefined}>Overview</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>Usage</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>Anatomy</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>
-        Hierarchy &amp; placement
-      </OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>
-        Sizing &amp; spacing
-      </OnThisPageItem>
-    </OnThisPage>
-  )
-
-  const pageBanner = (
-    <PageBanner>
-      Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
-      released!&nbsp;
-      <a href="/upgrade-guide">
-        Read the <strong>upgrade guide</strong>
-      </a>
-    </PageBanner>
-  )
-
-  const sidebar = (
-    <Sidebar title="Components">
-      <SidebarOverview>
-        <SidebarOverviewMenuItem
-          icon={<IconBookmark />}
-          link={
-            <Link href={storybookUrl || 'https://storybook.royalnavy.io'}>
-              Storybook
-            </Link>
-          }
-        />
-        <SidebarOverviewMenuItem
-          icon={<IconBookmark />}
-          link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
-        />
-      </SidebarOverview>
-      <SidebarFilter onChange={() => undefined} onSubmit={() => undefined} />
-      {renderSidebarItems(componentPageCollection)}
-    </Sidebar>
-  )
-
   return (
     <LayoutComponent
-      breadcrumbs={breadcrumbs}
-      contentBanner={isLegacy && contentBanner}
-      footer={footer}
-      masthead={masthead}
-      onThisPage={onThisPage}
-      pageBanner={pageBanner}
-      sidebar={sidebar}
       title={title}
+      pageBanner={pageBanner}
+      masthead={masthead}
+      sidebar={sidebar}
+      breadcrumbs={breadcrumbs}
+      onThisPage={onThisPage}
+      contentBanner={isLegacy && contentBanner}
       richText={bodyContent}
+      footer={footer}
     />
   )
 }
 
-export default Test
+export default Component

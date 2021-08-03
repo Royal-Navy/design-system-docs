@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 
 export const useDesignSystemVersion = () => {
-  const [version, setVersion] = useState(null)
+  const [version, setVersion] = useState<string | null>(null)
 
   async function getDesignSystemVersion(): Promise<string | null> {
     try {
