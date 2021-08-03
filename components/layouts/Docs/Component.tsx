@@ -22,6 +22,8 @@ import { StyledPageWrapper } from './partials/StyledPageWrapper'
 import { StyledSidebarWrapper } from './partials/StyledSidebarWrapper'
 import { StyledTitle } from './partials/StyledTitle'
 
+import { Maybe, ContentPageBodyContent } from '../../../graphql'
+
 export interface LayoutComponentProps {
   breadcrumbs: React.ReactElement<Nav<BreadcrumbsItemProps>>
   contentBanner: React.ReactElement<ContentBannerProps>
@@ -31,7 +33,7 @@ export interface LayoutComponentProps {
   pageBanner?: React.ReactElement<ComponentWithClass>
   sidebar: React.ReactElement<SidebarProps>
   title: string
-  richText?: any
+  richText?: Maybe<ContentPageBodyContent>
 }
 
 export type AssetType = {
@@ -87,7 +89,7 @@ export const LayoutComponent: React.FC<LayoutComponentProps> = ({
 }) => (
   <>
     <Head>
-      <title>Royal Navy Design System</title>
+      <title>{title} | Royal Navy Design System</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <script type="text/javascript" src="/static/newrelic.js" />
