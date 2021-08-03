@@ -67,3 +67,5 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
     </>
   )
 }
+
+LayoutFramework.displayName = 'LayoutFramework'
