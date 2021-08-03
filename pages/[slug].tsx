@@ -89,12 +89,18 @@ export const getStaticProps: GetStaticProps = async (context) => {
 /**
  * Specify dynamic routes to pre-render pages based on data
  *
- * TODO: Fetch from Contentful
- *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
+  const componentPageCollection = await fetchComponentPages()
+
+  const paths = componentPageCollection.map(({ slug }) => {
+    return {
+      params: { slug },
+    }
+  })
+
   return {
-    paths: [{ params: { slug: 'sidebar' } }, { params: { slug: 'alert' } }],
+    paths,
     fallback: false,
   }
 }
@@ -110,8 +116,10 @@ function renderSidebarItems(componentPageCollection) {
   )
 
   return Object.entries(grouped).map((group) => {
+    const categoryTitle = group[0].split(': ')[1]
+
     return (
-      <SidebarMenu title={group[0].split(': ')[1]}>
+      <SidebarMenu key={categoryTitle} title={categoryTitle}>
         {group[1].map(({ title, slug }) => {
           return (
             <SidebarMenuItem link={<Link href={`/${slug}`}>{title}</Link>} />
