@@ -36,6 +36,8 @@ import SIMPLE_PAGES_WITH_COMPONENT_TAGS from '../graphql/queries/SimplePagesWith
 import SIMPLE_PAGE_BY_SLUG_QUERY from '../graphql/queries/SimplePageBySlug.graphql'
 import { contentful } from '../services/contentful'
 
+import { useDesignSystemVersion } from '../hooks/useDesignSystemVersion'
+
 interface ComponentProps {
   componentPageCollection: any
   pageContent: any
@@ -138,6 +140,7 @@ export const Test: React.FC<ComponentProps> = ({
   componentPageCollection,
   pageContent,
 }) => {
+  const { version } = useDesignSystemVersion()
   const { bodyContent, isLegacy, title, storybookUrl } = pageContent || {}
 
   const breadcrumbs = (
@@ -190,7 +193,7 @@ export const Test: React.FC<ComponentProps> = ({
   )
 
   const masthead = (
-    <Masthead version="3.0.0">
+    <Masthead version={version}>
       <MastheadMenu>
         <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
           <MastheadSubMenu>
@@ -219,7 +222,7 @@ export const Test: React.FC<ComponentProps> = ({
 
   const pageBanner = (
     <PageBanner>
-      Version <Badge variant={BADGE_VARIANT.DARK}>3.0.0</Badge> has been
+      Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
       released!&nbsp;
       <a href="/upgrade-guide">
         Read the <strong>upgrade guide</strong>
