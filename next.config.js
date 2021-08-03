@@ -1,4 +1,7 @@
-module.exports = {
+const withPlugins = require('next-compose-plugins')
+const withTM = require('next-transpile-modules')(['hex-rgb'])
+
+module.exports = withPlugins([withTM], {
   // other configs...
 
   webpack(config) {
@@ -19,4 +22,4 @@ module.exports = {
     })
     return config
   },
-}
+})

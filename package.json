@@ -100,6 +100,8 @@
     "jest-sonar-reporter": "^2.0.0",
     "jest-styled-components": "^7.0.3",
     "local-cypress": "^1.2.1",
+    "next-compose-plugins": "^2.2.1",
+    "next-transpile-modules": "^8.0.0",
     "prettier": "^2.2.1",
     "sass": "^1.32.8",
     "sass-loader": "^12.1.0",
