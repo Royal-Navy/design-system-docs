@@ -4,7 +4,7 @@ import { LinkProps } from 'next/link'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { FooterExternalLinkProps } from './FooterExternalLink'
-import { ReactComponent as NavyDigitalServicesLogo } from '../../../../public/NavyDigitalServicesLogo.svg'
+import NavyDigitalServicesLogo from '../../../../public/NavyDigitalServicesLogo.svg'
 import { StyledCopyright } from './partials/StyledCopyright'
 import { StyledDescription } from './partials/StyledDescription'
 import { StyledFooter } from './partials/StyledFooter'
@@ -51,7 +51,7 @@ export const Footer: React.FC<FooterProps> = ({
     <StyledFooter>
       <StyledFooterLogo>
         <div>
-          {/* <StyledRNDSLogo width={300} height={36} /> */}
+          <StyledRNDSLogo width={300} height={36} />
           <StyledDescription>{description}</StyledDescription>
           <StyledLinkList>
             {mapLinks(
@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({
       </StyledFooterLogo>
       <StyledSubFooter>
         <div>
-          {/* <NavyDigitalServicesLogo /> */}
+          <NavyDigitalServicesLogo />
           <StyledLinkList>
             {mapLinks(siteLinks, 'site-link', 'props.children')}
           </StyledLinkList>
@@ -74,7 +74,7 @@ export const Footer: React.FC<FooterProps> = ({
           </StyledCopyright>
         </div>
       </StyledSubFooter>
-      {/* <StyledNelsonLogoClip /> */}
+      <StyledNelsonLogoClip />
     </StyledFooter>
   </>
 )
