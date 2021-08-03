@@ -150,7 +150,7 @@ function renderContentCollection(
 }
 
 /**
- * Render page using data from `getStaticProps`
+ * Compose page using data from `getStaticProps`
  *
  */
 export const Timeline: React.FC<TimelineProps> = ({ sectionCollection }) => {
