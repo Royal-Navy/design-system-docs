@@ -4,6 +4,7 @@ query SimplePageBySlug($slug: String!) {
       ... on ContentPage {
         title
         slug
+        storybookUrl
         isLegacy
         bodyContent {
           json

@@ -1,7 +1,4 @@
 import styled from 'styled-components'
-import { selectors } from '@royalnavy/design-tokens'
-
-const { spacing } = selectors
 
 export const StyledSidebarMenuItem = styled.li`
   display: flex;

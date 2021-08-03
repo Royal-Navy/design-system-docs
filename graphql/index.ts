@@ -699,6 +699,7 @@ export type ContentPage = Entry & {
   linkedFrom?: Maybe<ContentPageLinkingCollections>;
   title?: Maybe<Scalars['String']>;
   slug?: Maybe<Scalars['String']>;
+  storybookUrl?: Maybe<Scalars['String']>;
   isLegacy?: Maybe<Scalars['Boolean']>;
   bodyContent?: Maybe<ContentPageBodyContent>;
 };
@@ -718,6 +719,12 @@ export type ContentPageTitleArgs = {
 
 /** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
 export type ContentPageSlugArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
+export type ContentPageStorybookUrlArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -783,6 +790,13 @@ export type ContentPageFilter = {
   slug_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   slug_contains?: Maybe<Scalars['String']>;
   slug_not_contains?: Maybe<Scalars['String']>;
+  storybookUrl_exists?: Maybe<Scalars['Boolean']>;
+  storybookUrl?: Maybe<Scalars['String']>;
+  storybookUrl_not?: Maybe<Scalars['String']>;
+  storybookUrl_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  storybookUrl_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  storybookUrl_contains?: Maybe<Scalars['String']>;
+  storybookUrl_not_contains?: Maybe<Scalars['String']>;
   isLegacy_exists?: Maybe<Scalars['Boolean']>;
   isLegacy?: Maybe<Scalars['Boolean']>;
   isLegacy_not?: Maybe<Scalars['Boolean']>;
@@ -811,6 +825,8 @@ export enum ContentPageOrder {
   TitleDesc = 'title_DESC',
   SlugAsc = 'slug_ASC',
   SlugDesc = 'slug_DESC',
+  StorybookUrlAsc = 'storybookUrl_ASC',
+  StorybookUrlDesc = 'storybookUrl_DESC',
   IsLegacyAsc = 'isLegacy_ASC',
   IsLegacyDesc = 'isLegacy_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1816,7 +1832,7 @@ export type SimplePageBySlugQuery = (
     { __typename?: 'ContentPageCollection' }
     & { items: Array<Maybe<(
       { __typename?: 'ContentPage' }
-      & Pick<ContentPage, 'title' | 'slug' | 'isLegacy'>
+      & Pick<ContentPage, 'title' | 'slug' | 'storybookUrl' | 'isLegacy'>
       & { bodyContent?: Maybe<(
         { __typename?: 'ContentPageBodyContent' }
         & Pick<ContentPageBodyContent, 'json'>
@@ -1839,16 +1855,16 @@ export type SimplePageBySlugQuery = (
   )> }
 );
 
-export type SimplePagesQueryVariables = Exact<{ [key: string]: never; }>;
+export type SimplePagesWithComponentTagsQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type SimplePagesQuery = (
+export type SimplePagesWithComponentTagsQuery = (
   { __typename?: 'Query' }
   & { contentPageCollection?: Maybe<(
     { __typename?: 'ContentPageCollection' }
     & { items: Array<Maybe<(
       { __typename?: 'ContentPage' }
-      & Pick<ContentPage, 'title'>
+      & Pick<ContentPage, 'title' | 'slug'>
       & { sys: (
         { __typename?: 'Sys' }
         & Pick<Sys, 'id'>

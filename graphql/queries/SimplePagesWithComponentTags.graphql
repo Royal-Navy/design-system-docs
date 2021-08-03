@@ -1,0 +1,31 @@
+query SimplePagesWithComponentTags {
+  contentPageCollection(
+    where: {
+      contentfulMetadata: {
+        tags_exists: true
+        tags: {
+          id_contains_some: [
+            "componentPageNavigation"
+            "componentPageBanners"
+            "componentPageForms"
+            "componentPageCards"
+          ]
+        }
+      }
+    }
+  ) {
+    items {
+      title
+      slug
+      sys {
+        id
+      }
+      contentfulMetadata {
+        tags {
+          id
+          name
+        }
+      }
+    }
+  }
+}
