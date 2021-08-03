@@ -1,4 +1,5 @@
 import React from 'react'
+import groupBy from 'lodash/groupBy'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
 import {
@@ -31,13 +32,43 @@ import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
 import { PageBanner } from '../components/presenters/Docs/PageBanner'
 import { LayoutComponent } from '../components/layouts/Docs'
 
+import SIMPLE_PAGES_WITH_COMPONENT_TAGS from '../graphql/queries/SimplePagesWithComponentTags.graphql'
 import SIMPLE_PAGE_BY_SLUG_QUERY from '../graphql/queries/SimplePageBySlug.graphql'
 import { contentful } from '../services/contentful'
 
 interface ComponentProps {
-  bodyContent: any
-  isLegacy: boolean
-  title: string
+  componentPageCollection: any
+  pageContent: any
+}
+
+/**
+ * Fetch content for individual page from contentful by slug
+ *
+ */
+const fetchPageContent = async (slug: string | string[]) => {
+  const {
+    contentPageCollection: { items },
+  } = await contentful(SIMPLE_PAGE_BY_SLUG_QUERY, {
+    slug,
+  })
+
+  if (Array.isArray(items) && items.length) {
+    return items[0]
+  }
+
+  return null
+}
+
+/**
+ * Fetch all component pages based on relevant tag(s)
+ *
+ */
+const fetchComponentPages = async () => {
+  const {
+    contentPageCollection: { items },
+  } = await contentful(SIMPLE_PAGES_WITH_COMPONENT_TAGS)
+
+  return items || []
 }
 
 /**
@@ -47,25 +78,18 @@ interface ComponentProps {
 export const getStaticProps: GetStaticProps = async (context) => {
   const slug = context.params.slug
 
-  const {
-    contentPageCollection: { items },
-  } = await contentful(SIMPLE_PAGE_BY_SLUG_QUERY, {
-    slug,
-  })
-
-  const { bodyContent, isLegacy, title } = items[0]
-
   return {
     props: {
-      bodyContent,
-      isLegacy,
-      title,
+      componentPageCollection: await fetchComponentPages(),
+      pageContent: await fetchPageContent(slug),
     },
   }
 }
 
 /**
- * Specify dynamic routes to  pre-render pages based on data
+ * Specify dynamic routes to pre-render pages based on data
+ *
+ * TODO: Fetch from Contentful
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -76,13 +100,26 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 /**
- * Generate navigation based on content structure
+ * Generate Sidebar based on component tagging
  *
  */
-function renderNavigation(
-  data: any
-): React.ReactElement | React.ReactElement[] {
-  return null
+function renderSidebarItems(componentPageCollection) {
+  const grouped = groupBy(
+    componentPageCollection,
+    'contentfulMetadata.tags[0].name'
+  )
+
+  return Object.entries(grouped).map((group) => {
+    return (
+      <SidebarMenu title={group[0].split(': ')[1]}>
+        {group[1].map(({ title, slug }) => {
+          return (
+            <SidebarMenuItem link={<Link href={`/${slug}`}>{title}</Link>} />
+          )
+        })}
+      </SidebarMenu>
+    )
+  })
 }
 
 /**
@@ -90,10 +127,11 @@ function renderNavigation(
  *
  */
 export const Test: React.FC<ComponentProps> = ({
-  bodyContent,
-  isLegacy,
-  title,
+  componentPageCollection,
+  pageContent,
 }) => {
+  const { bodyContent, isLegacy, title, storybookUrl } = pageContent || {}
+
   const breadcrumbs = (
     <Breadcrumbs>
       <BreadcrumbsItem link={<Link href="/">Home</Link>} />
@@ -146,27 +184,13 @@ export const Test: React.FC<ComponentProps> = ({
   const masthead = (
     <Masthead version="3.0.0">
       <MastheadMenu>
-        <MastheadMenuItem link={<Link href="#guidance">Guidance</Link>} />
-        <MastheadMenuItem link={<Link href="#principles">Principles</Link>} />
         <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
           <MastheadSubMenu>
             <MastheadSubMenuItem
-              link={<Link href="#design-tokens">Design Tokens</Link>}
-            />
-            <MastheadSubMenuItem
-              link={<Link href="#components">Components</Link>}
-            />
-            <MastheadSubMenuItem
-              link={<Link href="#patterns">Patterns</Link>}
-            />
-            <MastheadSubMenuItem
-              link={<Link href="#frameworks">Frameworks</Link>}
+              link={<Link href="/components">Components</Link>}
             />
           </MastheadSubMenu>
         </MastheadMenuItem>
-        <MastheadMenuItem link={<Link href="#resources">Resources</Link>} />
-        <MastheadMenuItem link={<Link href="#help">Help</Link>} />
-        <MastheadMenuItem link={<Link href="#blog">Blog</Link>} />
       </MastheadMenu>
     </Masthead>
   )
@@ -200,7 +224,11 @@ export const Test: React.FC<ComponentProps> = ({
       <SidebarOverview>
         <SidebarOverviewMenuItem
           icon={<IconBookmark />}
-          link={<Link href="#storybook">Storybook</Link>}
+          link={
+            <Link href={storybookUrl || 'https://storybook.royalnavy.io'}>
+              Storybook
+            </Link>
+          }
         />
         <SidebarOverviewMenuItem
           icon={<IconBookmark />}
@@ -208,36 +236,7 @@ export const Test: React.FC<ComponentProps> = ({
         />
       </SidebarOverview>
       <SidebarFilter onChange={() => undefined} onSubmit={() => undefined} />
-      <SidebarMenu>
-        <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
-        <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />
-        <SidebarMenuItem link={<Link href="#badge">Badge</Link>} />
-        <SidebarMenuItem link={<Link href="#breadcrumbs">Breadcrumbs</Link>} />
-        <SidebarMenuItem link={<Link href="#button">Button</Link>} />
-      </SidebarMenu>
-      <SidebarMenu title="Banners">
-        <SidebarMenuItem
-          link={<Link href="#dismissible-banner">Dismissible Banner</Link>}
-        />
-        <SidebarMenuItem
-          link={<Link href="#phase-banner">Phase Banner</Link>}
-        />
-      </SidebarMenu>
-      <SidebarMenu title="Cards">
-        <SidebarMenuItem link={<Link href="#content">Content</Link>} />
-        <SidebarMenuItem link={<Link href="#frame">Frame</Link>} />
-      </SidebarMenu>
-      <SidebarMenu title="Forms">
-        <SidebarMenuItem link={<Link href="#checkbox">Checkbox</Link>} />
-        <SidebarMenuItem link={<Link href="#date-picker">Date Picker</Link>} />
-        <SidebarMenuItem
-          link={<Link href="#number-input">Number Input</Link>}
-        />
-        <SidebarMenuItem link={<Link href="#radio">Radio</Link>} />
-        <SidebarMenuItem link={<Link href="#select">Select</Link>} />
-        <SidebarMenuItem link={<Link href="#text-input">Text Input</Link>} />
-        <SidebarMenuItem link={<Link href="#text-area">Text Area</Link>} />
-      </SidebarMenu>
+      {renderSidebarItems(componentPageCollection)}
     </Sidebar>
   )
 

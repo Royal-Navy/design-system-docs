@@ -7,7 +7,7 @@ const environment = process.env.NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT || 'master'
 
 export async function contentful(
   query: DocumentNode,
-  variables: Record<string, unknown>
+  variables?: Record<string, unknown>
 ): Promise<Record<string, any>> {
   try {
     const res = await fetch(
