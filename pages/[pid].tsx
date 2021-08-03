@@ -1,45 +1,107 @@
 import React from 'react'
-import { action } from '@storybook/addon-actions'
+import { GetStaticProps, GetStaticPaths } from 'next'
+import Link from 'next/link'
 import {
   Breadcrumbs,
   BreadcrumbsItem,
 } from '@royalnavy/react-component-library'
 import { IconBookmark, IconLightbulbOutline } from '@royalnavy/icon-library'
-import Link from 'next/link'
-import { storiesOf } from '@storybook/react'
 
-import { Badge, BADGE_VARIANT } from '../../presenters/Docs/Badge'
-import { LayoutComponent } from './Component'
-import { ContentBanner } from '../../presenters/Docs/ContentBanner'
-import { Footer } from '../../presenters/Docs/Footer'
-import { FooterExternalLink } from '../../presenters/Docs/Footer/FooterExternalLink'
+import { Badge, BADGE_VARIANT } from '../components/presenters/Docs/Badge'
+import { ContentBanner } from '../components/presenters/Docs/ContentBanner'
+import { Footer } from '../components/presenters/Docs/Footer'
+import { FooterExternalLink } from '../components/presenters/Docs/Footer/FooterExternalLink'
 import {
   Masthead,
   MastheadMenu,
   MastheadMenuItem,
   MastheadSubMenu,
   MastheadSubMenuItem,
-} from '../../presenters/Docs/Masthead'
-import { OnThisPageItem } from '../../presenters/Docs/OnThisPage/OnThisPageItem'
-import { SidebarFilter } from '../../presenters/Docs/Sidebar/SidebarFilter'
+} from '../components/presenters/Docs/Masthead'
+import { OnThisPageItem } from '../components/presenters/Docs/OnThisPage/OnThisPageItem'
+import { SidebarFilter } from '../components/presenters/Docs/Sidebar/SidebarFilter'
 import {
   Sidebar,
   SidebarMenu,
   SidebarMenuItem,
   SidebarOverview,
   SidebarOverviewMenuItem,
-} from '../../presenters/Docs/Sidebar'
-import { OnThisPage } from '../../presenters/Docs/OnThisPage'
-import { PageBanner } from '../../presenters/Docs/PageBanner'
+} from '../components/presenters/Docs/Sidebar'
+import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
+import { PageBanner } from '../components/presenters/Docs/PageBanner'
+import { LayoutComponent } from '../components/layouts/Docs'
 
-const stories = storiesOf('Docs/Layouts/Component', module)
+import SIMPLE_PAGE_BY_ID_QUERY from '../graphql/queries/SimplePageByID.graphql'
+import { contentful } from '../services/contentful'
 
-stories.add('Default', () => {
+interface ComponentProps {
+  bodyContent: any
+  isLegacy: boolean
+  title: string
+}
+
+/**
+ * Fetch data from Contentful for static site generation (SSG)
+ *
+ */
+export const getStaticProps: GetStaticProps = async (context) => {
+  const pid = context.params.pid
+
+  const {
+    contentPage: { bodyContent, isLegacy, title },
+  } = await contentful(SIMPLE_PAGE_BY_ID_QUERY, {
+    id: pid,
+  })
+
+  return {
+    props: {
+      bodyContent,
+      isLegacy,
+      title,
+    },
+  }
+}
+
+/**
+ * Specify dynamic routes to  pre-render pages based on data
+ *
+ */
+export const getStaticPaths: GetStaticPaths = async () => {
+  return {
+    paths: [
+      { params: { pid: '7F2XWrHDH8WVr1r4Bfbab8' } },
+      { params: { pid: 'example-component-1' } },
+    ],
+    fallback: false,
+  }
+}
+
+/**
+ * Generate navigation based on content structure
+ *
+ */
+function renderNavigation(
+  data: any
+): React.ReactElement | React.ReactElement[] {
+  return null
+}
+
+/**
+ * Render page using data from `getStaticProps`
+ *
+ */
+export const Test: React.FC<ComponentProps> = ({
+  bodyContent,
+  isLegacy,
+  title,
+}) => {
   const breadcrumbs = (
     <Breadcrumbs>
-      <BreadcrumbsItem link={<Link href="#home">Home</Link>} />
-      <BreadcrumbsItem link={<Link href="#components">Components</Link>} />
-      <BreadcrumbsItem link={<Link href="#sidebar">Sidebar</Link>} />
+      <BreadcrumbsItem link={<Link href="/">Home</Link>} />
+      <BreadcrumbsItem link={<Link href="/components">Components</Link>} />
+      <BreadcrumbsItem
+        link={<Link href={`/components/${title}`}>{title}</Link>}
+      />
     </Breadcrumbs>
   )
 
@@ -61,11 +123,15 @@ stories.add('Default', () => {
       externalLinks={[
         <FooterExternalLink
           icon={<IconBookmark />}
-          link={<Link href="#github">GitHub</Link>}
+          link={
+            <Link href="https://github.com/Royal-Navy/design-system">
+              GitHub
+            </Link>
+          }
         />,
         <FooterExternalLink
           icon={<IconBookmark />}
-          link={<Link href="#storybook">Storybook</Link>}
+          link={<Link href="https://storybook.royalnavy.io">Storybook</Link>}
         />,
       ]}
       license="All content is available under the Apache 2.0 licence, except where
@@ -108,14 +174,14 @@ stories.add('Default', () => {
 
   const onThisPage = (
     <OnThisPage>
-      <OnThisPageItem onClick={action('onClick')}>Overview</OnThisPageItem>
-      <OnThisPageItem onClick={action('onClick')}>Usage</OnThisPageItem>
-      <OnThisPageItem onClick={action('onClick')}>Anatomy</OnThisPageItem>
-      <OnThisPageItem onClick={action('onClick')}>
-        Hierarchy & placement
+      <OnThisPageItem onClick={() => undefined}>Overview</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>Usage</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>Anatomy</OnThisPageItem>
+      <OnThisPageItem onClick={() => undefined}>
+        Hierarchy &amp; placement
       </OnThisPageItem>
-      <OnThisPageItem onClick={action('onClick')}>
-        Sizing & spacing
+      <OnThisPageItem onClick={() => undefined}>
+        Sizing &amp; spacing
       </OnThisPageItem>
     </OnThisPage>
   )
@@ -124,7 +190,7 @@ stories.add('Default', () => {
     <PageBanner>
       Version <Badge variant={BADGE_VARIANT.DARK}>3.0.0</Badge> has been
       released!&nbsp;
-      <a href="#">
+      <a href="/upgrade-guide">
         Read the <strong>upgrade guide</strong>
       </a>
     </PageBanner>
@@ -142,10 +208,7 @@ stories.add('Default', () => {
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
-      <SidebarFilter
-        onChange={action('filter onChange')}
-        onSubmit={action('filter onSubmit')}
-      />
+      <SidebarFilter onChange={() => undefined} onSubmit={() => undefined} />
       <SidebarMenu>
         <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
         <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />
@@ -179,18 +242,21 @@ stories.add('Default', () => {
     </Sidebar>
   )
 
+  console.log(bodyContent)
+
   return (
     <LayoutComponent
       breadcrumbs={breadcrumbs}
-      contentBanner={contentBanner}
+      contentBanner={isLegacy && contentBanner}
       footer={footer}
       masthead={masthead}
       onThisPage={onThisPage}
       pageBanner={pageBanner}
       sidebar={sidebar}
-      title="Sidebar"
-    >
-      Content
-    </LayoutComponent>
+      title={title}
+      richText={bodyContent}
+    />
   )
-})
+}
+
+export default Test

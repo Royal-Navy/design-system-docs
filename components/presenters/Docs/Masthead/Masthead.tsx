@@ -20,7 +20,7 @@ export const Masthead: React.FC<MastheadProps> = ({
   return (
     <StyledMasthead $isOpen={isOpen}>
       <div>
-        <RNDSLogo />
+        {/* <RNDSLogo /> */}
         <Badge variant="light">{version}</Badge>
       </div>
       <div>

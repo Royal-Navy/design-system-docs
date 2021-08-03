@@ -26,7 +26,7 @@ import PAGE_STRUCTURE_BY_ID_QUERY from '../graphql/queries/PageStructureByID.gra
 import SECTION_CONTENT_BY_ID_QUERY from '../graphql/queries/SectionContentByID.graphql'
 import { contentful } from '../services/contentful'
 
-interface HomeProps {
+interface TimelineProps {
   sectionCollection: SectionCollectionType
 }
 
@@ -153,7 +153,7 @@ function renderContentCollection(
  * Render page using data from `getStaticProps`
  *
  */
-export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
+export const Timeline: React.FC<TimelineProps> = ({ sectionCollection }) => {
   return (
     <LayoutFramework
       title="Compound Timeline | Royal Navy Design System"
@@ -170,4 +170,4 @@ export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
   )
 }
 
-export default Home
+export default Timeline
