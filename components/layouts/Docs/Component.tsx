@@ -1,6 +1,5 @@
 import React from 'react'
 import styled from 'styled-components'
-import { selectors } from '@royalnavy/design-tokens'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { BreadcrumbsItemProps } from '@royalnavy/react-component-library'
@@ -43,8 +42,6 @@ export type AssetType = {
   height: number
   width: number
 }
-
-const { spacing, color } = selectors
 
 const StyledImage = styled.img`
   max-width: 100%;
