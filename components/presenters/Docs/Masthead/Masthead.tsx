@@ -5,7 +5,7 @@ import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMasthead } from './partials/StyledMasthead'
 import { StyledMenuButton } from './partials/StyledMenuButton'
 import { Badge } from '../Badge'
-import { ReactComponent as RNDSLogo } from '../../../../public/RNDSLogo.svg'
+import RNDSLogo from '../../../../public/RNDSLogo.svg'
 
 export interface MastheadProps extends ComponentWithClass {
   version?: string
@@ -20,7 +20,7 @@ export const Masthead: React.FC<MastheadProps> = ({
   return (
     <StyledMasthead $isOpen={isOpen}>
       <div>
-        {/* <RNDSLogo /> */}
+        <RNDSLogo />
         <Badge variant="light">{version}</Badge>
       </div>
       <div>
