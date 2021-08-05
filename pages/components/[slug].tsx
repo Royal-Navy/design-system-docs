@@ -11,40 +11,40 @@ import {
 } from '@royalnavy/react-component-library'
 import { IconLightbulbOutline } from '@royalnavy/icon-library'
 
-import Axure from '../public/Axure.svg'
-import Storybook from '../public/Storybook.svg'
-import GitHub from '../public/GitHub.svg'
+import Axure from '../../public/Axure.svg'
+import Storybook from '../../public/Storybook.svg'
+import GitHub from '../../public/GitHub.svg'
 
-import { Badge, BADGE_VARIANT } from '../components/presenters/Docs/Badge'
-import { ContentBanner } from '../components/presenters/Docs/ContentBanner'
-import { Footer } from '../components/presenters/Docs/Footer'
-import { FooterExternalLink } from '../components/presenters/Docs/Footer/FooterExternalLink'
+import { Badge, BADGE_VARIANT } from '../../components/presenters/Docs/Badge'
+import { ContentBanner } from '../../components/presenters/Docs/ContentBanner'
+import { Footer } from '../../components/presenters/Docs/Footer'
+import { FooterExternalLink } from '../../components/presenters/Docs/Footer/FooterExternalLink'
 import {
   Masthead,
   MastheadMenu,
   MastheadMenuItem,
   MastheadSubMenu,
   MastheadSubMenuItem,
-} from '../components/presenters/Docs/Masthead'
-import { OnThisPageItem } from '../components/presenters/Docs/OnThisPage/OnThisPageItem'
-import { SidebarFilter } from '../components/presenters/Docs/Sidebar/SidebarFilter'
+} from '../../components/presenters/Docs/Masthead'
+import { OnThisPageItem } from '../../components/presenters/Docs/OnThisPage/OnThisPageItem'
+import { SidebarFilter } from '../../components/presenters/Docs/Sidebar/SidebarFilter'
 import {
   Sidebar,
   SidebarMenu,
   SidebarMenuItem,
   SidebarOverview,
   SidebarOverviewMenuItem,
-} from '../components/presenters/Docs/Sidebar'
-import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
-import { PageBanner } from '../components/presenters/Docs/PageBanner'
-import { LayoutComponent } from '../components/layouts/Docs'
+} from '../../components/presenters/Docs/Sidebar'
+import { OnThisPage } from '../../components/presenters/Docs/OnThisPage'
+import { PageBanner } from '../../components/presenters/Docs/PageBanner'
+import { LayoutComponent } from '../../components/layouts/Docs'
 
-import { ContentPage as ContentPageType } from '../graphql'
-import SIMPLE_PAGES_WITH_COMPONENT_TAGS from '../graphql/queries/SimplePagesWithComponentTags.graphql'
-import SIMPLE_PAGE_BY_SLUG_QUERY from '../graphql/queries/SimplePageBySlug.graphql'
-import { contentful } from '../services/contentful'
+import { ContentPage as ContentPageType } from '../../graphql'
+import SIMPLE_PAGES_WITH_COMPONENT_TAGS from '../../graphql/queries/SimplePagesWithComponentTags.graphql'
+import SIMPLE_PAGE_BY_SLUG_QUERY from '../../graphql/queries/SimplePageBySlug.graphql'
+import { contentful } from '../../services/contentful'
 
-import { useDesignSystemVersion } from '../hooks/useDesignSystemVersion'
+import { useDesignSystemVersion } from '../../hooks/useDesignSystemVersion'
 
 interface ComponentProps {
   contentPageCollection: ContentPageType[]
@@ -138,7 +138,7 @@ function renderSidebarItems(
           return (
             <SidebarMenuItem
               key={title}
-              link={<Link href={`/${slug}`}>{title}</Link>}
+              link={<Link href={`/components/${slug}`}>{title}</Link>}
             />
           )
         })}
@@ -166,7 +166,11 @@ function renderOnThisPageItems(
     const title = item?.content[0]?.value
     const href = `#${camelCase(`${index + 1}${title}`)}`
 
-    return <OnThisPageItem onClick={(_) => push(href)}>{title}</OnThisPageItem>
+    return (
+      <OnThisPageItem key={href} onClick={(_) => push(href)}>
+        {title}
+      </OnThisPageItem>
+    )
   })
 }
 
