@@ -1,5 +1,7 @@
 import React from 'react'
+import camelCase from 'lodash/camelCase'
 import styled from 'styled-components'
+import { selectors } from '@royalnavy/design-tokens'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 import { BreadcrumbsItemProps } from '@royalnavy/react-component-library'
@@ -45,9 +47,28 @@ export type AssetType = {
   width: number
 }
 
+const { color, fontSize, spacing } = selectors
+
 const StyledImage = styled.img`
   max-width: 100%;
   height: auto;
+`
+
+const StyledH2 = styled.h2`
+  display: flex;
+  align-items: center;
+
+  span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid ${color('neutral', '200')};
+    border-radius: 5px;
+    font-size: ${fontSize('s')};
+    padding: ${spacing('4')};
+    height: 1.5rem;
+    margin-right: ${spacing('5')};
+  }
 `
 
 function getRichTextRenderOptions(links) {
@@ -55,9 +76,11 @@ function getRichTextRenderOptions(links) {
     links?.assets?.block?.map((asset) => [asset.sys.id, asset])
   )
 
+  let h2Index = 0
+
   return {
     renderNode: {
-      [BLOCKS.EMBEDDED_ASSET]: (node) => {
+      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
         const { description, url, height, width } = assetBlockMap.get(
           node.data.target.sys.id
         )
@@ -69,6 +92,16 @@ function getRichTextRenderOptions(links) {
             height={height}
             width={width}
           />
+        )
+      },
+      [BLOCKS.HEADING_2]: (_: unknown, content: string[]) => {
+        h2Index += 1
+
+        return (
+          <StyledH2 id={camelCase(h2Index + content.toString())}>
+            <span>{h2Index}</span>
+            {content.toString()}
+          </StyledH2>
         )
       },
     },
