@@ -9,15 +9,17 @@ import { StyledMenuButton } from './partials/StyledMenuButton'
 import RNDSMobileLogo from '../../../../public/RNDSMobileLogo.svg'
 
 export interface MastheadMenuProps extends ComponentWithClass {
+  isOpen?: boolean
   onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export const MastheadMenu: React.FC<MastheadMenuProps> = ({
   children,
+  isOpen,
   onClose,
 }) => {
   return (
-    <StyledMastheadMenu>
+    <StyledMastheadMenu $isOpen={isOpen}>
       <StyledMastheadMobile>
         <RNDSMobileLogo />
         <StyledMenuButton onClick={onClose}>

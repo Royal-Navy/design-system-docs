@@ -26,6 +26,7 @@ export const Masthead: React.FC<MastheadProps> = ({
       <div>
         {React.Children.map(children, (child: React.ReactElement) => {
           return React.cloneElement(child, {
+            isOpen,
             onClose: (_: React.MouseEvent<HTMLButtonElement>) =>
               setIsOpen(false),
           })
