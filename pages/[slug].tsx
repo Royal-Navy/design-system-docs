@@ -1,7 +1,10 @@
 import React from 'react'
 import groupBy from 'lodash/groupBy'
+import camelCase from 'lodash/camelCase'
 import { GetStaticProps, GetStaticPaths } from 'next'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+import { BLOCKS } from '@contentful/rich-text-types'
 import {
   Breadcrumbs,
   BreadcrumbsItem,
@@ -141,6 +144,29 @@ function renderSidebarItems(
 }
 
 /**
+ * Generate `OnThisPage` items based on sub-headings within document
+ *
+ */
+function renderOnThisPageItems(
+  contentPage: ContentPageType
+): React.ReactElement | React.ReactElement[] {
+  const h2Collection = contentPage?.bodyContent?.json?.content.filter(
+    ({ nodeType }) => {
+      return nodeType === BLOCKS.HEADING_2
+    }
+  )
+
+  const { push } = useRouter()
+
+  return h2Collection.map((item: Record<string, any>, index: number) => {
+    const title = item?.content[0]?.value
+    const href = `#${camelCase(`${index + 1}${title}`)}`
+
+    return <OnThisPageItem onClick={(_) => push(href)}>{title}</OnThisPageItem>
+  })
+}
+
+/**
  * Compose page using data from `getStaticProps`
  *
  */
@@ -207,17 +233,7 @@ export const Component: React.FC<ComponentProps> = ({
   )
 
   const onThisPage = (
-    <OnThisPage>
-      <OnThisPageItem onClick={() => undefined}>Overview</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>Usage</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>Anatomy</OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>
-        Hierarchy &amp; placement
-      </OnThisPageItem>
-      <OnThisPageItem onClick={() => undefined}>
-        Sizing &amp; spacing
-      </OnThisPageItem>
-    </OnThisPage>
+    <OnThisPage>{renderOnThisPageItems(contentPage)}</OnThisPage>
   )
 
   const contentBanner = (
