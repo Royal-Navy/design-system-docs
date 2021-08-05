@@ -8,7 +8,7 @@ export const StyledOnThisPageWrapper = styled.div`
   background-color: ${color('neutral', 'white')};
   padding: 0 ${spacing('15')} ${spacing('15')};
 
-  ${mq({ gte: 's' })`
+  ${mq({ gte: 'l' })`
     display: block;
   `}
 `
