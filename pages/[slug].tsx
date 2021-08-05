@@ -9,7 +9,11 @@ import {
   Breadcrumbs,
   BreadcrumbsItem,
 } from '@royalnavy/react-component-library'
-import { IconBookmark, IconLightbulbOutline } from '@royalnavy/icon-library'
+import { IconLightbulbOutline } from '@royalnavy/icon-library'
+
+import Axure from '../public/Axure.svg'
+import Storybook from '../public/Storybook.svg'
+import GitHub from '../public/GitHub.svg'
 
 import { Badge, BADGE_VARIANT } from '../components/presenters/Docs/Badge'
 import { ContentBanner } from '../components/presenters/Docs/ContentBanner'
@@ -205,7 +209,7 @@ export const Component: React.FC<ComponentProps> = ({
     <Sidebar title="Components">
       <SidebarOverview>
         <SidebarOverviewMenuItem
-          icon={<IconBookmark />}
+          icon={<Storybook />}
           link={
             <Link href={storybookUrl || 'https://storybook.royalnavy.io'}>
               Storybook
@@ -213,7 +217,7 @@ export const Component: React.FC<ComponentProps> = ({
           }
         />
         <SidebarOverviewMenuItem
-          icon={<IconBookmark />}
+          icon={<Axure />}
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
@@ -253,7 +257,7 @@ export const Component: React.FC<ComponentProps> = ({
       and its source code is available on GitHub."
       externalLinks={[
         <FooterExternalLink
-          icon={<IconBookmark />}
+          icon={<GitHub />}
           link={
             <Link href="https://github.com/Royal-Navy/design-system">
               GitHub
@@ -261,7 +265,7 @@ export const Component: React.FC<ComponentProps> = ({
           }
         />,
         <FooterExternalLink
-          icon={<IconBookmark />}
+          icon={<Storybook />}
           link={<Link href="https://storybook.royalnavy.io">Storybook</Link>}
         />,
       ]}
