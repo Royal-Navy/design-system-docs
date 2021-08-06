@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import groupBy from 'lodash/groupBy'
 import camelCase from 'lodash/camelCase'
 import { GetStaticProps, GetStaticPaths } from 'next'
@@ -182,8 +182,22 @@ export const Component: React.FC<ComponentProps> = ({
   contentPageCollection,
   contentPage,
 }) => {
+  const [sidebarItems, setSidebarItems] = useState<ContentPageType[]>(
+    contentPageCollection
+  )
   const { version } = useDesignSystemVersion()
   const { bodyContent, isLegacy, title, storybookUrl } = contentPage || {}
+
+  const handleSidebarFilter = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    newValue: string
+  ): void => {
+    setSidebarItems(
+      contentPageCollection.filter((item: ContentPageType) =>
+        item?.title.toLowerCase().includes(newValue.toLowerCase())
+      )
+    )
+  }
 
   const pageBanner = (
     <PageBanner>
@@ -225,8 +239,11 @@ export const Component: React.FC<ComponentProps> = ({
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
-      <SidebarFilter onChange={() => undefined} onSubmit={() => undefined} />
-      {renderSidebarItems(contentPageCollection)}
+      <SidebarFilter
+        onChange={handleSidebarFilter}
+        onClear={handleSidebarFilter}
+      />
+      {renderSidebarItems(sidebarItems)}
     </Sidebar>
   )
 

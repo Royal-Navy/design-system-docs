@@ -29,7 +29,7 @@ stories.add('Default', () => (
     </SidebarOverview>
     <SidebarFilter
       onChange={action('filter onChange')}
-      onSubmit={action('filter onSubmit')}
+      onClear={action('filter onClear')}
     />
     <SidebarMenu>
       <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
