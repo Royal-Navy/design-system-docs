@@ -14,18 +14,18 @@ import { SidebarOverviewMenuItem } from './SidebarOverviewMenuItem'
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance
-  let onSubmitSpy: jest.SpyInstance
+  let onClearSpy: jest.SpyInstance
   let wrapper: RenderResult
 
   beforeEach(() => {
     const filterProps = {
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => undefined,
-      onSubmit: (e: React.MouseEvent<HTMLButtonElement>, value: string) =>
+      onClear: (e: React.MouseEvent<HTMLButtonElement>, value: string) =>
         undefined,
     }
 
     onChangeSpy = jest.spyOn(filterProps, 'onChange')
-    onSubmitSpy = jest.spyOn(filterProps, 'onSubmit')
+    onClearSpy = jest.spyOn(filterProps, 'onClear')
 
     wrapper = render(
       <Sidebar title="Components">
@@ -95,10 +95,10 @@ describe('Sidebar', () => {
         userEvent.click(wrapper.getByTestId('sidebar-filter-button'))
       })
 
-      it('should call the `onSubmit` callback', () => {
-        expect(onSubmitSpy.mock.calls[0][1]).toEqual('abc')
+      it('should call the `onClear` callback', () => {
+        expect(onClearSpy.mock.calls[0][1]).toEqual('')
 
-        expect(onSubmitSpy).toHaveBeenCalledTimes(1)
+        expect(onClearSpy).toHaveBeenCalledTimes(1)
       })
     })
   })
