@@ -5,10 +5,13 @@ query SimplePagesWithComponentTags {
         tags_exists: true
         tags: {
           id_contains_some: [
-            "componentPageNavigation"
             "componentPageBanners"
+            "componentPageContainers",
             "componentPageForms"
-            "componentPageCards"
+            "componentPageGeneral",
+            "componentPageInteraction",
+            "componentPageNavigation"
+            "componentPageNotifications",
           ]
         }
       }
