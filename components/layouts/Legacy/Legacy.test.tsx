@@ -8,7 +8,7 @@ import { IconBookmark, IconLightbulbOutline } from '@royalnavy/icon-library'
 import Link from 'next/link'
 import { render, RenderResult } from '@testing-library/react'
 
-import { LayoutComponent } from './Component'
+import { LayoutLegacy } from './Legacy'
 import { ContentBanner } from '../../presenters/Docs/ContentBanner'
 import { Footer } from '../../presenters/Docs/Footer'
 import { FooterExternalLink } from '../../presenters/Docs/Footer/FooterExternalLink'
@@ -87,7 +87,7 @@ describe('Component docs layout', () => {
       )
 
       wrapper = render(
-        <LayoutComponent
+        <LayoutLegacy
           breadcrumbs={breadcrumbs}
           contentBanner={contentBanner}
           footer={footer}
@@ -98,7 +98,7 @@ describe('Component docs layout', () => {
           title="Page title"
         >
           Content
-        </LayoutComponent>
+        </LayoutLegacy>
       )
     })
 
