@@ -8,11 +8,11 @@ import {
   SidebarMenuItem,
 } from '../components/presenters/Framework/Sidebar'
 
-import { HeroAdapter } from '../components/adapters/HeroAdapter'
-import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
-import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
-import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
-import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
+import { HeroAdapter } from '../components/adapters/Framework/HeroAdapter'
+import { ContentBlockAdapter } from '../components/adapters/Framework/ContentBlockAdapter'
+import { LiveExampleAdapter } from '../components/adapters/Framework/LiveExampleAdapter'
+import { CodeBlockAdapter } from '../components/adapters/Framework/CodeBlockAdapter'
+import { ApiTableAdapter } from '../components/adapters/Framework/ApiTableAdapter'
 import { Section } from '../components/presenters/Framework/Section'
 
 import {

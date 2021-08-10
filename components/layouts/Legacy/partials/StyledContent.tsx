@@ -35,4 +35,12 @@ export const StyledContent = styled.div`
   li {
     margin: ${spacing('4')} 0;
   }
+
+  code {
+    background-color: ${color('neutral', '500')};
+    border-radius: 3px;
+    color: ${color('neutral', 'white')};
+    font-weight: 500;
+    padding: 2px 0.5rem;
+  }
 `

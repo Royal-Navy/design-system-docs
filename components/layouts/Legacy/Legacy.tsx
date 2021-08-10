@@ -1,9 +1,4 @@
 import React from 'react'
-import camelCase from 'lodash/camelCase'
-import styled from 'styled-components'
-import { selectors } from '@royalnavy/design-tokens'
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
 import { BreadcrumbsItemProps } from '@royalnavy/react-component-library'
 import Head from 'next/head'
 import { Nav } from '@royalnavy/react-component-library/dist/types/common/Nav'
@@ -24,8 +19,6 @@ import { StyledPageWrapper } from './partials/StyledPageWrapper'
 import { StyledSidebarWrapper } from './partials/StyledSidebarWrapper'
 import { StyledTitle } from './partials/StyledTitle'
 
-import { Maybe, ContentPageBodyContent } from '../../../graphql'
-
 export interface LayoutComponentProps {
   breadcrumbs: React.ReactElement<Nav<BreadcrumbsItemProps>>
   contentBanner: React.ReactElement<ContentBannerProps>
@@ -35,80 +28,9 @@ export interface LayoutComponentProps {
   pageBanner?: React.ReactElement<ComponentWithClass>
   sidebar: React.ReactElement<SidebarProps>
   title: string
-  richText?: Maybe<ContentPageBodyContent>
 }
 
-export type AssetType = {
-  fileName: string
-  title: string
-  description: string
-  url: string
-  height: number
-  width: number
-}
-
-const { color, fontSize, spacing } = selectors
-
-const StyledImage = styled.img`
-  max-width: 100%;
-  height: auto;
-`
-
-const StyledH2 = styled.h2`
-  display: flex;
-  align-items: center;
-
-  span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid ${color('neutral', '200')};
-    border-radius: 5px;
-    font-size: ${fontSize('s')};
-    padding: ${spacing('4')};
-    height: 1.5rem;
-    margin-right: ${spacing('5')};
-  }
-`
-
-function getRichTextRenderOptions(links) {
-  const assetBlockMap = new Map<string, AssetType>(
-    links?.assets?.block?.map((asset) => [asset.sys.id, asset])
-  )
-
-  let h2Index = 0
-
-  return {
-    renderNode: {
-      [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
-        const { description, url, height, width } = assetBlockMap.get(
-          node.data.target.sys.id
-        )
-
-        return (
-          <StyledImage
-            alt={description}
-            src={url}
-            height={height}
-            width={width}
-          />
-        )
-      },
-      [BLOCKS.HEADING_2]: (_: unknown, content: string[]) => {
-        h2Index += 1
-
-        return (
-          <StyledH2 id={camelCase(h2Index + content.toString())}>
-            <span>{h2Index}</span>
-            {content.toString()}
-          </StyledH2>
-        )
-      },
-    },
-  }
-}
-
-export const LayoutComponent: React.FC<LayoutComponentProps> = ({
+export const LayoutLegacy: React.FC<LayoutComponentProps> = ({
   breadcrumbs,
   contentBanner,
   children,
@@ -118,7 +40,6 @@ export const LayoutComponent: React.FC<LayoutComponentProps> = ({
   pageBanner,
   sidebar,
   title,
-  richText,
 }) => (
   <>
     <Head>
@@ -138,14 +59,7 @@ export const LayoutComponent: React.FC<LayoutComponentProps> = ({
               {breadcrumbs}
               <StyledTitle>{title}</StyledTitle>
               {contentBanner}
-              <StyledContent>
-                {children}
-                {richText?.json &&
-                  documentToReactComponents(
-                    richText.json,
-                    getRichTextRenderOptions(richText.links)
-                  )}
-              </StyledContent>
+              <StyledContent>{children}</StyledContent>
             </div>
             <StyledOnThisPageWrapper>{onThisPage}</StyledOnThisPageWrapper>
           </StyledArticle>
@@ -156,4 +70,4 @@ export const LayoutComponent: React.FC<LayoutComponentProps> = ({
   </>
 )
 
-LayoutComponent.displayName = 'LayoutComponent'
+LayoutLegacy.displayName = 'LayoutLegacy'

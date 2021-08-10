@@ -3,13 +3,13 @@ query PageStructure($id: String!) {
     title
     sectionCollection(limit: 20) {
       items {
-        title
         ... on Entry {
           sys {
             id
           }
         }
         ... on Section {
+          title
           contentCollection(limit: 20) {
             items {
               __typename
