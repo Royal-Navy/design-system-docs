@@ -41,7 +41,7 @@
     "graphql-tag": "^2.12.4",
     "hex-rgb": "^5.0.0",
     "lodash": "^4.17.21",
-    "next": "11.0.2-canary.25",
+    "next": "^11.1.0",
     "postcss-flexbugs-fixes": "^5.0.2",
     "prism-react-renderer": "^1.2.0",
     "prismjs": "^1.24.1",
