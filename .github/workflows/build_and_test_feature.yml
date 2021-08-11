@@ -72,11 +72,15 @@ jobs:
             path: '**/node_modules'
             key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
 
+        - name: Switch Contentful Environment
+          if: contains(github.ref, 'staging')
+          run: |
+            echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
+
         - name: Build site
           env:
             NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
             NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
-            NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT: staging
           run: |
             yarn build
 
@@ -104,6 +108,11 @@ jobs:
       steps:
         - name: Git clone repository
           uses: actions/checkout@v2
+
+        - name: Switch Contentful Environment
+          if: contains(github.ref, 'staging')
+          run: |
+            echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
 
         - name: Run e2e tests
           uses: cypress-io/github-action@v2
