@@ -1,0 +1,16 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+  open-pull-requests-limit: 5
+  reviewers:
+  - m7kvqbe1
+  - thyhjwb6
+  labels:
+  - "Type: Dependencies"
+  ignore:
+  commit-message:
+    prefix: chore(Security)
+  rebase-strategy: auto
