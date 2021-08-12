@@ -10,7 +10,6 @@ updates:
   - thyhjwb6
   labels:
   - "Type: Dependencies"
-  ignore:
   commit-message:
     prefix: chore(Security)
   rebase-strategy: auto
