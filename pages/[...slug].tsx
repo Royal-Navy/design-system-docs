@@ -166,6 +166,7 @@ function renderBreadcrumb(path: string): React.ReactElement {
         link={
           <Link href={`/${slug}`}>{upperFirst(slug.replace(/-/g, ' '))}</Link>
         }
+        data-testid="breadcrumb-item"
       />
     )
   })
@@ -173,7 +174,10 @@ function renderBreadcrumb(path: string): React.ReactElement {
   return (
     <Breadcrumbs>
       {[
-        <BreadcrumbsItem link={<Link href="/">Home</Link>} />,
+        <BreadcrumbsItem
+          link={<Link href="/">Home</Link>}
+          data-testid="breadcrumb-item"
+        />,
         ...(React.Children.toArray(
           children
         ) as React.ReactElement<BreadcrumbsItemProps>[]),
