@@ -64,6 +64,7 @@ function getRichTextRenderOptions(links) {
             src={url}
             height={height}
             width={width}
+            data-testid="content-block-img"
           />
         )
       },
@@ -71,7 +72,10 @@ function getRichTextRenderOptions(links) {
         h2Index += 1
 
         return (
-          <StyledH2 id={camelCase(h2Index + content.toString())}>
+          <StyledH2
+            id={camelCase(h2Index + content.toString())}
+            data-testid="content-block-h2"
+          >
             <span>{h2Index}</span>
             {content.toString()}
           </StyledH2>
@@ -88,7 +92,7 @@ export const ContentBlockAdapter: React.FC<ContentBlockAdapterProps> = ({
 
   return (
     <>
-      {title && <h1>{title}</h1>}
+      {title && <p data-testid="content-block-title">{title}</p>}
       {description?.json &&
         documentToReactComponents(
           description.json,

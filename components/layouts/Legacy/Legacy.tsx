@@ -57,7 +57,7 @@ export const LayoutLegacy: React.FC<LayoutComponentProps> = ({
           <StyledArticle>
             <div>
               {breadcrumbs}
-              <StyledTitle>{title}</StyledTitle>
+              <StyledTitle data-testid="layout-legacy-h1">{title}</StyledTitle>
               {contentBanner}
               <StyledContent>{children}</StyledContent>
             </div>
