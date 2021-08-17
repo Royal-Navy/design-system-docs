@@ -2,7 +2,7 @@
 import { describe, cy, it, before } from 'local-cypress'
 // eslint-disable-next-line import/extensions
 import { baseUrl } from '../../../cypress.json'
-import selectors from '../../selectors'
+import selectors from '../../selectors/timeline'
 
 const content = [
   { text: 'Home', link: 'home' },

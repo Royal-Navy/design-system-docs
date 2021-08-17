@@ -15,9 +15,15 @@ export const CodeBlockAdapter: React.FC<CodeBlockAdapterProps> = ({
 
   return (
     <>
-      <h2>{title}</h2>
-      {description?.json && documentToReactComponents(description.json)}
-      <CodeHighlighter language="javascript" source={sourceCode} />
+      <h2 data-testid="code-block-h2">{title}</h2>
+      <div data-testid="code-block-description">
+        {description?.json && documentToReactComponents(description.json)}
+      </div>
+      <CodeHighlighter
+        language="javascript"
+        source={sourceCode}
+        data-testid="code-block-source"
+      />
     </>
   )
 }
