@@ -19,7 +19,7 @@ describe('Hero', () => {
     })
 
     it('apples the id HTML attribute', () => {
-      expect(wrapper.getByTestId('hero-wrapper')).toHaveAttribute('id', 'home')
+      expect(wrapper.getByTestId('content-panel')).toHaveAttribute('id', 'home')
     })
 
     it('renders the title', () => {
