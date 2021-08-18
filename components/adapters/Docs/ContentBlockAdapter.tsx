@@ -98,7 +98,13 @@ export const ContentBlockAdapter: React.FC<ContentBlockAdapterProps> = ({
           description.json,
           getRichTextRenderOptions(description.links)
         )}
-      {image && <StyledImage alt={image.title} src={image.url} />}
+      {image && (
+        <StyledImage
+          alt={image.title}
+          src={image.url}
+          data-testid="content-block-image"
+        />
+      )}
     </>
   )
 }
