@@ -15,4 +15,5 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!(@royalnavy/design-tokens|hex-rgb)).+\\.js$',
   ],
+  testEnvironment: 'jest-environment-jsdom-global',
 }
