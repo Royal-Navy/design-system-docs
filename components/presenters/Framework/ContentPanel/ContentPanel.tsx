@@ -14,7 +14,12 @@ export const ContentPanel: React.FC<ContentPanelProps> = ({
   ...rest
 }) => {
   return (
-    <StyledContentPanel className={className} id={id} {...rest}>
+    <StyledContentPanel
+      className={className}
+      id={id}
+      {...rest}
+      data-testid="content-panel"
+    >
       {children}
     </StyledContentPanel>
   )

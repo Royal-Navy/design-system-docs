@@ -35,7 +35,7 @@ export const LiveExampleAdapter: React.FC<LiveExampleAdapterProps> = ({
   return (
     <ContentPanel id={id}>
       <LeftCol>
-        {title && <h2>{title}</h2>}
+        {title && <h2 data-testid="live-example-adapter-title">{title}</h2>}
         {description?.json && documentToReactComponents(description.json)}
       </LeftCol>
       <RightCol>

@@ -16,7 +16,7 @@ interface HeroProps extends ComponentWithClass {
 
 export const Hero: React.FC<HeroProps> = ({ description, title, id }) => {
   return (
-    <ContentPanel id={id} data-testid="hero-wrapper">
+    <ContentPanel id={id}>
       <StyledLeftCol>
         <Badge color="action" colorVariant="solid">
           Framework
