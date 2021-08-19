@@ -16,7 +16,7 @@ export const StyledContent = styled.div`
     font-size: ${fontSize('xxl')};
     line-height: 2;
     color: ${color('neutral', '500')};
-    margin-top: ${spacing('8')};
+    margin-top: ${spacing('12')};
     margin-bottom: ${spacing('4')};
   }
 
