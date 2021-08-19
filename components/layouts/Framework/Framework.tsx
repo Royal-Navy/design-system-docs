@@ -1,32 +1,15 @@
-/* eslint-disable camelcase */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Head from 'next/head'
 
 import { Masthead } from '../../presenters/Framework/Masthead'
 import { Sidebar } from '../../presenters/Framework/Sidebar'
 import { StyledMain } from './partials/StyledMain'
+import { useDesignSystemVersion } from '../../../hooks/useDesignSystemVersion'
 
 interface LayoutFrameworkProps {
   children: React.ReactNode
   title?: string
   navigation?: React.ReactNode | React.ReactNode[]
-}
-
-async function getDesignSystemVersion(): Promise<string | null> {
-  try {
-    const res = await fetch(
-      'https://api.github.com/repos/Royal-Navy/design-system/releases/latest'
-    )
-
-    const { tag_name } = await res.json()
-
-    return tag_name
-  } catch (e) {
-    // eslint-disable-next-line no-console
-    console.warn('Failed to fetch the Design System version!', e)
-  }
-
-  return null
 }
 
 export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
@@ -35,13 +18,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
   navigation,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [version, setVersion] = useState(null)
-
-  useEffect(() => {
-    ;(async () => {
-      setVersion(await getDesignSystemVersion())
-    })()
-  }, [])
+  const { version } = useDesignSystemVersion()
 
   return (
     <>
@@ -67,3 +44,5 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
     </>
   )
 }
+
+LayoutFramework.displayName = 'LayoutFramework'

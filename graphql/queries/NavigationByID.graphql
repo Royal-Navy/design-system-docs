@@ -1,0 +1,37 @@
+query NavigationByID($id: String!) {
+  navigation(id: $id) {
+    title
+    childrenCollection(limit: 10) {
+      items {
+        ... on NavigationElement {
+          title
+          path
+          externalUri
+          page {
+            ... on Entry {
+              sys {
+                id
+              }
+            }
+          }
+          childrenCollection(limit: 10) {
+            items {
+              ... on NavigationElement {
+                title
+                path
+                externalUri
+                page {
+                  ... on Entry {
+                    sys {
+                      id
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

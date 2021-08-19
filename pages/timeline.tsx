@@ -8,11 +8,11 @@ import {
   SidebarMenuItem,
 } from '../components/presenters/Framework/Sidebar'
 
-import { HeroAdapter } from '../components/adapters/HeroAdapter'
-import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
-import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
-import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
-import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
+import { HeroAdapter } from '../components/adapters/Framework/HeroAdapter'
+import { ContentBlockAdapter } from '../components/adapters/Framework/ContentBlockAdapter'
+import { LiveExampleAdapter } from '../components/adapters/Framework/LiveExampleAdapter'
+import { CodeBlockAdapter } from '../components/adapters/Framework/CodeBlockAdapter'
+import { ApiTableAdapter } from '../components/adapters/Framework/ApiTableAdapter'
 import { Section } from '../components/presenters/Framework/Section'
 
 import {
@@ -26,7 +26,7 @@ import PAGE_STRUCTURE_BY_ID_QUERY from '../graphql/queries/PageStructureByID.gra
 import SECTION_CONTENT_BY_ID_QUERY from '../graphql/queries/SectionContentByID.graphql'
 import { contentful } from '../services/contentful'
 
-interface HomeProps {
+interface TimelineProps {
   sectionCollection: SectionCollectionType
 }
 
@@ -150,10 +150,10 @@ function renderContentCollection(
 }
 
 /**
- * Render page using data from `getStaticProps`
+ * Compose page using data from `getStaticProps`
  *
  */
-export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
+export const Timeline: React.FC<TimelineProps> = ({ sectionCollection }) => {
   return (
     <LayoutFramework
       title="Compound Timeline | Royal Navy Design System"
@@ -170,4 +170,4 @@ export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
   )
 }
 
-export default Home
+export default Timeline

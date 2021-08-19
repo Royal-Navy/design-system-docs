@@ -5,12 +5,12 @@ import camelCase from 'lodash/camelCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
 
-import { ComponentWithClass } from '../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import {
   ContentPanel,
   LeftCol,
   RightCol,
-} from '../presenters/Framework/ContentPanel'
+} from '../../presenters/Framework/ContentPanel'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
@@ -83,7 +83,13 @@ export const ContentBlockAdapter: React.FC<ContentBlockAdapterProps> = ({
             description.json
             // getRichTextRenderOptions(description.links)
           )}
-        {image && <StyledImage alt={image.title} src={image.url} />}
+        {image && (
+          <StyledImage
+            alt={image.title}
+            src={image.url}
+            data-testid="content-block-image"
+          />
+        )}
       </LeftCol>
       <RightCol />
     </ContentPanel>

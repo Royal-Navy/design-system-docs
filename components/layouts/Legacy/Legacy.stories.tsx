@@ -9,7 +9,7 @@ import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
 
 import { Badge, BADGE_VARIANT } from '../../presenters/Docs/Badge'
-import { Component } from './Component'
+import { LayoutLegacy } from './Legacy'
 import { ContentBanner } from '../../presenters/Docs/ContentBanner'
 import { Footer } from '../../presenters/Docs/Footer'
 import { FooterExternalLink } from '../../presenters/Docs/Footer/FooterExternalLink'
@@ -112,10 +112,10 @@ stories.add('Default', () => {
       <OnThisPageItem onClick={action('onClick')}>Usage</OnThisPageItem>
       <OnThisPageItem onClick={action('onClick')}>Anatomy</OnThisPageItem>
       <OnThisPageItem onClick={action('onClick')}>
-        Hierarchy & placement
+        Hierarchy &amp; placement
       </OnThisPageItem>
       <OnThisPageItem onClick={action('onClick')}>
-        Sizing & spacing
+        Sizing &amp; spacing
       </OnThisPageItem>
     </OnThisPage>
   )
@@ -144,7 +144,7 @@ stories.add('Default', () => {
       </SidebarOverview>
       <SidebarFilter
         onChange={action('filter onChange')}
-        onSubmit={action('filter onSubmit')}
+        onClear={action('filter onClear')}
       />
       <SidebarMenu>
         <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
@@ -180,7 +180,7 @@ stories.add('Default', () => {
   )
 
   return (
-    <Component
+    <LayoutLegacy
       breadcrumbs={breadcrumbs}
       contentBanner={contentBanner}
       footer={footer}
@@ -191,6 +191,6 @@ stories.add('Default', () => {
       title="Sidebar"
     >
       Content
-    </Component>
+    </LayoutLegacy>
   )
 })

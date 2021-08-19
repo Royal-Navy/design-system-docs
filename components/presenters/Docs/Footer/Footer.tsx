@@ -4,7 +4,7 @@ import { LinkProps } from 'next/link'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { FooterExternalLinkProps } from './FooterExternalLink'
-import { ReactComponent as NavyDigitalServicesLogo } from '../../../../public/NavyDigitalServicesLogo.svg'
+import NavyDigitalServicesLogo from '../../../../public/NavyDigitalServicesLogo.svg'
 import { StyledCopyright } from './partials/StyledCopyright'
 import { StyledDescription } from './partials/StyledDescription'
 import { StyledFooter } from './partials/StyledFooter'

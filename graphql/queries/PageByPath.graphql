@@ -1,0 +1,107 @@
+query PageByPath($path: String!) {
+  navigationElementCollection(where: { path: $path }, limit: 1) {
+    items {
+      title
+      path
+      externalUri
+      contentfulMetadata {
+        tags {
+          id
+          name
+        }
+      }
+      childrenCollection {
+        items {
+          title
+          path
+          externalUri
+        }
+      }
+      page {
+        ... on Page {
+          title
+          sectionCollection(limit: 10) {
+            items {
+              __typename
+              ... on Entry {
+                sys {
+                  id
+                }
+              }
+              ... on Hero {
+                title
+                heading
+                heroDescription: description
+              }
+              ... on ContentBlock {
+                title
+                description {
+                  json
+                  links {
+                    assets {
+                      block {
+                        fileName
+                        title
+                        description
+                        url
+                        width
+                        height
+                        sys {
+                          id
+                        }
+                      }
+                    }
+                  }
+                }
+                image {
+                  title
+                  url
+                }
+              }
+              ... on LiveExample {
+                title
+                description {
+                  json
+                }
+              }
+              ... on CodeBlock {
+                title
+                description {
+                  json
+                }
+                filename
+                sourceCode
+              }
+              ... on ApiTable {
+                title
+                apiTableDescription: description
+                apiFieldCollection(limit: 20) {
+                  items {
+                    ... on ApiField {
+                      name
+                      dataType
+                      defaultValue
+                      description
+                      required
+                    }
+                  }
+                }
+                apiReturnFieldCollection(limit: 20) {
+                  items {
+                    ... on ApiField {
+                      name
+                      dataType
+                      defaultValue
+                      description
+                      required
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

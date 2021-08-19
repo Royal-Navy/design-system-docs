@@ -10,21 +10,22 @@ import { StyledFilterOuterWrapper } from './partials/StyledFilterOuterWrapper'
 
 export interface SidebarFilterProps extends ComponentWithClass {
   onChange: (e: React.ChangeEvent<HTMLInputElement>, value: string) => void
-  onSubmit: (e: React.FormEvent<HTMLButtonElement>, value: string) => void
+  onClear?: (e: React.FormEvent<HTMLButtonElement>, value: string) => void
 }
 
 export const SidebarFilter: React.FC<SidebarFilterProps> = ({
   className,
   onChange,
-  onSubmit,
+  onClear,
 }) => {
-  const [value, setValue] = useState<string>(null)
+  const [value, setValue] = useState<string>('')
 
   return (
     <StyledFilter className={className}>
       <StyledFilterOuterWrapper>
         <StyledFilterInputWrapper>
           <StyledFilterInput
+            value={value}
             data-testid="sidebar-filter-input"
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
               const newValue = e.target.value
@@ -36,9 +37,10 @@ export const SidebarFilter: React.FC<SidebarFilterProps> = ({
           <StyledFilterEndAdornment>
             <StyledFilterButton
               data-testid="sidebar-filter-button"
-              onClick={(e: React.FormEvent<HTMLButtonElement>) =>
-                onSubmit(e, value)
-              }
+              onClick={(e: React.FormEvent<HTMLButtonElement>) => {
+                setValue('')
+                onClear(e, '')
+              }}
             >
               /
             </StyledFilterButton>

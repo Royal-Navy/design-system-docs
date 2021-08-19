@@ -11,3 +11,4 @@ coverage
 .next
 .github
 public
+cypress

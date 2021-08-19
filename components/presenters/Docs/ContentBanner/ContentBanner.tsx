@@ -16,7 +16,7 @@ export const ContentBanner: React.FC<ContentBannerProps> = ({
   children,
 }) => {
   return (
-    <StyledContentBanner>
+    <StyledContentBanner data-testid="content-banner">
       {icon && <div>{icon}</div>}
       <div>
         {title && <StyledTitle>{title}</StyledTitle>}

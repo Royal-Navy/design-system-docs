@@ -1,9 +1,13 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
+
+interface StyledMastheadMenuProps {
+  $isOpen?: boolean
+}
 
 const { mq, color, spacing, shadow } = selectors
 
-export const StyledMastheadMenu = styled.nav`
+export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
   position: fixed;
   top: 0;
   left: 0;
@@ -31,4 +35,14 @@ export const StyledMastheadMenu = styled.nav`
       display: inline-flex;
     }
   `}
+
+  ${({ $isOpen }) =>
+    !$isOpen &&
+    css`
+      visibility: hidden;
+
+      ${mq({ gte: 'm' })`
+        visibility: visible;
+      `}
+    `}
 `

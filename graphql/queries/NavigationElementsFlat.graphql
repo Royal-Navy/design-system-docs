@@ -1,0 +1,16 @@
+query NavigationElementsFlat {
+  navigationElementCollection {
+    items {
+      title
+      path
+      externalUri
+      page {
+        ... on Entry {
+          sys {
+            id
+          }
+        }
+      }
+    }
+  }
+}

@@ -30,7 +30,7 @@ export interface LayoutComponentProps {
   title: string
 }
 
-export const Component: React.FC<LayoutComponentProps> = ({
+export const LayoutLegacy: React.FC<LayoutComponentProps> = ({
   breadcrumbs,
   contentBanner,
   children,
@@ -43,7 +43,7 @@ export const Component: React.FC<LayoutComponentProps> = ({
 }) => (
   <>
     <Head>
-      <title>Royal Navy Design System</title>
+      <title>{title} | Royal Navy Design System</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <script type="text/javascript" src="/static/newrelic.js" />
@@ -57,7 +57,7 @@ export const Component: React.FC<LayoutComponentProps> = ({
           <StyledArticle>
             <div>
               {breadcrumbs}
-              <StyledTitle>{title}</StyledTitle>
+              <StyledTitle data-testid="layout-legacy-h1">{title}</StyledTitle>
               {contentBanner}
               <StyledContent>{children}</StyledContent>
             </div>
@@ -70,4 +70,4 @@ export const Component: React.FC<LayoutComponentProps> = ({
   </>
 )
 
-Component.displayName = 'Component'
+LayoutLegacy.displayName = 'LayoutLegacy'

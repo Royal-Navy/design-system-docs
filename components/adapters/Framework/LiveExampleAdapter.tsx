@@ -14,13 +14,13 @@ import {
   TimelineEvent,
 } from '@royalnavy/react-component-library'
 
-import { ComponentWithClass } from '../../common/ComponentWithClass'
+import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import {
   ContentPanel,
   LeftCol,
   RightCol,
-} from '../presenters/Framework/ContentPanel'
-import { LiveExample } from '../presenters/Framework/LiveExample/LiveExample'
+} from '../../presenters/Framework/ContentPanel'
+import { LiveExample } from '../../presenters/Framework/LiveExample/LiveExample'
 
 interface LiveExampleAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
@@ -35,7 +35,7 @@ export const LiveExampleAdapter: React.FC<LiveExampleAdapterProps> = ({
   return (
     <ContentPanel id={id}>
       <LeftCol>
-        {title && <h2>{title}</h2>}
+        {title && <h2 data-testid="live-example-adapter-title">{title}</h2>}
         {description?.json && documentToReactComponents(description.json)}
       </LeftCol>
       <RightCol>
