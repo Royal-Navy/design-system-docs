@@ -155,6 +155,7 @@ function renderBreadcrumb(slugs: string[]): React.ReactElement {
   const children = slugs.map((slug: string) => {
     return (
       <BreadcrumbsItem
+        key={slug}
         link={
           <Link href={`/${slug}`}>{upperFirst(slug.replace(/-/g, ' '))}</Link>
         }
@@ -167,6 +168,7 @@ function renderBreadcrumb(slugs: string[]): React.ReactElement {
     <Breadcrumbs>
       {[
         <BreadcrumbsItem
+          key="/"
           link={<Link href="/">Home</Link>}
           data-testid="breadcrumb-item"
         />,
