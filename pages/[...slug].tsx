@@ -260,7 +260,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   const { version } = useDesignSystemVersion()
 
   const handleSidebarFilter = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    _: React.ChangeEvent<HTMLInputElement>,
     newValue: string
   ): void => {
     setSidebarItems(
@@ -341,10 +341,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
-      <SidebarFilter
-        onChange={handleSidebarFilter}
-        onClear={handleSidebarFilter}
-      />
+      <SidebarFilter onChange={handleSidebarFilter} />
       {renderSidebarItems(sidebarItems)}
     </Sidebar>
   )

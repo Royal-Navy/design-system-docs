@@ -3,7 +3,7 @@ import { selectors } from '@royalnavy/design-tokens'
 
 export const { color, fontSize } = selectors
 
-export const StyledFilterButton = styled.button`
+export const StyledFilterIcon = styled.div`
   background-color: ${color('neutral', 'white')};
   border: 1px solid ${color('neutral', '200')};
   border-radius: 4px;
@@ -14,4 +14,6 @@ export const StyledFilterButton = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
+  pointer-events: none;
+  user-select: none;
 `
