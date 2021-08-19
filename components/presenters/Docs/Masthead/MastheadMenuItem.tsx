@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { IconExpandMore, IconExpandLess } from '@royalnavy/icon-library'
+import { useDocumentClick } from '@royalnavy/react-component-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 
@@ -15,8 +16,13 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   link,
   children,
 }) => {
+  const subMenuRef = useRef()
   const [showChildren, setShowChildren] = useState<boolean>(false)
   const hasChildren = !!children
+
+  useDocumentClick(subMenuRef, (_: Event) => {
+    setShowChildren(false)
+  })
 
   return (
     <StyledMastheadMenuItem $hasChildren={hasChildren}>
@@ -40,7 +46,7 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
           </StyledExpandButton>
         )}
       </div>
-      {hasChildren && showChildren && children}
+      {hasChildren && showChildren && <div ref={subMenuRef}>{children}</div>}
     </StyledMastheadMenuItem>
   )
 }
