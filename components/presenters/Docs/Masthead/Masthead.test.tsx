@@ -1,7 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import '@testing-library/jest-dom/extend-expect'
-import { render, RenderResult, fireEvent } from '@testing-library/react'
+import {
+  render,
+  RenderResult,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react'
 
 import {
   Masthead,
@@ -53,6 +58,18 @@ describe('Masthead', () => {
 
       it('should display the sub navigation', () => {
         expect(wrapper.queryByText('Design Tokens')).toBeInTheDocument()
+      })
+
+      describe('and the user clicks outside of the sub menu', () => {
+        beforeEach(() => {
+          fireEvent.click(wrapper.getByTestId('masthead'))
+        })
+
+        it('hides the sub menu', () => {
+          return waitFor(() => {
+            expect(wrapper.queryByText('Design Tokens')).not.toBeVisible()
+          })
+        })
       })
     })
   })
