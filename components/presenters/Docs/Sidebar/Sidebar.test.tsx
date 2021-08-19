@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { IconBookmark } from '@royalnavy/icon-library'
 import Link from 'next/link'
-import { render, RenderResult } from '@testing-library/react'
+import { render, RenderResult, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { Sidebar } from './Sidebar'
@@ -14,18 +14,14 @@ import { SidebarOverviewMenuItem } from './SidebarOverviewMenuItem'
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance
-  let onClearSpy: jest.SpyInstance
   let wrapper: RenderResult
 
   beforeEach(() => {
     const filterProps = {
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => undefined,
-      onClear: (e: React.MouseEvent<HTMLButtonElement>, value: string) =>
-        undefined,
     }
 
     onChangeSpy = jest.spyOn(filterProps, 'onChange')
-    onClearSpy = jest.spyOn(filterProps, 'onClear')
 
     wrapper = render(
       <Sidebar title="Components">
@@ -89,16 +85,16 @@ describe('Sidebar', () => {
 
       expect(onChangeSpy).toHaveBeenCalledTimes(3)
     })
+  })
 
-    describe('when the submit button is clicked', () => {
-      beforeEach(() => {
-        userEvent.click(wrapper.getByTestId('sidebar-filter-button'))
-      })
+  describe.skip('and the user presses the filter keyboard shotcut', () => {
+    beforeEach(async () => {
+      await userEvent.keyboard('/')
+    })
 
-      it('should call the `onClear` callback', () => {
-        expect(onClearSpy.mock.calls[0][1]).toEqual('')
-
-        expect(onClearSpy).toHaveBeenCalledTimes(1)
+    it('should focus the filter input', () => {
+      return waitFor(() => {
+        expect(wrapper.getByTestId('sidebar-filter-input')).toHaveFocus()
       })
     })
   })
