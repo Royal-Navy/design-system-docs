@@ -254,21 +254,9 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   childrenCollection,
   desktopNavigation,
 }) => {
-  const [sidebarItems, setSidebarItems] =
-    useState<NavigationElementType[]>(childrenCollection)
+  const [filterString, setFilterString] = useState<string>(null)
   const { title, sectionCollection } = page
   const { version } = useDesignSystemVersion()
-
-  const handleSidebarFilter = (
-    _: React.ChangeEvent<HTMLInputElement>,
-    newValue: string
-  ): void => {
-    setSidebarItems(
-      childrenCollection.filter((item: NavigationElementType) =>
-        item?.title.toLowerCase().includes(newValue.toLowerCase())
-      )
-    )
-  }
 
   const pageBanner = (
     <PageBanner>
@@ -341,8 +329,20 @@ export const GenericPage: React.FC<GenericPageProps> = ({
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
-      <SidebarFilter onChange={handleSidebarFilter} />
-      {renderSidebarItems(sidebarItems)}
+      <SidebarFilter
+        onChange={(_: React.ChangeEvent<HTMLInputElement>, newValue: string) =>
+          setFilterString(newValue.toLowerCase())
+        }
+      />
+      {renderSidebarItems(
+        childrenCollection.filter((item: NavigationElementType) => {
+          if (!filterString) {
+            return true
+          }
+
+          return item?.title.toLowerCase().includes(filterString)
+        })
+      )}
     </Sidebar>
   )
 
