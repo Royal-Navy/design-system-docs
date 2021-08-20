@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import groupBy from 'lodash/groupBy'
+import groupBy from 'lodash/groupBy'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -187,20 +187,40 @@ function renderBreadcrumb(slugs: string[]): React.ReactElement {
 function renderSidebarItems(
   childrenCollection: NavigationElementType[]
 ): React.ReactElement | React.ReactElement[] {
-  // TODO: Group by Contentful tags
-  // const grouped = groupBy(childrenCollection, 'contentfulMetadata.tags[0].name')
+  const grouped = groupBy(childrenCollection, 'contentfulMetadata.tags[0].name')
+  const noGroup = grouped.undefined
+  delete grouped.undefined
 
   return (
-    <SidebarMenu>
-      {childrenCollection.map(({ title, path, externalUri }) => {
+    <>
+      {noGroup && (
+        <SidebarMenu key="noGroup">
+          {noGroup.map(({ title, path, externalUri }) => {
+            return (
+              <SidebarMenuItem
+                key={title}
+                link={<Link href={path || externalUri}>{title}</Link>}
+              />
+            )
+          })}
+        </SidebarMenu>
+      )}
+      {Object.entries(grouped).map((group) => {
+        const groupTitle = group[0].split(': ')[1]
+
         return (
-          <SidebarMenuItem
-            key={title}
-            link={<Link href={path || externalUri}>{title}</Link>}
-          />
+          <SidebarMenu key={group[0].split(': ')[1]} title={groupTitle}>
+            {group[1].map(({ title, path, externalUri }) => {
+              return (
+                <SidebarMenuItem
+                  link={<Link href={path || externalUri}>{title}</Link>}
+                />
+              )
+            })}
+          </SidebarMenu>
         )
       })}
-    </SidebarMenu>
+    </>
   )
 }
 
