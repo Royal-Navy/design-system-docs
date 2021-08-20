@@ -1892,17 +1892,18 @@ export type PageByPathQuery = (
     & { items: Array<Maybe<(
       { __typename?: 'NavigationElement' }
       & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-      & { contentfulMetadata: (
-        { __typename?: 'ContentfulMetadata' }
-        & { tags: Array<Maybe<(
-          { __typename?: 'ContentfulTag' }
-          & Pick<ContentfulTag, 'id' | 'name'>
-        )>> }
-      ), childrenCollection?: Maybe<(
+      & { childrenCollection?: Maybe<(
         { __typename?: 'NavigationElementChildrenCollection' }
         & { items: Array<Maybe<(
           { __typename?: 'NavigationElement' }
           & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+          & { contentfulMetadata: (
+            { __typename?: 'ContentfulMetadata' }
+            & { tags: Array<Maybe<(
+              { __typename?: 'ContentfulTag' }
+              & Pick<ContentfulTag, 'id' | 'name'>
+            )>> }
+          ) }
         )>> }
       )>, page?: Maybe<(
         { __typename?: 'Page' }

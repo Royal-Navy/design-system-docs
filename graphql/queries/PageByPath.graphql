@@ -4,17 +4,17 @@ query PageByPath($path: String!) {
       title
       path
       externalUri
-      contentfulMetadata {
-        tags {
-          id
-          name
-        }
-      }
       childrenCollection {
         items {
           title
           path
           externalUri
+          contentfulMetadata {
+            tags {
+              id
+              name
+            }
+          }
         }
       }
       page {
