@@ -85,3 +85,10 @@ jobs:
           with:
             build: yarn build
             start: yarn start
+
+        - name: Save images for failed tests
+          if: failure()
+          uses: actions/upload-artifact@v2
+          with:
+            name: cypress_screenshots
+            path: cypress/screenshots/
