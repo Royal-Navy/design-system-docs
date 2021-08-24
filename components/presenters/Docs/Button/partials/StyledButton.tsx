@@ -43,7 +43,7 @@ export const StyledButton = styled.a<StyledButtonProps>`
   justify-content: center;
   border: none;
   border-radius: 15px;
-  padding: ${spacing('8')} ${spacing('12')};
+  padding: ${spacing('7')} ${spacing('12')};
   font-size: ${fontSize('m')};
   box-shadow: ${shadow('3')};
   font-weight: 500;
