@@ -27,7 +27,7 @@ export const Hero: React.FC<HeroProps> = ({ description, title, id }) => {
         </StyledPageDescription>
       </StyledLeftCol>
       <StyledIllustration>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 670 300">
+        <svg xmlns="https://www.w3.org/2000/svg" viewBox="0 0 670 300">
           <g fill="none" fillRule="evenodd">
             <path fill="#12202B" d="M0-60h670v7804H0z" />
             <g>
