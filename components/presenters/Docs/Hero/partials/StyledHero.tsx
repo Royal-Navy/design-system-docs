@@ -8,7 +8,7 @@ export const StyledHero = styled.section`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: ${spacing('15')} ${spacing('8')};
+  padding: ${spacing('15')} ${spacing('10')};
   text-align: center;
 
   ${mq({ gte: 's' })`

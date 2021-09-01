@@ -8,7 +8,7 @@ export const StyledDescription = styled.p`
   color: ${color('neutral', '500')};
   line-height: 1.5;
   font-weight: 500;
-  margin: ${spacing('8')} ${spacing('6')};
+  padding: ${spacing('8')} 0;
   max-width: 550px;
 
   ${mq({ gte: 'l' })`
