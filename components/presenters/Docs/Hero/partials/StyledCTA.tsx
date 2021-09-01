@@ -5,13 +5,11 @@ const { spacing } = selectors
 
 export const StyledCTA = styled.div`
   display: flex;
-  margin: ${spacing('4')};
+  width: 100%;
+  justify-content: space-between;
+  column-gap: 16px;
 
-  > *:first-of-type {
-    margin-right: ${spacing('5')};
-  }
-
-  > *:last-of-type {
-    margin-left: ${spacing('5')};
+  > * {
+    flex: 1;
   }
 `
