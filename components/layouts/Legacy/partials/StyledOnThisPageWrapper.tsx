@@ -12,5 +12,7 @@ export const StyledOnThisPageWrapper = styled.div`
     display: flex;
     align-items: flex-start;
     height: auto;
+    padding: 0;
+    padding-left: ${spacing('15')};
   `}
 `
