@@ -13,7 +13,8 @@ export const StyledCopyButton = styled.button`
   border: none;
   border-radius: 3px;
   background: none;
-  color: ${color('neutral', '500')};
+  color: ${color('neutral', '000')};
+  background-color: ${color('neutral', '400')};
   font-size: ${fontSize('base')};
   z-index: 1;
 

@@ -12,6 +12,11 @@ export const StyledPageBanner = styled.div`
   color: ${color('neutral', 'white')};
   font-size: 15px;
   padding: 0 ${spacing('10')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 
   ${mq({ gte: 'm' })`
     padding: 0 ${spacing('13')};

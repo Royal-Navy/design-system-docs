@@ -8,11 +8,15 @@ export const StyledOnThisPageWrapper = styled.div`
   background-color: ${color('neutral', 'white')};
   padding: 0 ${spacing('15')} ${spacing('15')};
 
-  ${mq({ gte: 'l' })`
+  ${mq({ gte: 'm' })`
     display: flex;
     align-items: flex-start;
     height: auto;
     padding: 0;
+    padding-left: ${spacing('12')};
+  `}
+
+  ${mq({ gte: 'xl' })`
     padding-left: ${spacing('15')};
   `}
 `

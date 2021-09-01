@@ -12,7 +12,7 @@ const { spacing, fontSize, color, shadow } = selectors
 function getVariantStyles($variant: ButtonVariantType) {
   const VARIANT_STYLES = {
     primary: css`
-      background-color: ${color('action', '500')};
+      background-color: ${color('action', '600')};
       color: ${color('neutral', 'white')};
     `,
     secondary: css`
@@ -43,7 +43,8 @@ export const StyledButton = styled.a<StyledButtonProps>`
   justify-content: center;
   border: none;
   border-radius: 15px;
-  padding: ${spacing('7')} ${spacing('12')};
+  text-align: center;
+  padding: ${spacing('7')} ${spacing('11')};
   font-size: ${fontSize('m')};
   box-shadow: ${shadow('3')};
   font-weight: 500;
