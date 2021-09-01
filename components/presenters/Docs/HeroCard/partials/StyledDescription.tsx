@@ -19,6 +19,7 @@ export const StyledDescription = styled.p`
   margin: ${spacing('8')} 0;
   color: ${color('neutral', 'white')};
   text-shadow: 0px 1px 2px ${getColorWithOpacity(color('neutral', 'black'))};
+  max-width: 550px;
 
   ${mq({ gte: 'l' })`
     font-size: 18px;

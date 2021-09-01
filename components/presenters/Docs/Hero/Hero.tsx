@@ -43,7 +43,7 @@ export const Hero: React.FC<HeroProps> = ({
           <a href="#latest-release">
             <strong>{version}</strong>
           </a>
-          <StyledSpacer>&nbsp;&bull;&nbsp;</StyledSpacer>
+          <StyledSpacer />
           <a href="#all-releses">All releases</a>
         </span>
       </StyledReleaseText>
