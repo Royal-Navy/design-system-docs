@@ -34,7 +34,7 @@ export const HeroCard: React.FC<HeroCardProps> = ({
       {title && <StyledTitle>{title}</StyledTitle>}
       {description && <StyledDescription>{description}</StyledDescription>}
       {children && <StyledChildren>{children}</StyledChildren>}
-      {cta && cta}
+      {cta}
     </StyledHeroCard>
   )
 }

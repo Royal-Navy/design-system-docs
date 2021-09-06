@@ -18,8 +18,12 @@ import {
 import { Badge, BADGE_VARIANT } from '../components/presenters/Docs/Badge'
 import { LayoutHomepage } from '../components/layouts/Homepage'
 import { contentful } from '../services/contentful'
+import HOMEPAGE_BY_ID_QUERY from '../graphql/queries/HomepageByID.graphql'
 import NAVIGATION_BY_ID_QUERY from '../graphql/queries/NavigationByID.graphql'
-import { Navigation as NavigationType } from '../graphql'
+import {
+  Navigation as NavigationType,
+  Homepage as HomepageType,
+} from '../graphql'
 import Storybook from '../public/Storybook.svg'
 import GitHub from '../public/GitHub.svg'
 import { useDesignSystemVersion } from '../hooks/useDesignSystemVersion'
@@ -35,6 +39,19 @@ import { Card } from '../components/presenters/Docs/Card'
 
 export interface HomeProps {
   desktopNavigation: NavigationType
+  pageData: HomepageType
+}
+
+/**
+ * Fetch homepage data from Contentful
+ *
+ */
+async function fetchPageData(): Promise<HomepageType> {
+  const { homepage } = await contentful(HOMEPAGE_BY_ID_QUERY, {
+    id: '3HN42lUPyvUSw9nDTUryew',
+  })
+
+  return homepage
 }
 
 /**
@@ -55,10 +72,12 @@ async function fetchDesktopNavigation(): Promise<NavigationType> {
  */
 export const getStaticProps: GetStaticProps = async (context) => {
   const desktopNavigation = await fetchDesktopNavigation()
+  const pageData = await fetchPageData()
 
   return {
     props: {
       desktopNavigation,
+      pageData,
     },
   }
 }
@@ -133,8 +152,27 @@ const StyledButtonGroup = styled.div`
   }
 `
 
-export const Home: React.FC<HomeProps> = ({ desktopNavigation }) => {
+export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
   const { version } = useDesignSystemVersion()
+  const {
+    heroHeading,
+    heroSubHeading,
+    heroButtons,
+    section1Heading,
+    section1SubHeading,
+    section2Heading,
+    section2SubHeading,
+    section2Buttons,
+    section3Heading,
+    section3SubHeading,
+    section3CardsCollection,
+    section4Heading,
+    section4SubHeading,
+    section4Buttons,
+    section5Heading,
+    section5SubHeading,
+    section5Buttons,
+  } = pageData
 
   const pageBanner = (
     <PageBanner>
@@ -232,20 +270,22 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation }) => {
       title="Home"
     >
       <Hero
-        title="Create powerful, modern applications with the Royal Navy Design System"
-        description="The Royal Navy Design System is the foundaton for all Defence applications,
-  providing intuitive and consistent, standards led user interfaces, reducing
-  development and training time."
-        cta1={<Button variant={BUTTON_VARIANT.PRIMARY}>Start Building</Button>}
+        version={version}
+        title={heroHeading}
+        description={heroSubHeading}
+        cta1={
+          <Button href={heroButtons[0].href} variant={BUTTON_VARIANT.PRIMARY}>
+            {heroButtons[0].title}
+          </Button>
+        }
         cta2={
-          <Button variant={BUTTON_VARIANT.TERTIARY}>Visit Storybook</Button>
+          <Button href={heroButtons[1].href} variant={BUTTON_VARIANT.TERTIARY}>
+            {heroButtons[1].title}
+          </Button>
         }
       />
-      <Section sectionIndex="1" title="Get started">
-        <p>
-          Want to dive right in? Use the following steps to quickly set up a
-          project.
-        </p>
+      <Section sectionIndex="1" title={section1Heading}>
+        <p>{section1SubHeading}</p>
         <StyledHeroCards>
           <HeroCard
             variant={HERO_CARD_VARIANT.PRIMARY}
@@ -289,78 +329,43 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation }) => {
           </HeroCard>
         </StyledHeroCards>
       </Section>
-      <Section sectionIndex="2" title="Design Principles">
-        <p>
-          Our Design Principles form the foundation of the Royal Navy Design
-          System. See how to apply these rules effectively in your application.
-        </p>
-        <Button href="#read-principles">Read Principles</Button>
+      <Section sectionIndex="2" title={section2Heading}>
+        <p>{section2SubHeading}</p>
+        {section2Buttons.map(({ href, title }) => {
+          return <Button href={href}>{title}</Button>
+        })}
       </Section>
-      <Section sectionIndex="3" title="Design System Reference">
-        <p>
-          Our Design Principles form the foundation of the Royal Navy Design
-          System. See how to apply these rules effectively in your application.
-        </p>
+      <Section sectionIndex="3" title={section3Heading}>
+        <p>{section3SubHeading}</p>
         <StyledCards>
-          <Card
-            title="Design Tokens"
-            titleColor="#C676FF"
-            href="#browse-tokens"
-            anchorText="Browse tokens"
-          >
-            Design tokens describe our design language with descrete variables
-          </Card>
-          <Card
-            title="Components"
-            titleColor="#6E72FF"
-            href="#browse-components"
-            anchorText="Browse components"
-          >
-            Components are reusable UI blocks, built using Design Tokens
-          </Card>
-          <Card
-            title="Patterns"
-            titleColor="#62DCF6"
-            href="#browse-patterns"
-            anchorText="Browse patterns"
-          >
-            Patterns are repeatable collections of components, provided with
-            extra guidance
-          </Card>
-          <Card
-            title="Frameworks"
-            titleColor="#5DE6B4"
-            href="#browse-frameworks"
-            anchorText="Browse frameworks"
-          >
-            Our frameworks provide helpful foundations for heavy,
-            interaction-based interfaces
-          </Card>
+          {section3CardsCollection?.items.map(
+            ({ title, titleColor, buttonHref, buttonTitle, description }) => {
+              return (
+                <Card
+                  title={title}
+                  titleColor={titleColor}
+                  href={buttonHref}
+                  anchorText={buttonTitle}
+                >
+                  {description}
+                </Card>
+              )
+            }
+          )}
         </StyledCards>
       </Section>
-      <Section sectionIndex="4" title="Resources">
-        <p>
-          We provide additional resources to supplement the design system,
-          including fonts, icons and boilerplates.
-        </p>
-        <Button href="#browse-resources">Browse Resources</Button>
+      <Section sectionIndex="4" title={section4Heading}>
+        <p>{section4SubHeading}</p>
+        {section4Buttons.map(({ href, title }) => {
+          return <Button href={href}>{title}</Button>
+        })}
       </Section>
-      <Section sectionIndex="5" title="Get Involved">
-        <p>
-          The Royal Navy Design System welcomes feedback and contribution. If
-          you have features you would like to see, bugs you would like squashed,
-          or simply have ideas how the make the RNDS better, please open an
-          issue on GitHub.
-        </p>
-        <p>
-          Alternatively, if you&#39;d like to take a more hands-on approach, we
-          welcome contributions via Pull Requests.
-        </p>
+      <Section sectionIndex="5" title={section5Heading}>
+        <p>{section5SubHeading}</p>
         <StyledButtonGroup>
-          <Button href="#open-issue">Open Issue</Button>
-          <Button variant={BUTTON_VARIANT.TERTIARY} href="#submit-pull-request">
-            Submit Pull Request
-          </Button>
+          {section5Buttons.map(({ href, title }) => {
+            return <Button href={href}>{title}</Button>
+          })}
         </StyledButtonGroup>
       </Section>
     </LayoutHomepage>

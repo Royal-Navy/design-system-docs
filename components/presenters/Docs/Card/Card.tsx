@@ -7,7 +7,7 @@ import { Button, BUTTON_VARIANT } from '../Button'
 
 export interface CardProps extends ComponentWithClass {
   title: string
-  titleColor: '#C676FF' | '#6E72FF' | '#62DCF6' | '#5DE6B4'
+  titleColor: string
   href: string
   anchorText: string
 }

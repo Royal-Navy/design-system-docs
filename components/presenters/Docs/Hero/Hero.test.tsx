@@ -12,6 +12,7 @@ describe('Hero', () => {
     beforeEach(() => {
       wrapper = render(
         <Hero
+          version="0.1.0"
           title="Example Title"
           description="Example description."
           cta1={

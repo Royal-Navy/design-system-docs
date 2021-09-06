@@ -14,6 +14,7 @@ export interface HeroProps extends ComponentWithClass {
   description?: string
   cta1?: React.ReactElement
   cta2?: React.ReactElement
+  version: string
 }
 
 export const Hero: React.FC<HeroProps> = ({
@@ -21,23 +22,26 @@ export const Hero: React.FC<HeroProps> = ({
   cta2,
   title,
   description,
+  version,
 }) => {
+  const ctaExists = !!cta1 || !!cta2
+
   return (
     <StyledHero>
       <NelsonLogomark height={100} width={60} />
       {title && <StyledTitle>{title}</StyledTitle>}
       {description && <StyledDescription>{description}</StyledDescription>}
-      {(cta1 || cta2) && (
+      {ctaExists && (
         <StyledCTA>
-          {cta1 && cta1}
-          {cta2 && cta2}
+          {cta1}
+          {cta2}
         </StyledCTA>
       )}
       <StyledReleaseText>
         <span>
           Current version{' '}
           <a href="#latest-release">
-            <strong>3.0.0</strong>
+            <strong>{version}</strong>
           </a>
           <StyledSpacer>&nbsp;&bull;&nbsp;</StyledSpacer>
           <a href="#all-releses">All releases</a>
