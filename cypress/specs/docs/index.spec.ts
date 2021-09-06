@@ -25,6 +25,11 @@ describe('Docs Site: Components', () => {
       cy.visit('/components/alert')
     })
 
+    it('Component navigation item should not redirect user', () => {
+      cy.get('a').contains('Components').click()
+      cy.url().should('eq',  `${baseUrl}/components/alert#`)
+    })
+
     it('should render the page title', () => {
       cy.get(selectors.layout.h1).should('have.text', 'Alert')
     })

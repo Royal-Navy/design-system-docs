@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-// import groupBy from 'lodash/groupBy'
+import groupBy from 'lodash/groupBy'
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
 import { GetStaticPaths, GetStaticProps } from 'next'
@@ -56,22 +56,10 @@ import NAVIGATION_ELEMENTS_FLAT_QUERY from '../graphql/queries/NavigationElement
 import PAGE_BY_PATH_QUERY from '../graphql/queries/PageByPath.graphql'
 
 export interface GenericPageProps extends ComponentWithClass {
-  path: string
+  slugs: string[]
   page: PageType
-  sidebarChildrenCollection: NavigationElementType[]
   desktopNavigation: NavigationType
-}
-
-/**
- * Fetch desktop navigation from Contentful
- *
- */
-async function fetchDesktopNavigation(): Promise<NavigationType> {
-  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
-    id: '3dJ4ZZB9rMxXS4oe2iKuEY',
-  })
-
-  return navigation
+  childrenCollection: NavigationElementType[]
 }
 
 /**
@@ -91,27 +79,15 @@ async function fetchPageByPath(path: string): Promise<NavigationElementType> {
 }
 
 /**
- * Fetch data from Contentful for static site generation (SSG)
+ * Fetch desktop navigation from Contentful
  *
  */
-export const getStaticProps: GetStaticProps = async (context) => {
-  const slug = context.params.slug
-  const path = Array.isArray(slug) ? `/${slug.join('/')}` : `/${slug}`
+async function fetchDesktopNavigation(): Promise<NavigationType> {
+  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
+    id: '3dJ4ZZB9rMxXS4oe2iKuEY',
+  })
 
-  const { page } = await fetchPageByPath(path)
-
-  const {
-    childrenCollection: { items },
-  } = await fetchPageByPath(`/${slug[0]}`)
-
-  return {
-    props: {
-      path,
-      page,
-      sidebarChildrenCollection: items || [],
-      desktopNavigation: await fetchDesktopNavigation(),
-    },
-  }
+  return navigation
 }
 
 /**
@@ -127,24 +103,43 @@ async function fetchNavigationElements(): Promise<NavigationElementType[]> {
 }
 
 /**
+ * Fetch data from Contentful for static site generation (SSG)
+ *
+ */
+export const getStaticProps: GetStaticProps = async (context) => {
+  const slugs = context.params.slug as string[]
+
+  const desktopNavigation = await fetchDesktopNavigation()
+  const parentPage = await fetchPageByPath(`/${slugs[0]}`)
+  const { page } = await fetchPageByPath(`/${slugs.join('/')}`)
+
+  return {
+    props: {
+      slugs,
+      page,
+      desktopNavigation,
+      childrenCollection: parentPage.childrenCollection.items,
+    },
+  }
+}
+
+/**
  * Specify dynamic routes to pre-render based on Contentful manifest
  *
  */
 export const getStaticPaths: GetStaticPaths = async () => {
   const items = await fetchNavigationElements()
 
-  const paths = items.map(({ path }) => {
-    if (!path) {
-      return null
-    }
+  const paths = items
+    .filter(({ page }) => !!page)
+    .map(({ path }) => {
+      const slug = path.split('/')
+      slug.shift()
 
-    const slug = path.split('/')
-    slug.shift()
-
-    return {
-      params: { slug },
-    }
-  })
+      return {
+        params: { slug },
+      }
+    })
 
   return {
     paths,
@@ -156,13 +151,11 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * Generate `Breadcrumbs` based on URL structure
  *
  */
-function renderBreadcrumb(path: string): React.ReactElement {
-  const slugs = path.split('/')
-  slugs.shift()
-
+function renderBreadcrumb(slugs: string[]): React.ReactElement {
   const children = slugs.map((slug: string) => {
     return (
       <BreadcrumbsItem
+        key={slug}
         link={
           <Link href={`/${slug}`}>{upperFirst(slug.replace(/-/g, ' '))}</Link>
         }
@@ -175,6 +168,7 @@ function renderBreadcrumb(path: string): React.ReactElement {
     <Breadcrumbs>
       {[
         <BreadcrumbsItem
+          key="/"
           link={<Link href="/">Home</Link>}
           data-testid="breadcrumb-item"
         />,
@@ -191,22 +185,42 @@ function renderBreadcrumb(path: string): React.ReactElement {
  *
  */
 function renderSidebarItems(
-  sidebarChildrenCollection: NavigationElementType[]
+  childrenCollection: NavigationElementType[]
 ): React.ReactElement | React.ReactElement[] {
-  // TODO: Group by Contentful tags
-  // const grouped = groupBy(childrenCollection, 'contentfulMetadata.tags[0].name')
+  const grouped = groupBy(childrenCollection, 'contentfulMetadata.tags[0].name')
+  const noGroup = grouped.undefined
+  delete grouped.undefined
 
   return (
-    <SidebarMenu>
-      {sidebarChildrenCollection.map(({ title, path, externalUri }) => {
+    <>
+      {noGroup && (
+        <SidebarMenu key="noGroup">
+          {noGroup.map(({ title, path, externalUri }) => {
+            return (
+              <SidebarMenuItem
+                key={title}
+                link={<Link href={path || externalUri}>{title}</Link>}
+              />
+            )
+          })}
+        </SidebarMenu>
+      )}
+      {Object.entries(grouped).map((group) => {
+        const groupTitle = group[0].split(': ')[1]
+
         return (
-          <SidebarMenuItem
-            key={title}
-            link={<Link href={path || externalUri}>{title}</Link>}
-          />
+          <SidebarMenu key={group[0].split(': ')[1]} title={groupTitle}>
+            {group[1].map(({ title, path, externalUri }) => {
+              return (
+                <SidebarMenuItem
+                  link={<Link href={path || externalUri}>{title}</Link>}
+                />
+              )
+            })}
+          </SidebarMenu>
         )
       })}
-    </SidebarMenu>
+    </>
   )
 }
 
@@ -255,27 +269,14 @@ function renderPresenter(
 }
 
 export const GenericPage: React.FC<GenericPageProps> = ({
-  path,
+  slugs,
   page,
-  sidebarChildrenCollection,
+  childrenCollection,
   desktopNavigation,
 }) => {
-  const [sidebarItems, setSidebarItems] = useState<NavigationElementType[]>(
-    sidebarChildrenCollection
-  )
+  const [filterString, setFilterString] = useState<string>(null)
   const { title, sectionCollection } = page
   const { version } = useDesignSystemVersion()
-
-  const handleSidebarFilter = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    newValue: string
-  ): void => {
-    setSidebarItems(
-      sidebarChildrenCollection.filter((item: NavigationElementType) =>
-        item?.title.toLowerCase().includes(newValue.toLowerCase())
-      )
-    )
-  }
 
   const pageBanner = (
     <PageBanner>
@@ -291,27 +292,38 @@ export const GenericPage: React.FC<GenericPageProps> = ({
     <Masthead version={version}>
       <MastheadMenu>
         {desktopNavigation.childrenCollection.items.map(
-          ({ title: parentTitle, path: parentPath, childrenCollection }) => {
+          ({
+            title: parentTitle,
+            path: parentPath,
+            externalUri: parentExternalUri,
+            page: parentPage,
+            childrenCollection: children,
+          }) => {
+            const parentHref = parentPage
+              ? parentPath || '#'
+              : parentExternalUri || '#'
+
             return (
               <MastheadMenuItem
                 key={parentPath}
-                link={<Link href={parentPath}>{parentTitle}</Link>}
+                link={<Link href={parentHref}>{parentTitle}</Link>}
               >
                 <MastheadSubMenu>
-                  {childrenCollection.items.map(
+                  {children.items.map(
                     ({
                       title: childTitle,
                       path: childPath,
                       externalUri: childExternalUri,
+                      page: childPage,
                     }) => {
+                      const childHref = childPage
+                        ? childPath || '#'
+                        : childExternalUri || '#'
+
                       return (
                         <MastheadSubMenuItem
                           key={childPath}
-                          link={
-                            <Link href={childPath || childExternalUri}>
-                              {childTitle}
-                            </Link>
-                          }
+                          link={<Link href={childHref}>{childTitle}</Link>}
                         />
                       )
                     }
@@ -338,10 +350,19 @@ export const GenericPage: React.FC<GenericPageProps> = ({
         />
       </SidebarOverview>
       <SidebarFilter
-        onChange={handleSidebarFilter}
-        onClear={handleSidebarFilter}
+        onChange={(_: React.ChangeEvent<HTMLInputElement>, newValue: string) =>
+          setFilterString(newValue.toLowerCase())
+        }
       />
-      {renderSidebarItems(sidebarItems)}
+      {renderSidebarItems(
+        childrenCollection.filter((item: NavigationElementType) => {
+          if (!filterString) {
+            return true
+          }
+
+          return item?.title.toLowerCase().includes(filterString)
+        })
+      )}
     </Sidebar>
   )
 
@@ -396,7 +417,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
       pageBanner={pageBanner}
       masthead={masthead}
       sidebar={sidebar}
-      breadcrumbs={renderBreadcrumb(path)}
+      breadcrumbs={renderBreadcrumb(slugs)}
       onThisPage={onThisPage}
       contentBanner={contentBanner}
       footer={footer}

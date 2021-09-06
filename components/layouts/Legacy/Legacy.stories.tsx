@@ -32,7 +32,7 @@ import {
 import { OnThisPage } from '../../presenters/Docs/OnThisPage'
 import { PageBanner } from '../../presenters/Docs/PageBanner'
 
-const stories = storiesOf('Docs/Layouts/Component', module)
+const stories = storiesOf('Docs/Layouts/Legacy', module)
 
 stories.add('Default', () => {
   const breadcrumbs = (
@@ -142,10 +142,7 @@ stories.add('Default', () => {
           link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
         />
       </SidebarOverview>
-      <SidebarFilter
-        onChange={action('filter onChange')}
-        onClear={action('filter onClear')}
-      />
+      <SidebarFilter onChange={action('filter onChange')} />
       <SidebarMenu>
         <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
         <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />

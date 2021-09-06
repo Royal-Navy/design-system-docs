@@ -9,6 +9,8 @@ export const StyledOnThisPageWrapper = styled.div`
   padding: 0 ${spacing('15')} ${spacing('15')};
 
   ${mq({ gte: 'l' })`
-    display: block;
+    display: flex;
+    align-items: flex-start;
+    height: auto;
   `}
 `

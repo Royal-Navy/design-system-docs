@@ -27,10 +27,7 @@ stories.add('Default', () => (
         link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
       />
     </SidebarOverview>
-    <SidebarFilter
-      onChange={action('filter onChange')}
-      onClear={action('filter onClear')}
-    />
+    <SidebarFilter onChange={action('filter onChange')} />
     <SidebarMenu>
       <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />
       <SidebarMenuItem link={<Link href="#avatar">Avatar</Link>} />

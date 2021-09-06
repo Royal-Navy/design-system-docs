@@ -18,7 +18,7 @@ export const Masthead: React.FC<MastheadProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <StyledMasthead $isOpen={isOpen}>
+    <StyledMasthead $isOpen={isOpen} data-testid="masthead">
       <div>
         <RNDSLogo />
         <Badge variant="light">{version}</Badge>
