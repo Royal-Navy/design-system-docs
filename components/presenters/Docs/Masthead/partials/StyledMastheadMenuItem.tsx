@@ -40,7 +40,7 @@ export const StyledMastheadMenuItem = styled.li<StyledMastheadMenuItemProps>`
   ${mq({ gte: 'm' })`
     display: inline-flex;
     height: auto;
-    padding-right: ${spacing('13')};
+    padding-right: ${spacing('11')};
     border-top: unset;
     border-bottom: unset;
     flex-direction: row;

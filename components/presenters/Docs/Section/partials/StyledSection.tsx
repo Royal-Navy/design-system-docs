@@ -14,18 +14,22 @@ export const StyledSection = styled.section`
     padding-top: ${spacing('15')};
   }
 
+  ${mq({ gte: 'l' })`
+    margin-top: ${spacing('16')};
+    margin-bottom: ${spacing('16')};
+  `}
+
   > p {
     font-size: 16px;
     color: ${color('neutral', '500')};
     line-height: 1.5;
     font-weight: 400;
     text-align: center;
-    margin: 0 ${spacing('8')} ${spacing('8')};
     padding: 0 ${spacing('8')};
-    max-width: 800px;
+    max-width: 660px;
 
     &:first-of-type {
-      margin-top: ${spacing('8')};
+      margin: ${spacing('8')} 0;
     }
 
     ${mq({ gte: 'm' })`
@@ -35,7 +39,8 @@ export const StyledSection = styled.section`
     `}
 
     ${mq({ gte: 'l' })`
-      font-size: 20px;
+      max-width: 800px;
+      font-size: 18px;
     `}
   }
 `

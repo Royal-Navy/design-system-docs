@@ -29,7 +29,7 @@ export const StyledHeroCard = styled.article`
 
   ${({ $variant }) => getVariantStyles($variant)};
 
-  ${mq({ gte: 'l' })`
+  ${mq({ gte: 'm' })`
     display: inline-flex;
     border-radius: 15px;
   `}
