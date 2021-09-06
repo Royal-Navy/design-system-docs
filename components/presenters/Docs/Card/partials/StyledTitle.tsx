@@ -4,11 +4,12 @@ import { selectors } from '@royalnavy/design-tokens'
 const { fontSize, mq, spacing } = selectors
 
 export const StyledTitle = styled.span`
-  display: inline-block;
+  display: block;
   position: relative;
   font-size: ${fontSize('xxl')};
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 24px;
+  text-align: center;
 
   &::after {
     display: inline-block;
@@ -20,10 +21,11 @@ export const StyledTitle = styled.span`
     position: absolute;
     bottom: 0;
     left: 50%;
-    transform: translate(-50%, 15px);
+    transform: translate(-50%, 10px);
   }
 
   ${mq({ gte: 'l' })`
+    text-align: left;
     margin-bottom: unset;
     margin-left: ${spacing('6')};
 

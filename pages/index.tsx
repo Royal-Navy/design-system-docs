@@ -32,6 +32,7 @@ import {
 } from '../components/presenters/Docs/HeroCard'
 import { Button, BUTTON_VARIANT } from '../components/presenters/Docs/Button'
 import { Card } from '../components/presenters/Docs/Card'
+import { StyledCard } from '../components/presenters/Docs/Card/partials/StyledCard'
 
 export interface HomeProps {
   desktopNavigation: NavigationType
@@ -76,49 +77,65 @@ const StyledHeroCards = styled.div`
   justify-content: space-between;
   flex-direction: column;
   width: 100%;
-  margin-top: ${spacing('12')};
-
-  > article {
-    width: 100%;
-  }
-
-  ${mq({ gte: 'm' })`
-    flex-direction: row;
-  `}
-
-  ${mq({ gte: 'l' })`
-    > article {
-      width: 49%;
-    }
-  `}
-`
-
-const StyledCards = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  article {
-    margin: ${spacing('4')} ${spacing('8')};
-  }
+  max-width: 1440px;
+  margin-top: ${spacing('10')};
 
   ${mq({ gte: 's' })`
     flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    margin: ${spacing('8')};
+    align-items: stretch;
+  `}
 
-    > article {
-      width: calc(50% - ${spacing('6')});
-      margin: ${spacing('3')} 0;
+  ${mq({ gte: 'm' })`
+    padding: 0 ${spacing('13')}
+  `}
+
+  > article {
+    width: 100%;
+    p {
+      max-width: unset;
     }
+    &:first-child {
+      ${mq({ gte: 'm' })`
+        margin-right: ${spacing('5')}
+      `}
+    }
+    &:last-child {
+      ${mq({ gte: 'm' })`
+        margin-left: ${spacing('5')}
+      `}
+    }
+  }
+`
+
+const StyledCards = styled.div`
+  display: block;
+  margin-top: ${spacing('10')};
+  max-width: 1440px;
+
+  padding: 0 ${spacing('10')};
+  column-gap: 20px;
+
+  ${StyledCard} {
+    margin-bottom: ${spacing('10')};
+
+    ${mq({ gte: 's' })`
+      width: calc(50% - 10px);
+    `}
+    ${mq({ gte: 'l' })`
+      width: calc(25% - 10px);
+    `}
+  }
+
+  ${mq({ gte: 's' })`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 ${spacing('13')}
   `}
 
   ${mq({ gte: 'l' })`
     flex-wrap: unset;
-
-    > article {
-      width: calc(25% - ${spacing('8')});
-    }
   `}
 `
 
