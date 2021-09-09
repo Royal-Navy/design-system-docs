@@ -4,6 +4,7 @@ import { selectors } from '@royalnavy/design-tokens'
 import camelCase from 'lodash/camelCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS } from '@contentful/rich-text-types'
+import { MarkdownTable } from '../../presenters/Docs/MarkdownTable'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 
@@ -18,6 +19,11 @@ export type AssetType = {
   url: string
   height: number
   width: number
+}
+
+type MarkdownTableType = {
+  __typename: string
+  markdown: string
 }
 
 const { color, fontSize, spacing } = selectors
@@ -44,10 +50,15 @@ const StyledH2 = styled.h2`
   }
 `
 
-function getRichTextRenderOptions(links) {
-  const assetBlockMap = new Map<string, AssetType>(
-    links?.assets?.block?.map((asset) => [asset.sys.id, asset])
+function getBlockMap<T>(links, blockType) {
+  return new Map<string, T>(
+    links?.[blockType]?.block?.map((block) => [block.sys.id, block])
   )
+}
+
+function getRichTextRenderOptions(links) {
+  const assetBlockMap = getBlockMap<AssetType>(links, 'assets')
+  const entryBlockMap = getBlockMap<MarkdownTableType>(links, 'entries')
 
   let h2Index = 0
 
@@ -67,6 +78,15 @@ function getRichTextRenderOptions(links) {
             data-testid="content-block-img"
           />
         )
+      },
+      [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const entry = entryBlockMap.get(node.data.target.sys.id)
+
+        if (entry.__typename === 'MarkdownTable') {
+          return <MarkdownTable>{entry.markdown}</MarkdownTable>
+        }
+
+        return null
       },
       [BLOCKS.HEADING_2]: (_: unknown, content: string[]) => {
         h2Index += 1

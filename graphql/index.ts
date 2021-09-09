@@ -1423,6 +1423,73 @@ export enum LiveExampleOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTable = Entry & {
+  __typename?: 'MarkdownTable';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<MarkdownTableLinkingCollections>;
+  markdown?: Maybe<Scalars['String']>;
+};
+
+
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTableLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTableMarkdownArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownTableCollection = {
+  __typename?: 'MarkdownTableCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<MarkdownTable>>;
+};
+
+export type MarkdownTableFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  markdown_exists?: Maybe<Scalars['Boolean']>;
+  markdown?: Maybe<Scalars['String']>;
+  markdown_not?: Maybe<Scalars['String']>;
+  markdown_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  markdown_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  markdown_contains?: Maybe<Scalars['String']>;
+  markdown_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<MarkdownTableFilter>>>;
+  AND?: Maybe<Array<Maybe<MarkdownTableFilter>>>;
+};
+
+export type MarkdownTableLinkingCollections = {
+  __typename?: 'MarkdownTableLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type MarkdownTableLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum MarkdownTableOrder {
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 /** Represents a hierarchical structure of pages. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigation) */
 export type Navigation = Entry & {
   __typename?: 'Navigation';
@@ -1764,6 +1831,8 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  markdownTable?: Maybe<MarkdownTable>;
+  markdownTableCollection?: Maybe<MarkdownTableCollection>;
   simpleCard?: Maybe<SimpleCard>;
   simpleCardCollection?: Maybe<SimpleCardCollection>;
   homepage?: Maybe<Homepage>;
@@ -1806,6 +1875,23 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryMarkdownTableArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryMarkdownTableCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<MarkdownTableFilter>;
+  order?: Maybe<Array<Maybe<MarkdownTableOrder>>>;
 };
 
 
@@ -2433,13 +2519,13 @@ export type PageByPathQuery = (
               & { items: Array<Maybe<(
                 { __typename?: 'ApiField' }
                 & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
             )>, apiReturnFieldCollection?: Maybe<(
               { __typename?: 'ApiTableApiReturnFieldCollection' }
               & { items: Array<Maybe<(
                 { __typename?: 'ApiField' }
                 & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
             )> }
           ) | (
             { __typename: 'CodeBlock' }
@@ -2467,6 +2553,88 @@ export type PageByPathQuery = (
                   & { block: Array<Maybe<(
                     { __typename?: 'Asset' }
                     & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  )>> }
+                ), entries: (
+                  { __typename?: 'ContentBlockDescriptionEntries' }
+                  & { block: Array<Maybe<(
+                    { __typename: 'ApiField' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ApiTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'CodeBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ContentBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Hero' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Homepage' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'LiveExample' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'MarkdownTable' }
+                    & Pick<MarkdownTable, 'markdown'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Navigation' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'NavigationElement' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Page' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Section' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SimpleCard' }
                     & { sys: (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
@@ -2620,13 +2788,13 @@ export type SectionContentQuery = (
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
         )>, apiReturnFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiReturnFieldCollection' }
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }

@@ -7,35 +7,35 @@ import { ContentBlockAdapter } from '../ContentBlockAdapter'
 describe('Docs/ContentBlockAdapter', () => {
   let wrapper: RenderResult
 
-  const fields = {
-    title: 'Example Title',
-    description: {
-      json: {
-        nodeType: 'document',
-        data: {},
-        content: [
-          {
-            nodeType: 'p',
+  describe('with fields', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
             content: [
               {
-                nodeType: 'text',
-                value: 'Example description.',
-                marks: [],
-                data: {},
+                nodeType: 'p',
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Example description.',
+                    marks: [],
+                    data: {},
+                  },
+                ],
               },
             ],
           },
-        ],
-      },
-    },
-    image: {
-      title: 'Example Image',
-      url: 'https://www.google.com',
-    },
-  }
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
 
-  describe('with fields', () => {
-    beforeEach(() => {
       wrapper = render(<ContentBlockAdapter fields={fields} />)
     })
 
@@ -57,6 +57,59 @@ describe('Docs/ContentBlockAdapter', () => {
         'alt',
         'Example Image'
       )
+    })
+  })
+
+  describe('with markdown table linked entry', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'embedded-entry-block',
+                content: [],
+                data: {
+                  target: {
+                    sys: {
+                      id: 'E0tY9P6a29Q7MyL5Ggw4m',
+                      type: 'Link',
+                      linkType: 'Entry',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            entries: {
+              block: [
+                {
+                  sys: {
+                    id: 'E0tY9P6a29Q7MyL5Ggw4m',
+                  },
+                  __typename: 'MarkdownTable',
+                  markdown:
+                    '\n| column1     | column2     |\n| ---------- | ---------- |\n| value1       | value2       |\n',
+                },
+              ],
+            },
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the table', () => {
+      expect(wrapper.getByTestId('markdown-table')).toBeInTheDocument()
     })
   })
 })
