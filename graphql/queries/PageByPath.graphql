@@ -51,6 +51,17 @@ query PageByPath($path: String!) {
                         }
                       }
                     }
+                    entries {
+                      block {
+                        sys {
+                          id
+                        }
+                        __typename
+                        ... on MarkdownTable {
+                          markdown
+                        }
+                      }
+                    }
                   }
                 }
                 image {
