@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 import camelCase from 'lodash/camelCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
-import { BLOCKS } from '@contentful/rich-text-types'
+import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { MarkdownTable } from '../../presenters/Docs/MarkdownTable'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
+import { CodeBlock } from '../../presenters/Framework/CodeBlock'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
@@ -24,6 +25,11 @@ export type AssetType = {
 type MarkdownTableType = {
   __typename: string
   markdown: string
+}
+
+type CodeBlockType = {
+  __typename: string
+  sourceCode: string
 }
 
 const { color, fontSize, spacing } = selectors
@@ -50,21 +56,19 @@ const StyledH2 = styled.h2`
   }
 `
 
-function getBlockMap<T>(links, blockType) {
+function getEntryMap<T>(links, linkType, entryType = 'block') {
   return new Map<string, T>(
-    links?.[blockType]?.block?.map((block) => [block.sys.id, block])
+    links?.[linkType]?.[entryType]?.map((entry) => [entry.sys.id, entry])
   )
 }
 
 function getRichTextRenderOptions(links) {
-  const assetBlockMap = getBlockMap<AssetType>(links, 'assets')
-  const entryBlockMap = getBlockMap<MarkdownTableType>(links, 'entries')
-
   let h2Index = 0
 
   return {
     renderNode: {
       [BLOCKS.EMBEDDED_ASSET]: (node: any) => {
+        const assetBlockMap = getEntryMap<AssetType>(links, 'assets')
         const { description, url, height, width } = assetBlockMap.get(
           node.data.target.sys.id
         )
@@ -80,6 +84,7 @@ function getRichTextRenderOptions(links) {
         )
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
+        const entryBlockMap = getEntryMap<MarkdownTableType>(links, 'entries')
         const entry = entryBlockMap.get(node.data.target.sys.id)
 
         if (entry.__typename === 'MarkdownTable') {
@@ -100,6 +105,20 @@ function getRichTextRenderOptions(links) {
             {content.toString()}
           </StyledH2>
         )
+      },
+      [INLINES.EMBEDDED_ENTRY]: (node) => {
+        const entryInlineMap = getEntryMap<CodeBlockType>(
+          links,
+          'entries',
+          'inline'
+        )
+        const entry = entryInlineMap.get(node.data.target.sys.id)
+
+        if (entry.__typename === 'CodeBlock') {
+          return <CodeBlock language="scss">{entry.sourceCode}</CodeBlock>
+        }
+
+        return null
       },
     },
   }
