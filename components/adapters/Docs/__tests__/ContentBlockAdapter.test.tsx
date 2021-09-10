@@ -208,4 +208,56 @@ describe('Docs/ContentBlockAdapter', () => {
       expect(wrapper.getByTestId('markdown-table')).toBeInTheDocument()
     })
   })
+
+  describe('with code block linked entry', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'embedded-entry-inline',
+                content: [],
+                data: {
+                  target: {
+                    sys: {
+                      id: '47DP1urOOAdvdXaCGeheqZ',
+                      type: 'Link',
+                      linkType: 'Entry',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            entries: {
+              inline: [
+                {
+                  sys: {
+                    id: '47DP1urOOAdvdXaCGeheqZ',
+                  },
+                  __typename: 'CodeBlock',
+                  sourceCode: '// code',
+                },
+              ],
+            },
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the code block', () => {
+      expect(wrapper.getByTestId('codeblock')).toBeInTheDocument()
+    })
+  })
 })
