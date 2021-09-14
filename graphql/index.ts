@@ -1831,6 +1831,10 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  swatchColour?: Maybe<SwatchColour>;
+  swatchColourCollection?: Maybe<SwatchColourCollection>;
+  swatch?: Maybe<Swatch>;
+  swatchCollection?: Maybe<SwatchCollection>;
   markdownTable?: Maybe<MarkdownTable>;
   markdownTableCollection?: Maybe<MarkdownTableCollection>;
   simpleCard?: Maybe<SimpleCard>;
@@ -1875,6 +1879,40 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QuerySwatchColourArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySwatchColourCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<SwatchColourFilter>;
+  order?: Maybe<Array<Maybe<SwatchColourOrder>>>;
+};
+
+
+export type QuerySwatchArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySwatchCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<SwatchFilter>;
+  order?: Maybe<Array<Maybe<SwatchOrder>>>;
 };
 
 
@@ -2349,6 +2387,183 @@ export enum SimpleCardOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type Swatch = Entry & {
+  __typename?: 'Swatch';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SwatchLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  colourCollection?: Maybe<SwatchColourCollection>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchColourCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SwatchCollection = {
+  __typename?: 'SwatchCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Swatch>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColour = Entry & {
+  __typename?: 'SwatchColour';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SwatchColourLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  colour?: Maybe<Scalars['String']>;
+  isDark?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourColourArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourIsDarkArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SwatchColourCollection = {
+  __typename?: 'SwatchColourCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<SwatchColour>>;
+};
+
+export type SwatchColourFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  colour_exists?: Maybe<Scalars['Boolean']>;
+  colour?: Maybe<Scalars['String']>;
+  colour_not?: Maybe<Scalars['String']>;
+  colour_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  colour_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  colour_contains?: Maybe<Scalars['String']>;
+  colour_not_contains?: Maybe<Scalars['String']>;
+  isDark_exists?: Maybe<Scalars['Boolean']>;
+  isDark?: Maybe<Scalars['Boolean']>;
+  isDark_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<SwatchColourFilter>>>;
+  AND?: Maybe<Array<Maybe<SwatchColourFilter>>>;
+};
+
+export type SwatchColourLinkingCollections = {
+  __typename?: 'SwatchColourLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type SwatchColourLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum SwatchColourOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  ColourAsc = 'colour_ASC',
+  ColourDesc = 'colour_DESC',
+  IsDarkAsc = 'isDark_ASC',
+  IsDarkDesc = 'isDark_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type SwatchFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  colourCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<SwatchFilter>>>;
+  AND?: Maybe<Array<Maybe<SwatchFilter>>>;
+};
+
+export type SwatchLinkingCollections = {
+  __typename?: 'SwatchLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type SwatchLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum SwatchOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type Sys = {
   __typename?: 'Sys';
   id: Scalars['String'];
@@ -2519,13 +2734,13 @@ export type PageByPathQuery = (
               & { items: Array<Maybe<(
                 { __typename?: 'ApiField' }
                 & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
             )>, apiReturnFieldCollection?: Maybe<(
               { __typename?: 'ApiTableApiReturnFieldCollection' }
               & { items: Array<Maybe<(
                 { __typename?: 'ApiField' }
                 & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
             )> }
           ) | (
             { __typename: 'CodeBlock' }
@@ -2639,6 +2854,24 @@ export type PageByPathQuery = (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
                     ) }
+                  ) | (
+                    { __typename: 'Swatch' }
+                    & { colourCollection?: Maybe<(
+                      { __typename?: 'SwatchColourCollection' }
+                      & { items: Array<Maybe<(
+                        { __typename?: 'SwatchColour' }
+                        & Pick<SwatchColour, 'name' | 'colour' | 'isDark'>
+                      )>> }
+                    )>, sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SwatchColour' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
                   )>>, inline: Array<Maybe<(
                     { __typename: 'ApiField' }
                     & { sys: (
@@ -2714,6 +2947,18 @@ export type PageByPathQuery = (
                     ) }
                   ) | (
                     { __typename: 'SimpleCard' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Swatch' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SwatchColour' }
                     & { sys: (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
@@ -2867,13 +3112,13 @@ export type SectionContentQuery = (
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
         )>, apiReturnFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiReturnFieldCollection' }
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }
