@@ -7,4 +7,5 @@ export const StyledSidebarMenuItem = styled.li`
   margin: unset;
   padding: unset;
   height: 36px;
+  display: block;
 `

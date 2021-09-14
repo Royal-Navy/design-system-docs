@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { selectors } from '@royalnavy/design-tokens'
 
 export const StyledCodeHighlighter = styled.article`
   display: flex;

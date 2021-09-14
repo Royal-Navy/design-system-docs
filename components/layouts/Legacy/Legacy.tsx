@@ -13,6 +13,7 @@ import { StyledArticle } from './partials/StyledArticle'
 import { StyledBody } from './partials/StyledBody'
 import { StyledContent } from './partials/StyledContent'
 import { StyledMain } from './partials/StyledMain'
+import { StyledContainer } from './partials/StyledContainer'
 import { StyledMastheadWrapper } from './partials/StyledMastheadWrapper'
 import { StyledOnThisPageWrapper } from './partials/StyledOnThisPageWrapper'
 import { StyledPageWrapper } from './partials/StyledPageWrapper'
@@ -52,18 +53,22 @@ export const LayoutLegacy: React.FC<LayoutComponentProps> = ({
       {pageBanner}
       <StyledMastheadWrapper>{masthead}</StyledMastheadWrapper>
       <StyledBody>
-        <StyledSidebarWrapper>{sidebar}</StyledSidebarWrapper>
-        <StyledMain>
-          <StyledArticle>
-            <div>
-              {breadcrumbs}
-              <StyledTitle data-testid="layout-legacy-h1">{title}</StyledTitle>
-              {contentBanner}
-              <StyledContent>{children}</StyledContent>
-            </div>
-            <StyledOnThisPageWrapper>{onThisPage}</StyledOnThisPageWrapper>
-          </StyledArticle>
-        </StyledMain>
+        <StyledContainer>
+          <StyledSidebarWrapper>{sidebar}</StyledSidebarWrapper>
+          <StyledMain>
+            <StyledArticle>
+              <div>
+                {breadcrumbs}
+                <StyledTitle data-testid="layout-legacy-h1">
+                  {title}
+                </StyledTitle>
+                {contentBanner}
+                <StyledContent>{children}</StyledContent>
+              </div>
+              <StyledOnThisPageWrapper>{onThisPage}</StyledOnThisPageWrapper>
+            </StyledArticle>
+          </StyledMain>
+        </StyledContainer>
       </StyledBody>
       {footer}
     </StyledPageWrapper>

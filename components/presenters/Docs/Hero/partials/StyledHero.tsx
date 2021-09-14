@@ -17,12 +17,16 @@ export const StyledHero = styled.section`
   `}
 
   ${mq({ gte: 'm' })`
-    margin:  0 ${spacing('12')} ${spacing('20')};
-    padding-top: ${spacing('18')};
+    padding: ${spacing('18')} ${spacing('12')} ${spacing('10')};
   `}
 
-  ${mq({ gte: 'l' })`
-    margin: 160px 32px 200px;
-    padding-top: 0;
+  ${mq({ gte: 'xl' })`
+    padding: 160px ${spacing('12')} ${spacing('14')};
   `}
+
+
+  // Ultrawide screens
+  @media only screen and (min-width: 1800px) {
+    padding: 260px ${spacing('12')} ${spacing('20')};
+  }
 `
