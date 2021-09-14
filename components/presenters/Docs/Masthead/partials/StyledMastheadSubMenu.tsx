@@ -7,12 +7,12 @@ export const StyledMastheadSubMenu = styled.nav`
   width: 100%;
   white-space: nowrap;
   background-color: ${color('neutral', '000')};
-  padding: ${spacing('10')} 0;
+  padding: ${spacing('6')} 0;
   border-top: 1px solid ${color('neutral', '100')};
 
   ${mq({ gte: 'm' })`
     border-top: unset;
-    padding: ${spacing('3')};
+    padding: ${spacing('2')};
     width: auto;
     position: absolute;
     left: 0;

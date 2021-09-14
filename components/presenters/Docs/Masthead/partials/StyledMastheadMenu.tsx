@@ -23,6 +23,10 @@ export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
     list-style-type: none;
   }
 
+  > ol {
+    border-top: 1px solid ${color('neutral', '100')};
+  }
+
   ${mq({ gte: 'm' })`
     display: inline-flex;
     position: relative;
@@ -32,6 +36,7 @@ export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
     box-shadow: unset;
 
     ol {
+      border: unset;
       display: inline-flex;
     }
   `}

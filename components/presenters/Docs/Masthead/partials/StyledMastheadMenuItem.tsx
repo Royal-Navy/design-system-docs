@@ -20,13 +20,15 @@ export const StyledMastheadMenuItem = styled.li<StyledMastheadMenuItemProps>`
     width: 100%;
     height: 100%;
     padding: ${spacing('6')} ${spacing('11')};
+    + div {
+      padding: 0;
+    }
   }
 
   ${({ $hasChildren }) =>
     $hasChildren &&
     css`
       height: auto;
-      border-top: 1px solid ${color('neutral', '100')};
       border-bottom: 1px solid ${color('neutral', '100')};
     `}
 
