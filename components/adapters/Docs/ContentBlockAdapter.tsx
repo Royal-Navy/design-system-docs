@@ -8,6 +8,7 @@ import { MarkdownTable } from '../../presenters/Docs/MarkdownTable'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import { CodeBlock } from '../../presenters/Framework/CodeBlock'
+import { Swatch, SwatchColour } from '../../presenters/Docs/Swatch'
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
@@ -30,6 +31,19 @@ type MarkdownTableType = {
 type CodeBlockType = {
   __typename: string
   sourceCode: string
+}
+
+type SwatchColourType = {
+  name: string
+  colour: string
+  isDark: boolean
+}
+
+type SwatchType = {
+  __typename: string
+  colourCollection: {
+    items: SwatchColourType[]
+  }
 }
 
 const { color, fontSize, spacing } = selectors
@@ -84,11 +98,32 @@ function getRichTextRenderOptions(links) {
         )
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-        const entryBlockMap = getEntryMap<MarkdownTableType>(links, 'entries')
+        const entryBlockMap = getEntryMap<MarkdownTableType | SwatchType>(
+          links,
+          'entries'
+        )
         const entry = entryBlockMap.get(node.data.target.sys.id)
 
         if (entry.__typename === 'MarkdownTable') {
-          return <MarkdownTable>{entry.markdown}</MarkdownTable>
+          return (
+            <MarkdownTable>
+              {(entry as MarkdownTableType).markdown}
+            </MarkdownTable>
+          )
+        }
+
+        if (entry.__typename === 'Swatch') {
+          return (
+            <Swatch>
+              {(entry as SwatchType).colourCollection.items.map(
+                ({ colour, isDark, name }) => (
+                  <SwatchColour colour={colour} isDark={isDark} key={colour}>
+                    {name}
+                  </SwatchColour>
+                )
+              )}
+            </Swatch>
+          )
         }
 
         return null
