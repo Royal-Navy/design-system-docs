@@ -2639,6 +2639,85 @@ export type PageByPathQuery = (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
                     ) }
+                  )>>, inline: Array<Maybe<(
+                    { __typename: 'ApiField' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ApiTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'CodeBlock' }
+                    & Pick<CodeBlock, 'sourceCode'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ContentBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Hero' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Homepage' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'LiveExample' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'MarkdownTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Navigation' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'NavigationElement' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Page' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Section' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SimpleCard' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
                   )>> }
                 ) }
               ) }

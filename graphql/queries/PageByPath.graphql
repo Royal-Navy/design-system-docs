@@ -61,6 +61,15 @@ query PageByPath($path: String!) {
                           markdown
                         }
                       }
+                      inline {
+                        sys {
+                          id
+                        }
+                        __typename
+                        ... on CodeBlock {
+                          sourceCode
+                        }
+                      }
                     }
                   }
                 }
