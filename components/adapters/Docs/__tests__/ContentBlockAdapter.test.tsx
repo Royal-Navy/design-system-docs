@@ -60,6 +60,102 @@ describe('Docs/ContentBlockAdapter', () => {
     })
   })
 
+  describe('with image linked entry', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'embedded-asset-block',
+                content: [],
+                data: {
+                  target: {
+                    sys: {
+                      id: '1eMpKozmtsh9SEbjdOB8QE',
+                      type: 'Link',
+                      linkType: 'Asset',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            assets: {
+              block: [
+                {
+                  fileName: 'styles hyperlinks.svg',
+                  title: 'styles hyperlinks',
+                  description: '',
+                  url: 'https://images.ctfassets.net/fq5pxympyusn/1eMpKozmtsh9SEbjdOB8QE/e6b8e162af13f756fc98dd58d2b86da9/styles_hyperlinks.svg',
+                  width: 726,
+                  height: 180,
+                  sys: {
+                    id: '1eMpKozmtsh9SEbjdOB8QE',
+                  },
+                },
+              ],
+            },
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the image', () => {
+      expect(wrapper.getByTestId('content-block-img')).toBeInTheDocument()
+    })
+  })
+
+  describe('with h2 content', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'heading-2',
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Overview',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+                data: {},
+              },
+            ],
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the h2', () => {
+      expect(wrapper.getByTestId('content-block-h2')).toHaveTextContent(
+        'Overview'
+      )
+    })
+  })
+
   describe('with markdown table linked entry', () => {
     beforeEach(() => {
       const fields = {
