@@ -260,4 +260,64 @@ describe('Docs/ContentBlockAdapter', () => {
       expect(wrapper.getByTestId('codeblock')).toBeInTheDocument()
     })
   })
+
+  describe('with swatch linked entry', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'embedded-entry-block',
+                content: [],
+                data: {
+                  target: {
+                    sys: {
+                      id: '5GimEiW01oX9nKha7HZjTm',
+                      type: 'Link',
+                      linkType: 'Entry',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            entries: {
+              block: [
+                {
+                  sys: {
+                    id: '5GimEiW01oX9nKha7HZjTm',
+                  },
+                  __typename: 'Swatch',
+                  colourCollection: {
+                    items: [
+                      {
+                        name: 'White',
+                        colour: '#FFFFFF',
+                        isDark: false,
+                      },
+                    ],
+                  },
+                },
+              ],
+            },
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the swatch', () => {
+      expect(wrapper.getByTestId('swatch')).toBeInTheDocument()
+    })
+  })
 })

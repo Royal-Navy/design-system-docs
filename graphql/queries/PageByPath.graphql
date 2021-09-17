@@ -60,6 +60,17 @@ query PageByPath($path: String!) {
                         ... on MarkdownTable {
                           markdown
                         }
+                        ... on Swatch {
+                          colourCollection(limit: 20) {
+                            items {
+                              ... on SwatchColour {
+                                name
+                                colour
+                                isDark
+                              }
+                            }
+                          }
+                        }
                       }
                       inline {
                         sys {
