@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
-import camelCase from 'lodash/camelCase'
+import kebabCase from 'lodash/kebabCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types'
 import { MarkdownTable } from '../../presenters/Docs/MarkdownTable'
@@ -133,7 +133,7 @@ function getRichTextRenderOptions(links) {
 
         return (
           <StyledH2
-            id={camelCase(h2Index + content.toString())}
+            id={kebabCase(h2Index + content.toString())}
             data-testid="content-block-h2"
           >
             <span>{h2Index}</span>
