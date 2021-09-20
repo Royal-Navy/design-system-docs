@@ -351,7 +351,11 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       <Section sectionIndex="2" title={section2Heading}>
         <p>{section2SubHeading}</p>
         {section2Buttons.map(({ href, title }) => {
-          return <Button href={href}>{title}</Button>
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
         })}
       </Section>
       <Section sectionIndex="3" title={section3Heading}>
@@ -361,6 +365,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             ({ title, titleColor, buttonHref, buttonTitle, description }) => {
               return (
                 <Card
+                  key={title}
                   title={title}
                   titleColor={titleColor}
                   href={buttonHref}
@@ -376,14 +381,22 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       <Section sectionIndex="4" title={section4Heading}>
         <p>{section4SubHeading}</p>
         {section4Buttons.map(({ href, title }) => {
-          return <Button href={href}>{title}</Button>
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
         })}
       </Section>
       <Section sectionIndex="5" title={section5Heading}>
         <p>{section5SubHeading}</p>
         <StyledButtonGroup>
           {section5Buttons.map(({ href, title }) => {
-            return <Button href={href}>{title}</Button>
+            return (
+              <Button key={title} href={href}>
+                {title}
+              </Button>
+            )
           })}
         </StyledButtonGroup>
       </Section>
