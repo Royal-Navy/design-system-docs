@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import groupBy from 'lodash/groupBy'
 import upperFirst from 'lodash/upperFirst'
-import camelCase from 'lodash/camelCase'
+import kebabCase from 'lodash/kebabCase'
 import { GetStaticPaths, GetStaticProps } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -245,7 +245,7 @@ function renderOnThisPageItems(
 
   return h2Collection.map((item: Record<string, any>, index: number) => {
     const title = item?.content[0]?.value
-    const href = `#${camelCase(`${index + 1}${title}`)}`
+    const href = `#${kebabCase(`${index + 1}${title}`)}`
 
     return (
       <OnThisPageItem key={href} onClick={(_) => push(href)}>

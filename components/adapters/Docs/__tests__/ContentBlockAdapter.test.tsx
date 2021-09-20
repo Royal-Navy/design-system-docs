@@ -154,6 +154,13 @@ describe('Docs/ContentBlockAdapter', () => {
         'Overview'
       )
     })
+
+    it('renders the h2 with the `id` attribute', () => {
+      expect(wrapper.getByTestId('content-block-h2')).toHaveAttribute(
+        'id',
+        '1-overview'
+      )
+    })
   })
 
   describe('with markdown table linked entry', () => {
