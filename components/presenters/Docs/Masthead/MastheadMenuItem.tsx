@@ -44,7 +44,7 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
             </StyledMastheadMenuLink>
           ),
         })}
-        {children && (
+        {hasChildren && (
           <StyledExpandButton
             onClick={(_: React.MouseEvent<HTMLButtonElement>) =>
               setShowChildren(!showChildren)
