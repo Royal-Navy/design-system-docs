@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react'
+import { selectors } from '@royalnavy/design-tokens'
 import { IconExpandMore, IconExpandLess } from '@royalnavy/icon-library'
 import { useDocumentClick } from '@royalnavy/react-component-library'
 
@@ -12,6 +13,8 @@ export interface MastheadMenuItemProps extends ComponentWithClass {
   link?: React.ReactElement
 }
 
+const { breakpoint } = selectors
+
 export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   link,
   children,
@@ -21,7 +24,13 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   const hasChildren = !!children
 
   useDocumentClick(subMenuRef, (_: Event) => {
-    setShowChildren(false)
+    const mediumBreakpointWidth = Number(
+      breakpoint('m').breakpoint.replace(/px/g, '')
+    )
+
+    if (window.innerWidth >= mediumBreakpointWidth) {
+      setShowChildren(false)
+    }
   })
 
   return (
