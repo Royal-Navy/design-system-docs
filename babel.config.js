@@ -9,7 +9,7 @@ module.exports = {
     [
       'styled-components',
       {
-        ssr: false,
+        ssr: true,
         displayName: true,
         namespace: 'sc',
       },
