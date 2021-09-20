@@ -26,7 +26,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.3",
     "@graphql-codegen/typescript": "^1.22.0",
-    "@graphql-codegen/typescript-operations": "^2.1.2",
+    "@graphql-codegen/typescript-operations": "^2.1.4",
     "@royalnavy/css-framework": "^2.59.3",
     "@royalnavy/design-tokens": "^2.59.3",
     "@royalnavy/eslint-config-react": "^2.59.3",
