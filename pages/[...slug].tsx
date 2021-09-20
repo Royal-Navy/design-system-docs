@@ -213,6 +213,7 @@ function renderSidebarItems(
             {group[1].map(({ title, path, externalUri }) => {
               return (
                 <SidebarMenuItem
+                  key={title}
                   link={<Link href={path || externalUri}>{title}</Link>}
                 />
               )
