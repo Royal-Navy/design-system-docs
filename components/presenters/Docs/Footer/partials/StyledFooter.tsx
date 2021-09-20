@@ -8,6 +8,7 @@ export const StyledFooter = styled.div`
   background-color: ${color('neutral', '500')};
   color: ${color('neutral', '100')};
   height: 542px;
+  overflow: hidden;
 
   ${mq({ gte: 's' })`
     height: 503px;

@@ -15,6 +15,11 @@ export const StyledMasthead = styled.header<StyledMastheadProps>`
   height: 48px;
   padding: 0 ${spacing('10')};
   box-shadow: ${shadow('2')};
+  position: fixed;
+  top: 43px;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 
   ${mq({ gte: 's' })`
     padding: 0 ${spacing('13')};

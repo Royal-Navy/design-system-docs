@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { ColorNeutral100, ColorNeutral300 } from '@royalnavy/design-tokens'
+import { ColorNeutral400 } from '@royalnavy/design-tokens'
 import { render, RenderResult } from '@testing-library/react'
 
 import { OnThisPage } from './OnThisPage'
@@ -11,13 +11,12 @@ describe('OnThisPage', () => {
   let wrapper: RenderResult
 
   function expectActive(item) {
-    expect(item).toHaveStyleRule('border-left', `4px solid ${ColorNeutral300}`)
+    expect(item).toHaveStyleRule('border-left', `4px solid ${ColorNeutral400}`)
     expect(item).toHaveStyleRule('padding-left', '10px')
   }
 
   function expectInactive(item) {
-    expect(item).toHaveStyleRule('border-left', `2px solid ${ColorNeutral100}`)
-    expect(item).toHaveStyleRule('padding-left', '12px')
+    expect(item).toHaveStyleRule('border-left', `2px solid transparent`)
   }
 
   describe('all props', () => {

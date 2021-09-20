@@ -7,7 +7,6 @@ export const StyledIndex = styled.span`
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: ${shadow('4')};
   border: 1px solid ${color('neutral', '100')};
   border-radius: 15px;
   font-size: ${fontSize('xl')};
@@ -15,6 +14,7 @@ export const StyledIndex = styled.span`
   font-weight: 700;
   width: 50px;
   height: 50px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
 
   ${mq({ gte: 'm' })`
     font-size: 24px;
