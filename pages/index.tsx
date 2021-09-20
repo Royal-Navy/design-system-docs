@@ -221,27 +221,29 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
                 key={parentPath}
                 link={<Link href={parentHref}>{parentTitle}</Link>}
               >
-                <MastheadSubMenu>
-                  {children.items.map(
-                    ({
-                      title: childTitle,
-                      path: childPath,
-                      externalUri: childExternalUri,
-                      page: childPage,
-                    }) => {
-                      const childHref = childPage
-                        ? childPath || '#'
-                        : childExternalUri || '#'
+                {children.items.length > 0 && (
+                  <MastheadSubMenu>
+                    {children.items.map(
+                      ({
+                        title: childTitle,
+                        path: childPath,
+                        externalUri: childExternalUri,
+                        page: childPage,
+                      }) => {
+                        const childHref = childPage
+                          ? childPath || '#'
+                          : childExternalUri || '#'
 
-                      return (
-                        <MastheadSubMenuItem
-                          key={childPath}
-                          link={<Link href={childHref}>{childTitle}</Link>}
-                        />
-                      )
-                    }
-                  )}
-                </MastheadSubMenu>
+                        return (
+                          <MastheadSubMenuItem
+                            key={childPath}
+                            link={<Link href={childHref}>{childTitle}</Link>}
+                          />
+                        )
+                      }
+                    )}
+                  </MastheadSubMenu>
+                )}
               </MastheadMenuItem>
             )
           }

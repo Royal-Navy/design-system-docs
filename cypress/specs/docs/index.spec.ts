@@ -99,6 +99,21 @@ describe('Docs Site: Components', () => {
 })
 
 describe('Docs Site: Homepage', () => {
+  describe('when browsing on desktop', () => {
+    before(() => {
+      // Block newrelic.js due to issues with Cypress networking
+      cy.intercept('**/newrelic.js', (req) => {
+        req.reply("console.log('Fake New Relic script loaded');")
+      })
+
+      cy.visit('/')
+    })
+
+    it('should not render a sub menu for top level navigation items without children', () => {
+      cy.get('a').contains('Help').siblings('button').should('not.exist')
+    })
+  })
+
   describe(
     'when browsing on mobile',
     {
