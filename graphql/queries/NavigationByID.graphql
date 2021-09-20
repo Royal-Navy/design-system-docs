@@ -14,7 +14,7 @@ query NavigationByID($id: String!) {
               }
             }
           }
-          childrenCollection(limit: 10) {
+          childrenCollection(limit: 50) {
             items {
               ... on NavigationElement {
                 title
