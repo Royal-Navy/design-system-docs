@@ -270,6 +270,45 @@ function renderPresenter(
   return componentMap[type]
 }
 
+function mapMenuItem({
+  title: parentTitle,
+  path: parentPath,
+  externalUri: parentExternalUri,
+  page: parentPage,
+  childrenCollection: children,
+}: NavigationElementType) {
+  const parentHref = parentPage ? parentPath : parentExternalUri
+
+  return (
+    <MastheadMenuItem
+      key={parentPath}
+      link={<Link href={parentHref || '#'}>{parentTitle}</Link>}
+    >
+      {children.items.length > 0 && (
+        <MastheadSubMenu>
+          {children.items.map(
+            ({
+              title: childTitle,
+              path: childPath,
+              externalUri: childExternalUri,
+              page: childPage,
+            }) => {
+              const childHref = childPage ? childPath : childExternalUri
+
+              return (
+                <MastheadSubMenuItem
+                  key={childPath}
+                  link={<Link href={childHref || '#'}>{childTitle}</Link>}
+                />
+              )
+            }
+          )}
+        </MastheadSubMenu>
+      )}
+    </MastheadMenuItem>
+  )
+}
+
 export const GenericPage: React.FC<GenericPageProps> = ({
   slugs,
   page,
@@ -293,50 +332,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   const masthead = (
     <Masthead version={version}>
       <MastheadMenu>
-        {desktopNavigation.childrenCollection.items.map(
-          ({
-            title: parentTitle,
-            path: parentPath,
-            externalUri: parentExternalUri,
-            page: parentPage,
-            childrenCollection: children,
-          }) => {
-            const parentHref = parentPage
-              ? parentPath || '#'
-              : parentExternalUri || '#'
-
-            return (
-              <MastheadMenuItem
-                key={parentPath}
-                link={<Link href={parentHref}>{parentTitle}</Link>}
-              >
-                {children.items.length > 0 && (
-                  <MastheadSubMenu>
-                    {children.items.map(
-                      ({
-                        title: childTitle,
-                        path: childPath,
-                        externalUri: childExternalUri,
-                        page: childPage,
-                      }) => {
-                        const childHref = childPage
-                          ? childPath || '#'
-                          : childExternalUri || '#'
-
-                        return (
-                          <MastheadSubMenuItem
-                            key={childPath}
-                            link={<Link href={childHref}>{childTitle}</Link>}
-                          />
-                        )
-                      }
-                    )}
-                  </MastheadSubMenu>
-                )}
-              </MastheadMenuItem>
-            )
-          }
-        )}
+        {desktopNavigation.childrenCollection.items.map(mapMenuItem)}
       </MastheadMenu>
     </Masthead>
   )
