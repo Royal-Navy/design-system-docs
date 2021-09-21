@@ -60,6 +60,7 @@ export interface GenericPageProps extends ComponentWithClass {
   page: PageType
   desktopNavigation: NavigationType
   childrenCollection: NavigationElementType[]
+  parentTitle: string
 }
 
 /**
@@ -119,6 +120,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       page,
       desktopNavigation,
       childrenCollection: parentPage?.childrenCollection?.items || [],
+      parentTitle: parentPage.title,
     },
   }
 }
@@ -314,6 +316,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   page,
   childrenCollection,
   desktopNavigation,
+  parentTitle,
 }) => {
   const [filterString, setFilterString] = useState<string>(null)
   const { title, sectionCollection } = page
@@ -338,7 +341,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   )
 
   const sidebar = (
-    <Sidebar title="Components">
+    <Sidebar title={parentTitle}>
       <SidebarOverview>
         <SidebarOverviewMenuItem
           icon={<Storybook />}
