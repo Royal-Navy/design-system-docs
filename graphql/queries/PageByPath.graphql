@@ -50,6 +50,12 @@ query PageByPath($path: String!) {
                           id
                         }
                       }
+                      hyperlink {
+                        url
+                        sys {
+                          id
+                        }
+                      }
                     }
                     entries {
                       block {

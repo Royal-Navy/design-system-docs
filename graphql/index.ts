@@ -2772,6 +2772,13 @@ export type PageByPathQuery = (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
                     ) }
+                  )>>, hyperlink: Array<Maybe<(
+                    { __typename?: 'Asset' }
+                    & Pick<Asset, 'url'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
                   )>> }
                 ), entries: (
                   { __typename?: 'ContentBlockDescriptionEntries' }
