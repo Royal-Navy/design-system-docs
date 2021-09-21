@@ -29,7 +29,11 @@ describe('Docs Site: Components', () => {
 
     it('Reference navigation item should not redirect user', () => {
       cy.get('a').contains('Reference').click()
-      cy.url().should('eq',  `${baseUrl}/components/alert#`)
+      cy.url().should('eq', `${baseUrl}/components/alert#`)
+    })
+
+    it('should render the sidebar title', () => {
+      cy.get(selectors.sidebar.title).should('have.text', 'Components')
     })
 
     it('should render the page title', () => {
