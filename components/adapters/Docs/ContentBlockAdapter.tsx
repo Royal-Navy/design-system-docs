@@ -33,6 +33,10 @@ type CodeBlockType = {
   sourceCode: string
 }
 
+type HyperlinkType = {
+  url: string
+}
+
 type SwatchColourType = {
   name: string
   colour: string
@@ -142,6 +146,16 @@ function getRichTextRenderOptions(links) {
             {content.toString()}
           </StyledH2>
         )
+      },
+      [INLINES.ASSET_HYPERLINK]: (node) => {
+        const hyperlinksMap = getEntryMap<HyperlinkType>(
+          links,
+          'assets',
+          'hyperlink'
+        )
+        const hyperlink = hyperlinksMap.get(node.data.target.sys.id)
+
+        return <a href={hyperlink.url}>{node.content[0].value}</a>
       },
       [INLINES.EMBEDDED_ENTRY]: (node) => {
         const entryInlineMap = getEntryMap<CodeBlockType>(

@@ -327,4 +327,62 @@ describe('Docs/ContentBlockAdapter', () => {
       expect(wrapper.getByTestId('swatch')).toBeInTheDocument()
     })
   })
+
+  describe('with hyperlink linked asset', () => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'asset-hyperlink',
+                content: [
+                  {
+                    nodeType: 'text',
+                    value: 'Link',
+                    marks: [],
+                    data: {},
+                  },
+                ],
+                data: {
+                  target: {
+                    sys: {
+                      id: '6AZGRzcUPJBiL4wDS0496Q',
+                      type: 'Link',
+                      linkType: 'Asset',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            assets: {
+              hyperlink: [
+                {
+                  url: 'https://url',
+                  sys: {
+                    id: '6AZGRzcUPJBiL4wDS0496Q',
+                  },
+                },
+              ],
+            },
+          },
+        },
+        image: {
+          title: 'Example Image',
+          url: 'https://www.google.com',
+        },
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the link', () => {
+      expect(wrapper.getByText('Link')).toHaveAttribute('href', 'https://url')
+    })
+  })
 })
