@@ -40,11 +40,13 @@ export const Hero: React.FC<HeroProps> = ({
       <StyledReleaseText>
         <span>
           Current version{' '}
-          <a href="#latest-release">
+          <a href="https://github.com/Royal-Navy/design-system/releases/latest">
             <strong>{version}</strong>
           </a>
           <StyledSpacer />
-          <a href="#all-releses">All releases</a>
+          <a href="https://github.com/Royal-Navy/design-system/releases">
+            All releases
+          </a>
         </span>
       </StyledReleaseText>
     </StyledHero>
