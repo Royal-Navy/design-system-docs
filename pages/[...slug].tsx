@@ -84,7 +84,7 @@ async function fetchPageByPath(path: string): Promise<NavigationElementType> {
  */
 async function fetchDesktopNavigation(): Promise<NavigationType> {
   const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
-    id: '3dJ4ZZB9rMxXS4oe2iKuEY',
+    id: '6ctO13HVlilgYwI5wgpJLf',
   })
 
   return navigation
@@ -118,7 +118,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       slugs,
       page,
       desktopNavigation,
-      childrenCollection: parentPage.childrenCollection.items,
+      childrenCollection: parentPage?.childrenCollection?.items || [],
     },
   }
 }
@@ -132,6 +132,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   const paths = items
     .filter(({ page }) => !!page)
+    .filter(({ path }) => !!path)
     .map(({ path }) => {
       const slug = path.split('/')
       slug.shift()

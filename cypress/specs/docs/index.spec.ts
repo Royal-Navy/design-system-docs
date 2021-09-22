@@ -25,8 +25,8 @@ describe('Docs Site: Components', () => {
       cy.visit('/components/alert')
     })
 
-    it('Component navigation item should not redirect user', () => {
-      cy.get('a').contains('Components').click()
+    it('Reference navigation item should not redirect user', () => {
+      cy.get('a').contains('Reference').click()
       cy.url().should('eq',  `${baseUrl}/components/alert#`)
     })
 

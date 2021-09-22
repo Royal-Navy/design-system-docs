@@ -61,7 +61,7 @@ async function fetchPageData(): Promise<HomepageType> {
  */
 async function fetchDesktopNavigation(): Promise<NavigationType> {
   const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
-    id: '3dJ4ZZB9rMxXS4oe2iKuEY',
+    id: '6ctO13HVlilgYwI5wgpJLf',
   })
 
   return navigation
