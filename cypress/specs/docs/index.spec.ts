@@ -1,5 +1,7 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before, expect } from 'local-cypress'
+import { startCase } from 'lodash'
+
 // eslint-disable-next-line import/extensions
 import { baseUrl } from '../../../cypress.json'
 import selectors from '../../selectors/docs'
@@ -92,6 +94,24 @@ describe('Docs Site: Components', () => {
         it('should navigate to the relevant sub-heading', () => {
           cy.get(selectors.contentBlock.h2).eq(index).should('be.visible')
           cy.url().should('eq', `${baseUrl}/components/alert${link}`)
+        })
+      })
+    })
+
+    Object.keys(selectors.footer.siteLinks).forEach((siteLinkKey) => {
+      const heading = startCase(siteLinkKey)
+
+      describe(`${heading} footer site link`, () => {
+        beforeEach(() => {
+          cy.get(selectors.footer.siteLinks[siteLinkKey]).click()
+        })
+
+        afterEach(() => {
+          cy.go('back')
+        })
+
+        it('should display the correct page', () => {
+          cy.get(selectors.layout.h1).should('have.text', heading)
         })
       })
     })

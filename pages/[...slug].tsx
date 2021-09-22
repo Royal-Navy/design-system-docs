@@ -408,9 +408,9 @@ export const GenericPage: React.FC<GenericPageProps> = ({
       license="All content is available under the Apache 2.0 licence, except where
       otherwise stated."
       siteLinks={[
-        <Link href="#accessibility">Accessibility</Link>,
-        <Link href="#privacy-policy">Privacy Policy</Link>,
-        <Link href="#contact">Contact</Link>,
+        <Link href="/accessibility">Accessibility</Link>,
+        <Link href="/privacy-policy">Privacy Policy</Link>,
+        <Link href="/contact">Contact</Link>,
       ]}
     />
   )
