@@ -195,7 +195,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
     <PageBanner>
       Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
       released!&nbsp;
-      <a href="/upgrade-guide">
+      <a href="/guidance/migrating-to-v2">
         Read the <strong>upgrade guide</strong>
       </a>
     </PageBanner>
@@ -274,9 +274,9 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       license="All content is available under the Apache 2.0 licence, except where
       otherwise stated."
       siteLinks={[
-        <Link href="#accessibility">Accessibility</Link>,
-        <Link href="#privacy-policy">Privacy Policy</Link>,
-        <Link href="#contact">Contact</Link>,
+        <Link href="/accessibility">Accessibility</Link>,
+        <Link href="/privacy-policy">Privacy Policy</Link>,
+        <Link href="/contact">Contact</Link>,
       ]}
     />
   )
@@ -313,7 +313,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             cta={
               <Button
                 variant={BUTTON_VARIANT.SECONDARY}
-                href="#designers-guide"
+                href="/guidance/design"
               >
                 Read the full guide
               </Button>
@@ -335,7 +335,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             cta={
               <Button
                 variant={BUTTON_VARIANT.SECONDARY}
-                href="#developers-guide"
+                href="/guidance/development"
               >
                 Read the full guide
               </Button>
