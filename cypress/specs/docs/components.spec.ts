@@ -7,13 +7,13 @@ import { baseUrl } from '../../../cypress.json'
 import selectors from '../../selectors/docs'
 
 const sections = [
-  { title: 'Overview', link: '#1Overview' },
-  { title: 'Usage', link: '#2Usage' },
-  { title: 'Anatomy', link: '#3Anatomy' },
-  { title: 'Sizing & Spacing', link: '#4SizingSpacing' },
-  { title: 'Hierarchy & Placement', link: '#5HierarchyPlacement' },
-  { title: 'States', link: '#6States' },
-  { title: 'Variations', link: '#7Variations' },
+  { title: 'Overview', link: '#1-overview' },
+  { title: 'Usage', link: '#2-usage' },
+  { title: 'Anatomy', link: '#3-anatomy' },
+  { title: 'Sizing & Spacing', link: '#4-sizing-spacing' },
+  { title: 'Hierarchy & Placement', link: '#5-hierarchy-placement' },
+  { title: 'States', link: '#6-states' },
+  { title: 'Variations', link: '#7-variations' },
 ]
 
 describe('Docs Site: Components', () => {
