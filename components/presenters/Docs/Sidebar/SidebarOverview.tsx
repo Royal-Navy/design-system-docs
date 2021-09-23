@@ -18,7 +18,9 @@ export const SidebarOverview: React.FC<SidebarOverviewProps> = ({
   return (
     <StyledOverview>
       <StyledOverviewTitle>Overview</StyledOverviewTitle>
-      <StyledNavList>{children}</StyledNavList>
+      <StyledNavList data-testid="sidebar-overview-links">
+        {children}
+      </StyledNavList>
     </StyledOverview>
   )
 }
