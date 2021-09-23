@@ -65,7 +65,7 @@ export const Footer: React.FC<FooterProps> = ({
       <StyledSubFooter>
         <div>
           <NavyDigitalServicesLogo />
-          <StyledLinkList>
+          <StyledLinkList data-testid="footer-site-links">
             {mapLinks(siteLinks, 'site-link', 'props.children')}
           </StyledLinkList>
           <StyledCopyright>
