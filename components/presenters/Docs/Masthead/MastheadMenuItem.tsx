@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useRef } from 'react'
 import { selectors } from '@royalnavy/design-tokens'
 import { IconExpandMore, IconExpandLess } from '@royalnavy/icon-library'
@@ -22,12 +24,11 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   const subMenuRef = useRef()
   const [showChildren, setShowChildren] = useState<boolean>(false)
   const hasChildren = !!children
+  const mediumBreakpointWidth = Number(
+    breakpoint('m').breakpoint.replace(/px/g, '')
+  )
 
   useDocumentClick(subMenuRef, (_: Event) => {
-    const mediumBreakpointWidth = Number(
-      breakpoint('m').breakpoint.replace(/px/g, '')
-    )
-
     if (window.innerWidth >= mediumBreakpointWidth) {
       setShowChildren(false)
     }
@@ -55,7 +56,19 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
           </StyledExpandButton>
         )}
       </div>
-      {hasChildren && showChildren && <div ref={subMenuRef}>{children}</div>}
+      {hasChildren && showChildren && (
+        <div
+          ref={subMenuRef}
+          onClick={(_: React.MouseEvent<HTMLDivElement>) => {
+            if (window.innerWidth >= mediumBreakpointWidth) {
+              setShowChildren(false)
+            }
+          }}
+          data-testid="masthead-sub-menu"
+        >
+          {children}
+        </div>
+      )}
     </StyledMastheadMenuItem>
   )
 }
