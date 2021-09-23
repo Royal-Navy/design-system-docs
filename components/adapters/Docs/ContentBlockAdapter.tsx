@@ -56,6 +56,8 @@ const StyledImage = styled.img`
 const StyledH2 = styled.h2`
   display: flex;
   align-items: center;
+  padding-top: 150px;
+  margin-top: -120px !important;
 
   span {
     display: inline-flex;
