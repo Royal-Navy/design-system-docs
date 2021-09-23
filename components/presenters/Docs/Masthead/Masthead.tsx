@@ -4,6 +4,7 @@ import { IconMenu } from '@royalnavy/icon-library'
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMasthead } from './partials/StyledMasthead'
 import { StyledMenuButton } from './partials/StyledMenuButton'
+import { StyledLogo } from './partials/StyledLogo'
 import { Badge } from '../Badge'
 import RNDSLogo from '../../../../public/RNDSLogo.svg'
 
@@ -20,7 +21,9 @@ export const Masthead: React.FC<MastheadProps> = ({
   return (
     <StyledMasthead $isOpen={isOpen} data-testid="masthead">
       <div>
-        <RNDSLogo />
+        <StyledLogo href="/">
+          <RNDSLogo />
+        </StyledLogo>
         <Badge variant="light">{version}</Badge>
       </div>
       <div>
