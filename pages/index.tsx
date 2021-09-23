@@ -61,7 +61,7 @@ async function fetchPageData(): Promise<HomepageType> {
  */
 async function fetchDesktopNavigation(): Promise<NavigationType> {
   const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
-    id: '3dJ4ZZB9rMxXS4oe2iKuEY',
+    id: '6ctO13HVlilgYwI5wgpJLf',
   })
 
   return navigation
@@ -195,7 +195,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
     <PageBanner>
       Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
       released!&nbsp;
-      <a href="/upgrade-guide">
+      <a href="/guidance/migrating-to-v2">
         Read the <strong>upgrade guide</strong>
       </a>
     </PageBanner>
@@ -221,27 +221,29 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
                 key={parentPath}
                 link={<Link href={parentHref}>{parentTitle}</Link>}
               >
-                <MastheadSubMenu>
-                  {children.items.map(
-                    ({
-                      title: childTitle,
-                      path: childPath,
-                      externalUri: childExternalUri,
-                      page: childPage,
-                    }) => {
-                      const childHref = childPage
-                        ? childPath || '#'
-                        : childExternalUri || '#'
+                {children.items.length > 0 && (
+                  <MastheadSubMenu>
+                    {children.items.map(
+                      ({
+                        title: childTitle,
+                        path: childPath,
+                        externalUri: childExternalUri,
+                        page: childPage,
+                      }) => {
+                        const childHref = childPage
+                          ? childPath || '#'
+                          : childExternalUri || '#'
 
-                      return (
-                        <MastheadSubMenuItem
-                          key={childPath}
-                          link={<Link href={childHref}>{childTitle}</Link>}
-                        />
-                      )
-                    }
-                  )}
-                </MastheadSubMenu>
+                        return (
+                          <MastheadSubMenuItem
+                            key={childPath}
+                            link={<Link href={childHref}>{childTitle}</Link>}
+                          />
+                        )
+                      }
+                    )}
+                  </MastheadSubMenu>
+                )}
               </MastheadMenuItem>
             )
           }
@@ -272,9 +274,9 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       license="All content is available under the Apache 2.0 licence, except where
       otherwise stated."
       siteLinks={[
-        <Link href="#accessibility">Accessibility</Link>,
-        <Link href="#privacy-policy">Privacy Policy</Link>,
-        <Link href="#contact">Contact</Link>,
+        <Link href="/accessibility">Accessibility</Link>,
+        <Link href="/privacy-policy">Privacy Policy</Link>,
+        <Link href="/contact">Contact</Link>,
       ]}
     />
   )
@@ -311,7 +313,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             cta={
               <Button
                 variant={BUTTON_VARIANT.SECONDARY}
-                href="#designers-guide"
+                href="/guidance/design"
               >
                 Read the full guide
               </Button>
@@ -333,7 +335,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             cta={
               <Button
                 variant={BUTTON_VARIANT.SECONDARY}
-                href="#developers-guide"
+                href="/guidance/development"
               >
                 Read the full guide
               </Button>
@@ -349,7 +351,11 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       <Section sectionIndex="2" title={section2Heading}>
         <p>{section2SubHeading}</p>
         {section2Buttons.map(({ href, title }) => {
-          return <Button href={href}>{title}</Button>
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
         })}
       </Section>
       <Section sectionIndex="3" title={section3Heading}>
@@ -359,6 +365,7 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
             ({ title, titleColor, buttonHref, buttonTitle, description }) => {
               return (
                 <Card
+                  key={title}
                   title={title}
                   titleColor={titleColor}
                   href={buttonHref}
@@ -374,14 +381,22 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
       <Section sectionIndex="4" title={section4Heading}>
         <p>{section4SubHeading}</p>
         {section4Buttons.map(({ href, title }) => {
-          return <Button href={href}>{title}</Button>
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
         })}
       </Section>
       <Section sectionIndex="5" title={section5Heading}>
         <p>{section5SubHeading}</p>
         <StyledButtonGroup>
           {section5Buttons.map(({ href, title }) => {
-            return <Button href={href}>{title}</Button>
+            return (
+              <Button key={title} href={href}>
+                {title}
+              </Button>
+            )
           })}
         </StyledButtonGroup>
       </Section>

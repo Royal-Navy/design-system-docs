@@ -60,6 +60,20 @@ describe('Masthead', () => {
         expect(wrapper.queryByText('Design Tokens')).toBeInTheDocument()
       })
 
+      describe('and the user clicks on a navigation item', () => {
+        beforeEach(() => {
+          fireEvent.click(wrapper.getByTestId('masthead-sub-menu'))
+        })
+
+        it('hides the sub menu', () => {
+          return waitFor(() => {
+            expect(
+              wrapper.queryByTestId('masthead-sub-menu')
+            ).not.toBeInTheDocument()
+          })
+        })
+      })
+
       describe('and the user clicks outside of the sub menu', () => {
         beforeEach(() => {
           fireEvent.click(wrapper.getByTestId('masthead'))
