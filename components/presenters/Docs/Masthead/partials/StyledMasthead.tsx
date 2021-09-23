@@ -16,7 +16,7 @@ export const StyledMasthead = styled.header<StyledMastheadProps>`
   padding: 0 ${spacing('10')};
   box-shadow: ${shadow('2')};
   position: fixed;
-  top: 43px;
+  top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
