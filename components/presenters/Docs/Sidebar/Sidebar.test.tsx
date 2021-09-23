@@ -32,7 +32,7 @@ describe('Sidebar', () => {
           />
           <SidebarOverviewMenuItem
             icon={<IconBookmark data-testid="icon-2" />}
-            link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+            link={<Link href="/guidance/design">Axure design libraries</Link>}
           />
         </SidebarOverview>
         <SidebarFilter {...filterProps} />
@@ -49,8 +49,8 @@ describe('Sidebar', () => {
 
     expect(links[0]).toHaveTextContent('Storybook')
     expect(links[0]).toHaveAttribute('href', '/#storybook')
-    expect(links[1]).toHaveTextContent('Axure Prototype Kit')
-    expect(links[1]).toHaveAttribute('href', '/#axure-prototype-kit')
+    expect(links[1]).toHaveTextContent('Axure design libraries')
+    expect(links[1]).toHaveAttribute('href', '/guidance/design')
     expect(links).toHaveLength(2)
   })
 

@@ -102,6 +102,20 @@ describe('Docs Site: Components', () => {
       })
     })
 
+    describe('when the `Axure design libraries` sidebar link is clicked', () => {
+      beforeEach(() => {
+        cy.get(selectors.sidebar.axureDesignLibraries).click()
+      })
+
+      afterEach(() => {
+        cy.go('back')
+      })
+
+      it('should render the `Design` page', () => {
+        cy.get(selectors.layout.h1).should('have.text', 'Design')
+      })
+    })
+
     Object.keys(selectors.footer.siteLinks).forEach((siteLinkKey) => {
       const heading = startCase(siteLinkKey)
 

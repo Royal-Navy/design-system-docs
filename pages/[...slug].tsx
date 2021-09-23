@@ -349,7 +349,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
         />
         <SidebarOverviewMenuItem
           icon={<Axure />}
-          link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+          link={<Link href="/guidance/design">Axure design libraries</Link>}
         />
       </SidebarOverview>
       <SidebarFilter

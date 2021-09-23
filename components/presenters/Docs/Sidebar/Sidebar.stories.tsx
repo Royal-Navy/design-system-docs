@@ -24,7 +24,7 @@ stories.add('Default', () => (
       />
       <SidebarOverviewMenuItem
         icon={<IconBookmark />}
-        link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+        link={<Link href="/guidance/design">Axure design libraries</Link>}
       />
     </SidebarOverview>
     <SidebarFilter onChange={action('filter onChange')} />
