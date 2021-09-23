@@ -102,6 +102,16 @@ describe('Docs Site: Components', () => {
       })
     })
 
+    describe('the `Storybook` sidebar link', () => {
+      it('should be valid', () => {
+        cy.get(`${selectors.sidebar.storybook} a`)
+          .invoke('attr', 'href')
+          .then((href) => {
+            cy.request(href).its('status').should('eq', 200)
+          })
+      })
+    })
+
     describe('when the `Axure design libraries` sidebar link is clicked', () => {
       beforeEach(() => {
         cy.get(selectors.sidebar.axureDesignLibraries).click()
