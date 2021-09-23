@@ -1,13 +1,14 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-const { color, mq } = selectors
+const { color, mq, spacing } = selectors
 
 export const StyledTitle = styled.h1`
   color: ${color('neutral', '700')};
   font-weight: 900;
   font-size: 28px;
   max-width: 630px;
+  margin-top: ${spacing('12')};
 
   ${mq({ gte: 's' })`
     font-size: 34px;
