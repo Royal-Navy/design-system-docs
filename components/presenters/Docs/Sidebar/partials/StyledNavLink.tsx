@@ -6,7 +6,6 @@ const { color, fontSize, spacing } = selectors
 export const StyledNavLink = styled.a`
   position: relative;
   display: block;
-  /* width: 100%; */
   justify-content: center;
   flex-direction: column;
   color: ${color('neutral', '400')};
