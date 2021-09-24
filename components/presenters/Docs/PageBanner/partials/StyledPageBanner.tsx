@@ -1,9 +1,17 @@
+import styled, { css } from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
-import styled from 'styled-components'
+
+import { StyledMasthead } from '../../Masthead/partials/StyledMasthead'
+import { StyledBody } from '../../../../layouts/Legacy/partials/StyledBody'
+import { StyledMastheadWrapper } from '../../../../layouts/Legacy/partials/StyledMastheadWrapper'
+
+interface StyledPageBannerProps {
+  $isOpen: boolean
+}
 
 const { color, spacing, mq } = selectors
 
-export const StyledPageBanner = styled.div`
+export const StyledPageBanner = styled.div<StyledPageBannerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -35,4 +43,20 @@ export const StyledPageBanner = styled.div`
       text-decoration: none;
     }
   }
+
+  ${({ $isOpen }) =>
+    $isOpen &&
+    css`
+      + ${StyledMastheadWrapper} > ${StyledMasthead} {
+        top: 43px;
+      }
+
+      ~ ${StyledBody} {
+        padding-top: 92px;
+
+        ${mq({ gte: 'm' })`
+          padding-top: 107px;
+        `}
+      }
+    `}
 `

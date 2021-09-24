@@ -14,7 +14,7 @@ export const PageBanner: React.FC<ComponentWithClass> = ({ children }) => {
   }
 
   return isOpen ? (
-    <StyledPageBanner data-testid="page-banner">
+    <StyledPageBanner $isOpen={isOpen} data-testid="page-banner">
       <div>{children}</div>
       <StyledCloseButton
         onClick={handleOnClick}
