@@ -32,10 +32,6 @@ describe('Docs Site: Components', () => {
       cy.url().should('eq', `${baseUrl}/components/alert#`)
     })
 
-    it('should render the sidebar title', () => {
-      cy.get(selectors.sidebar.title).should('have.text', 'Components')
-    })
-
     it('should render the page title', () => {
       cy.get(selectors.layout.h1).should('have.text', 'Alert')
     })
@@ -102,27 +98,40 @@ describe('Docs Site: Components', () => {
       })
     })
 
-    describe('the `Storybook` sidebar link', () => {
-      it('should be valid', () => {
-        cy.get(`${selectors.sidebar.storybook} a`)
-          .invoke('attr', 'href')
-          .then((href) => {
-            cy.request(href).its('status').should('eq', 200)
-          })
-      })
-    })
-
-    describe('when the `Axure design libraries` sidebar link is clicked', () => {
-      beforeEach(() => {
-        cy.get(selectors.sidebar.axureDesignLibraries).click()
+    describe('sidebar', () => {
+      it('should render the title', () => {
+        cy.get(selectors.sidebar.title).should('have.text', 'Components')
       })
 
-      afterEach(() => {
-        cy.go('back')
+      it('should render the `Overview` link', () => {
+        cy.get(selectors.sidebar.links)
+          .eq(0)
+          .click()
+          .get(selectors.layout.h1)
+          .should('have.text', 'Components')
+          .go('back')
       })
 
-      it('should render the `Design` page', () => {
-        cy.get(selectors.layout.h1).should('have.text', 'Design')
+      describe('the `Storybook` link', () => {
+        it('should be valid', () => {
+          cy.get(`${selectors.sidebar.iconLinks}`)
+            .eq(0)
+            .invoke('attr', 'href')
+            .then((href) => {
+              cy.request(href).its('status').should('eq', 200)
+            })
+        })
+      })
+
+      describe('when the `Axure design libraries` link is clicked', () => {
+        it('should render the `Design` page', () => {
+          cy.get(selectors.sidebar.iconLinks)
+            .eq(1)
+            .click()
+            .get(selectors.layout.h1)
+            .should('have.text', 'Design')
+            .go('back')
+        })
       })
     })
 

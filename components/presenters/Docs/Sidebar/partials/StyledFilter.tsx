@@ -7,6 +7,6 @@ const { spacing } = selectors
 
 export const StyledFilter = styled.div`
   & + ${StyledNavSection} {
-    // margin-top: ${spacing('3')};
+    margin-top: ${spacing('4')};
   }
 `

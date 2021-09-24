@@ -9,8 +9,6 @@ import { Sidebar } from './Sidebar'
 import { SidebarFilter } from './SidebarFilter'
 import { SidebarMenu } from './SidebarMenu'
 import { SidebarMenuItem } from './SidebarMenuItem'
-import { SidebarOverview } from './SidebarOverview'
-import { SidebarOverviewMenuItem } from './SidebarOverviewMenuItem'
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance
@@ -25,16 +23,17 @@ describe('Sidebar', () => {
 
     wrapper = render(
       <Sidebar title="Components">
-        <SidebarOverview>
-          <SidebarOverviewMenuItem
+        <SidebarMenu>
+          <SidebarMenuItem link={<Link href="#overview">Overview</Link>} />
+          <SidebarMenuItem
             icon={<IconBookmark data-testid="icon-1" />}
             link={<Link href="#storybook">Storybook</Link>}
           />
-          <SidebarOverviewMenuItem
+          <SidebarMenuItem
             icon={<IconBookmark data-testid="icon-2" />}
             link={<Link href="/guidance/design">Axure design libraries</Link>}
           />
-        </SidebarOverview>
+        </SidebarMenu>
         <SidebarFilter {...filterProps} />
         <SidebarMenu>
           <SidebarMenuItem link={<Link href="#1">Item 1</Link>} />
@@ -44,29 +43,25 @@ describe('Sidebar', () => {
     )
   })
 
-  it('should render the overview', () => {
-    const links = wrapper.getAllByTestId('sidebar-overview-link')
+  it('should render the `Overview` link', () => {
+    expect(wrapper.getByText('Overview')).toHaveAttribute('href', '/#overview')
+  })
+
+  it('should render the icon items', () => {
+    const links = wrapper.getAllByTestId('sidebar-icon-link')
 
     expect(links[0]).toHaveTextContent('Storybook')
     expect(links[0]).toHaveAttribute('href', '/#storybook')
+    expect(wrapper.getByTestId('icon-1')).toBeInTheDocument()
     expect(links[1]).toHaveTextContent('Axure design libraries')
     expect(links[1]).toHaveAttribute('href', '/guidance/design')
-    expect(links).toHaveLength(2)
-  })
-
-  it('should render the overview icons', () => {
-    expect(wrapper.getByTestId('icon-1')).toBeInTheDocument()
     expect(wrapper.getByTestId('icon-2')).toBeInTheDocument()
+    expect(links).toHaveLength(2)
   })
 
   it('should render the menu items', () => {
-    const links = wrapper.getAllByTestId('sidebar-link')
-
-    expect(links[0]).toHaveTextContent('Item 1')
-    expect(links[0]).toHaveAttribute('href', '/#1')
-    expect(links[1]).toHaveTextContent('Item 2')
-    expect(links[1]).toHaveAttribute('href', '/#2')
-    expect(links).toHaveLength(2)
+    expect(wrapper.getByText('Item 1')).toHaveAttribute('href', '/#1')
+    expect(wrapper.getByText('Item 2')).toHaveAttribute('href', '/#2')
   })
 
   describe('when typing into the filter', () => {

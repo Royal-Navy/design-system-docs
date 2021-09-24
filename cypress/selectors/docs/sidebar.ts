@@ -1,6 +1,5 @@
 export default {
-  axureDesignLibraries:
-    '[data-testid="sidebar-overview-links"] li:nth-child(2)',
-  storybook: '[data-testid="sidebar-overview-links"] li:nth-child(1)',
+  iconLinks: '[data-testid="sidebar-icon-link"]',
+  links: '[data-testid="sidebar-link"]',
   title: '[data-testid="sidebar-title"]',
 }

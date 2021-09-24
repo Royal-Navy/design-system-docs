@@ -1,5 +1,3 @@
 export * from './Sidebar'
 export * from './SidebarMenu'
 export * from './SidebarMenuItem'
-export * from './SidebarOverview'
-export * from './SidebarOverviewMenuItem'
