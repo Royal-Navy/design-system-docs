@@ -26,8 +26,6 @@ import {
   Sidebar,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarOverview,
-  SidebarOverviewMenuItem,
 } from '../../presenters/Docs/Sidebar'
 import { OnThisPage } from '../../presenters/Docs/OnThisPage'
 import { PageBanner } from '../../presenters/Docs/PageBanner'
@@ -132,16 +130,17 @@ stories.add('Default', () => {
 
   const sidebar = (
     <Sidebar title="Components">
-      <SidebarOverview>
-        <SidebarOverviewMenuItem
+      <SidebarMenu>
+        <SidebarMenuItem link={<Link href="#overview">Overview</Link>} />
+        <SidebarMenuItem
           icon={<IconBookmark />}
           link={<Link href="#storybook">Storybook</Link>}
         />
-        <SidebarOverviewMenuItem
+        <SidebarMenuItem
           icon={<IconBookmark />}
-          link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+          link={<Link href="/guidance/design">Axure design libraries</Link>}
         />
-      </SidebarOverview>
+      </SidebarMenu>
       <SidebarFilter onChange={action('filter onChange')} />
       <SidebarMenu>
         <SidebarMenuItem link={<Link href="#alert">Alert</Link>} />

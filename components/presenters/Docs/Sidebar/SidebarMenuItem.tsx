@@ -2,23 +2,46 @@ import React from 'react'
 import { LinkProps } from 'next/link'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
+import { StyledIconNavLink } from './partials/StyledIconNavLink'
 import { StyledNavLink } from './partials/StyledNavLink'
 import { StyledSidebarMenuItem } from './partials/StyledSidebarMenuItem'
 
 export interface SidebarMenuItemProps extends ComponentWithClass {
+  icon?: React.ReactElement
   link: React.ReactElement<React.PropsWithChildren<LinkProps>>
 }
 
-export const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({ link }) => {
+function getLink(link: React.ReactElement<React.PropsWithChildren<LinkProps>>) {
+  return (
+    <StyledNavLink data-testid="sidebar-link">
+      {link.props.children}
+    </StyledNavLink>
+  )
+}
+
+function getIconLink(
+  icon: React.ReactElement,
+  link: React.ReactElement<React.PropsWithChildren<LinkProps>>
+) {
+  return (
+    <StyledIconNavLink data-testid="sidebar-icon-link">
+      <>
+        {icon}
+        <span>{link.props.children}</span>
+      </>
+    </StyledIconNavLink>
+  )
+}
+
+export const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({
+  icon,
+  link,
+}) => {
   return (
     <StyledSidebarMenuItem>
       {React.cloneElement(link, {
         ...link.props,
-        children: (
-          <StyledNavLink data-testid="sidebar-link">
-            {link.props.children}
-          </StyledNavLink>
-        ),
+        children: icon ? getIconLink(icon, link) : getLink(link),
         passHref: true,
       })}
     </StyledSidebarMenuItem>

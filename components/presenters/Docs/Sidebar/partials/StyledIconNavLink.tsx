@@ -3,7 +3,7 @@ import { selectors } from '@royalnavy/design-tokens'
 
 const { color, fontSize, spacing } = selectors
 
-export const StyledOverviewNavLink = styled.a`
+export const StyledIconNavLink = styled.a`
   color: ${color('neutral', '400')};
   font-weight: normal;
   font-size: ${fontSize('base')};

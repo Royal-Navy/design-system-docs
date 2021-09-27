@@ -33,8 +33,6 @@ import {
   Sidebar,
   SidebarMenu,
   SidebarMenuItem,
-  SidebarOverview,
-  SidebarOverviewMenuItem,
 } from '../components/presenters/Docs/Sidebar'
 import { OnThisPage } from '../components/presenters/Docs/OnThisPage'
 import { PageBanner } from '../components/presenters/Docs/PageBanner'
@@ -60,7 +58,7 @@ export interface GenericPageProps extends ComponentWithClass {
   page: PageType
   desktopNavigation: NavigationType
   childrenCollection: NavigationElementType[]
-  parentTitle: string
+  parentPage: NavigationElementType
 }
 
 /**
@@ -119,8 +117,8 @@ export const getStaticProps: GetStaticProps = async (context) => {
       slugs,
       page,
       desktopNavigation,
+      parentPage,
       childrenCollection: parentPage?.childrenCollection?.items || [],
-      parentTitle: parentPage.title,
     },
   }
 }
@@ -316,7 +314,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   page,
   childrenCollection,
   desktopNavigation,
-  parentTitle,
+  parentPage,
 }) => {
   const [filterString, setFilterString] = useState<string>(null)
   const { title, sectionCollection } = page
@@ -341,17 +339,22 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   )
 
   const sidebar = (
-    <Sidebar title={parentTitle}>
-      <SidebarOverview>
-        <SidebarOverviewMenuItem
+    <Sidebar title={parentPage?.title}>
+      <SidebarMenu>
+        {parentPage ? (
+          <SidebarMenuItem
+            link={<Link href={parentPage.path}>Overview</Link>}
+          />
+        ) : null}
+        <SidebarMenuItem
           icon={<Storybook />}
           link={<Link href="https://storybook.royalnavy.io">Storybook</Link>}
         />
-        <SidebarOverviewMenuItem
+        <SidebarMenuItem
           icon={<Axure />}
-          link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+          link={<Link href="/guidance/design">Axure design libraries</Link>}
         />
-      </SidebarOverview>
+      </SidebarMenu>
       <SidebarFilter
         onChange={(_: React.ChangeEvent<HTMLInputElement>, newValue: string) =>
           setFilterString(newValue.toLowerCase())
