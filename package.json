@@ -34,7 +34,7 @@
     "@royalnavy/icon-library": "^2.59.3",
     "@royalnavy/react-component-library": "^2.59.11",
     "@types/lodash": "^4.14.168",
-    "autoprefixer": "^10.3.4",
+    "autoprefixer": "^10.3.6",
     "contentful": "^8.5.7",
     "firacode": "^5.2.0",
     "graphql": "^15.5.0",
