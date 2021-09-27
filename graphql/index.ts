@@ -1831,6 +1831,10 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  page?: Maybe<Page>;
+  pageCollection?: Maybe<PageCollection>;
+  navigationElement?: Maybe<NavigationElement>;
+  navigationElementCollection?: Maybe<NavigationElementCollection>;
   swatchColour?: Maybe<SwatchColour>;
   swatchColourCollection?: Maybe<SwatchColourCollection>;
   swatch?: Maybe<Swatch>;
@@ -1841,10 +1845,6 @@ export type Query = {
   simpleCardCollection?: Maybe<SimpleCardCollection>;
   homepage?: Maybe<Homepage>;
   homepageCollection?: Maybe<HomepageCollection>;
-  page?: Maybe<Page>;
-  pageCollection?: Maybe<PageCollection>;
-  navigationElement?: Maybe<NavigationElement>;
-  navigationElementCollection?: Maybe<NavigationElementCollection>;
   navigation?: Maybe<Navigation>;
   navigationCollection?: Maybe<NavigationCollection>;
   apiField?: Maybe<ApiField>;
@@ -1879,6 +1879,40 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryPageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryPageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<PageFilter>;
+  order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryNavigationElementArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavigationElementCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavigationElementFilter>;
+  order?: Maybe<Array<Maybe<NavigationElementOrder>>>;
 };
 
 
@@ -1964,40 +1998,6 @@ export type QueryHomepageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<HomepageFilter>;
   order?: Maybe<Array<Maybe<HomepageOrder>>>;
-};
-
-
-export type QueryPageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryPageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<PageFilter>;
-  order?: Maybe<Array<Maybe<PageOrder>>>;
-};
-
-
-export type QueryNavigationElementArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryNavigationElementCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<NavigationElementFilter>;
-  order?: Maybe<Array<Maybe<NavigationElementOrder>>>;
 };
 
 
