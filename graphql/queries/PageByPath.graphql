@@ -77,15 +77,16 @@ query PageByPath($path: String!) {
                             }
                           }
                         }
+                        ... on CodeBlock {
+                          sourceCode
+                        }
                       }
                       inline {
                         sys {
                           id
                         }
                         __typename
-                        ... on CodeBlock {
-                          sourceCode
-                        }
+
                       }
                     }
                   }
