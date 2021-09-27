@@ -2555,23 +2555,41 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@royalnavy/css-framework@^2.59.3", "@royalnavy/css-framework@^2.59.8":
-  version "2.59.8"
-  resolved "https://registry.yarnpkg.com/@royalnavy/css-framework/-/css-framework-2.59.8.tgz#8f8f2a82da0e7e47fa32384d173678c9b5047f77"
-  integrity sha512-ROTh55FUZL+AqxKa5iJePEXD/QvrTKg33mWUwEfg+Msu+Tcm+fh7S4rW9DnXaJE2xDKQS9Faf3i0O+Ae3DcQlA==
+"@royalnavy/css-framework@^2.59.11", "@royalnavy/css-framework@^2.59.3":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/css-framework/-/css-framework-2.59.11.tgz#834a33db1dbb39489ec4b5fa1a591aa1174f6398"
+  integrity sha512-IYTTn1czUrAqZQeHSFRg30Hrjw+NdUFQLmDG85xWbjm2SqQ8U7QAJ7AU5ZX88mTX1LRQ+HF8DeVREEgX7Bqsdg==
   dependencies:
-    "@royalnavy/design-tokens" "^2.59.8"
-    "@royalnavy/eslint-config-react" "^2.59.8"
+    "@royalnavy/design-tokens" "^2.59.11"
+    "@royalnavy/eslint-config-react" "^2.59.11"
 
-"@royalnavy/design-tokens@^2.59.3", "@royalnavy/design-tokens@^2.59.8":
-  version "2.59.8"
-  resolved "https://registry.yarnpkg.com/@royalnavy/design-tokens/-/design-tokens-2.59.8.tgz#50665ebe6b3ab99bfcfd470e8eb13d20cd0121dd"
-  integrity sha512-uzkJzCkdFM1PlbWeHmRMdB5fZ+DO7qWEyomcNBkxJyd531vjsUTylRHdTYtM7XFw4YVmEOaqFDWkSzeRQV2UiA==
+"@royalnavy/design-tokens@^2.59.11", "@royalnavy/design-tokens@^2.59.3":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/design-tokens/-/design-tokens-2.59.11.tgz#e7a3442f912476c588a76f222a10aa1f100dcd18"
+  integrity sha512-ml9FD1CYAO8mi1dIoHwo40E4Yb6Ww059jCM3QVdrPDWkpq99+dN6jXipHkZLHnRWmnbJxLDL4+C2ZK7Auf054w==
   dependencies:
-    "@royalnavy/eslint-config-react" "^2.59.8"
+    "@royalnavy/eslint-config-react" "^2.59.11"
     lodash "^4.17.20"
 
-"@royalnavy/eslint-config-react@^2.59.3", "@royalnavy/eslint-config-react@^2.59.8":
+"@royalnavy/eslint-config-react@^2.59.11":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/eslint-config-react/-/eslint-config-react-2.59.11.tgz#2f207165c600c5b6ac61f1f0f9f6efb6f803b716"
+  integrity sha512-KPw5+5wXaHDUoKlGWPJI/vSl80xX+xgT/gkRnMNwAz0Q5RP2ThluwtjMKqEipvZHgVobQvhGpCY+O1e19hLfag==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^4.9.1"
+    "@typescript-eslint/parser" "^4.9.1"
+    eslint "^7.15.0"
+    eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^8.3.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jest "^24.1.3"
+    eslint-plugin-jsx-a11y "^6.4.1"
+    eslint-plugin-prettier "^3.2.0"
+    eslint-plugin-react "^7.21.5"
+    eslint-plugin-react-hooks "^4.2.0"
+    prettier "^2.2.1"
+
+"@royalnavy/eslint-config-react@^2.59.3":
   version "2.59.8"
   resolved "https://registry.yarnpkg.com/@royalnavy/eslint-config-react/-/eslint-config-react-2.59.8.tgz#6ce754656406b3ca79aba1e6ea63338190121758"
   integrity sha512-GTnfHaktnm+kL8veYesa+c8eJlweYlVI+RMOLC11sEYalv/azEmE++cBoDtMOklU4XInzKt3IirY4M5blT+w+A==
@@ -2589,31 +2607,31 @@
     eslint-plugin-react-hooks "^4.2.0"
     prettier "^2.2.1"
 
-"@royalnavy/fonts@^2.59.3", "@royalnavy/fonts@^2.59.8":
-  version "2.59.8"
-  resolved "https://registry.yarnpkg.com/@royalnavy/fonts/-/fonts-2.59.8.tgz#8831e05f76f2791a63c4ba5726336b5dee17d2d7"
-  integrity sha512-JfZHBX5fZov3fZpBGRzmHs8+JefiQKypjx8tPitjZKESVwldGZVQDRICs0SRiUpQi+1wcBI5yrjOLol2zURCSw==
+"@royalnavy/fonts@^2.59.11", "@royalnavy/fonts@^2.59.3":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/fonts/-/fonts-2.59.11.tgz#05cf798b5f8890908e5a7a2c4dcdc5dbf7c3dfc1"
+  integrity sha512-wF4yioKmipD7SsMqcPJdK+N2jI/g8ilNKLiMz+IEgn4TxPMHvMOW7AIm7yniQrIc0v/X4HPkm79t+vzg3VOklQ==
 
-"@royalnavy/icon-library@^2.59.3", "@royalnavy/icon-library@^2.59.8":
-  version "2.59.8"
-  resolved "https://registry.yarnpkg.com/@royalnavy/icon-library/-/icon-library-2.59.8.tgz#684e70ae4d1d46d6516cd78b6640c7e1c92bf03b"
-  integrity sha512-CS1m+UXF+sdEkoviQMNduVfyPEr4EjRzU4KirIjwh274HFv/MXJ/vcIBijqc3+FdhYncNlZp7uySOJEGY7N+/g==
+"@royalnavy/icon-library@^2.59.11", "@royalnavy/icon-library@^2.59.3":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/icon-library/-/icon-library-2.59.11.tgz#e3b2bfc794ea299dfca549f7a20071cc7ac71566"
+  integrity sha512-PBrST6qnp1tYQEkKBThmm1NnOpuXgh5grHLdssHZSybBppNPGG8njYg+aftoVYJ0Hfrn4ZWTU4bw3GB25IKwPw==
   dependencies:
-    "@royalnavy/eslint-config-react" "^2.59.8"
+    "@royalnavy/eslint-config-react" "^2.59.11"
     react "^17.0.1"
     react-svg-unique-id "^1.3.3"
 
-"@royalnavy/react-component-library@^2.59.3":
-  version "2.59.8"
-  resolved "https://registry.yarnpkg.com/@royalnavy/react-component-library/-/react-component-library-2.59.8.tgz#4f9f142cc63bcc6e7c73ad58d6044ea851fa7173"
-  integrity sha512-8gOWPPU+Gb/wh8CojrTof7W5nG8YZOLC4CE8frnB/fqoep1TrX+2nbA+c+kZGTbsVp+yUw7pQsgB3J8p1+IuOw==
+"@royalnavy/react-component-library@^2.59.11":
+  version "2.59.11"
+  resolved "https://registry.yarnpkg.com/@royalnavy/react-component-library/-/react-component-library-2.59.11.tgz#9a37323fa716a941485911747e83f8ee3086ec96"
+  integrity sha512-8/pYsXzGTD4xUq7Q4tjYmkOukb0BByuh+35w/hDHgarngspk2/trgdc6AxUYUeKWtv9FzS4IJqhyRlYKMQTXbg==
   dependencies:
     "@datepicker-react/hooks" "^2.4.1"
     "@popperjs/core" "^2.9.2"
-    "@royalnavy/css-framework" "^2.59.8"
-    "@royalnavy/design-tokens" "^2.59.8"
-    "@royalnavy/fonts" "^2.59.8"
-    "@royalnavy/icon-library" "^2.59.8"
+    "@royalnavy/css-framework" "^2.59.11"
+    "@royalnavy/design-tokens" "^2.59.11"
+    "@royalnavy/fonts" "^2.59.11"
+    "@royalnavy/icon-library" "^2.59.11"
     "@types/react-responsive" "^8.0.2"
     "@types/react-toast-notifications" "^2.4.0"
     autoprefixer "^10.2.5"
