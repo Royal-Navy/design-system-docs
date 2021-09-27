@@ -2796,6 +2796,7 @@ export type PageByPathQuery = (
                     ) }
                   ) | (
                     { __typename: 'CodeBlock' }
+                    & Pick<CodeBlock, 'sourceCode'>
                     & { sys: (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>
@@ -2893,7 +2894,6 @@ export type PageByPathQuery = (
                     ) }
                   ) | (
                     { __typename: 'CodeBlock' }
-                    & Pick<CodeBlock, 'sourceCode'>
                     & { sys: (
                       { __typename?: 'Sys' }
                       & Pick<Sys, 'id'>

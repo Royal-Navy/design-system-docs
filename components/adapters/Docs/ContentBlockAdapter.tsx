@@ -104,11 +104,18 @@ function getRichTextRenderOptions(links) {
         )
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
-        const entryBlockMap = getEntryMap<MarkdownTableType | SwatchType>(
-          links,
-          'entries'
-        )
+        const entryBlockMap = getEntryMap<
+          CodeBlockType | MarkdownTableType | SwatchType
+        >(links, 'entries')
         const entry = entryBlockMap.get(node.data.target.sys.id)
+
+        if (entry.__typename === 'CodeBlock') {
+          return (
+            <CodeBlock language="scss">
+              {(entry as CodeBlockType).sourceCode}
+            </CodeBlock>
+          )
+        }
 
         if (entry.__typename === 'MarkdownTable') {
           return (
@@ -156,20 +163,6 @@ function getRichTextRenderOptions(links) {
         const hyperlink = hyperlinksMap.get(node.data.target.sys.id)
 
         return <a href={hyperlink.url}>{node.content[0].value}</a>
-      },
-      [INLINES.EMBEDDED_ENTRY]: (node) => {
-        const entryInlineMap = getEntryMap<CodeBlockType>(
-          links,
-          'entries',
-          'inline'
-        )
-        const entry = entryInlineMap.get(node.data.target.sys.id)
-
-        if (entry.__typename === 'CodeBlock') {
-          return <CodeBlock language="scss">{entry.sourceCode}</CodeBlock>
-        }
-
-        return null
       },
     },
   }

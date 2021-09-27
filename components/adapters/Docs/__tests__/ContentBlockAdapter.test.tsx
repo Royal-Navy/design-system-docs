@@ -226,7 +226,7 @@ describe('Docs/ContentBlockAdapter', () => {
             data: {},
             content: [
               {
-                nodeType: 'embedded-entry-inline',
+                nodeType: 'embedded-entry-block',
                 content: [],
                 data: {
                   target: {
@@ -242,7 +242,7 @@ describe('Docs/ContentBlockAdapter', () => {
           },
           links: {
             entries: {
-              inline: [
+              block: [
                 {
                   sys: {
                     id: '47DP1urOOAdvdXaCGeheqZ',
