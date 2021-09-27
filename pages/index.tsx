@@ -1,4 +1,5 @@
 import React from 'react'
+import { useMediaQuery } from 'react-responsive'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
@@ -40,6 +41,7 @@ import { StyledCard } from '../components/presenters/Docs/Card/partials/StyledCa
 
 export interface HomeProps {
   desktopNavigation: NavigationType
+  mobileNavigation: NavigationType
   pageData: HomepageType
 }
 
@@ -68,22 +70,36 @@ async function fetchDesktopNavigation(): Promise<NavigationType> {
 }
 
 /**
+ * Fetch mobile navigation from Contentful
+ *
+ */
+async function fetchMobileNavigation(): Promise<NavigationType> {
+  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
+    id: '3tE4icMED8H3oRTFAQHeCr',
+  })
+
+  return navigation
+}
+
+/**
  * Fetch data from Contentful for static site generation (SSG)
  *
  */
 export const getStaticProps: GetStaticProps = async (context) => {
   const desktopNavigation = await fetchDesktopNavigation()
+  const mobileNavigation = await fetchMobileNavigation()
   const pageData = await fetchPageData()
 
   return {
     props: {
       desktopNavigation,
+      mobileNavigation,
       pageData,
     },
   }
 }
 
-const { color, mq, spacing } = selectors
+const { color, mq, spacing, breakpoint } = selectors
 
 const StyledDollar = styled.span`
   font-weight: 600;
@@ -169,7 +185,11 @@ const StyledButtonGroup = styled.div`
   }
 `
 
-export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
+export const Home: React.FC<HomeProps> = ({
+  desktopNavigation,
+  mobileNavigation,
+  pageData,
+}) => {
   const { version } = useDesignSystemVersion()
   const {
     heroHeading,
@@ -201,10 +221,16 @@ export const Home: React.FC<HomeProps> = ({ desktopNavigation, pageData }) => {
     </PageBanner>
   )
 
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${breakpoint('m').breakpoint})`,
+  })
+
+  const navigation = isTabletOrMobile ? mobileNavigation : desktopNavigation
+
   const masthead = (
     <Masthead version={version}>
       <MastheadMenu>
-        {desktopNavigation.childrenCollection.items.map(
+        {navigation.childrenCollection.items.map(
           ({
             title: parentTitle,
             path: parentPath,
