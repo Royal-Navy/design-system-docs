@@ -1,5 +1,5 @@
 query PageByPath($path: String!) {
-  navigationElementCollection(where: { path: $path }, limit: 1) {
+  navigationElementCollection(where: {path: $path}, limit: 1) {
     items {
       title
       path
@@ -19,6 +19,9 @@ query PageByPath($path: String!) {
       }
       page {
         ... on Page {
+          sys {
+            id
+          }
           title
           sectionCollection(limit: 10) {
             items {

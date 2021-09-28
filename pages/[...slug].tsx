@@ -135,6 +135,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
       parentPage,
       desktopNavigation,
       mobileNavigation,
+      key: page.sys.id,
       childrenCollection: parentPage?.childrenCollection?.items || [],
     },
   }

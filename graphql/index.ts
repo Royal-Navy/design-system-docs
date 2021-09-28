@@ -2720,7 +2720,10 @@ export type PageByPathQuery = (
       )>, page?: Maybe<(
         { __typename?: 'Page' }
         & Pick<Page, 'title'>
-        & { sectionCollection?: Maybe<(
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ), sectionCollection?: Maybe<(
           { __typename?: 'PageSectionCollection' }
           & { items: Array<Maybe<(
             { __typename: 'ApiTable' }
