@@ -14,15 +14,24 @@ function getVariantStyles($variant: ButtonVariantType) {
     primary: css`
       background-color: ${color('action', '600')};
       color: ${color('neutral', 'white')};
+      &:hover {
+        background-color: ${color('action', '500')};
+      }
     `,
     secondary: css`
       background-color: ${color('neutral', 'white')};
       color: ${color('action', '800')};
+      &:hover {
+        background-color: ${color('neutral', '100')};
+      }
     `,
     tertiary: css`
       background-color: #edf2f7;
       color: ${color('neutral', '500')};
       box-shadow: none;
+      &:hover {
+        background-color: ${color('neutral', '100')};
+      }
     `,
     quaternary: css`
       background-color: ${color('neutral', '400')};
@@ -31,6 +40,9 @@ function getVariantStyles($variant: ButtonVariantType) {
       border-radius: 9px;
       font-weight: 600;
       box-shadow: none;
+      &:hover {
+        background-color: ${color('neutral', '300')};
+      }
     `,
   }
 
@@ -49,6 +61,7 @@ export const StyledButton = styled.a<StyledButtonProps>`
   box-shadow: ${shadow('3')};
   font-weight: 500;
   cursor: pointer;
+  transition: transform 0.15s, color 0.15s;
 
   &:hover {
     text-decoration: none;
