@@ -1,10 +1,14 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before, expect } from 'local-cypress'
+import { selectors as designTokensSelectors } from '@royalnavy/design-tokens'
 import { startCase } from 'lodash'
 
 // eslint-disable-next-line import/extensions
 import { baseUrl } from '../../../cypress.json'
 import selectors from '../../selectors/docs'
+import { hexToRgb } from '../../helpers'
+
+const { color } = designTokensSelectors
 
 const sections = [
   { title: 'Overview', link: '#1-overview' },
@@ -86,9 +90,41 @@ describe('Docs Site: Components', () => {
           cy.get(selectors.onThisPage.item).eq(index).click({ force: true })
         })
 
+        it('should set the `OnThisPage` item as active', () => {
+          cy.get(selectors.onThisPage.item)
+            .eq(index)
+            .should(
+              'have.css',
+              'border-left',
+              `4px solid ${hexToRgb(color('neutral', '400'))}`
+            )
+        })
+
         it('should navigate to the relevant sub-heading', () => {
           cy.get(selectors.contentBlock.h2).eq(index).should('be.visible')
           cy.url().should('eq', `${baseUrl}/components/alert${link}`)
+        })
+      })
+    })
+
+    describe('when the third `OnThisPage` item has been clicked', () => {
+      before(() => {
+        cy.get(selectors.onThisPage.item).eq(2).click({ force: true })
+      })
+
+      describe('and `Notifications` sidebar item is clicked', () => {
+        before(() => {
+          cy.get(selectors.sidebar.links).eq(2).click()
+        })
+
+        it('should set the `OnThisPage` first item as active', () => {
+          cy.get(selectors.onThisPage.item)
+            .eq(0)
+            .should(
+              'have.css',
+              'border-left',
+              `4px solid ${hexToRgb(color('neutral', '400'))}`
+            )
         })
       })
     })
