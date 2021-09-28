@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { selectors } from '@royalnavy/design-tokens'
+import { useMediaQuery } from 'react-responsive'
 import groupBy from 'lodash/groupBy'
 import upperFirst from 'lodash/upperFirst'
 import kebabCase from 'lodash/kebabCase'
@@ -57,6 +59,7 @@ export interface GenericPageProps extends ComponentWithClass {
   slugs: string[]
   page: PageType
   desktopNavigation: NavigationType
+  mobileNavigation: NavigationType
   childrenCollection: NavigationElementType[]
   parentPage: NavigationElementType
 }
@@ -90,6 +93,18 @@ async function fetchDesktopNavigation(): Promise<NavigationType> {
 }
 
 /**
+ * Fetch mobile navigation from Contentful
+ *
+ */
+async function fetchMobileNavigation(): Promise<NavigationType> {
+  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
+    id: '3tE4icMED8H3oRTFAQHeCr',
+  })
+
+  return navigation
+}
+
+/**
  * Fetch a flat collection of all routes from Contentful
  *
  */
@@ -109,6 +124,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const slugs = context.params.slug as string[]
 
   const desktopNavigation = await fetchDesktopNavigation()
+  const mobileNavigation = await fetchMobileNavigation()
   const parentPage = await fetchPageByPath(`/${slugs[0]}`)
   const { page } = await fetchPageByPath(`/${slugs.join('/')}`)
 
@@ -116,8 +132,9 @@ export const getStaticProps: GetStaticProps = async (context) => {
     props: {
       slugs,
       page,
-      desktopNavigation,
       parentPage,
+      desktopNavigation,
+      mobileNavigation,
       childrenCollection: parentPage?.childrenCollection?.items || [],
     },
   }
@@ -309,11 +326,14 @@ function mapMenuItem({
   )
 }
 
+const { breakpoint } = selectors
+
 export const GenericPage: React.FC<GenericPageProps> = ({
   slugs,
   page,
   childrenCollection,
   desktopNavigation,
+  mobileNavigation,
   parentPage,
 }) => {
   const [filterString, setFilterString] = useState<string>(null)
@@ -330,10 +350,16 @@ export const GenericPage: React.FC<GenericPageProps> = ({
     </PageBanner>
   )
 
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${breakpoint('m').breakpoint})`,
+  })
+
+  const navigation = isTabletOrMobile ? mobileNavigation : desktopNavigation
+
   const masthead = (
     <Masthead version={version}>
       <MastheadMenu>
-        {desktopNavigation.childrenCollection.items.map(mapMenuItem)}
+        {navigation.childrenCollection.items.map(mapMenuItem)}
       </MastheadMenu>
     </Masthead>
   )

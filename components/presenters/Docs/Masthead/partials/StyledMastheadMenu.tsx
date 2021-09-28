@@ -16,6 +16,11 @@ export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
   height: 100vh;
   padding: ${spacing('6')} 0;
   box-shadow: ${shadow('3')};
+  overflow-y: scroll;
+
+  ${mq({ gte: 'm' })`
+    overflow-y: unset;
+  `}
 
   ol {
     padding: 0;
