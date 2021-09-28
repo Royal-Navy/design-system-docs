@@ -16,6 +16,8 @@ export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
   height: 100vh;
   padding: ${spacing('6')} 0;
   box-shadow: ${shadow('3')};
+  transition: all 0.15s;
+  transform: translateX(0) cubic-bezier(0.52, 0.01, 0.5, 1.18);
   overflow-y: scroll;
 
   ${mq({ gte: 'm' })`
@@ -49,9 +51,10 @@ export const StyledMastheadMenu = styled.nav<StyledMastheadMenuProps>`
   ${({ $isOpen }) =>
     !$isOpen &&
     css`
-      visibility: hidden;
+      transform: translateX(-100%);
 
       ${mq({ gte: 'm' })`
+        transform: unset;
         visibility: visible;
       `}
     `}
