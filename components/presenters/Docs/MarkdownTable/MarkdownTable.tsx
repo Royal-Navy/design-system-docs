@@ -27,7 +27,6 @@ const StyledMarkdownTable = styled(Markdown)`
   td {
     padding: ${spacing('6')} ${spacing('10')};
     text-align: left;
-    white-space: nowrap;
     font-size: ${fontSize('base')};
     color: ${color('neutral', '400')};
     border-left: 1px solid ${color('neutral', '100')};
@@ -47,10 +46,6 @@ const StyledMarkdownTable = styled(Markdown)`
     line-height: 1;
     margin-right: ${spacing('4')};
   }
-
-  ${mq({ gte: 'm' })`
-
-  `}
 `
 
 export const MarkdownTable: React.FC<MarkdownTableProps> = (props) => (
