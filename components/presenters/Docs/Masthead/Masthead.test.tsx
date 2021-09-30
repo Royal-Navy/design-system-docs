@@ -1,7 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import '@testing-library/jest-dom/extend-expect'
-import { render, RenderResult, fireEvent } from '@testing-library/react'
+import {
+  render,
+  RenderResult,
+  fireEvent,
+  waitFor,
+} from '@testing-library/react'
 
 import {
   Masthead,
@@ -17,24 +22,29 @@ describe('Masthead', () => {
   describe('with required props', () => {
     beforeEach(() => {
       wrapper = render(
-        <Masthead version="3.0.0">
-          <MastheadMenu>
-            <MastheadMenuItem link={<Link href="#guidance">Guidance</Link>} />
-            <MastheadMenuItem
-              link={<Link href="#principles">Principles</Link>}
-            />
-            <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
-              <MastheadSubMenu>
-                <MastheadSubMenuItem
-                  link={<Link href="#design-tokens">Design Tokens</Link>}
-                />
-              </MastheadSubMenu>
-            </MastheadMenuItem>
-            <MastheadMenuItem link={<Link href="#resources">Resources</Link>} />
-            <MastheadMenuItem link={<Link href="#help">Help</Link>} />
-            <MastheadMenuItem link={<Link href="#blog">Blog</Link>} />
-          </MastheadMenu>
-        </Masthead>
+        <>
+          <div data-testid="outside" />
+          <Masthead version="3.0.0">
+            <MastheadMenu>
+              <MastheadMenuItem link={<Link href="#guidance">Guidance</Link>} />
+              <MastheadMenuItem
+                link={<Link href="#principles">Principles</Link>}
+              />
+              <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
+                <MastheadSubMenu>
+                  <MastheadSubMenuItem
+                    link={<Link href="#design-tokens">Design Tokens</Link>}
+                  />
+                </MastheadSubMenu>
+              </MastheadMenuItem>
+              <MastheadMenuItem
+                link={<Link href="#resources">Resources</Link>}
+              />
+              <MastheadMenuItem link={<Link href="#help">Help</Link>} />
+              <MastheadMenuItem link={<Link href="#blog">Blog</Link>} />
+            </MastheadMenu>
+          </Masthead>
+        </>
       )
     })
 
@@ -53,6 +63,34 @@ describe('Masthead', () => {
 
       it('should display the sub navigation', () => {
         expect(wrapper.queryByText('Design Tokens')).toBeInTheDocument()
+      })
+
+      describe.skip('and the user clicks outside of the sub menu', () => {
+        beforeEach(() => {
+          fireEvent.click(wrapper.getByTestId('outside'))
+        })
+
+        it('hides the sub menu', () => {
+          return waitFor(() => {
+            expect(
+              wrapper.queryByTestId('masthead-sub-menu')
+            ).not.toBeInTheDocument()
+          })
+        })
+      })
+
+      describe('and the user clicks on a navigation item', () => {
+        beforeEach(() => {
+          fireEvent.click(wrapper.getByTestId('masthead-sub-menu'))
+        })
+
+        it('hides the sub menu', () => {
+          return waitFor(() => {
+            expect(
+              wrapper.queryByTestId('masthead-sub-menu')
+            ).not.toBeInTheDocument()
+          })
+        })
       })
     })
   })

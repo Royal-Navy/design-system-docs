@@ -16,8 +16,13 @@ export interface BadgeProps extends ComponentWithClass {
 export const Badge: React.FC<BadgeProps> = ({
   children,
   variant = BADGE_VARIANT.LIGHT,
+  className,
 }) => {
-  return <StyledBadge $variant={variant}>{children}</StyledBadge>
+  return (
+    <StyledBadge className={className} $variant={variant}>
+      {children}
+    </StyledBadge>
+  )
 }
 
 Badge.displayName = 'Badge'

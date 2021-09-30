@@ -244,11 +244,20 @@ export type ApiTableFilter = {
 export type ApiTableLinkingCollections = {
   __typename?: 'ApiTableLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type ApiTableLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ApiTableLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -535,11 +544,20 @@ export type CodeBlockFilter = {
 export type CodeBlockLinkingCollections = {
   __typename?: 'CodeBlockLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type CodeBlockLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type CodeBlockLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -659,11 +677,20 @@ export type ContentBlockFilter = {
 export type ContentBlockLinkingCollections = {
   __typename?: 'ContentBlockLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type ContentBlockLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ContentBlockLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -681,122 +708,6 @@ export type ContentBlockLinkingCollectionsSectionCollectionArgs = {
 export enum ContentBlockOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
-  SysIdAsc = 'sys_id_ASC',
-  SysIdDesc = 'sys_id_DESC',
-  SysPublishedAtAsc = 'sys_publishedAt_ASC',
-  SysPublishedAtDesc = 'sys_publishedAt_DESC',
-  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
-  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
-  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
-  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
-}
-
-/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
-export type ContentPage = Entry & {
-  __typename?: 'ContentPage';
-  sys: Sys;
-  contentfulMetadata: ContentfulMetadata;
-  linkedFrom?: Maybe<ContentPageLinkingCollections>;
-  title?: Maybe<Scalars['String']>;
-  isLegacy?: Maybe<Scalars['Boolean']>;
-  bodyContent?: Maybe<ContentPageBodyContent>;
-};
-
-
-/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
-export type ContentPageLinkedFromArgs = {
-  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
-};
-
-
-/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
-export type ContentPageTitleArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
-export type ContentPageIsLegacyArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-/** Represents a single navigable route (with arbitrary markdown content and inline asset rendering). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/contentPage) */
-export type ContentPageBodyContentArgs = {
-  locale?: Maybe<Scalars['String']>;
-};
-
-export type ContentPageBodyContent = {
-  __typename?: 'ContentPageBodyContent';
-  json: Scalars['JSON'];
-  links: ContentPageBodyContentLinks;
-};
-
-export type ContentPageBodyContentAssets = {
-  __typename?: 'ContentPageBodyContentAssets';
-  hyperlink: Array<Maybe<Asset>>;
-  block: Array<Maybe<Asset>>;
-};
-
-export type ContentPageBodyContentEntries = {
-  __typename?: 'ContentPageBodyContentEntries';
-  inline: Array<Maybe<Entry>>;
-  hyperlink: Array<Maybe<Entry>>;
-  block: Array<Maybe<Entry>>;
-};
-
-export type ContentPageBodyContentLinks = {
-  __typename?: 'ContentPageBodyContentLinks';
-  entries: ContentPageBodyContentEntries;
-  assets: ContentPageBodyContentAssets;
-};
-
-export type ContentPageCollection = {
-  __typename?: 'ContentPageCollection';
-  total: Scalars['Int'];
-  skip: Scalars['Int'];
-  limit: Scalars['Int'];
-  items: Array<Maybe<ContentPage>>;
-};
-
-export type ContentPageFilter = {
-  sys?: Maybe<SysFilter>;
-  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
-  title_exists?: Maybe<Scalars['Boolean']>;
-  title?: Maybe<Scalars['String']>;
-  title_not?: Maybe<Scalars['String']>;
-  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
-  title_contains?: Maybe<Scalars['String']>;
-  title_not_contains?: Maybe<Scalars['String']>;
-  isLegacy_exists?: Maybe<Scalars['Boolean']>;
-  isLegacy?: Maybe<Scalars['Boolean']>;
-  isLegacy_not?: Maybe<Scalars['Boolean']>;
-  bodyContent_exists?: Maybe<Scalars['Boolean']>;
-  bodyContent_contains?: Maybe<Scalars['String']>;
-  bodyContent_not_contains?: Maybe<Scalars['String']>;
-  OR?: Maybe<Array<Maybe<ContentPageFilter>>>;
-  AND?: Maybe<Array<Maybe<ContentPageFilter>>>;
-};
-
-export type ContentPageLinkingCollections = {
-  __typename?: 'ContentPageLinkingCollections';
-  entryCollection?: Maybe<EntryCollection>;
-};
-
-
-export type ContentPageLinkingCollectionsEntryCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-export enum ContentPageOrder {
-  TitleAsc = 'title_ASC',
-  TitleDesc = 'title_DESC',
-  IsLegacyAsc = 'isLegacy_ASC',
-  IsLegacyDesc = 'isLegacy_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -940,11 +851,20 @@ export type HeroFilter = {
 export type HeroLinkingCollections = {
   __typename?: 'HeroLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type HeroLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type HeroLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -974,6 +894,317 @@ export enum HeroOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type Homepage = Entry & {
+  __typename?: 'Homepage';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<HomepageLinkingCollections>;
+  heroHeading?: Maybe<Scalars['String']>;
+  heroSubHeading?: Maybe<Scalars['String']>;
+  heroButtons?: Maybe<Scalars['JSON']>;
+  section1Heading?: Maybe<Scalars['String']>;
+  section1SubHeading?: Maybe<Scalars['String']>;
+  section1CardsCollection?: Maybe<HomepageSection1CardsCollection>;
+  section2Heading?: Maybe<Scalars['String']>;
+  section2SubHeading?: Maybe<Scalars['String']>;
+  section2Buttons?: Maybe<Scalars['JSON']>;
+  section3Heading?: Maybe<Scalars['String']>;
+  section3SubHeading?: Maybe<Scalars['String']>;
+  section3CardsCollection?: Maybe<HomepageSection3CardsCollection>;
+  section4Heading?: Maybe<Scalars['String']>;
+  section4SubHeading?: Maybe<Scalars['String']>;
+  section4Buttons?: Maybe<Scalars['JSON']>;
+  section5Heading?: Maybe<Scalars['String']>;
+  section5SubHeading?: Maybe<Scalars['String']>;
+  section5Buttons?: Maybe<Scalars['JSON']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageHeroHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageHeroSubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageHeroButtonsArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection1HeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection1SubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection1CardsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection2HeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection2SubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection2ButtonsArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection3HeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection3SubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection3CardsCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection4HeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection4SubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection4ButtonsArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection5HeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection5SubHeadingArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a docs-site Homepage and the associated content. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/homepage) */
+export type HomepageSection5ButtonsArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type HomepageCollection = {
+  __typename?: 'HomepageCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Homepage>>;
+};
+
+export type HomepageFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  heroHeading_exists?: Maybe<Scalars['Boolean']>;
+  heroHeading?: Maybe<Scalars['String']>;
+  heroHeading_not?: Maybe<Scalars['String']>;
+  heroHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heroHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heroHeading_contains?: Maybe<Scalars['String']>;
+  heroHeading_not_contains?: Maybe<Scalars['String']>;
+  heroSubHeading_exists?: Maybe<Scalars['Boolean']>;
+  heroSubHeading?: Maybe<Scalars['String']>;
+  heroSubHeading_not?: Maybe<Scalars['String']>;
+  heroSubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heroSubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  heroSubHeading_contains?: Maybe<Scalars['String']>;
+  heroSubHeading_not_contains?: Maybe<Scalars['String']>;
+  section1Heading_exists?: Maybe<Scalars['Boolean']>;
+  section1Heading?: Maybe<Scalars['String']>;
+  section1Heading_not?: Maybe<Scalars['String']>;
+  section1Heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section1Heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section1Heading_contains?: Maybe<Scalars['String']>;
+  section1Heading_not_contains?: Maybe<Scalars['String']>;
+  section1SubHeading_exists?: Maybe<Scalars['Boolean']>;
+  section1SubHeading?: Maybe<Scalars['String']>;
+  section1SubHeading_not?: Maybe<Scalars['String']>;
+  section1SubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section1SubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section1SubHeading_contains?: Maybe<Scalars['String']>;
+  section1SubHeading_not_contains?: Maybe<Scalars['String']>;
+  section1CardsCollection_exists?: Maybe<Scalars['Boolean']>;
+  section2Heading_exists?: Maybe<Scalars['Boolean']>;
+  section2Heading?: Maybe<Scalars['String']>;
+  section2Heading_not?: Maybe<Scalars['String']>;
+  section2Heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section2Heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section2Heading_contains?: Maybe<Scalars['String']>;
+  section2Heading_not_contains?: Maybe<Scalars['String']>;
+  section2SubHeading_exists?: Maybe<Scalars['Boolean']>;
+  section2SubHeading?: Maybe<Scalars['String']>;
+  section2SubHeading_not?: Maybe<Scalars['String']>;
+  section2SubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section2SubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section2SubHeading_contains?: Maybe<Scalars['String']>;
+  section2SubHeading_not_contains?: Maybe<Scalars['String']>;
+  section3Heading_exists?: Maybe<Scalars['Boolean']>;
+  section3Heading?: Maybe<Scalars['String']>;
+  section3Heading_not?: Maybe<Scalars['String']>;
+  section3Heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section3Heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section3Heading_contains?: Maybe<Scalars['String']>;
+  section3Heading_not_contains?: Maybe<Scalars['String']>;
+  section3SubHeading_exists?: Maybe<Scalars['Boolean']>;
+  section3SubHeading?: Maybe<Scalars['String']>;
+  section3SubHeading_not?: Maybe<Scalars['String']>;
+  section3SubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section3SubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section3SubHeading_contains?: Maybe<Scalars['String']>;
+  section3SubHeading_not_contains?: Maybe<Scalars['String']>;
+  section3CardsCollection_exists?: Maybe<Scalars['Boolean']>;
+  section4Heading_exists?: Maybe<Scalars['Boolean']>;
+  section4Heading?: Maybe<Scalars['String']>;
+  section4Heading_not?: Maybe<Scalars['String']>;
+  section4Heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section4Heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section4Heading_contains?: Maybe<Scalars['String']>;
+  section4Heading_not_contains?: Maybe<Scalars['String']>;
+  section4SubHeading_exists?: Maybe<Scalars['Boolean']>;
+  section4SubHeading?: Maybe<Scalars['String']>;
+  section4SubHeading_not?: Maybe<Scalars['String']>;
+  section4SubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section4SubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section4SubHeading_contains?: Maybe<Scalars['String']>;
+  section4SubHeading_not_contains?: Maybe<Scalars['String']>;
+  section5Heading_exists?: Maybe<Scalars['Boolean']>;
+  section5Heading?: Maybe<Scalars['String']>;
+  section5Heading_not?: Maybe<Scalars['String']>;
+  section5Heading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section5Heading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section5Heading_contains?: Maybe<Scalars['String']>;
+  section5Heading_not_contains?: Maybe<Scalars['String']>;
+  section5SubHeading_exists?: Maybe<Scalars['Boolean']>;
+  section5SubHeading?: Maybe<Scalars['String']>;
+  section5SubHeading_not?: Maybe<Scalars['String']>;
+  section5SubHeading_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section5SubHeading_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  section5SubHeading_contains?: Maybe<Scalars['String']>;
+  section5SubHeading_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<HomepageFilter>>>;
+  AND?: Maybe<Array<Maybe<HomepageFilter>>>;
+};
+
+export type HomepageLinkingCollections = {
+  __typename?: 'HomepageLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type HomepageLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum HomepageOrder {
+  HeroHeadingAsc = 'heroHeading_ASC',
+  HeroHeadingDesc = 'heroHeading_DESC',
+  HeroSubHeadingAsc = 'heroSubHeading_ASC',
+  HeroSubHeadingDesc = 'heroSubHeading_DESC',
+  Section1HeadingAsc = 'section1Heading_ASC',
+  Section1HeadingDesc = 'section1Heading_DESC',
+  Section1SubHeadingAsc = 'section1SubHeading_ASC',
+  Section1SubHeadingDesc = 'section1SubHeading_DESC',
+  Section2HeadingAsc = 'section2Heading_ASC',
+  Section2HeadingDesc = 'section2Heading_DESC',
+  Section2SubHeadingAsc = 'section2SubHeading_ASC',
+  Section2SubHeadingDesc = 'section2SubHeading_DESC',
+  Section3HeadingAsc = 'section3Heading_ASC',
+  Section3HeadingDesc = 'section3Heading_DESC',
+  Section3SubHeadingAsc = 'section3SubHeading_ASC',
+  Section3SubHeadingDesc = 'section3SubHeading_DESC',
+  Section4HeadingAsc = 'section4Heading_ASC',
+  Section4HeadingDesc = 'section4Heading_DESC',
+  Section4SubHeadingAsc = 'section4SubHeading_ASC',
+  Section4SubHeadingDesc = 'section4SubHeading_DESC',
+  Section5HeadingAsc = 'section5Heading_ASC',
+  Section5HeadingDesc = 'section5Heading_DESC',
+  Section5SubHeadingAsc = 'section5SubHeading_ASC',
+  Section5SubHeadingDesc = 'section5SubHeading_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type HomepageSection1CardsCollection = {
+  __typename?: 'HomepageSection1CardsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Entry>>;
+};
+
+export type HomepageSection3CardsCollection = {
+  __typename?: 'HomepageSection3CardsCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<SimpleCard>>;
+};
 
 export enum ImageFormat {
   /** JPG image format. */
@@ -1151,11 +1382,20 @@ export type LiveExampleFilter = {
 export type LiveExampleLinkingCollections = {
   __typename?: 'LiveExampleLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type LiveExampleLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type LiveExampleLinkingCollectionsPageCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -1171,6 +1411,310 @@ export type LiveExampleLinkingCollectionsSectionCollectionArgs = {
 };
 
 export enum LiveExampleOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTable = Entry & {
+  __typename?: 'MarkdownTable';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<MarkdownTableLinkingCollections>;
+  markdown?: Maybe<Scalars['String']>;
+};
+
+
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTableLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Display a table using markdown code. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/markdownTable) */
+export type MarkdownTableMarkdownArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type MarkdownTableCollection = {
+  __typename?: 'MarkdownTableCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<MarkdownTable>>;
+};
+
+export type MarkdownTableFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  markdown_exists?: Maybe<Scalars['Boolean']>;
+  markdown?: Maybe<Scalars['String']>;
+  markdown_not?: Maybe<Scalars['String']>;
+  markdown_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  markdown_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  markdown_contains?: Maybe<Scalars['String']>;
+  markdown_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<MarkdownTableFilter>>>;
+  AND?: Maybe<Array<Maybe<MarkdownTableFilter>>>;
+};
+
+export type MarkdownTableLinkingCollections = {
+  __typename?: 'MarkdownTableLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type MarkdownTableLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum MarkdownTableOrder {
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** Represents a hierarchical structure of pages. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigation) */
+export type Navigation = Entry & {
+  __typename?: 'Navigation';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<NavigationLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  childrenCollection?: Maybe<NavigationChildrenCollection>;
+};
+
+
+/** Represents a hierarchical structure of pages. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigation) */
+export type NavigationLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Represents a hierarchical structure of pages. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigation) */
+export type NavigationTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a hierarchical structure of pages. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigation) */
+export type NavigationChildrenCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type NavigationChildrenCollection = {
+  __typename?: 'NavigationChildrenCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<NavigationElement>>;
+};
+
+export type NavigationCollection = {
+  __typename?: 'NavigationCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Navigation>>;
+};
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElement = Entry & {
+  __typename?: 'NavigationElement';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<NavigationElementLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  path?: Maybe<Scalars['String']>;
+  externalUri?: Maybe<Scalars['String']>;
+  page?: Maybe<NavigationElementPage>;
+  childrenCollection?: Maybe<NavigationElementChildrenCollection>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementPathArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementExternalUriArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementPageArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A navigable element within a hierarchical Navigation (external URI or page reference). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/navigationElement) */
+export type NavigationElementChildrenCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type NavigationElementChildrenCollection = {
+  __typename?: 'NavigationElementChildrenCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<NavigationElement>>;
+};
+
+export type NavigationElementCollection = {
+  __typename?: 'NavigationElementCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<NavigationElement>>;
+};
+
+export type NavigationElementFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  path_exists?: Maybe<Scalars['Boolean']>;
+  path?: Maybe<Scalars['String']>;
+  path_not?: Maybe<Scalars['String']>;
+  path_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  path_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  path_contains?: Maybe<Scalars['String']>;
+  path_not_contains?: Maybe<Scalars['String']>;
+  externalUri_exists?: Maybe<Scalars['Boolean']>;
+  externalUri?: Maybe<Scalars['String']>;
+  externalUri_not?: Maybe<Scalars['String']>;
+  externalUri_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  externalUri_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  externalUri_contains?: Maybe<Scalars['String']>;
+  externalUri_not_contains?: Maybe<Scalars['String']>;
+  page_exists?: Maybe<Scalars['Boolean']>;
+  childrenCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<NavigationElementFilter>>>;
+  AND?: Maybe<Array<Maybe<NavigationElementFilter>>>;
+};
+
+export type NavigationElementLinkingCollections = {
+  __typename?: 'NavigationElementLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  navigationElementCollection?: Maybe<NavigationElementCollection>;
+  navigationCollection?: Maybe<NavigationCollection>;
+};
+
+
+export type NavigationElementLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type NavigationElementLinkingCollectionsNavigationElementCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type NavigationElementLinkingCollectionsNavigationCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum NavigationElementOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  PathAsc = 'path_ASC',
+  PathDesc = 'path_DESC',
+  ExternalUriAsc = 'externalUri_ASC',
+  ExternalUriDesc = 'externalUri_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type NavigationElementPage = Page;
+
+export type NavigationFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  childrenCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<NavigationFilter>>>;
+  AND?: Maybe<Array<Maybe<NavigationFilter>>>;
+};
+
+export type NavigationLinkingCollections = {
+  __typename?: 'NavigationLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type NavigationLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum NavigationOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
   SysIdAsc = 'sys_id_ASC',
@@ -1240,10 +1784,19 @@ export type PageFilter = {
 export type PageLinkingCollections = {
   __typename?: 'PageLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  navigationElementCollection?: Maybe<NavigationElementCollection>;
 };
 
 
 export type PageLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type PageLinkingCollectionsNavigationElementCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -1268,18 +1821,32 @@ export type PageSectionCollection = {
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Maybe<Section>>;
+  items: Array<Maybe<PageSectionItem>>;
 };
+
+export type PageSectionItem = ApiTable | CodeBlock | ContentBlock | Hero | LiveExample | Section;
 
 
 export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
-  contentPage?: Maybe<ContentPage>;
-  contentPageCollection?: Maybe<ContentPageCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
+  navigationElement?: Maybe<NavigationElement>;
+  navigationElementCollection?: Maybe<NavigationElementCollection>;
+  swatchColour?: Maybe<SwatchColour>;
+  swatchColourCollection?: Maybe<SwatchColourCollection>;
+  swatch?: Maybe<Swatch>;
+  swatchCollection?: Maybe<SwatchCollection>;
+  markdownTable?: Maybe<MarkdownTable>;
+  markdownTableCollection?: Maybe<MarkdownTableCollection>;
+  simpleCard?: Maybe<SimpleCard>;
+  simpleCardCollection?: Maybe<SimpleCardCollection>;
+  homepage?: Maybe<Homepage>;
+  homepageCollection?: Maybe<HomepageCollection>;
+  navigation?: Maybe<Navigation>;
+  navigationCollection?: Maybe<NavigationCollection>;
   apiField?: Maybe<ApiField>;
   apiFieldCollection?: Maybe<ApiFieldCollection>;
   apiTable?: Maybe<ApiTable>;
@@ -1315,23 +1882,6 @@ export type QueryAssetCollectionArgs = {
 };
 
 
-export type QueryContentPageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryContentPageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<ContentPageFilter>;
-  order?: Maybe<Array<Maybe<ContentPageOrder>>>;
-};
-
-
 export type QueryPageArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
@@ -1346,6 +1896,125 @@ export type QueryPageCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<PageFilter>;
   order?: Maybe<Array<Maybe<PageOrder>>>;
+};
+
+
+export type QueryNavigationElementArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavigationElementCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavigationElementFilter>;
+  order?: Maybe<Array<Maybe<NavigationElementOrder>>>;
+};
+
+
+export type QuerySwatchColourArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySwatchColourCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<SwatchColourFilter>;
+  order?: Maybe<Array<Maybe<SwatchColourOrder>>>;
+};
+
+
+export type QuerySwatchArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySwatchCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<SwatchFilter>;
+  order?: Maybe<Array<Maybe<SwatchOrder>>>;
+};
+
+
+export type QueryMarkdownTableArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryMarkdownTableCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<MarkdownTableFilter>;
+  order?: Maybe<Array<Maybe<MarkdownTableOrder>>>;
+};
+
+
+export type QuerySimpleCardArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QuerySimpleCardCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<SimpleCardFilter>;
+  order?: Maybe<Array<Maybe<SimpleCardOrder>>>;
+};
+
+
+export type QueryHomepageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryHomepageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<HomepageFilter>;
+  order?: Maybe<Array<Maybe<HomepageOrder>>>;
+};
+
+
+export type QueryNavigationArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavigationCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavigationFilter>;
+  order?: Maybe<Array<Maybe<NavigationOrder>>>;
 };
 
 
@@ -1576,6 +2245,325 @@ export enum SectionOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCard = Entry & {
+  __typename?: 'SimpleCard';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SimpleCardLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  titleColor?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  buttonHref?: Maybe<Scalars['String']>;
+  buttonTitle?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardTitleColorArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardButtonHrefArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a simple arbitrary card that links to another section of the site. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/simpleCard) */
+export type SimpleCardButtonTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SimpleCardCollection = {
+  __typename?: 'SimpleCardCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<SimpleCard>>;
+};
+
+export type SimpleCardFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  titleColor_exists?: Maybe<Scalars['Boolean']>;
+  titleColor?: Maybe<Scalars['String']>;
+  titleColor_not?: Maybe<Scalars['String']>;
+  titleColor_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  titleColor_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  titleColor_contains?: Maybe<Scalars['String']>;
+  titleColor_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  buttonHref_exists?: Maybe<Scalars['Boolean']>;
+  buttonHref?: Maybe<Scalars['String']>;
+  buttonHref_not?: Maybe<Scalars['String']>;
+  buttonHref_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  buttonHref_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  buttonHref_contains?: Maybe<Scalars['String']>;
+  buttonHref_not_contains?: Maybe<Scalars['String']>;
+  buttonTitle_exists?: Maybe<Scalars['Boolean']>;
+  buttonTitle?: Maybe<Scalars['String']>;
+  buttonTitle_not?: Maybe<Scalars['String']>;
+  buttonTitle_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  buttonTitle_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  buttonTitle_contains?: Maybe<Scalars['String']>;
+  buttonTitle_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<SimpleCardFilter>>>;
+  AND?: Maybe<Array<Maybe<SimpleCardFilter>>>;
+};
+
+export type SimpleCardLinkingCollections = {
+  __typename?: 'SimpleCardLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
+};
+
+
+export type SimpleCardLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type SimpleCardLinkingCollectionsHomepageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum SimpleCardOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  TitleColorAsc = 'titleColor_ASC',
+  TitleColorDesc = 'titleColor_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  ButtonHrefAsc = 'buttonHref_ASC',
+  ButtonHrefDesc = 'buttonHref_DESC',
+  ButtonTitleAsc = 'buttonTitle_ASC',
+  ButtonTitleDesc = 'buttonTitle_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type Swatch = Entry & {
+  __typename?: 'Swatch';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SwatchLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  colourCollection?: Maybe<SwatchColourCollection>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+export type SwatchColourCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SwatchCollection = {
+  __typename?: 'SwatchCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Swatch>>;
+};
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColour = Entry & {
+  __typename?: 'SwatchColour';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<SwatchColourLinkingCollections>;
+  name?: Maybe<Scalars['String']>;
+  colour?: Maybe<Scalars['String']>;
+  isDark?: Maybe<Scalars['Boolean']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourNameArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourColourArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+export type SwatchColourIsDarkArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type SwatchColourCollection = {
+  __typename?: 'SwatchColourCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<SwatchColour>>;
+};
+
+export type SwatchColourFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  name_exists?: Maybe<Scalars['Boolean']>;
+  name?: Maybe<Scalars['String']>;
+  name_not?: Maybe<Scalars['String']>;
+  name_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  name_contains?: Maybe<Scalars['String']>;
+  name_not_contains?: Maybe<Scalars['String']>;
+  colour_exists?: Maybe<Scalars['Boolean']>;
+  colour?: Maybe<Scalars['String']>;
+  colour_not?: Maybe<Scalars['String']>;
+  colour_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  colour_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  colour_contains?: Maybe<Scalars['String']>;
+  colour_not_contains?: Maybe<Scalars['String']>;
+  isDark_exists?: Maybe<Scalars['Boolean']>;
+  isDark?: Maybe<Scalars['Boolean']>;
+  isDark_not?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<SwatchColourFilter>>>;
+  AND?: Maybe<Array<Maybe<SwatchColourFilter>>>;
+};
+
+export type SwatchColourLinkingCollections = {
+  __typename?: 'SwatchColourLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type SwatchColourLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum SwatchColourOrder {
+  NameAsc = 'name_ASC',
+  NameDesc = 'name_DESC',
+  ColourAsc = 'colour_ASC',
+  ColourDesc = 'colour_DESC',
+  IsDarkAsc = 'isDark_ASC',
+  IsDarkDesc = 'isDark_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+export type SwatchFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  colourCollection_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<SwatchFilter>>>;
+  AND?: Maybe<Array<Maybe<SwatchFilter>>>;
+};
+
+export type SwatchLinkingCollections = {
+  __typename?: 'SwatchLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+};
+
+
+export type SwatchLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum SwatchOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
 export type Sys = {
   __typename?: 'Sys';
   id: Scalars['String'];
@@ -1623,6 +2611,406 @@ export type SysFilter = {
   publishedVersion_lte?: Maybe<Scalars['Float']>;
 };
 
+export type HomepageByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type HomepageByIdQuery = (
+  { __typename?: 'Query' }
+  & { homepage?: Maybe<(
+    { __typename?: 'Homepage' }
+    & Pick<Homepage, 'heroHeading' | 'heroSubHeading' | 'heroButtons' | 'section1Heading' | 'section1SubHeading' | 'section2Heading' | 'section2SubHeading' | 'section2Buttons' | 'section3Heading' | 'section3SubHeading' | 'section4Heading' | 'section4SubHeading' | 'section4Buttons' | 'section5Heading' | 'section5SubHeading' | 'section5Buttons'>
+    & { section3CardsCollection?: Maybe<(
+      { __typename?: 'HomepageSection3CardsCollection' }
+      & { items: Array<Maybe<(
+        { __typename?: 'SimpleCard' }
+        & Pick<SimpleCard, 'title' | 'titleColor' | 'description' | 'buttonHref' | 'buttonTitle'>
+      )>> }
+    )> }
+  )> }
+);
+
+export type NavigationByIdQueryVariables = Exact<{
+  id: Scalars['String'];
+}>;
+
+
+export type NavigationByIdQuery = (
+  { __typename?: 'Query' }
+  & { navigation?: Maybe<(
+    { __typename?: 'Navigation' }
+    & Pick<Navigation, 'title'>
+    & { childrenCollection?: Maybe<(
+      { __typename?: 'NavigationChildrenCollection' }
+      & { items: Array<Maybe<(
+        { __typename?: 'NavigationElement' }
+        & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+        & { page?: Maybe<(
+          { __typename?: 'Page' }
+          & { sys: (
+            { __typename?: 'Sys' }
+            & Pick<Sys, 'id'>
+          ) }
+        )>, childrenCollection?: Maybe<(
+          { __typename?: 'NavigationElementChildrenCollection' }
+          & { items: Array<Maybe<(
+            { __typename?: 'NavigationElement' }
+            & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+            & { page?: Maybe<(
+              { __typename?: 'Page' }
+              & { sys: (
+                { __typename?: 'Sys' }
+                & Pick<Sys, 'id'>
+              ) }
+            )> }
+          )>> }
+        )> }
+      )>> }
+    )> }
+  )> }
+);
+
+export type NavigationElementsFlatQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type NavigationElementsFlatQuery = (
+  { __typename?: 'Query' }
+  & { navigationElementCollection?: Maybe<(
+    { __typename?: 'NavigationElementCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'NavigationElement' }
+      & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+      & { page?: Maybe<(
+        { __typename?: 'Page' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      )> }
+    )>> }
+  )> }
+);
+
+export type PageByPathQueryVariables = Exact<{
+  path: Scalars['String'];
+}>;
+
+
+export type PageByPathQuery = (
+  { __typename?: 'Query' }
+  & { navigationElementCollection?: Maybe<(
+    { __typename?: 'NavigationElementCollection' }
+    & { items: Array<Maybe<(
+      { __typename?: 'NavigationElement' }
+      & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+      & { childrenCollection?: Maybe<(
+        { __typename?: 'NavigationElementChildrenCollection' }
+        & { items: Array<Maybe<(
+          { __typename?: 'NavigationElement' }
+          & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
+          & { contentfulMetadata: (
+            { __typename?: 'ContentfulMetadata' }
+            & { tags: Array<Maybe<(
+              { __typename?: 'ContentfulTag' }
+              & Pick<ContentfulTag, 'id' | 'name'>
+            )>> }
+          ) }
+        )>> }
+      )>, page?: Maybe<(
+        { __typename?: 'Page' }
+        & Pick<Page, 'title'>
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ), sectionCollection?: Maybe<(
+          { __typename?: 'PageSectionCollection' }
+          & { items: Array<Maybe<(
+            { __typename: 'ApiTable' }
+            & Pick<ApiTable, 'title'>
+            & { apiTableDescription: ApiTable['description'] }
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ), apiFieldCollection?: Maybe<(
+              { __typename?: 'ApiTableApiFieldCollection' }
+              & { items: Array<Maybe<(
+                { __typename?: 'ApiField' }
+                & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
+            )>, apiReturnFieldCollection?: Maybe<(
+              { __typename?: 'ApiTableApiReturnFieldCollection' }
+              & { items: Array<Maybe<(
+                { __typename?: 'ApiField' }
+                & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
+              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
+            )> }
+          ) | (
+            { __typename: 'CodeBlock' }
+            & Pick<CodeBlock, 'title' | 'filename' | 'sourceCode'>
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ), description?: Maybe<(
+              { __typename?: 'CodeBlockDescription' }
+              & Pick<CodeBlockDescription, 'json'>
+            )> }
+          ) | (
+            { __typename: 'ContentBlock' }
+            & Pick<ContentBlock, 'title'>
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ), description?: Maybe<(
+              { __typename?: 'ContentBlockDescription' }
+              & Pick<ContentBlockDescription, 'json'>
+              & { links: (
+                { __typename?: 'ContentBlockDescriptionLinks' }
+                & { assets: (
+                  { __typename?: 'ContentBlockDescriptionAssets' }
+                  & { block: Array<Maybe<(
+                    { __typename?: 'Asset' }
+                    & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  )>>, hyperlink: Array<Maybe<(
+                    { __typename?: 'Asset' }
+                    & Pick<Asset, 'url'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  )>> }
+                ), entries: (
+                  { __typename?: 'ContentBlockDescriptionEntries' }
+                  & { block: Array<Maybe<(
+                    { __typename: 'ApiField' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ApiTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'CodeBlock' }
+                    & Pick<CodeBlock, 'sourceCode'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ContentBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Hero' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Homepage' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'LiveExample' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'MarkdownTable' }
+                    & Pick<MarkdownTable, 'markdown'>
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Navigation' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'NavigationElement' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Page' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Section' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SimpleCard' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Swatch' }
+                    & { colourCollection?: Maybe<(
+                      { __typename?: 'SwatchColourCollection' }
+                      & { items: Array<Maybe<(
+                        { __typename?: 'SwatchColour' }
+                        & Pick<SwatchColour, 'name' | 'colour' | 'isDark'>
+                      )>> }
+                    )>, sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SwatchColour' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  )>>, inline: Array<Maybe<(
+                    { __typename: 'ApiField' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ApiTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'CodeBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'ContentBlock' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Hero' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Homepage' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'LiveExample' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'MarkdownTable' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Navigation' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'NavigationElement' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Page' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Section' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SimpleCard' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'Swatch' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  ) | (
+                    { __typename: 'SwatchColour' }
+                    & { sys: (
+                      { __typename?: 'Sys' }
+                      & Pick<Sys, 'id'>
+                    ) }
+                  )>> }
+                ) }
+              ) }
+            )>, image?: Maybe<(
+              { __typename?: 'Asset' }
+              & Pick<Asset, 'title' | 'url'>
+            )> }
+          ) | (
+            { __typename: 'Hero' }
+            & Pick<Hero, 'title' | 'heading'>
+            & { heroDescription: Hero['description'] }
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ) }
+          ) | (
+            { __typename: 'LiveExample' }
+            & Pick<LiveExample, 'title'>
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ), description?: Maybe<(
+              { __typename?: 'LiveExampleDescription' }
+              & Pick<LiveExampleDescription, 'json'>
+            )> }
+          ) | (
+            { __typename: 'Section' }
+            & { sys: (
+              { __typename?: 'Sys' }
+              & Pick<Sys, 'id'>
+            ) }
+          )>> }
+        )> }
+      )> }
+    )>> }
+  )> }
+);
+
 export type PageStructureQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
@@ -1636,6 +3024,36 @@ export type PageStructureQuery = (
     & { sectionCollection?: Maybe<(
       { __typename?: 'PageSectionCollection' }
       & { items: Array<Maybe<(
+        { __typename?: 'ApiTable' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      ) | (
+        { __typename?: 'CodeBlock' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      ) | (
+        { __typename?: 'ContentBlock' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      ) | (
+        { __typename?: 'Hero' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      ) | (
+        { __typename?: 'LiveExample' }
+        & { sys: (
+          { __typename?: 'Sys' }
+          & Pick<Sys, 'id'>
+        ) }
+      ) | (
         { __typename?: 'Section' }
         & Pick<Section, 'title'>
         & { sys: (
@@ -1704,13 +3122,13 @@ export type SectionContentQuery = (
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'ContentPage' } | { __typename?: 'Hero' } | { __typename?: 'LiveExample' } | { __typename?: 'Page' } | { __typename?: 'Section' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
         )>, apiReturnFieldCollection?: Maybe<(
           { __typename?: 'ApiTableApiReturnFieldCollection' }
           & { items: Array<Maybe<(
             { __typename?: 'ApiField' }
             & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'ContentPage' } | { __typename?: 'Hero' } | { __typename?: 'LiveExample' } | { __typename?: 'Page' } | { __typename?: 'Section' }>> }
+          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
         )> }
       ) | (
         { __typename: 'CodeBlock' }
@@ -1755,60 +3173,5 @@ export type SectionContentQuery = (
         )> }
       )>> }
     )> }
-  )> }
-);
-
-export type SimplePageByIdQueryVariables = Exact<{
-  id: Scalars['String'];
-}>;
-
-
-export type SimplePageByIdQuery = (
-  { __typename?: 'Query' }
-  & { contentPage?: Maybe<(
-    { __typename?: 'ContentPage' }
-    & Pick<ContentPage, 'title' | 'isLegacy'>
-    & { bodyContent?: Maybe<(
-      { __typename?: 'ContentPageBodyContent' }
-      & Pick<ContentPageBodyContent, 'json'>
-      & { links: (
-        { __typename?: 'ContentPageBodyContentLinks' }
-        & { assets: (
-          { __typename?: 'ContentPageBodyContentAssets' }
-          & { block: Array<Maybe<(
-            { __typename?: 'Asset' }
-            & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          )>> }
-        ) }
-      ) }
-    )> }
-  )> }
-);
-
-export type SimplePagesQueryVariables = Exact<{ [key: string]: never; }>;
-
-
-export type SimplePagesQuery = (
-  { __typename?: 'Query' }
-  & { contentPageCollection?: Maybe<(
-    { __typename?: 'ContentPageCollection' }
-    & { items: Array<Maybe<(
-      { __typename?: 'ContentPage' }
-      & Pick<ContentPage, 'title'>
-      & { sys: (
-        { __typename?: 'Sys' }
-        & Pick<Sys, 'id'>
-      ), contentfulMetadata: (
-        { __typename?: 'ContentfulMetadata' }
-        & { tags: Array<Maybe<(
-          { __typename?: 'ContentfulTag' }
-          & Pick<ContentfulTag, 'id' | 'name'>
-        )>> }
-      ) }
-    )>> }
   )> }
 );

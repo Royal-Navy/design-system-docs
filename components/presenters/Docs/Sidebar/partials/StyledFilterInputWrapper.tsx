@@ -1,8 +1,23 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { selectors } from '@royalnavy/design-tokens'
 
-export const StyledFilterInputWrapper = styled.div`
+const { color } = selectors
+
+interface StyledFilterInputWrapperProps {
+  $hasFocus: boolean
+}
+
+export const StyledFilterInputWrapper = styled.div<StyledFilterInputWrapperProps>`
   position: relative;
   flex-grow: 1;
   order: 1;
   display: flex;
+  border: 2px solid transparent;
+  border-radius: 8px;
+
+  ${({ $hasFocus }) =>
+    $hasFocus &&
+    css`
+      border-color: ${color('neutral', '200')};
+    `};
 `

@@ -6,6 +6,14 @@ module.exports = {
     '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-optional-chaining',
     'import-graphql',
+    [
+      'styled-components',
+      {
+        ssr: true,
+        displayName: true,
+        namespace: 'sc',
+      },
+    ],
   ],
   env: {
     test: {

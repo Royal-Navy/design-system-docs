@@ -4,8 +4,9 @@ import { IconMenu } from '@royalnavy/icon-library'
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMasthead } from './partials/StyledMasthead'
 import { StyledMenuButton } from './partials/StyledMenuButton'
+import { StyledLogo } from './partials/StyledLogo'
 import { Badge } from '../Badge'
-import { ReactComponent as RNDSLogo } from '../../../../public/RNDSLogo.svg'
+import RNDSLogo from '../../../../public/RNDSLogo.svg'
 
 export interface MastheadProps extends ComponentWithClass {
   version?: string
@@ -18,14 +19,17 @@ export const Masthead: React.FC<MastheadProps> = ({
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
   return (
-    <StyledMasthead $isOpen={isOpen}>
+    <StyledMasthead $isOpen={isOpen} data-testid="masthead">
       <div>
-        <RNDSLogo />
+        <StyledLogo href="/">
+          <RNDSLogo />
+        </StyledLogo>
         <Badge variant="light">{version}</Badge>
       </div>
       <div>
         {React.Children.map(children, (child: React.ReactElement) => {
           return React.cloneElement(child, {
+            isOpen,
             onClose: (_: React.MouseEvent<HTMLButtonElement>) =>
               setIsOpen(false),
           })

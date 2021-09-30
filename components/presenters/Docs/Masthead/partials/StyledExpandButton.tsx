@@ -3,7 +3,7 @@ import { selectors } from '@royalnavy/design-tokens'
 
 import { StyledButton } from './StyledButton'
 
-const { spacing, mq } = selectors
+const { mq } = selectors
 
 export const StyledExpandButton = styled(StyledButton)`
   ${mq({ gte: 'm' })`
@@ -12,7 +12,6 @@ export const StyledExpandButton = styled(StyledButton)`
     background-color: transparent;
     border: none;
     padding: 0;
-    margin-left: ${spacing('2')};
     box-shadow: unset;
   `}
 `

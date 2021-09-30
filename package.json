@@ -44,8 +44,10 @@
     "next": "^11.1.1",
     "postcss-flexbugs-fixes": "^5.0.2",
     "prism-react-renderer": "^1.2.0",
+    "prismjs": "^1.24.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-responsive": "^9.0.0-beta.4",
     "styled-components": "^5.3.0"
   },
   "devDependencies": {
@@ -85,7 +87,7 @@
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
     "babel-polyfill": "^6.26.0",
-    "cypress": "^7.1.0",
+    "cypress": "8.4.0",
     "eslint": "^7.20.0",
     "eslint-config-next": "^11.1.2",
     "eslint-config-prettier": "^8.3.0",
@@ -101,10 +103,13 @@
     "jest-styled-components": "^7.0.3",
     "local-cypress": "^1.2.1",
     "prettier": "^2.4.1",
+    "markdown-to-jsx": "^7.1.3",
+    "next-compose-plugins": "^2.2.1",
+    "next-transpile-modules": "^8.0.0",
     "sass": "^1.32.8",
-    "sass-loader": "^12.1.0",
-    "semantic-release": "^17.4.7",
-    "typescript": "^4.4.2"
+    "sass-loader": "^10.2.0",
+    "semantic-release": "^17.4.2",
+    "typescript": "^4.1.5"
   },
   "resolutions": {
     "**/**/@npmcli/arborist": "^2.8.3",

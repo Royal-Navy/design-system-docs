@@ -1,172 +1,432 @@
 import React from 'react'
+import { useMediaQuery } from 'react-responsive'
+import styled from 'styled-components'
+import Link from 'next/link'
 import { GetStaticProps } from 'next'
-import camelCase from 'lodash/camelCase'
+import { selectors } from '@royalnavy/design-tokens'
+import { IconFileDownload } from '@royalnavy/icon-library'
 
-import { LayoutFramework } from '../components/layouts/Framework'
+import { Footer } from '../components/presenters/Docs/Footer'
+import { FooterExternalLink } from '../components/presenters/Docs/Footer/FooterExternalLink'
+import { PageBanner } from '../components/presenters/Docs/PageBanner'
 import {
-  SidebarMenu,
-  SidebarMenuItem,
-} from '../components/presenters/Framework/Sidebar'
-
-import { HeroAdapter } from '../components/adapters/HeroAdapter'
-import { ContentBlockAdapter } from '../components/adapters/ContentBlockAdapter'
-import { LiveExampleAdapter } from '../components/adapters/LiveExampleAdapter'
-import { CodeBlockAdapter } from '../components/adapters/CodeBlockAdapter'
-import { ApiTableAdapter } from '../components/adapters/ApiTableAdapter'
-import { Section } from '../components/presenters/Framework/Section'
-
-import {
-  SectionCollection as SectionCollectionType,
-  Section as SectionType,
-  SectionContentItem as SectionContentItemType,
-  SectionContentCollection as SectionContentCollectionType,
-} from '../graphql'
-
-import PAGE_STRUCTURE_BY_ID_QUERY from '../graphql/queries/PageStructureByID.graphql'
-import SECTION_CONTENT_BY_ID_QUERY from '../graphql/queries/SectionContentByID.graphql'
+  Masthead,
+  MastheadMenu,
+  MastheadMenuItem,
+  MastheadSubMenu,
+  MastheadSubMenuItem,
+} from '../components/presenters/Docs/Masthead'
+import { Badge, BADGE_VARIANT } from '../components/presenters/Docs/Badge'
+import { LayoutHomepage } from '../components/layouts/Homepage'
 import { contentful } from '../services/contentful'
+import HOMEPAGE_BY_ID_QUERY from '../graphql/queries/HomepageByID.graphql'
+import NAVIGATION_BY_ID_QUERY from '../graphql/queries/NavigationByID.graphql'
+import {
+  Navigation as NavigationType,
+  Homepage as HomepageType,
+} from '../graphql'
+import Storybook from '../public/Storybook.svg'
+import GitHub from '../public/GitHub.svg'
+import { useDesignSystemVersion } from '../hooks/useDesignSystemVersion'
+import { Hero } from '../components/presenters/Docs/Hero'
+import { Section } from '../components/presenters/Docs/Section'
+import {
+  HeroCard,
+  HeroCardChild,
+  HERO_CARD_VARIANT,
+} from '../components/presenters/Docs/HeroCard'
+import { Button, BUTTON_VARIANT } from '../components/presenters/Docs/Button'
+import { Card } from '../components/presenters/Docs/Card'
+import { StyledCard } from '../components/presenters/Docs/Card/partials/StyledCard'
 
-interface HomeProps {
-  sectionCollection: SectionCollectionType
+export interface HomeProps {
+  desktopNavigation: NavigationType
+  mobileNavigation: NavigationType
+  pageData: HomepageType
 }
 
 /**
- * Fetch a content collection for a parent entry (by ID)
+ * Fetch homepage data from Contentful
  *
  */
-async function fetchContentCollection(item: SectionType): Promise<SectionType> {
-  const {
-    sys: { id },
-  } = item
+async function fetchPageData(): Promise<HomepageType> {
+  const { homepage } = await contentful(HOMEPAGE_BY_ID_QUERY, {
+    id: '3HN42lUPyvUSw9nDTUryew',
+  })
 
-  const {
-    section: { contentCollection },
-  } = await contentful(SECTION_CONTENT_BY_ID_QUERY, { id })
-
-  return {
-    ...item,
-    contentCollection,
-  }
+  return homepage
 }
 
 /**
- * Hydrate a collection of entries with content collections
+ * Fetch desktop navigation from Contentful
  *
  */
-async function hydrateContentCollections(
-  items: SectionType[]
-): Promise<SectionType[]> {
-  return Promise.all(items.map((item) => fetchContentCollection(item)))
+async function fetchDesktopNavigation(): Promise<NavigationType> {
+  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
+    id: '6ctO13HVlilgYwI5wgpJLf',
+  })
+
+  return navigation
+}
+
+/**
+ * Fetch mobile navigation from Contentful
+ *
+ */
+async function fetchMobileNavigation(): Promise<NavigationType> {
+  const { navigation } = await contentful(NAVIGATION_BY_ID_QUERY, {
+    id: '3tE4icMED8H3oRTFAQHeCr',
+  })
+
+  return navigation
 }
 
 /**
  * Fetch data from Contentful for static site generation (SSG)
  *
  */
-export const getStaticProps: GetStaticProps = async () => {
-  const {
-    page: {
-      sectionCollection: { items },
-    },
-  } = await contentful(PAGE_STRUCTURE_BY_ID_QUERY, {
-    id: '7ltwNe3eIZtPNZ2xrHMAuw',
-  })
+export const getStaticProps: GetStaticProps = async (context) => {
+  const desktopNavigation = await fetchDesktopNavigation()
+  const mobileNavigation = await fetchMobileNavigation()
+  const pageData = await fetchPageData()
 
   return {
     props: {
-      sectionCollection: {
-        items: await hydrateContentCollections(items),
-      },
+      desktopNavigation,
+      mobileNavigation,
+      pageData,
     },
   }
 }
 
-/**
- * Generate navigation based on content structure
- *
- */
-function renderNavigation(
-  sectionCollection: SectionCollectionType
-): React.ReactElement | React.ReactElement[] {
-  return sectionCollection?.items?.map(({ title, contentCollection }) => {
-    return (
-      <SidebarMenu key={title} title={title}>
-        {contentCollection?.items?.map(
-          ({ __typename, title: contentTitle }) => {
+const { color, mq, spacing, breakpoint } = selectors
+
+const StyledDollar = styled.span`
+  font-weight: 600;
+  color: ${color('neutral', '300')};
+`
+
+const StyledHeroCards = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+  width: 100%;
+  max-width: 1440px;
+  margin-top: ${spacing('10')};
+
+  ${mq({ gte: 's' })`
+    flex-direction: row;
+    align-items: stretch;
+  `}
+
+  ${mq({ gte: 'm' })`
+    padding: 0 ${spacing('13')}
+  `}
+
+  > article {
+    width: 100%;
+    p {
+      max-width: unset;
+    }
+    &:first-child {
+      ${mq({ gte: 'm' })`
+        margin-right: ${spacing('5')}
+      `}
+    }
+    &:last-child {
+      ${mq({ gte: 'm' })`
+        margin-left: ${spacing('5')}
+      `}
+    }
+  }
+`
+
+const StyledCards = styled.div`
+  display: block;
+  margin-top: ${spacing('10')};
+  max-width: 1440px;
+
+  padding: 0 ${spacing('10')};
+  column-gap: 20px;
+
+  ${StyledCard} {
+    margin-bottom: ${spacing('10')};
+
+    ${mq({ gte: 's' })`
+      width: calc(50% - 10px);
+    `}
+    ${mq({ gte: 'l' })`
+      width: calc(25% - 10px);
+    `}
+  }
+
+  ${mq({ gte: 's' })`
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0 ${spacing('13')}
+  `}
+
+  ${mq({ gte: 'l' })`
+    flex-wrap: unset;
+  `}
+`
+
+const StyledButtonGroup = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: ${spacing('8')};
+
+  > a:first-of-type {
+    margin-right: ${spacing('8')};
+  }
+`
+
+export const Home: React.FC<HomeProps> = ({
+  desktopNavigation,
+  mobileNavigation,
+  pageData,
+}) => {
+  const { version } = useDesignSystemVersion()
+  const {
+    heroHeading,
+    heroSubHeading,
+    heroButtons,
+    section1Heading,
+    section1SubHeading,
+    section2Heading,
+    section2SubHeading,
+    section2Buttons,
+    section3Heading,
+    section3SubHeading,
+    section3CardsCollection,
+    section4Heading,
+    section4SubHeading,
+    section4Buttons,
+    section5Heading,
+    section5SubHeading,
+    section5Buttons,
+  } = pageData
+
+  const pageBanner = (
+    <PageBanner>
+      Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
+      released!&nbsp;
+      <a href="/guidance/migrating-to-v2">
+        Read the <strong>upgrade guide</strong>
+      </a>
+    </PageBanner>
+  )
+
+  const isTabletOrMobile = useMediaQuery({
+    query: `(max-width: ${breakpoint('m').breakpoint})`,
+  })
+
+  const navigation = isTabletOrMobile ? mobileNavigation : desktopNavigation
+
+  const masthead = (
+    <Masthead version={version}>
+      <MastheadMenu>
+        {navigation.childrenCollection.items.map(
+          ({
+            title: parentTitle,
+            path: parentPath,
+            externalUri: parentExternalUri,
+            page: parentPage,
+            childrenCollection: children,
+          }) => {
+            const parentHref = parentPage
+              ? parentPath || '#'
+              : parentExternalUri || '#'
+
             return (
-              <SidebarMenuItem
-                key={contentTitle}
-                href={`#${camelCase(contentTitle)}`}
-                title={contentTitle}
-                isCode={__typename === 'ApiTable'}
-              />
+              <MastheadMenuItem
+                key={parentPath}
+                link={<Link href={parentHref}>{parentTitle}</Link>}
+              >
+                {children.items.length > 0 && (
+                  <MastheadSubMenu>
+                    {children.items.map(
+                      ({
+                        title: childTitle,
+                        path: childPath,
+                        externalUri: childExternalUri,
+                        page: childPage,
+                      }) => {
+                        const childHref = childPage
+                          ? childPath || '#'
+                          : childExternalUri || '#'
+
+                        return (
+                          <MastheadSubMenuItem
+                            key={childPath}
+                            link={<Link href={childHref}>{childTitle}</Link>}
+                          />
+                        )
+                      }
+                    )}
+                  </MastheadSubMenu>
+                )}
+              </MastheadMenuItem>
             )
           }
         )}
-      </SidebarMenu>
-    )
-  })
-}
-
-/**
- * Map content types to components using adapters
- *
- */
-function renderPresenter(
-  type: keyof SectionContentItemType,
-  fields: SectionContentItemType
-): React.ReactElement {
-  const componentMap = {
-    Hero: <HeroAdapter fields={fields} />,
-    ContentBlock: <ContentBlockAdapter fields={fields} />,
-    LiveExample: <LiveExampleAdapter fields={fields} />,
-    CodeBlock: <CodeBlockAdapter fields={fields} />,
-    ApiTable: <ApiTableAdapter fields={fields} />,
-    // ...
-  }
-
-  return componentMap[type]
-}
-
-/**
- * Render content collection using presenters
- *
- */
-function renderContentCollection(
-  contentCollection: SectionContentCollectionType
-): React.ReactElement | React.ReactElement[] {
-  return contentCollection?.items.map(
-    ({ __typename, ...fields }: SectionContentItemType) => {
-      const { title: key } = fields
-
-      return React.cloneElement(
-        renderPresenter(__typename as keyof SectionContentItemType, fields),
-        {
-          key,
-        }
-      )
-    }
+      </MastheadMenu>
+    </Masthead>
   )
-}
 
-/**
- * Render page using data from `getStaticProps`
- *
- */
-export const Home: React.FC<HomeProps> = ({ sectionCollection }) => {
+  const footer = (
+    <Footer
+      description="The Royal Navy Design System provides guidance and tools for building
+      high–quality Services within the Royal Navy. This project is open source
+      and its source code is available on GitHub."
+      externalLinks={[
+        <FooterExternalLink
+          icon={<GitHub />}
+          link={
+            <Link href="https://github.com/Royal-Navy/design-system">
+              GitHub
+            </Link>
+          }
+        />,
+        <FooterExternalLink
+          icon={<Storybook />}
+          link={<Link href="https://storybook.royalnavy.io">Storybook</Link>}
+        />,
+      ]}
+      license="All content is available under the Apache 2.0 licence, except where
+      otherwise stated."
+      siteLinks={[
+        <Link href="/accessibility">Accessibility</Link>,
+        <Link href="/privacy-policy">Privacy Policy</Link>,
+        <Link href="/contact">Contact</Link>,
+      ]}
+    />
+  )
+
   return (
-    <LayoutFramework
-      title="Compound Timeline | Royal Navy Design System"
-      navigation={renderNavigation(sectionCollection)}
+    <LayoutHomepage
+      footer={footer}
+      masthead={masthead}
+      pageBanner={pageBanner}
+      title="Home"
     >
-      {sectionCollection?.items.map(({ title, contentCollection }) => {
-        return (
-          <Section key={title}>
-            {renderContentCollection(contentCollection)}
-          </Section>
-        )
-      })}
-    </LayoutFramework>
+      <Hero
+        version={version}
+        title={heroHeading}
+        description={heroSubHeading}
+        cta1={
+          <Button href={heroButtons[0].href} variant={BUTTON_VARIANT.PRIMARY}>
+            {heroButtons[0].title}
+          </Button>
+        }
+        cta2={
+          <Button href={heroButtons[1].href} variant={BUTTON_VARIANT.TERTIARY}>
+            {heroButtons[1].title}
+          </Button>
+        }
+      />
+      <Section sectionIndex="1" title={section1Heading}>
+        <p>{section1SubHeading}</p>
+        <StyledHeroCards>
+          <HeroCard
+            variant={HERO_CARD_VARIANT.PRIMARY}
+            title="Designers"
+            description="Designers can use our static or dynamic Axure libraries to quickly prototype, test and validate ideas with users."
+            cta={
+              <Button
+                variant={BUTTON_VARIANT.SECONDARY}
+                href="/guidance/design"
+              >
+                Read the full guide
+              </Button>
+            }
+          >
+            <HeroCardChild>
+              Download static library&nbsp;&nbsp;
+              <IconFileDownload />
+            </HeroCardChild>
+            <HeroCardChild>
+              Download dynamic library&nbsp;&nbsp;
+              <IconFileDownload />
+            </HeroCardChild>
+          </HeroCard>
+          <HeroCard
+            variant={HERO_CARD_VARIANT.SECONDARY}
+            title="Developers"
+            description="Developers can install our React component library via NPM, or by grabbing the source from GitHub."
+            cta={
+              <Button
+                variant={BUTTON_VARIANT.SECONDARY}
+                href="/guidance/development"
+              >
+                Read the full guide
+              </Button>
+            }
+          >
+            <HeroCardChild>
+              <StyledDollar>$</StyledDollar>
+              &nbsp;npm&nbsp;install&nbsp;@royalnavy/react-component-library
+            </HeroCardChild>
+          </HeroCard>
+        </StyledHeroCards>
+      </Section>
+      <Section sectionIndex="2" title={section2Heading}>
+        <p>{section2SubHeading}</p>
+        {section2Buttons.map(({ href, title }) => {
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
+        })}
+      </Section>
+      <Section sectionIndex="3" title={section3Heading}>
+        <p>{section3SubHeading}</p>
+        <StyledCards>
+          {section3CardsCollection?.items.map(
+            ({ title, titleColor, buttonHref, buttonTitle, description }) => {
+              return (
+                <Card
+                  key={title}
+                  title={title}
+                  titleColor={titleColor}
+                  href={buttonHref}
+                  anchorText={buttonTitle}
+                >
+                  {description}
+                </Card>
+              )
+            }
+          )}
+        </StyledCards>
+      </Section>
+      <Section sectionIndex="4" title={section4Heading}>
+        <p>{section4SubHeading}</p>
+        {section4Buttons.map(({ href, title }) => {
+          return (
+            <Button key={title} href={href}>
+              {title}
+            </Button>
+          )
+        })}
+      </Section>
+      <Section sectionIndex="5" title={section5Heading}>
+        <p>{section5SubHeading}</p>
+        <StyledButtonGroup>
+          {section5Buttons.map(({ href, title }) => {
+            return (
+              <Button key={title} href={href}>
+                {title}
+              </Button>
+            )
+          })}
+        </StyledButtonGroup>
+      </Section>
+    </LayoutHomepage>
   )
 }
 

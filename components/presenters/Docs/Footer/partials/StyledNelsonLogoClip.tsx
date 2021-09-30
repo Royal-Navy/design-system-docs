@@ -1,19 +1,21 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-import { ReactComponent as NelsonLogoClip } from '../../../../../public/NelsonLogoClip.svg'
+import NelsonLogoClip from '../../../../../public/NelsonLogoClip.svg'
 
 const { mq } = selectors
 
 export const StyledNelsonLogoClip = styled(NelsonLogoClip)`
   position: absolute;
-  top: 0;
+  top: -40px;
   right: 0;
   transform: scale(1.08);
-  transform-origin: top left;
+  height: 600px;
 
   ${mq({ gte: 's' })`
     height: 503px;
-    transform: scale(1);
+    transform: scale(1.4);
+    right: 120px;
+    top: -10px;
   `};
 `

@@ -1,0 +1,148 @@
+query PageByPath($path: String!) {
+  navigationElementCollection(where: {path: $path}, limit: 1) {
+    items {
+      title
+      path
+      externalUri
+      childrenCollection {
+        items {
+          title
+          path
+          externalUri
+          contentfulMetadata {
+            tags {
+              id
+              name
+            }
+          }
+        }
+      }
+      page {
+        ... on Page {
+          sys {
+            id
+          }
+          title
+          sectionCollection(limit: 10) {
+            items {
+              __typename
+              ... on Entry {
+                sys {
+                  id
+                }
+              }
+              ... on Hero {
+                title
+                heading
+                heroDescription: description
+              }
+              ... on ContentBlock {
+                title
+                description {
+                  json
+                  links {
+                    assets {
+                      block {
+                        fileName
+                        title
+                        description
+                        url
+                        width
+                        height
+                        sys {
+                          id
+                        }
+                      }
+                      hyperlink {
+                        url
+                        sys {
+                          id
+                        }
+                      }
+                    }
+                    entries {
+                      block {
+                        sys {
+                          id
+                        }
+                        __typename
+                        ... on MarkdownTable {
+                          markdown
+                        }
+                        ... on Swatch {
+                          colourCollection(limit: 20) {
+                            items {
+                              ... on SwatchColour {
+                                name
+                                colour
+                                isDark
+                              }
+                            }
+                          }
+                        }
+                        ... on CodeBlock {
+                          sourceCode
+                        }
+                      }
+                      inline {
+                        sys {
+                          id
+                        }
+                        __typename
+
+                      }
+                    }
+                  }
+                }
+                image {
+                  title
+                  url
+                }
+              }
+              ... on LiveExample {
+                title
+                description {
+                  json
+                }
+              }
+              ... on CodeBlock {
+                title
+                description {
+                  json
+                }
+                filename
+                sourceCode
+              }
+              ... on ApiTable {
+                title
+                apiTableDescription: description
+                apiFieldCollection(limit: 20) {
+                  items {
+                    ... on ApiField {
+                      name
+                      dataType
+                      defaultValue
+                      description
+                      required
+                    }
+                  }
+                }
+                apiReturnFieldCollection(limit: 20) {
+                  items {
+                    ... on ApiField {
+                      name
+                      dataType
+                      defaultValue
+                      description
+                      required
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

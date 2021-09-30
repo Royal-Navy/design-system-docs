@@ -1,10 +1,14 @@
 import React from 'react'
 import styled from 'styled-components'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
-import github from 'prism-react-renderer/themes/github'
+import { selectors } from '@royalnavy/design-tokens'
 import 'firacode'
 
+import theme from './theme'
+
 import { ComponentWithClass } from '../../../../../common/ComponentWithClass'
+
+const { color, spacing } = selectors
 
 interface StyledHighlightProps extends ComponentWithClass {
   $code: string
@@ -16,18 +20,22 @@ const Pre = styled.pre`
   margin: 1em 0;
   padding: 0.5em;
   overflow: scroll;
+  white-space: pre-wrap;
 `
 
 const Line = styled.div`
   display: table-row;
+  font-size: 14px;
 `
 
 const LineNo = styled.span`
+  padding-bottom: 5px;
   display: table-cell;
   text-align: right;
   padding-right: 1em;
   user-select: none;
   opacity: 0.5;
+  color: ${color('neutral', '200')};
 `
 
 const LineContent = styled.span`
@@ -40,7 +48,7 @@ export const StyledHighlight: React.FC<StyledHighlightProps> = ({
 }) => (
   <Highlight
     {...defaultProps}
-    theme={github}
+    theme={theme}
     code={`${$code}`}
     language={$language}
   >

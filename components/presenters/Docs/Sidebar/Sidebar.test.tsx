@@ -2,43 +2,38 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { IconBookmark } from '@royalnavy/icon-library'
 import Link from 'next/link'
-import { render, RenderResult } from '@testing-library/react'
+import { render, RenderResult, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 
 import { Sidebar } from './Sidebar'
 import { SidebarFilter } from './SidebarFilter'
 import { SidebarMenu } from './SidebarMenu'
 import { SidebarMenuItem } from './SidebarMenuItem'
-import { SidebarOverview } from './SidebarOverview'
-import { SidebarOverviewMenuItem } from './SidebarOverviewMenuItem'
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance
-  let onSubmitSpy: jest.SpyInstance
   let wrapper: RenderResult
 
   beforeEach(() => {
     const filterProps = {
       onChange: (e: React.ChangeEvent<HTMLInputElement>) => undefined,
-      onSubmit: (e: React.MouseEvent<HTMLButtonElement>, value: string) =>
-        undefined,
     }
 
     onChangeSpy = jest.spyOn(filterProps, 'onChange')
-    onSubmitSpy = jest.spyOn(filterProps, 'onSubmit')
 
     wrapper = render(
       <Sidebar title="Components">
-        <SidebarOverview>
-          <SidebarOverviewMenuItem
+        <SidebarMenu>
+          <SidebarMenuItem link={<Link href="#overview">Overview</Link>} />
+          <SidebarMenuItem
             icon={<IconBookmark data-testid="icon-1" />}
             link={<Link href="#storybook">Storybook</Link>}
           />
-          <SidebarOverviewMenuItem
+          <SidebarMenuItem
             icon={<IconBookmark data-testid="icon-2" />}
-            link={<Link href="#axure-prototype-kit">Axure Prototype Kit</Link>}
+            link={<Link href="/guidance/design">Axure design libraries</Link>}
           />
-        </SidebarOverview>
+        </SidebarMenu>
         <SidebarFilter {...filterProps} />
         <SidebarMenu>
           <SidebarMenuItem link={<Link href="#1">Item 1</Link>} />
@@ -48,29 +43,25 @@ describe('Sidebar', () => {
     )
   })
 
-  it('should render the overview', () => {
-    const links = wrapper.getAllByTestId('sidebar-overview-link')
+  it('should render the `Overview` link', () => {
+    expect(wrapper.getByText('Overview')).toHaveAttribute('href', '/#overview')
+  })
+
+  it('should render the icon items', () => {
+    const links = wrapper.getAllByTestId('sidebar-icon-link')
 
     expect(links[0]).toHaveTextContent('Storybook')
     expect(links[0]).toHaveAttribute('href', '/#storybook')
-    expect(links[1]).toHaveTextContent('Axure Prototype Kit')
-    expect(links[1]).toHaveAttribute('href', '/#axure-prototype-kit')
-    expect(links).toHaveLength(2)
-  })
-
-  it('should render the overview icons', () => {
     expect(wrapper.getByTestId('icon-1')).toBeInTheDocument()
+    expect(links[1]).toHaveTextContent('Axure design libraries')
+    expect(links[1]).toHaveAttribute('href', '/guidance/design')
     expect(wrapper.getByTestId('icon-2')).toBeInTheDocument()
+    expect(links).toHaveLength(2)
   })
 
   it('should render the menu items', () => {
-    const links = wrapper.getAllByTestId('sidebar-link')
-
-    expect(links[0]).toHaveTextContent('Item 1')
-    expect(links[0]).toHaveAttribute('href', '/#1')
-    expect(links[1]).toHaveTextContent('Item 2')
-    expect(links[1]).toHaveAttribute('href', '/#2')
-    expect(links).toHaveLength(2)
+    expect(wrapper.getByText('Item 1')).toHaveAttribute('href', '/#1')
+    expect(wrapper.getByText('Item 2')).toHaveAttribute('href', '/#2')
   })
 
   describe('when typing into the filter', () => {
@@ -89,16 +80,16 @@ describe('Sidebar', () => {
 
       expect(onChangeSpy).toHaveBeenCalledTimes(3)
     })
+  })
 
-    describe('when the submit button is clicked', () => {
-      beforeEach(() => {
-        userEvent.click(wrapper.getByTestId('sidebar-filter-button'))
-      })
+  describe.skip('and the user presses the filter keyboard shotcut', () => {
+    beforeEach(async () => {
+      await userEvent.keyboard('/')
+    })
 
-      it('should call the `onSubmit` callback', () => {
-        expect(onSubmitSpy.mock.calls[0][1]).toEqual('abc')
-
-        expect(onSubmitSpy).toHaveBeenCalledTimes(1)
+    it('should focus the filter input', () => {
+      return waitFor(() => {
+        expect(wrapper.getByTestId('sidebar-filter-input')).toHaveFocus()
       })
     })
   })

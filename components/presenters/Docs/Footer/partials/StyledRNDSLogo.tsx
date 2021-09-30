@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-import { ReactComponent as RNDSLogo } from '../../../../../public/RNDSLogo.svg'
+import RNDSLogo from '../../../../../public/RNDSLogo.svg'
 
 const { color } = selectors
 

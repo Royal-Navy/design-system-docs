@@ -2,7 +2,7 @@
 import { describe, cy, it, before } from 'local-cypress'
 // eslint-disable-next-line import/extensions
 import { baseUrl } from '../../../cypress.json'
-import selectors from '../../selectors'
+import selectors from '../../selectors/timeline'
 
 const content = [
   { text: 'Home', link: 'home' },
@@ -72,7 +72,7 @@ describe('Compound Timeline', () => {
         req.reply("console.log('Fake New Relic script loaded');")
       })
 
-      cy.visit('/')
+      cy.visit('/timeline')
     })
 
     it('should render the sidebar title', () => {
@@ -103,7 +103,7 @@ describe('Compound Timeline', () => {
 
           it(`should render the sidebar ${text} link`, () => {
             cy.get(selectors.sidebar.link).eq(index).should('have.text', text)
-            cy.url().should('eq', `${baseUrl}/#${link}`)
+            cy.url().should('eq', `${baseUrl}/timeline#${link}`)
           })
 
           if (text !== 'Home') {

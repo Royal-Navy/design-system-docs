@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import { selectors } from '@royalnavy/design-tokens'
 
-import { StyledMastheadMenu } from './StyledMastheadMenu'
-
 const { color, spacing, shadow, mq } = selectors
 
 interface StyledMastheadProps {
@@ -17,6 +15,11 @@ export const StyledMasthead = styled.header<StyledMastheadProps>`
   height: 48px;
   padding: 0 ${spacing('10')};
   box-shadow: ${shadow('2')};
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
 
   ${mq({ gte: 's' })`
     padding: 0 ${spacing('13')};
@@ -62,14 +65,6 @@ export const StyledMasthead = styled.header<StyledMastheadProps>`
     `
     &::before {
       display: none;
-    }
-
-    &&& ${StyledMastheadMenu} {
-      visibility: hidden;
-
-      ${mq({ gte: 'm' })`
-        visibility: visible;
-      `}
     }
   `}
 `

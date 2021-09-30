@@ -5,7 +5,11 @@ import { createGlobalStyle } from 'styled-components'
 
 import '../global.scss'
 
-const GlobalStyle = createGlobalStyle``
+const GlobalStyle = createGlobalStyle`
+  html {
+    scroll-behavior: smooth;
+  }
+`
 
 export default function MyApp({
   Component,
