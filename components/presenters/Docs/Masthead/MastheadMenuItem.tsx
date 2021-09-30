@@ -10,29 +10,19 @@ import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMastheadMenuItem } from './partials/StyledMastheadMenuItem'
 import { StyledMastheadMenuLink } from './partials/StyledMastheadMenuLink'
 import { StyledExpandButton } from './partials/StyledExpandButton'
+import { useMastheadMenuItem } from './hooks/useMastheadMenuItem'
 
 export interface MastheadMenuItemProps extends ComponentWithClass {
   link?: React.ReactElement
 }
 
-const { breakpoint } = selectors
-
 export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   link,
   children,
 }) => {
-  const subMenuRef = useRef()
-  const [showChildren, setShowChildren] = useState<boolean>(false)
+  const { isNotMobile, setShowChildren, showChildren, subMenuRef } =
+    useMastheadMenuItem()
   const hasChildren = !!children
-  const mediumBreakpointWidth = Number(
-    breakpoint('m').breakpoint.replace(/px/g, '')
-  )
-
-  useDocumentClick(subMenuRef, (_: Event) => {
-    if (window.innerWidth >= mediumBreakpointWidth) {
-      setShowChildren(false)
-    }
-  })
 
   return (
     <StyledMastheadMenuItem $hasChildren={hasChildren}>
@@ -60,7 +50,7 @@ export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
         <div
           ref={subMenuRef}
           onClick={(_: React.MouseEvent<HTMLDivElement>) => {
-            if (window.innerWidth >= mediumBreakpointWidth) {
+            if (isNotMobile) {
               setShowChildren(false)
             }
           }}
