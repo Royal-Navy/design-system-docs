@@ -11,26 +11,31 @@ import {
 const { breakpoint } = selectors
 
 export function useMastheadMenuItem(): {
-  isNotMobile: boolean
+  ariaLabel: string
+  buttonRef: MutableRefObject<HTMLButtonElement>
+  mediumBreakpointWidth: number
   setShowChildren: Dispatch<SetStateAction<boolean>>
   showChildren: boolean
   subMenuRef: MutableRefObject<HTMLDivElement>
 } {
+  const buttonRef = useRef()
   const subMenuRef = useRef()
   const [showChildren, setShowChildren] = useState<boolean>(false)
   const mediumBreakpointWidth = Number(
     breakpoint('m').breakpoint.replace(/px/g, '')
   )
-  const isNotMobile = window.innerWidth >= mediumBreakpointWidth
+  const ariaLabel = showChildren ? 'Hide menu' : 'Show menu'
 
-  useDocumentClick(subMenuRef, (_: Event) => {
-    if (isNotMobile) {
+  useDocumentClick([buttonRef, subMenuRef], (_: Event) => {
+    if (window.innerWidth >= mediumBreakpointWidth && showChildren) {
       setShowChildren(false)
     }
   })
 
   return {
-    isNotMobile,
+    ariaLabel,
+    buttonRef,
+    mediumBreakpointWidth,
     setShowChildren,
     showChildren,
     subMenuRef,

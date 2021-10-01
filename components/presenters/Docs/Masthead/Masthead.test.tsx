@@ -16,6 +16,10 @@ import {
   MastheadSubMenuItem,
 } from '.'
 
+jest.mock('next/link', () => {
+  return ({ children }) => children
+})
+
 describe('Masthead', () => {
   let wrapper: RenderResult
 
@@ -30,7 +34,8 @@ describe('Masthead', () => {
               <MastheadMenuItem
                 link={<Link href="#principles">Principles</Link>}
               />
-              <MastheadMenuItem link={<Link href="#reference">Reference</Link>}>
+              {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+              <MastheadMenuItem link={<Link href="#">Reference</Link>}>
                 <MastheadSubMenu>
                   <MastheadSubMenuItem
                     link={<Link href="#design-tokens">Design Tokens</Link>}
@@ -54,6 +59,17 @@ describe('Masthead', () => {
 
     it('should not display the sub navigation', () => {
       expect(wrapper.queryByText('Design Tokens')).not.toBeInTheDocument()
+    })
+
+    it('should not set the `aria-label` attribute on the `Reference` menu item', () => {
+      expect(wrapper.getByText('Guidance')).not.toHaveAttribute('aria-label')
+    })
+
+    it('should set the `aria-label` attribute on the `Reference` menu item', () => {
+      expect(wrapper.getByText('Reference')).toHaveAttribute(
+        'aria-label',
+        'Show menu'
+      )
     })
 
     describe('and the user clicks the expand nav button', () => {
@@ -90,6 +106,53 @@ describe('Masthead', () => {
               wrapper.queryByTestId('masthead-sub-menu')
             ).not.toBeInTheDocument()
           })
+        })
+      })
+    })
+
+    describe('and the user clicks the menu item title', () => {
+      let clickEventSpy: MouseEvent
+
+      beforeEach(() => {
+        clickEventSpy = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+        })
+
+        Object.assign(clickEventSpy, { preventDefault: jest.fn() })
+
+        fireEvent(wrapper.getByText('Reference'), clickEventSpy)
+      })
+
+      it('should invoke preventDefault', () => {
+        expect(clickEventSpy.preventDefault).toHaveBeenCalledTimes(1)
+      })
+
+      it('should show the sub navigation', () => {
+        expect(wrapper.queryByText('Design Tokens')).toBeInTheDocument()
+      })
+
+      it('should set the `aria-label` attribute on the `Reference` menu item', () => {
+        expect(wrapper.getByText('Reference')).toHaveAttribute(
+          'aria-label',
+          'Hide menu'
+        )
+      })
+
+      describe('and the user clicks the menu item title again', () => {
+        beforeEach(() => {
+          wrapper.getByText('Reference').click()
+        })
+
+        it('should hide the sub navigation', () => {
+          expect(wrapper.queryByText('Design Tokens')).not.toBeInTheDocument()
+        })
+
+        it('should set the `aria-label` attribute on the `Reference` menu item', () => {
+          expect(wrapper.getByText('Reference')).toHaveAttribute(
+            'aria-label',
+            'Show menu'
+          )
         })
       })
     })
