@@ -12,7 +12,7 @@ jobs:
       uses: Royal-Navy/move-labeled-or-milestoned-issue@master
       with:
         action-token: "${{ secrets.GHA_ISSUES_TOKEN }}"
-        project-url: "https://github.com/Royal-Navy/docs.royalnavy.io/projects/1"
+        project-url: "https://github.com/${{ github.repository }}/projects/1"
         column-name: "Candidates for Ready"
         label-name: "Size: Small,Size: Medium"
         columns-to-ignore: "Ready,In Progress,In Review,Done"

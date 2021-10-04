@@ -9,7 +9,7 @@ jobs:
     Check_commits:
       runs-on: ubuntu-latest
       env:
-        GIT_URL: "https://github.com/Royal-Navy/docs.royalnavy.io/pulls/"
+        GIT_URL: "https://github.com/${{ github.repository }}/pulls/"
       steps:
         - name: Git clone repository
           uses: actions/checkout@v2
@@ -24,7 +24,7 @@ jobs:
           run: |
             yarn install --cache-folder ~/.cache/yarn
             PR_NUM=$(curl -s  -H "Accept: application/vnd.github.groot-preview+json" \
-            https://api.github.com/repos/Royal-Navy/docs.royalnavy.io/commits/${{ github.sha }}/pulls | jq -r '.[].number')
+            https://api.github.com/repos/${{ github.repository }}/commits/${{ github.sha }}/pulls | jq -r '.[].number')
             node ./scripts/commitlint "$GIT_URL$PR_NUM"
             node ./scripts/check-fixup "$GIT_URL$PR_NUM"
 
@@ -93,7 +93,7 @@ jobs:
             yarn test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
 
         - name: SonarCloud Scan
-          uses: Royal-Navy/sonarcloud-github-action@master
+          uses: defencedigital/design-system-sonarcloud-action@master
           env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
