@@ -351,11 +351,11 @@ export const GenericPage: React.FC<GenericPageProps> = ({
     </PageBanner>
   )
 
-  const isTabletOrMobile = useMediaQuery({
-    query: `(max-width: ${breakpoint('m').breakpoint})`,
+  const isDesktop = useMediaQuery({
+    query: `(min-width: ${breakpoint('m').breakpoint})`,
   })
 
-  const navigation = isTabletOrMobile ? mobileNavigation : desktopNavigation
+  const navigation = isDesktop ? desktopNavigation : mobileNavigation
 
   const masthead = (
     <Masthead version={version}>
