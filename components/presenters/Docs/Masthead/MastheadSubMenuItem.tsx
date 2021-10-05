@@ -17,7 +17,9 @@ export const MastheadSubMenuItem: React.FC<MastheadSubMenuItemProps> = ({
       {React.cloneElement(link, {
         passHref: true,
         children: (
-          <StyledMastheadMenuLink>{link.props.children}</StyledMastheadMenuLink>
+          <StyledMastheadMenuLink data-testid="masthead-sub-menu-link">
+            {link.props.children}
+          </StyledMastheadMenuLink>
         ),
       })}
     </StyledMastheadSubMenuItem>
