@@ -1,5 +1,6 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { IconClose } from '@royalnavy/icon-library'
+import { useDocumentClick } from '@royalnavy/react-component-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 
@@ -10,7 +11,7 @@ import RNDSMobileLogo from '../../../../public/RNDSMobileLogo.svg'
 
 export interface MastheadMenuProps extends ComponentWithClass {
   isOpen?: boolean
-  onClose?: (e: React.MouseEvent<HTMLButtonElement>) => void
+  onClose?: (e: Event) => void
 }
 
 export const MastheadMenu: React.FC<MastheadMenuProps> = ({
@@ -18,8 +19,12 @@ export const MastheadMenu: React.FC<MastheadMenuProps> = ({
   isOpen,
   onClose,
 }) => {
+  const mastheadMenuRef = useRef()
+
+  useDocumentClick(mastheadMenuRef, onClose)
+
   return (
-    <StyledMastheadMenu $isOpen={isOpen}>
+    <StyledMastheadMenu $isOpen={isOpen} ref={mastheadMenuRef}>
       <StyledMastheadMobile>
         <RNDSMobileLogo />
         <StyledMenuButton onClick={onClose}>
