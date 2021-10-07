@@ -6,10 +6,10 @@ import { Sidebar } from '../../presenters/Framework/Sidebar'
 import { StyledMain } from './partials/StyledMain'
 import { useDesignSystemVersion } from '../../../hooks/useDesignSystemVersion'
 
-interface LayoutFrameworkProps {
+export interface LayoutFrameworkProps {
   children: React.ReactNode
   title?: string
-  navigation?: React.ReactNode | React.ReactNode[]
+  navigation: React.ReactNode | React.ReactNode[]
 }
 
 export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({

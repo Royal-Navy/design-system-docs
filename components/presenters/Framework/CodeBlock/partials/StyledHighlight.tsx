@@ -8,9 +8,9 @@ import theme from './theme'
 
 import { ComponentWithClass } from '../../../../../common/ComponentWithClass'
 
-const { color, spacing } = selectors
+const { color } = selectors
 
-interface StyledHighlightProps extends ComponentWithClass {
+export interface StyledHighlightProps extends ComponentWithClass {
   $code: string
   $language?: Language
 }

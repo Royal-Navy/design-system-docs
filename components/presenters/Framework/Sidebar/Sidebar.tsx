@@ -11,7 +11,7 @@ import { StyledTitle } from './partials/StyledTitle'
 import { StyledButton } from './partials/StyledButton'
 import { StyledSidebarMenu } from './partials/StyledSidebarMenu'
 
-interface SidebarProps extends ComponentWithClass {
+export interface SidebarProps extends ComponentWithClass {
   title: string
   isOpen?: boolean
   onToggle: (e: React.MouseEvent<HTMLButtonElement>) => void

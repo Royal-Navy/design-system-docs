@@ -4,7 +4,7 @@ import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledSidebarMenuItem } from './partials/StyledSidebarMenuItem'
 import { StyledNavLink } from './partials/StyledNavLink'
 
-interface SidebarMenuItemProps extends ComponentWithClass {
+export interface SidebarMenuItemProps extends ComponentWithClass {
   href: string
   title: string
   isCode?: boolean

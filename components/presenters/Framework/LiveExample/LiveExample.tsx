@@ -5,7 +5,7 @@ import { StyledLiveExample } from './partials/StyledLiveExample'
 import { StyledHeader } from './partials/StyledHeader'
 import { StyledTitle } from './partials/StyledTitle'
 
-interface LiveExampleProps extends ComponentWithClass {
+export interface LiveExampleProps extends ComponentWithClass {
   title?: string
 }
 

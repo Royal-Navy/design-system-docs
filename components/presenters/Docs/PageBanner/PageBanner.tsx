@@ -9,7 +9,7 @@ import { StyledCloseButton } from './partials/StyledCloseButton'
 export const PageBanner: React.FC<ComponentWithClass> = ({ children }) => {
   const [isOpen, setIsOpen] = useState(true)
 
-  function handleOnClick(_: React.MouseEventHandler<HTMLButtonElement>) {
+  const handleOnClick = (_: React.MouseEventHandler<HTMLButtonElement>) => {
     setIsOpen(false)
   }
 

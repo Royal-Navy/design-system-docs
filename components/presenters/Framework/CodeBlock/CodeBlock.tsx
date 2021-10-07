@@ -7,7 +7,7 @@ import { StyledHeader } from './partials/StyledHeader'
 import { StyledFilename } from './partials/StyledFilename'
 import { StyledHighlight } from './partials/StyledHighlight'
 
-interface CodeBlockProps extends ComponentWithClass {
+export interface CodeBlockProps extends ComponentWithClass {
   filename?: string
   language?: string
 }
