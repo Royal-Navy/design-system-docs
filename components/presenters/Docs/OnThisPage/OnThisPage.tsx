@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { OnThisPageItem, OnThisPageItemProps } from './OnThisPageItem'
@@ -6,18 +6,13 @@ import { StyledHeading } from './partials/StyledHeading'
 import { StyledItems } from './partials/StyledItems'
 import { StyledOnThisPage } from './partials/StyledOnThisPage'
 import { warnIfOverwriting } from '../../../helpers'
+import { useActiveItem } from './hooks/useActiveItem'
 
-export interface OnThisPageProps extends ComponentWithClass {
-  children:
-    | React.ReactElement<OnThisPageItemProps>
-    | React.ReactElement<OnThisPageItemProps>[]
-}
-
-export const OnThisPage: React.FC<OnThisPageProps> = ({
+export const OnThisPage: React.FC<ComponentWithClass> = ({
   children,
   className,
 }) => {
-  const [activeItemIndex, setActiveItemIndex] = useState<number>(0)
+  const { isActive, setActiveItemIndex } = useActiveItem(children)
 
   return (
     <StyledOnThisPage className={className}>
@@ -30,7 +25,7 @@ export const OnThisPage: React.FC<OnThisPageProps> = ({
 
             return React.cloneElement(child, {
               ...child.props,
-              isActive: index === activeItemIndex,
+              isActive: isActive(index),
               onClick: (e: React.MouseEvent<HTMLElement>) => {
                 setActiveItemIndex(index)
                 child.props.onClick(e)

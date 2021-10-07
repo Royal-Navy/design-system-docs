@@ -259,12 +259,27 @@ function renderOnThisPageItems(
 
   const { push } = useRouter()
 
+  function getCurrentSectionNumber() {
+    if (typeof window === 'undefined') {
+      return 0
+    }
+
+    return parseInt(window.location.hash.split('-')[0].substring(1), 10)
+  }
+
+  const currentSectionNumber = getCurrentSectionNumber()
+
   return h2Collection.map((item: Record<string, any>, index: number) => {
     const title = item?.content[0]?.value
-    const href = `#${kebabCase(`${index + 1}${title}`)}`
+    const sectionNumber = index + 1
+    const href = `#${kebabCase(`${sectionNumber}${title}`)}`
 
     return (
-      <OnThisPageItem key={href} onClick={(_) => push(href)}>
+      <OnThisPageItem
+        isActive={currentSectionNumber === sectionNumber}
+        key={href}
+        onClick={(_) => push(href)}
+      >
         {title}
       </OnThisPageItem>
     )
