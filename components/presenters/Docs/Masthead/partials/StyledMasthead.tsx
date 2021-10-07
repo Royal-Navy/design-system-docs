@@ -53,7 +53,6 @@ export const StyledMasthead = styled.header<StyledMastheadProps>`
     height: 100vh;
     width: 100vw;
     background-color: rgba(000, 000, 000, 0.25);
-    pointer-events: none;
 
     ${mq({ gte: 'm' })`
       display: none;

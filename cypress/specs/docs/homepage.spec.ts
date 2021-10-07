@@ -65,6 +65,13 @@ describe('Docs Site: Homepage', () => {
             })
           })
         })
+
+        describe('when clicking outside the mobile menu', () => {
+          it('should close the mobile menu', () => {
+            cy.get(selectors.layout.masthead).click()
+            cy.get(selectors.layout.mastheadMenuExpandButton).should('be.visible')
+          })
+        })
       })
     }
   )
