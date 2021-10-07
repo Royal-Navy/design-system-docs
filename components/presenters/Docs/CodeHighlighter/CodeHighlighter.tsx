@@ -28,7 +28,7 @@ export const CodeHighlighter: React.FC<CodeHighlighterProps> = ({
 
   const [copyLabel, setCopyLabel] = useState('Copy code')
 
-  function copyToClipboard() {
+  const copyToClipboard = () => {
     const textarea = document.createElement('textarea')
 
     textarea.innerText = source
