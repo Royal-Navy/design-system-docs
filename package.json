@@ -13,7 +13,8 @@
     "test": "NODE_ENV=test jest --testPathIgnorePatterns=./a11y/index.test.tsx",
     "test:watch": "NODE_ENV=test jest --watch",
     "test:e2e": "cypress run",
-    "codegen": "gql-gen --config codegen.yml"
+    "codegen": "gql-gen --config codegen.yml",
+    "audit": "./scripts/audit/audit.sh"
   },
   "jest": {
     "testResultsProcessor": "jest-sonar-reporter"
