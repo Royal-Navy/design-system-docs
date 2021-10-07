@@ -5,10 +5,10 @@ const { mq, spacing, fontSize, color } = selectors
 
 export const StyledContent = styled.div`
   flex: 1;
-  padding: ${spacing('12')} ${spacing('10')};
+  padding: 0 ${spacing('10')} ${spacing('12')};
 
   ${mq({ gte: 's' })`
-    padding: ${spacing('12')} 0;
+    padding: 0 0 ${spacing('12')};
   `}
 
   h1,

@@ -1734,7 +1734,10 @@ export type Page = Entry & {
   contentfulMetadata: ContentfulMetadata;
   linkedFrom?: Maybe<PageLinkingCollections>;
   title?: Maybe<Scalars['String']>;
+  hideContentBanner?: Maybe<Scalars['Boolean']>;
+  contentBannerTitle?: Maybe<Scalars['String']>;
   sectionCollection?: Maybe<PageSectionCollection>;
+  contentBannerDescription?: Maybe<Scalars['String']>;
 };
 
 
@@ -1751,10 +1754,28 @@ export type PageTitleArgs = {
 
 
 /** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageHideContentBannerArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageContentBannerTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
 export type PageSectionCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
+export type PageContentBannerDescriptionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -1776,7 +1797,24 @@ export type PageFilter = {
   title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   title_contains?: Maybe<Scalars['String']>;
   title_not_contains?: Maybe<Scalars['String']>;
+  hideContentBanner_exists?: Maybe<Scalars['Boolean']>;
+  hideContentBanner?: Maybe<Scalars['Boolean']>;
+  hideContentBanner_not?: Maybe<Scalars['Boolean']>;
+  contentBannerTitle_exists?: Maybe<Scalars['Boolean']>;
+  contentBannerTitle?: Maybe<Scalars['String']>;
+  contentBannerTitle_not?: Maybe<Scalars['String']>;
+  contentBannerTitle_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentBannerTitle_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentBannerTitle_contains?: Maybe<Scalars['String']>;
+  contentBannerTitle_not_contains?: Maybe<Scalars['String']>;
   sectionCollection_exists?: Maybe<Scalars['Boolean']>;
+  contentBannerDescription_exists?: Maybe<Scalars['Boolean']>;
+  contentBannerDescription?: Maybe<Scalars['String']>;
+  contentBannerDescription_not?: Maybe<Scalars['String']>;
+  contentBannerDescription_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentBannerDescription_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  contentBannerDescription_contains?: Maybe<Scalars['String']>;
+  contentBannerDescription_not_contains?: Maybe<Scalars['String']>;
   OR?: Maybe<Array<Maybe<PageFilter>>>;
   AND?: Maybe<Array<Maybe<PageFilter>>>;
 };
@@ -1806,6 +1844,12 @@ export type PageLinkingCollectionsNavigationElementCollectionArgs = {
 export enum PageOrder {
   TitleAsc = 'title_ASC',
   TitleDesc = 'title_DESC',
+  HideContentBannerAsc = 'hideContentBanner_ASC',
+  HideContentBannerDesc = 'hideContentBanner_DESC',
+  ContentBannerTitleAsc = 'contentBannerTitle_ASC',
+  ContentBannerTitleDesc = 'contentBannerTitle_DESC',
+  ContentBannerDescriptionAsc = 'contentBannerDescription_ASC',
+  ContentBannerDescriptionDesc = 'contentBannerDescription_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -1833,12 +1877,12 @@ export type Query = {
   assetCollection?: Maybe<AssetCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
-  navigationElement?: Maybe<NavigationElement>;
-  navigationElementCollection?: Maybe<NavigationElementCollection>;
   swatchColour?: Maybe<SwatchColour>;
   swatchColourCollection?: Maybe<SwatchColourCollection>;
   swatch?: Maybe<Swatch>;
   swatchCollection?: Maybe<SwatchCollection>;
+  navigationElement?: Maybe<NavigationElement>;
+  navigationElementCollection?: Maybe<NavigationElementCollection>;
   markdownTable?: Maybe<MarkdownTable>;
   markdownTableCollection?: Maybe<MarkdownTableCollection>;
   simpleCard?: Maybe<SimpleCard>;
@@ -1899,23 +1943,6 @@ export type QueryPageCollectionArgs = {
 };
 
 
-export type QueryNavigationElementArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryNavigationElementCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<NavigationElementFilter>;
-  order?: Maybe<Array<Maybe<NavigationElementOrder>>>;
-};
-
-
 export type QuerySwatchColourArgs = {
   id: Scalars['String'];
   preview?: Maybe<Scalars['Boolean']>;
@@ -1947,6 +1974,23 @@ export type QuerySwatchCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<SwatchFilter>;
   order?: Maybe<Array<Maybe<SwatchOrder>>>;
+};
+
+
+export type QueryNavigationElementArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryNavigationElementCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<NavigationElementFilter>;
+  order?: Maybe<Array<Maybe<NavigationElementOrder>>>;
 };
 
 
@@ -2387,7 +2431,7 @@ export enum SimpleCardOrder {
   SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
 }
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+/** Represents a collection of colours and their associated hex values. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
 export type Swatch = Entry & {
   __typename?: 'Swatch';
   sys: Sys;
@@ -2398,19 +2442,19 @@ export type Swatch = Entry & {
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+/** Represents a collection of colours and their associated hex values. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
 export type SwatchLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+/** Represents a collection of colours and their associated hex values. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
 export type SwatchTitleArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
+/** Represents a collection of colours and their associated hex values. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatch) */
 export type SwatchColourCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
@@ -2426,7 +2470,7 @@ export type SwatchCollection = {
   items: Array<Maybe<Swatch>>;
 };
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+/** A single colour and associated hex value. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
 export type SwatchColour = Entry & {
   __typename?: 'SwatchColour';
   sys: Sys;
@@ -2438,25 +2482,25 @@ export type SwatchColour = Entry & {
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+/** A single colour and associated hex value. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
 export type SwatchColourLinkedFromArgs = {
   allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+/** A single colour and associated hex value. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
 export type SwatchColourNameArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+/** A single colour and associated hex value. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
 export type SwatchColourColourArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
-/** [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
+/** A single colour and associated hex value. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/swatchColour) */
 export type SwatchColourIsDarkArgs = {
   locale?: Maybe<Scalars['String']>;
 };
@@ -2719,7 +2763,7 @@ export type PageByPathQuery = (
         )>> }
       )>, page?: Maybe<(
         { __typename?: 'Page' }
-        & Pick<Page, 'title'>
+        & Pick<Page, 'title' | 'hideContentBanner' | 'contentBannerTitle' | 'contentBannerDescription'>
         & { sys: (
           { __typename?: 'Sys' }
           & Pick<Sys, 'id'>

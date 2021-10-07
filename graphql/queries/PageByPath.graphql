@@ -23,6 +23,9 @@ query PageByPath($path: String!) {
             id
           }
           title
+          hideContentBanner
+          contentBannerTitle
+          contentBannerDescription
           sectionCollection(limit: 10) {
             items {
               __typename
