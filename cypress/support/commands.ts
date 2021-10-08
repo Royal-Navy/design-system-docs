@@ -1,3 +1,7 @@
+import { Cypress, cy } from 'local-cypress'
+
+import selectors from '../selectors/docs'
+
 // ***********************************************
 // This example commands.js shows you how to
 // create various custom commands and overwrite
@@ -23,5 +27,20 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('browseTo', (masthead, subMenu, sidebar) => {
+  cy.visit('/')
+    .get(selectors.masthead.menuLinks)
+    .contains(masthead)
+    .siblings('button')
+    .click()
+    .get(selectors.masthead.subMenuLinks)
+    .contains(subMenu)
+    .click()
+
+  if (sidebar) {
+    cy.get(selectors.sidebar.links).contains(sidebar).click({ force: true })
+  }
+})
 
 export {}

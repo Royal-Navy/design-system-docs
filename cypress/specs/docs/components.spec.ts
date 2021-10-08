@@ -28,7 +28,7 @@ describe('Docs Site: Components', () => {
         req.reply("console.log('Fake New Relic script loaded');")
       })
 
-      cy.visit('/components')
+      cy.browseTo('Reference', 'Components')
     })
 
     it('should not display the legacy warning banner', () => {
@@ -45,7 +45,7 @@ describe('Docs Site: Components/Alert', () => {
         req.reply("console.log('Fake New Relic script loaded');")
       })
 
-      cy.visit('/components/alert')
+      cy.browseTo('Reference', 'Components', 'Alert')
     })
 
     it('should render the page title', () => {
