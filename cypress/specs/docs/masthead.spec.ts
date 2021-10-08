@@ -93,6 +93,13 @@ describe('Masthead', () => {
             })
           })
         })
+      } else {
+        it(`should not render a sub menu for ${title}`, () => {
+          cy.get(selectors.masthead.menuLinks)
+            .eq(itemIndex)
+            .siblings('button')
+            .should('not.exist')
+        })
       }
     })
   })
