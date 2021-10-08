@@ -80,4 +80,26 @@ describe('OnThisPage', () => {
       })
     })
   })
+
+  describe('the third item is active', () => {
+    beforeEach(() => {
+      onClickSpy = jest.fn()
+      wrapper = render(
+        <OnThisPage>
+          <OnThisPageItem onClick={onClickSpy}>1</OnThisPageItem>
+          <OnThisPageItem onClick={onClickSpy}>2</OnThisPageItem>
+          <OnThisPageItem isActive onClick={onClickSpy}>
+            3
+          </OnThisPageItem>
+          <OnThisPageItem onClick={onClickSpy}>4</OnThisPageItem>
+          <OnThisPageItem onClick={onClickSpy}>5</OnThisPageItem>
+        </OnThisPage>
+      )
+    })
+
+    it('should set the third item as active', () => {
+      const items = wrapper.getAllByTestId('on-this-page-item')
+      expectActive(items[2])
+    })
+  })
 })

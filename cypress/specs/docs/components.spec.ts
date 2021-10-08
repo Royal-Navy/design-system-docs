@@ -201,4 +201,31 @@ describe('Docs Site: Components/Alert', () => {
       })
     })
   })
+
+  describe('when browsing directly to a section', () => {
+    const itemIndex = 3
+
+    before(() => {
+      // Block newrelic.js due to issues with Cypress networking
+      cy.intercept('**/newrelic.js', (req) => {
+        req.reply("console.log('Fake New Relic script loaded');")
+      })
+
+      cy.visit(`/components/alert#${itemIndex + 1}-sizing-spacing`)
+    })
+
+    it('should set the `OnThisPage` item as active', () => {
+      cy.get(selectors.onThisPage.item)
+        .eq(itemIndex)
+        .should(
+          'have.css',
+          'border-left',
+          `4px solid ${hexToRgb(color('neutral', '400'))}`
+        )
+    })
+
+    it('should navigate to the relevant sub-heading', () => {
+      cy.get(selectors.contentBlock.h2).eq(itemIndex).should('be.visible')
+    })
+  })
 })

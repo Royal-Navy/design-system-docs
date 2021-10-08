@@ -7,7 +7,6 @@ import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import { ContentBannerProps } from '../../presenters/Docs/ContentBanner'
 import { FooterProps } from '../../presenters/Docs/Footer'
 import { MastheadProps } from '../../presenters/Docs/Masthead'
-import { OnThisPageProps } from '../../presenters/Docs/OnThisPage'
 import { SidebarProps } from '../../presenters/Docs/Sidebar'
 import { StyledArticle } from './partials/StyledArticle'
 import { StyledBody } from './partials/StyledBody'
@@ -25,7 +24,7 @@ export interface LayoutComponentProps {
   contentBanner: React.ReactElement<ContentBannerProps>
   footer: React.ReactElement<FooterProps>
   masthead: React.ReactElement<MastheadProps>
-  onThisPage: React.ReactElement<OnThisPageProps>
+  onThisPage: React.ReactElement<ComponentWithClass>
   pageBanner?: React.ReactElement<ComponentWithClass>
   sidebar: React.ReactElement<SidebarProps>
   title: string

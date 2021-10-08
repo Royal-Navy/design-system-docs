@@ -10,7 +10,9 @@ const stories = storiesOf('Docs/OnThisPage', module)
 stories.add('Default', () => (
   <OnThisPage>
     <OnThisPageItem onClick={action('onClick')}>Overview</OnThisPageItem>
-    <OnThisPageItem onClick={action('onClick')}>Usage</OnThisPageItem>
+    <OnThisPageItem isActive onClick={action('onClick')}>
+      Usage
+    </OnThisPageItem>
     <OnThisPageItem onClick={action('onClick')}>Anatomy</OnThisPageItem>
     <OnThisPageItem onClick={action('onClick')}>
       Hierarchy &amp; placement
