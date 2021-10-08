@@ -209,6 +209,11 @@ function renderSidebarItems(
   const grouped = groupBy(childrenCollection, 'contentfulMetadata.tags[0].name')
   const noGroup = grouped.undefined
   delete grouped.undefined
+  let pathname
+
+  if (typeof window !== 'undefined') {
+    pathname = window.location.pathname
+  }
 
   return (
     <>
@@ -219,6 +224,7 @@ function renderSidebarItems(
               <SidebarMenuItem
                 key={title}
                 link={<Link href={path || externalUri}>{title}</Link>}
+                isActive={path === pathname}
               />
             )
           })}
@@ -234,6 +240,7 @@ function renderSidebarItems(
                 <SidebarMenuItem
                   key={title}
                   link={<Link href={path || externalUri}>{title}</Link>}
+                  isActive={path === pathname}
                 />
               )
             })}

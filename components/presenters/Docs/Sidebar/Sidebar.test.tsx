@@ -4,11 +4,14 @@ import { IconBookmark } from '@royalnavy/icon-library'
 import Link from 'next/link'
 import { render, RenderResult, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
+import { selectors } from '@royalnavy/design-tokens'
 
 import { Sidebar } from './Sidebar'
 import { SidebarFilter } from './SidebarFilter'
 import { SidebarMenu } from './SidebarMenu'
 import { SidebarMenuItem } from './SidebarMenuItem'
+
+const { color } = selectors
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance
@@ -24,7 +27,10 @@ describe('Sidebar', () => {
     wrapper = render(
       <Sidebar title="Components">
         <SidebarMenu>
-          <SidebarMenuItem link={<Link href="#overview">Overview</Link>} />
+          <SidebarMenuItem
+            isActive
+            link={<Link href="#overview">Overview</Link>}
+          />
           <SidebarMenuItem
             icon={<IconBookmark data-testid="icon-1" />}
             link={<Link href="#storybook">Storybook</Link>}
@@ -45,6 +51,12 @@ describe('Sidebar', () => {
 
   it('should render the `Overview` link', () => {
     expect(wrapper.getByText('Overview')).toHaveAttribute('href', '/#overview')
+  })
+
+  it('should set the `Overview` link as active', () => {
+    expect(wrapper.getByText('Overview').parentElement).toHaveAttribute(
+      'aria-current'
+    )
   })
 
   it('should render the icon items', () => {

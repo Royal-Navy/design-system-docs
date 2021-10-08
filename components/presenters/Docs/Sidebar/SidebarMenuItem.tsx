@@ -9,6 +9,7 @@ import { StyledSidebarMenuItem } from './partials/StyledSidebarMenuItem'
 export interface SidebarMenuItemProps extends ComponentWithClass {
   icon?: React.ReactElement
   link: React.ReactElement<React.PropsWithChildren<LinkProps>>
+  isActive?: boolean
 }
 
 function getLink(link: React.ReactElement<React.PropsWithChildren<LinkProps>>) {
@@ -36,9 +37,10 @@ function getIconLink(
 export const SidebarMenuItem: React.FC<SidebarMenuItemProps> = ({
   icon,
   link,
+  isActive,
 }) => {
   return (
-    <StyledSidebarMenuItem>
+    <StyledSidebarMenuItem $isActive={isActive} aria-current={isActive}>
       {React.cloneElement(link, {
         ...link.props,
         children: icon ? getIconLink(icon, link) : getLink(link),
