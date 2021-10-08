@@ -1,50 +1,59 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import React, { useState, useRef } from 'react'
-import { selectors } from '@royalnavy/design-tokens'
-import { IconExpandMore, IconExpandLess } from '@royalnavy/icon-library'
-import { useDocumentClick } from '@royalnavy/react-component-library'
+import React from 'react'
+import { IconExpandLess, IconExpandMore } from '@royalnavy/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 
+import { StyledMastheadMenuButton } from './partials/StyledMastheadMenuButton'
 import { StyledMastheadMenuItem } from './partials/StyledMastheadMenuItem'
 import { StyledMastheadMenuLink } from './partials/StyledMastheadMenuLink'
 import { StyledExpandButton } from './partials/StyledExpandButton'
+import { useMastheadMenuItem } from './hooks/useMastheadMenuItem'
 
 export interface MastheadMenuItemProps extends ComponentWithClass {
   link?: React.ReactElement
 }
 
-const { breakpoint } = selectors
-
 export const MastheadMenuItem: React.FC<MastheadMenuItemProps> = ({
   link,
   children,
 }) => {
-  const subMenuRef = useRef()
-  const [showChildren, setShowChildren] = useState<boolean>(false)
+  const {
+    ariaLabel,
+    mediumBreakpointWidth,
+    buttonRef,
+    setShowChildren,
+    showChildren,
+    subMenuRef,
+  } = useMastheadMenuItem()
   const hasChildren = !!children
-  const mediumBreakpointWidth = Number(
-    breakpoint('m').breakpoint.replace(/px/g, '')
-  )
-
-  useDocumentClick(subMenuRef, (_: Event) => {
-    if (window.innerWidth >= mediumBreakpointWidth) {
-      setShowChildren(false)
-    }
-  })
 
   return (
     <StyledMastheadMenuItem $hasChildren={hasChildren}>
       <div>
-        {React.cloneElement(link, {
-          passHref: true,
-          children: (
-            <StyledMastheadMenuLink>
-              {link.props.children}
-            </StyledMastheadMenuLink>
-          ),
-        })}
+        {link.props.href === '#' ? (
+          <StyledMastheadMenuButton
+            aria-label={ariaLabel}
+            data-testid="masthead-menu-link"
+            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+              e.preventDefault()
+              setShowChildren(!showChildren)
+            }}
+            ref={buttonRef}
+          >
+            {link.props.children}
+          </StyledMastheadMenuButton>
+        ) : (
+          React.cloneElement(link, {
+            passHref: true,
+            children: (
+              <StyledMastheadMenuLink data-testid="masthead-menu-link">
+                {link.props.children}
+              </StyledMastheadMenuLink>
+            ),
+          })
+        )}
         {hasChildren && (
           <StyledExpandButton
             onClick={(_: React.MouseEvent<HTMLButtonElement>) =>
