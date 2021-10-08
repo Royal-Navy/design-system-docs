@@ -6,10 +6,7 @@ import selectors from '../../selectors/docs'
 describe('Docs Site: Tokens', () => {
   describe('when browsing on desktop', () => {
     before(() => {
-      // Block newrelic.js due to issues with Cypress networking
-      cy.intercept('**/newrelic.js', (req) => {
-        req.reply("console.log('Fake New Relic script loaded');")
-      })
+      cy.blockNewRelic()
 
       cy.browseTo('Reference', 'Tokens')
     })

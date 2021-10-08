@@ -23,10 +23,7 @@ const sections = [
 describe('Docs Site: Components', () => {
   describe('when browsing on desktop', () => {
     before(() => {
-      // Block newrelic.js due to issues with Cypress networking
-      cy.intercept('**/newrelic.js', (req) => {
-        req.reply("console.log('Fake New Relic script loaded');")
-      })
+      cy.blockNewRelic()
 
       cy.browseTo('Reference', 'Components')
     })
@@ -40,10 +37,7 @@ describe('Docs Site: Components', () => {
 describe('Docs Site: Components/Alert', () => {
   describe('when browsing on desktop', () => {
     before(() => {
-      // Block newrelic.js due to issues with Cypress networking
-      cy.intercept('**/newrelic.js', (req) => {
-        req.reply("console.log('Fake New Relic script loaded');")
-      })
+      cy.blockNewRelic()
 
       cy.browseTo('Reference', 'Components', 'Alert')
     })
@@ -206,10 +200,7 @@ describe('Docs Site: Components/Alert', () => {
     const itemIndex = 3
 
     before(() => {
-      // Block newrelic.js due to issues with Cypress networking
-      cy.intercept('**/newrelic.js', (req) => {
-        req.reply("console.log('Fake New Relic script loaded');")
-      })
+      cy.blockNewRelic()
 
       cy.visit(`/components/alert#${itemIndex + 1}-sizing-spacing`)
     })
