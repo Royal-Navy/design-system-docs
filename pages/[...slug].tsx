@@ -338,8 +338,14 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   parentPage,
 }) => {
   const [filterString, setFilterString] = useState<string>(null)
-  const { title, sectionCollection } = page
   const { version } = useDesignSystemVersion()
+  const {
+    title,
+    sectionCollection,
+    hideContentBanner,
+    contentBannerTitle,
+    contentBannerDescription,
+  } = page
 
   const pageBanner = (
     <PageBanner>
@@ -405,13 +411,16 @@ export const GenericPage: React.FC<GenericPageProps> = ({
     </OnThisPage>
   )
 
-  const contentBanner = (
+  const contentBanner = hideContentBanner ? null : (
     <ContentBanner
       icon={<IconLightbulbOutline />}
-      title="The documentation on this page is considered legacy."
+      title={
+        contentBannerTitle ||
+        'The documentation on this page is considered legacy.'
+      }
     >
-      We will be updating this content to our new principle-based format in the
-      near future.
+      {contentBannerDescription ||
+        'We will be updating this content to our new principle-based format in the near future.'}
     </ContentBanner>
   )
 

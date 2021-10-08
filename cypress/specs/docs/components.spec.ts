@@ -28,6 +28,23 @@ describe('Docs Site: Components', () => {
         req.reply("console.log('Fake New Relic script loaded');")
       })
 
+      cy.visit('/components')
+    })
+
+    it('should not display the legacy warning banner', () => {
+      cy.get(selectors.layout.contentBanner).should('not.exist')
+    })
+  })
+})
+
+describe('Docs Site: Components/Alert', () => {
+  describe('when browsing on desktop', () => {
+    before(() => {
+      // Block newrelic.js due to issues with Cypress networking
+      cy.intercept('**/newrelic.js', (req) => {
+        req.reply("console.log('Fake New Relic script loaded');")
+      })
+
       cy.visit('/components/alert')
     })
 
