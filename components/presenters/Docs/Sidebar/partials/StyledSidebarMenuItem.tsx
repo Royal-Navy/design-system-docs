@@ -1,6 +1,16 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
+import { selectors } from '@royalnavy/design-tokens'
 
-export const StyledSidebarMenuItem = styled.li`
+import { StyledNavLink } from './StyledNavLink'
+import { StyledIconNavLink } from './StyledIconNavLink'
+
+interface StyledSidebarMenuItemProps {
+  $isActive?: boolean
+}
+
+const { color } = selectors
+
+export const StyledSidebarMenuItem = styled.li<StyledSidebarMenuItemProps>`
   display: flex;
   align-items: center;
   list-style: none;
@@ -8,4 +18,13 @@ export const StyledSidebarMenuItem = styled.li`
   padding: unset;
   height: 36px;
   display: block;
+
+  ${({ $isActive }) =>
+    $isActive &&
+    css`
+      ${StyledNavLink}, ${StyledIconNavLink} {
+        color: ${color('neutral', 'white')};
+        background-color: ${color('neutral', '500')};
+      }
+    `}
 `
