@@ -4,14 +4,62 @@ import { describe, cy, it, before } from 'local-cypress'
 // eslint-disable-next-line import/extensions
 import selectors from '../../selectors/docs'
 
-describe('Docs Site: Homepage', () => {
-  describe('when browsing on desktop', () => {
-    before(() => {
-      cy.blockNewRelic()
+const sections = [
+  'Get Started',
+  'Design Principles',
+  'Design System Reference',
+  'Resources',
+  'Get Involved',
+]
 
-      cy.visit('/')
-    })
-  })
+function assertSectionTitle(expected: string) {
+  cy.get(selectors.homepage.sectionTitles)
+    .eq(sections.indexOf(expected))
+    .should('have.text', expected)
+}
+
+describe('Docs Site: Homepage', () => {
+  describe(
+    'when browsing on desktop',
+    {
+      viewportHeight: 800,
+      viewportWidth: 1200,
+    },
+    () => {
+      before(() => {
+        cy.blockNewRelic()
+
+        cy.visit('/')
+      })
+
+      it('should render the hero', () => {
+        cy.get(selectors.homepage.hero.title).should('be.visible')
+      })
+
+      it('should render the `Get Started` section', () => {
+        assertSectionTitle('Get Started')
+
+        const heroCards = cy.get(selectors.homepage.getStarted.heroCards)
+        heroCards.should('have.length', 2)
+      })
+
+      it('should render the `Design Principles` section', () => {
+        assertSectionTitle('Design Principles')
+      })
+
+      it('should render the `Design System Reference` section', () => {
+        assertSectionTitle('Design System Reference')
+      })
+
+      it('should render the `Resources` section', () => {
+        assertSectionTitle('Resources')
+      })
+
+      it('should render the `Get Involved` section', () => {
+        assertSectionTitle('Get Involved')
+      })
+    }
+  )
 
   describe(
     'when browsing on mobile',
