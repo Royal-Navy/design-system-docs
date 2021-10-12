@@ -53,8 +53,8 @@ stories.add('Default', () => {
 
   const footer = (
     <Footer
-      description="The Royal Navy Design System provides guidance and tools for building
-      high–quality Services within the Royal Navy. This project is open source
+      description="The MOD.UK Design System provides guidance and tools for building
+      high–quality Services within the MOD.UK. This project is open source
       and its source code is available on GitHub."
       externalLinks={[
         <FooterExternalLink

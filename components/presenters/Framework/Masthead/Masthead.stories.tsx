@@ -8,7 +8,7 @@ const stories = storiesOf('Framework/Masthead', module)
 
 stories.add('Default', () => (
   <Masthead
-    title="Royal Navy Design System"
+    title="MOD.UK Design System"
     version="2.36.3"
     onToggle={action('onToggle')}
   />

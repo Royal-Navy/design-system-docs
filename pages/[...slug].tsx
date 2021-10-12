@@ -448,21 +448,25 @@ export const GenericPage: React.FC<GenericPageProps> = ({
 
   const footer = (
     <Footer
-      description="The Royal Navy Design System provides guidance and tools for building
-      high–quality Services within the Royal Navy. This project is open source
+      description="The MOD.UK Design System provides guidance and tools for building
+      high–quality Services within the UK Ministry of Defence. This project is open source
       and its source code is available on GitHub."
       externalLinks={[
         <FooterExternalLink
           icon={<GitHub />}
           link={
-            <Link href="https://github.com/Royal-Navy/design-system">
+            <Link href="https://github.com/defencedigital/mod-uk-design-system">
               GitHub
             </Link>
           }
         />,
         <FooterExternalLink
           icon={<Storybook />}
-          link={<Link href="https://storybook.royalnavy.io">Storybook</Link>}
+          link={
+            <Link href="https://storybook.design-system.digital.mod.uk/">
+              Storybook
+            </Link>
+          }
         />,
       ]}
       license="All content is available under the Apache 2.0 licence, except where
