@@ -7,7 +7,7 @@ import { StyledReleaseText } from './partials/StyledReleaseText'
 import { StyledTitle } from './partials/StyledTitle'
 import { StyledDescription } from './partials/StyledDescription'
 import { StyledSpacer } from './partials/StyledSpacer'
-import NelsonLogomark from '../../../../public/NelsonLogomark.svg'
+import MODUKDesignSystemLogomark from '../../../../public/MODUKDesignSystemLogomark.svg'
 
 export interface HeroProps extends ComponentWithClass {
   title?: string
@@ -28,7 +28,7 @@ export const Hero: React.FC<HeroProps> = ({
 
   return (
     <StyledHero>
-      <NelsonLogomark height={100} width={60} />
+      <MODUKDesignSystemLogomark height={100} width={60} />
       {title && <StyledTitle>{title}</StyledTitle>}
       {description && <StyledDescription>{description}</StyledDescription>}
       {ctaExists && (
