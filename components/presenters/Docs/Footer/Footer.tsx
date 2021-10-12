@@ -4,14 +4,13 @@ import { LinkProps } from 'next/link'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { FooterExternalLinkProps } from './FooterExternalLink'
-import NavyDigitalServicesLogo from '../../../../public/NavyDigitalServicesLogo.svg'
 import { StyledCopyright } from './partials/StyledCopyright'
 import { StyledDescription } from './partials/StyledDescription'
 import { StyledFooter } from './partials/StyledFooter'
 import { StyledFooterLogo } from './partials/StyledFooterLogo'
 import { StyledLinkList } from './partials/StyledLinkList'
-import { StyledNelsonLogoClip } from './partials/StyledNelsonLogoClip'
-import { StyledRNDSLogo } from './partials/StyledRNDSLogo'
+import { StyledLogoClip } from './partials/StyledLogoClip'
+import { StyledLogo } from './partials/StyledLogo'
 import { StyledSubFooter } from './partials/StyledSubFooter'
 
 type SiteLinksType =
@@ -51,7 +50,7 @@ export const Footer: React.FC<FooterProps> = ({
     <StyledFooter>
       <StyledFooterLogo>
         <div>
-          <StyledRNDSLogo width={300} height={36} />
+          <StyledLogo width={300} height={36} />
           <StyledDescription>{description}</StyledDescription>
           <StyledLinkList>
             {mapLinks(
@@ -64,7 +63,6 @@ export const Footer: React.FC<FooterProps> = ({
       </StyledFooterLogo>
       <StyledSubFooter>
         <div>
-          <NavyDigitalServicesLogo />
           <StyledLinkList data-testid="footer-site-links">
             {mapLinks(siteLinks, 'site-link', 'props.children')}
           </StyledLinkList>
@@ -74,7 +72,7 @@ export const Footer: React.FC<FooterProps> = ({
           </StyledCopyright>
         </div>
       </StyledSubFooter>
-      <StyledNelsonLogoClip />
+      <StyledLogoClip />
     </StyledFooter>
   </>
 )

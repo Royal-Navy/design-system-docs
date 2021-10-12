@@ -7,7 +7,7 @@ export const useDesignSystemVersion = () => {
   async function getDesignSystemVersion(): Promise<string | null> {
     try {
       const res = await fetch(
-        'https://api.github.com/repos/Royal-Navy/design-system/releases/latest'
+        'https://api.github.com/repos/defencedigital/mod-uk-design-system/releases/latest'
       )
 
       const { tag_name } = await res.json()

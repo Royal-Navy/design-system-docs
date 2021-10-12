@@ -27,7 +27,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     <StyledFrame data-testid="sidebar" $isOpen={isOpen}>
       <StyledSidebar>
         <div>
-          <StyledHomeLink href="https://docs.royalnavy.io">
+          <StyledHomeLink href="https://design-system.digital.mod.uk/">
             <IconChevronLeft />
             Back to docs
           </StyledHomeLink>

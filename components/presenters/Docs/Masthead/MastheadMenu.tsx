@@ -7,7 +7,7 @@ import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMastheadMenu } from './partials/StyledMastheadMenu'
 import { StyledMastheadMobile } from './partials/StyledMastheadMobile'
 import { StyledMenuButton } from './partials/StyledMenuButton'
-import RNDSMobileLogo from '../../../../public/RNDSMobileLogo.svg'
+import MODUKDesignSystemLogomark from '../../../../public/MODUKDesignSystemLogomark.svg'
 
 export interface MastheadMenuProps extends ComponentWithClass {
   isOpen?: boolean
@@ -26,7 +26,7 @@ export const MastheadMenu: React.FC<MastheadMenuProps> = ({
   return (
     <StyledMastheadMenu $isOpen={isOpen} ref={mastheadMenuRef}>
       <StyledMastheadMobile>
-        <RNDSMobileLogo />
+        <MODUKDesignSystemLogomark height={25} width="auto" />
         <StyledMenuButton onClick={onClose}>
           <IconClose />
         </StyledMenuButton>

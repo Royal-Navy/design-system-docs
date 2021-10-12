@@ -1,7 +1,6 @@
-# docs.royalnavy.io
+# MOD.UK Design System Documentation
 
-Royal Navy Design System documentation site.
-
+MOD.UK Design System documentation site.
 
 ## End to end tests
 
@@ -13,4 +12,4 @@ Tests are dependent on the application running.
 
 ## Licensing
 
-The Royal Navy documentation site is licensed under the [Apache License 2.0](https://github.com/Royal-Navy/docs.royalnavy.io/blob/master/LICENSE).
+The MOD.UK Design System documentation site is licensed under the [Apache License 2.0](https://github.com/defencedigital/design-system-docs/blob/master/LICENSE).

@@ -43,7 +43,7 @@ export const LayoutLegacy: React.FC<LayoutComponentProps> = ({
 }) => (
   <>
     <Head>
-      <title>{title} | Royal Navy Design System</title>
+      <title>{title} | MOD.UK Design System</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <script type="text/javascript" src="/static/newrelic.js" />

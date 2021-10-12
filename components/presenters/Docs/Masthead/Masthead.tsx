@@ -6,7 +6,7 @@ import { StyledMasthead } from './partials/StyledMasthead'
 import { StyledMenuButton } from './partials/StyledMenuButton'
 import { StyledLogo } from './partials/StyledLogo'
 import { Badge } from '../Badge'
-import RNDSLogo from '../../../../public/RNDSLogo.svg'
+import MODUKDesignSystemLogo from '../../../../public/MODUKDesignSystemLogo.svg'
 
 export interface MastheadProps extends ComponentWithClass {
   version?: string
@@ -22,7 +22,7 @@ export const Masthead: React.FC<MastheadProps> = ({
     <StyledMasthead $isOpen={isOpen} data-testid="masthead">
       <div>
         <StyledLogo href="/">
-          <RNDSLogo />
+          <MODUKDesignSystemLogo width={300} height={50} />
         </StyledLogo>
         <Badge variant="light">{version}</Badge>
       </div>

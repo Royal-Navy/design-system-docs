@@ -1,20 +1,18 @@
 # Security Policy
-The Royal Navy Digital Services Policy is to avoid leaving the ecosystem worse than we found it. Meaning we are not planning to introduce vulnerabilities into the ecosystem.
+The Defence Digital Security Policy is to avoid leaving the ecosystem worse than we found it. Meaning we are not planning to introduce vulnerabilities into the ecosystem.
 
-The Royal Navy Digital Services team takes security vulnerabilities in the Royal Navy Design System seriously.  We appreciate your efforts to responsibly disclose your findings, and will make every effort to acknowledge your contributions.
+The MOD.UK Design System team takes security vulnerabilities in the MOD.UK Design System seriously.  We appreciate your efforts to responsibly disclose your findings, and will make every effort to acknowledge your contributions.
 
 ## Supported Versions
 
-The below table details which versions of the Royal Navy Design System documentation site are supported with bug fixes and security updates:
+The below table details which versions of the MOD.UK Design System documentation site are supported with bug fixes and security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
 | 1.x     | :white_check_mark: |
     
 
-
-
-[**Version and release note documentation**](https://github.com/Royal-Navy/docs.royalnavy.io/releases)
+[**Version and release note documentation**](https://github.com/defencedigital/design-system-docs/releases)
 
 ## Reporting a Vulnerability
 
@@ -30,8 +28,7 @@ Please include:
 - Optionally the type of vulnerability and any OWASP category
 
 
-The Royal Navy Digital Standards team will send a response indicating the next steps in handling your report. After the initial reply to your report, the team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
-
+The MOD.UK Digital Standards team will send a response indicating the next steps in handling your report. After the initial reply to your report, the team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
 
 
 ## Qualifying Vulnerabilities
@@ -49,9 +46,7 @@ We recommend following the OWASP [**guidance**](https://cheatsheetseries.owasp.o
 We will publish here any known security improvements we have not got to yet.  We welcome contributions.
 
 
-
-
 ## Contact
 design-system@royalnavy.io
 
-Royal Navy Digital Services security policy version 1.1.0
+Defence Digital security policy version 1.1.0

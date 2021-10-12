@@ -14,7 +14,7 @@ export interface LayoutFrameworkProps {
 
 export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
   children,
-  title = 'Royal Navy Design System',
+  title = 'MOD.UK Design System',
   navigation,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -29,7 +29,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
         <script type="text/javascript" src="/static/newrelic.js" />
       </Head>
       <Masthead
-        title="Royal Navy Design System"
+        title="MOD.UK Design System"
         version={version || '0.1.0'}
         onToggle={(_) => setIsOpen(!isOpen)}
       />
