@@ -29,10 +29,7 @@ const items = [
 describe('Masthead', () => {
   describe('default', () => {
     before(() => {
-      // Block newrelic.js due to issues with Cypress networking
-      cy.intercept('**/newrelic.js', (req) => {
-        req.reply("console.log('Fake New Relic script loaded');")
-      })
+      cy.blockNewRelic()
 
       cy.visit('/')
     })
@@ -92,6 +89,13 @@ describe('Masthead', () => {
                 .should('have.text', subItem)
             })
           })
+        })
+      } else {
+        it(`should not render a sub menu for ${title}`, () => {
+          cy.get(selectors.masthead.menuLinks)
+            .eq(itemIndex)
+            .siblings('button')
+            .should('not.exist')
         })
       }
     })
