@@ -5,13 +5,15 @@ import { HeroCardVariantType } from '..'
 
 const { spacing, color, mq } = selectors
 
+export const secondaryBackgroundColor = '#4148b6'
+
 function getVariantStyles(variant: HeroCardVariantType) {
   const HERO_CARD_VARIANT_STYLES = {
     primary: css`
       background-color: ${color('action', '600')};
     `,
     secondary: css`
-      background-color: #4148b6;
+      background-color: ${secondaryBackgroundColor};
     `,
   }
 

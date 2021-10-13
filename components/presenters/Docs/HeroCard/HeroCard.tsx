@@ -30,7 +30,7 @@ export const HeroCard: React.FC<HeroCardProps> = ({
   variant = HERO_CARD_VARIANT.PRIMARY,
 }) => {
   return (
-    <StyledHeroCard $variant={variant}>
+    <StyledHeroCard $variant={variant} data-testid="hero-card">
       {title && <StyledTitle>{title}</StyledTitle>}
       {description && <StyledDescription>{description}</StyledDescription>}
       {children && <StyledChildren>{children}</StyledChildren>}

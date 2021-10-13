@@ -28,7 +28,7 @@ type MarkdownTableType = {
   markdown: string
 }
 
-type CodeBlockType = {
+export type CodeBlockType = {
   __typename: string
   sourceCode: string
 }

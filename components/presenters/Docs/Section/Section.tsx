@@ -18,7 +18,7 @@ export const Section: React.FC<SectionProps> = ({
   return (
     <StyledSection>
       {sectionIndex && <StyledIndex>{sectionIndex}</StyledIndex>}
-      {title && <StyledTitle>{title}</StyledTitle>}
+      {title && <StyledTitle data-testid="section-title">{title}</StyledTitle>}
       {children}
     </StyledSection>
   )
