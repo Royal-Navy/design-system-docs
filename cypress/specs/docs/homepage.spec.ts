@@ -36,21 +36,21 @@ describe('Docs Site: Homepage', () => {
           it('should expand the relevant sub menu', () => {
             cy.get(selectors.layout.mastheadMenuExpandButton).eq(0).click()
             cy.get('a').contains('Learning resources').should('be.visible')
-            cy.get('a').contains('Alert').should('not.exist')
+            cy.get('a').contains('Colours').should('not.exist')
           })
 
           describe('and the second sub menu group is expanded', () => {
             it('should expand the relevant sub menu', () => {
               cy.get(selectors.layout.mastheadMenuExpandButton).eq(1).click()
               cy.get('a').contains('Learning resources').should('be.visible')
-              cy.get('a').contains('Alert').should('be.visible')
+              cy.get('a').contains('Colours').should('be.visible')
             })
 
             describe('and the first sub menu group is collapsed', () => {
               it('should collapse the relevant sub menu', () => {
                 cy.get(selectors.layout.mastheadMenuExpandButton).eq(0).click()
                 cy.get('a').contains('Learning resources').should('not.exist')
-                cy.get('a').contains('Alert').should('be.visible')
+                cy.get('a').contains('Colours').should('be.visible')
               })
             })
           })
