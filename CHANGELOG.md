@@ -1,3 +1,19 @@
+# [1.9.0](https://github.com/defencedigital/design-system-docs/compare/1.8.0...1.9.0) (2021-10-14)
+
+
+### Bug Fixes
+
+* **CodeBlock:** Adjust filename spacing ([a56d34a](https://github.com/defencedigital/design-system-docs/commit/a56d34ac855836ed97fe329b1f850816e98a2ffb))
+* **Masthead:** Close mobile menu when clicking outside sheet ([989f084](https://github.com/defencedigital/design-system-docs/commit/989f0849907aa627040650303c72b21be505ed4f))
+* **OnThisPage:** Fix browsing directly to a section ([63dc418](https://github.com/defencedigital/design-system-docs/commit/63dc4182b04bfac3caa3446fd76cc999b691c71e))
+* **Sidebar:** Style active link ([8b69d14](https://github.com/defencedigital/design-system-docs/commit/8b69d140578bec0deba3e120bff1ee0c851364b5))
+
+
+### Features
+
+* **ContentBanner:** Add toggle and enable custom content ([d0bfc59](https://github.com/defencedigital/design-system-docs/commit/d0bfc59bb979ed494e7854c51bc3d205efa8d0e6))
+* **Masthead:** Make items without link open menu ([707884c](https://github.com/defencedigital/design-system-docs/commit/707884cef36dcde2bd9d556f2a6e405513d98421))
+
 # [1.8.0](https://github.com/Royal-Navy/docs.royalnavy.io/compare/1.7.0...1.8.0) (2021-09-30)
 
 
