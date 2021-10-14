@@ -29,7 +29,7 @@ export const Hero: React.FC<HeroProps> = ({
   return (
     <StyledHero>
       <MODUKDesignSystemLogomark height={100} width={60} />
-      {title && <StyledTitle>{title}</StyledTitle>}
+      {title && <StyledTitle data-testid="hero-title">{title}</StyledTitle>}
       {description && <StyledDescription>{description}</StyledDescription>}
       {ctaExists && (
         <StyledCTA>

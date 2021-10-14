@@ -1,29 +1,51 @@
 query HomepageByID($id: String!) {
-  homepage(id: $id){
-    heroHeading,
-    heroSubHeading,
-    heroButtons,
-    section1Heading,
-    section1SubHeading,
-    section2Heading,
+  homepage(id: $id) {
+    heroHeading
+    heroSubHeading
+    heroButtons
+    section1Heading
+    section1SubHeading
+    section1CardsCollection(limit: 2) {
+      items {
+        variant
+        title
+        description
+        filesCollection {
+          items {
+            url
+            title
+          }
+        }
+        code {
+          ... on CodeBlock {
+            sourceCode
+          }
+        }
+        callToAction {
+          title
+          href
+        }
+      }
+    }
+    section2Heading
     section2SubHeading
-    section2Buttons,
-    section3Heading,
-    section3SubHeading,
+    section2Buttons
+    section3Heading
+    section3SubHeading
     section3CardsCollection(limit: 20) {
       items {
-        title,
-        titleColor,
-        description,
-        buttonHref,
+        title
+        titleColor
+        description
+        buttonHref
         buttonTitle
       }
     }
-    section4Heading,
-    section4SubHeading,
-    section4Buttons,
-    section5Heading,
-    section5SubHeading,
+    section4Heading
+    section4SubHeading
+    section4Buttons
+    section5Heading
+    section5SubHeading
     section5Buttons
   }
 }

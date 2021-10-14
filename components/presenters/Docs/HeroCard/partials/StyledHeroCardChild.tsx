@@ -27,4 +27,13 @@ export const StyledHeroCardChild = styled.div`
   &:last-of-type {
     margin-right: unset;
   }
+
+  & > a {
+    color: inherit;
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
 `

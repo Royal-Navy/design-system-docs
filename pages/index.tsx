@@ -33,7 +33,7 @@ import { Section } from '../components/presenters/Docs/Section'
 import {
   HeroCard,
   HeroCardChild,
-  HERO_CARD_VARIANT,
+  HeroCardVariantType,
 } from '../components/presenters/Docs/HeroCard'
 import { Button, BUTTON_VARIANT } from '../components/presenters/Docs/Button'
 import { Card } from '../components/presenters/Docs/Card'
@@ -197,6 +197,7 @@ export const Home: React.FC<HomeProps> = ({
     heroButtons,
     section1Heading,
     section1SubHeading,
+    section1CardsCollection,
     section2Heading,
     section2SubHeading,
     section2Buttons,
@@ -336,46 +337,50 @@ export const Home: React.FC<HomeProps> = ({
       <Section sectionIndex="1" title={section1Heading}>
         <p>{section1SubHeading}</p>
         <StyledHeroCards>
-          <HeroCard
-            variant={HERO_CARD_VARIANT.PRIMARY}
-            title="Designers"
-            description="Designers can use our static or dynamic Axure libraries to quickly prototype, test and validate ideas with users."
-            cta={
-              <Button
-                variant={BUTTON_VARIANT.SECONDARY}
-                href="/guidance/design"
-              >
-                Read the full guide
-              </Button>
+          {section1CardsCollection.items.map(
+            ({
+              callToAction,
+              code,
+              description,
+              filesCollection,
+              title,
+              variant,
+            }) => {
+              return (
+                <HeroCard
+                  variant={variant as HeroCardVariantType}
+                  title={title}
+                  description={description}
+                  cta={
+                    <Button
+                      variant={BUTTON_VARIANT.SECONDARY}
+                      href={callToAction.href}
+                    >
+                      {callToAction.title}
+                    </Button>
+                  }
+                >
+                  {filesCollection.items.map(({ title: fileTitle, url }) => {
+                    return (
+                      <HeroCardChild>
+                        <a href={url}>Download {fileTitle.toLowerCase()}</a>
+                        &nbsp;&nbsp;
+                        <IconFileDownload />
+                      </HeroCardChild>
+                    )
+                  })}
+                  {code && (
+                    <HeroCardChild>
+                      <HeroCardChild>
+                        <StyledDollar>$</StyledDollar>
+                        {code.sourceCode}
+                      </HeroCardChild>
+                    </HeroCardChild>
+                  )}
+                </HeroCard>
+              )
             }
-          >
-            <HeroCardChild>
-              Download static library&nbsp;&nbsp;
-              <IconFileDownload />
-            </HeroCardChild>
-            <HeroCardChild>
-              Download dynamic library&nbsp;&nbsp;
-              <IconFileDownload />
-            </HeroCardChild>
-          </HeroCard>
-          <HeroCard
-            variant={HERO_CARD_VARIANT.SECONDARY}
-            title="Developers"
-            description="Developers can install our React component library via NPM, or by grabbing the source from GitHub."
-            cta={
-              <Button
-                variant={BUTTON_VARIANT.SECONDARY}
-                href="/guidance/development"
-              >
-                Read the full guide
-              </Button>
-            }
-          >
-            <HeroCardChild>
-              <StyledDollar>$</StyledDollar>
-              &nbsp;npm&nbsp;install&nbsp;@royalnavy/react-component-library
-            </HeroCardChild>
-          </HeroCard>
+          )}
         </StyledHeroCards>
       </Section>
       <Section sectionIndex="2" title={section2Heading}>

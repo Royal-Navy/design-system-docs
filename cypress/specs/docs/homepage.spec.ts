@@ -1,17 +1,119 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before } from 'local-cypress'
+import { selectors as tokenSelectors } from '@royalnavy/design-tokens'
 
 // eslint-disable-next-line import/extensions
+import { hexToRgb } from '../../helpers'
+import { secondaryBackgroundColor } from '../../../components/presenters/Docs/HeroCard/partials/StyledHeroCard'
 import selectors from '../../selectors/docs'
 
-describe('Docs Site: Homepage', () => {
-  describe('when browsing on desktop', () => {
-    before(() => {
-      cy.blockNewRelic()
+const { color } = tokenSelectors
 
-      cy.visit('/')
-    })
-  })
+const sections = [
+  'Get Started',
+  'Design Principles',
+  'Design System Reference',
+  'Resources',
+  'Get Involved',
+]
+
+function assertSectionTitle(expected: string) {
+  cy.get(selectors.homepage.sectionTitles)
+    .eq(sections.indexOf(expected))
+    .should('have.text', expected)
+}
+
+describe('Docs Site: Homepage', () => {
+  describe(
+    'when browsing on desktop',
+    {
+      viewportHeight: 800,
+      viewportWidth: 1200,
+    },
+    () => {
+      before(() => {
+        cy.blockNewRelic()
+
+        cy.visit('/')
+      })
+
+      it('should render the hero', () => {
+        cy.get(selectors.homepage.hero.title).should('be.visible')
+      })
+
+      it('should render the `Get Started` section', () => {
+        assertSectionTitle('Get Started')
+
+        const heroCards = cy.get(selectors.homepage.getStarted.heroCards)
+        heroCards.should('have.length', 2)
+      })
+
+      it('should render the `Designers` hero card', () => {
+        const heroCards = cy.get(selectors.homepage.getStarted.heroCards)
+        const designersHeroCard = heroCards.eq(0)
+
+        designersHeroCard.should('be.visible')
+        designersHeroCard.should(
+          'have.css',
+          'background-color',
+          `${hexToRgb(color('action', '600'))}`
+        )
+        designersHeroCard.children('span').should('have.text', 'Designers')
+
+        cy.get(selectors.homepage.getStarted.heroCardChildren)
+          .eq(0)
+          .children('a')
+
+          .should('have.text', 'Download static library')
+          .invoke('attr', 'href')
+          .then((href) => {
+            cy.request(href).its('status').should('eq', 200)
+          })
+
+        cy.get(selectors.homepage.getStarted.heroCardChildren)
+          .eq(1)
+          .children('a')
+          .should('have.text', 'Download interactive library')
+          .invoke('attr', 'href')
+          .then((href) => {
+            cy.request(href).its('status').should('eq', 200)
+          })
+      })
+
+      it('should render the `Developers` hero card', () => {
+        const heroCards = cy.get(selectors.homepage.getStarted.heroCards)
+        const developersHeroCard = heroCards.eq(1)
+
+        developersHeroCard.should('be.visible')
+        developersHeroCard.should(
+          'have.css',
+          'background-color',
+          `${hexToRgb(secondaryBackgroundColor)}`
+        )
+        developersHeroCard.children('span').should('have.text', 'Developers')
+
+        cy.get(selectors.homepage.getStarted.heroCardChildren)
+          .eq(3)
+          .should('contain.text', 'npm install')
+      })
+
+      it('should render the `Design Principles` section', () => {
+        assertSectionTitle('Design Principles')
+      })
+
+      it('should render the `Design System Reference` section', () => {
+        assertSectionTitle('Design System Reference')
+      })
+
+      it('should render the `Resources` section', () => {
+        assertSectionTitle('Resources')
+      })
+
+      it('should render the `Get Involved` section', () => {
+        assertSectionTitle('Get Involved')
+      })
+    }
+  )
 
   describe(
     'when browsing on mobile',

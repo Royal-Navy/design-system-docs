@@ -393,11 +393,20 @@ export type AssetFilter = {
 export type AssetLinkingCollections = {
   __typename?: 'AssetLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  heroCardCollection?: Maybe<HeroCardCollection>;
   contentBlockCollection?: Maybe<ContentBlockCollection>;
 };
 
 
 export type AssetLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type AssetLinkingCollectionsHeroCardCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -425,6 +434,100 @@ export enum AssetOrder {
   WidthDesc = 'width_DESC',
   HeightAsc = 'height_ASC',
   HeightDesc = 'height_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
+
+/** A button with a href which is nested within a component. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/button) */
+export type Button = Entry & {
+  __typename?: 'Button';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<ButtonLinkingCollections>;
+  title?: Maybe<Scalars['String']>;
+  href?: Maybe<Scalars['String']>;
+};
+
+
+/** A button with a href which is nested within a component. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/button) */
+export type ButtonLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** A button with a href which is nested within a component. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/button) */
+export type ButtonTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** A button with a href which is nested within a component. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/button) */
+export type ButtonHrefArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type ButtonCollection = {
+  __typename?: 'ButtonCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<Button>>;
+};
+
+export type ButtonFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  href_exists?: Maybe<Scalars['Boolean']>;
+  href?: Maybe<Scalars['String']>;
+  href_not?: Maybe<Scalars['String']>;
+  href_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  href_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  href_contains?: Maybe<Scalars['String']>;
+  href_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<ButtonFilter>>>;
+  AND?: Maybe<Array<Maybe<ButtonFilter>>>;
+};
+
+export type ButtonLinkingCollections = {
+  __typename?: 'ButtonLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  heroCardCollection?: Maybe<HeroCardCollection>;
+};
+
+
+export type ButtonLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type ButtonLinkingCollectionsHeroCardCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum ButtonOrder {
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  HrefAsc = 'href_ASC',
+  HrefDesc = 'href_DESC',
   SysIdAsc = 'sys_id_ASC',
   SysIdDesc = 'sys_id_DESC',
   SysPublishedAtAsc = 'sys_publishedAt_ASC',
@@ -544,12 +647,21 @@ export type CodeBlockFilter = {
 export type CodeBlockLinkingCollections = {
   __typename?: 'CodeBlockLinkingCollections';
   entryCollection?: Maybe<EntryCollection>;
+  heroCardCollection?: Maybe<HeroCardCollection>;
   pageCollection?: Maybe<PageCollection>;
   sectionCollection?: Maybe<SectionCollection>;
 };
 
 
 export type CodeBlockLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type CodeBlockLinkingCollectionsHeroCardCollectionArgs = {
   skip?: Maybe<Scalars['Int']>;
   limit?: Maybe<Scalars['Int']>;
   preview?: Maybe<Scalars['Boolean']>;
@@ -811,6 +923,147 @@ export type HeroHeadingArgs = {
 export type HeroDescriptionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCard = Entry & {
+  __typename?: 'HeroCard';
+  sys: Sys;
+  contentfulMetadata: ContentfulMetadata;
+  linkedFrom?: Maybe<HeroCardLinkingCollections>;
+  variant?: Maybe<Scalars['String']>;
+  title?: Maybe<Scalars['String']>;
+  description?: Maybe<Scalars['String']>;
+  filesCollection?: Maybe<AssetCollection>;
+  code?: Maybe<CodeBlock>;
+  callToAction?: Maybe<Button>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardLinkedFromArgs = {
+  allowedLocales?: Maybe<Array<Maybe<Scalars['String']>>>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardVariantArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardTitleArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardDescriptionArgs = {
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardFilesCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardCodeArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+/** Represents a card that will be placed inside the Hero. [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/heroCard) */
+export type HeroCardCallToActionArgs = {
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export type HeroCardCollection = {
+  __typename?: 'HeroCardCollection';
+  total: Scalars['Int'];
+  skip: Scalars['Int'];
+  limit: Scalars['Int'];
+  items: Array<Maybe<HeroCard>>;
+};
+
+export type HeroCardFilter = {
+  code?: Maybe<CfCodeBlockNestedFilter>;
+  callToAction?: Maybe<CfButtonNestedFilter>;
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  variant_exists?: Maybe<Scalars['Boolean']>;
+  variant?: Maybe<Scalars['String']>;
+  variant_not?: Maybe<Scalars['String']>;
+  variant_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  variant_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  variant_contains?: Maybe<Scalars['String']>;
+  variant_not_contains?: Maybe<Scalars['String']>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description?: Maybe<Scalars['String']>;
+  description_not?: Maybe<Scalars['String']>;
+  description_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  filesCollection_exists?: Maybe<Scalars['Boolean']>;
+  code_exists?: Maybe<Scalars['Boolean']>;
+  callToAction_exists?: Maybe<Scalars['Boolean']>;
+  OR?: Maybe<Array<Maybe<HeroCardFilter>>>;
+  AND?: Maybe<Array<Maybe<HeroCardFilter>>>;
+};
+
+export type HeroCardLinkingCollections = {
+  __typename?: 'HeroCardLinkingCollections';
+  entryCollection?: Maybe<EntryCollection>;
+  homepageCollection?: Maybe<HomepageCollection>;
+};
+
+
+export type HeroCardLinkingCollectionsEntryCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type HeroCardLinkingCollectionsHomepageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+export enum HeroCardOrder {
+  VariantAsc = 'variant_ASC',
+  VariantDesc = 'variant_DESC',
+  TitleAsc = 'title_ASC',
+  TitleDesc = 'title_DESC',
+  DescriptionAsc = 'description_ASC',
+  DescriptionDesc = 'description_DESC',
+  SysIdAsc = 'sys_id_ASC',
+  SysIdDesc = 'sys_id_DESC',
+  SysPublishedAtAsc = 'sys_publishedAt_ASC',
+  SysPublishedAtDesc = 'sys_publishedAt_DESC',
+  SysFirstPublishedAtAsc = 'sys_firstPublishedAt_ASC',
+  SysFirstPublishedAtDesc = 'sys_firstPublishedAt_DESC',
+  SysPublishedVersionAsc = 'sys_publishedVersion_ASC',
+  SysPublishedVersionDesc = 'sys_publishedVersion_DESC'
+}
 
 export type HeroCollection = {
   __typename?: 'HeroCollection';
@@ -1195,7 +1448,7 @@ export type HomepageSection1CardsCollection = {
   total: Scalars['Int'];
   skip: Scalars['Int'];
   limit: Scalars['Int'];
-  items: Array<Maybe<Entry>>;
+  items: Array<Maybe<HeroCard>>;
 };
 
 export type HomepageSection3CardsCollection = {
@@ -1736,8 +1989,8 @@ export type Page = Entry & {
   title?: Maybe<Scalars['String']>;
   hideContentBanner?: Maybe<Scalars['Boolean']>;
   contentBannerTitle?: Maybe<Scalars['String']>;
-  sectionCollection?: Maybe<PageSectionCollection>;
   contentBannerDescription?: Maybe<Scalars['String']>;
+  sectionCollection?: Maybe<PageSectionCollection>;
 };
 
 
@@ -1766,16 +2019,16 @@ export type PageContentBannerTitleArgs = {
 
 
 /** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type PageSectionCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
+export type PageContentBannerDescriptionArgs = {
   locale?: Maybe<Scalars['String']>;
 };
 
 
 /** Represents a single navigable route (with complex nested content). [See type definition](https://app.contentful.com/spaces/fq5pxympyusn/content_types/page) */
-export type PageContentBannerDescriptionArgs = {
+export type PageSectionCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
   locale?: Maybe<Scalars['String']>;
 };
 
@@ -1807,7 +2060,6 @@ export type PageFilter = {
   contentBannerTitle_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   contentBannerTitle_contains?: Maybe<Scalars['String']>;
   contentBannerTitle_not_contains?: Maybe<Scalars['String']>;
-  sectionCollection_exists?: Maybe<Scalars['Boolean']>;
   contentBannerDescription_exists?: Maybe<Scalars['Boolean']>;
   contentBannerDescription?: Maybe<Scalars['String']>;
   contentBannerDescription_not?: Maybe<Scalars['String']>;
@@ -1815,6 +2067,7 @@ export type PageFilter = {
   contentBannerDescription_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
   contentBannerDescription_contains?: Maybe<Scalars['String']>;
   contentBannerDescription_not_contains?: Maybe<Scalars['String']>;
+  sectionCollection_exists?: Maybe<Scalars['Boolean']>;
   OR?: Maybe<Array<Maybe<PageFilter>>>;
   AND?: Maybe<Array<Maybe<PageFilter>>>;
 };
@@ -1875,6 +2128,12 @@ export type Query = {
   __typename?: 'Query';
   asset?: Maybe<Asset>;
   assetCollection?: Maybe<AssetCollection>;
+  heroCard?: Maybe<HeroCard>;
+  heroCardCollection?: Maybe<HeroCardCollection>;
+  button?: Maybe<Button>;
+  buttonCollection?: Maybe<ButtonCollection>;
+  homepage?: Maybe<Homepage>;
+  homepageCollection?: Maybe<HomepageCollection>;
   page?: Maybe<Page>;
   pageCollection?: Maybe<PageCollection>;
   swatchColour?: Maybe<SwatchColour>;
@@ -1887,8 +2146,6 @@ export type Query = {
   markdownTableCollection?: Maybe<MarkdownTableCollection>;
   simpleCard?: Maybe<SimpleCard>;
   simpleCardCollection?: Maybe<SimpleCardCollection>;
-  homepage?: Maybe<Homepage>;
-  homepageCollection?: Maybe<HomepageCollection>;
   navigation?: Maybe<Navigation>;
   navigationCollection?: Maybe<NavigationCollection>;
   apiField?: Maybe<ApiField>;
@@ -1923,6 +2180,57 @@ export type QueryAssetCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<AssetFilter>;
   order?: Maybe<Array<Maybe<AssetOrder>>>;
+};
+
+
+export type QueryHeroCardArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryHeroCardCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<HeroCardFilter>;
+  order?: Maybe<Array<Maybe<HeroCardOrder>>>;
+};
+
+
+export type QueryButtonArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryButtonCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<ButtonFilter>;
+  order?: Maybe<Array<Maybe<ButtonOrder>>>;
+};
+
+
+export type QueryHomepageArgs = {
+  id: Scalars['String'];
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+};
+
+
+export type QueryHomepageCollectionArgs = {
+  skip?: Maybe<Scalars['Int']>;
+  limit?: Maybe<Scalars['Int']>;
+  preview?: Maybe<Scalars['Boolean']>;
+  locale?: Maybe<Scalars['String']>;
+  where?: Maybe<HomepageFilter>;
+  order?: Maybe<Array<Maybe<HomepageOrder>>>;
 };
 
 
@@ -2025,23 +2333,6 @@ export type QuerySimpleCardCollectionArgs = {
   locale?: Maybe<Scalars['String']>;
   where?: Maybe<SimpleCardFilter>;
   order?: Maybe<Array<Maybe<SimpleCardOrder>>>;
-};
-
-
-export type QueryHomepageArgs = {
-  id: Scalars['String'];
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-};
-
-
-export type QueryHomepageCollectionArgs = {
-  skip?: Maybe<Scalars['Int']>;
-  limit?: Maybe<Scalars['Int']>;
-  preview?: Maybe<Scalars['Boolean']>;
-  locale?: Maybe<Scalars['String']>;
-  where?: Maybe<HomepageFilter>;
-  order?: Maybe<Array<Maybe<HomepageOrder>>>;
 };
 
 
@@ -2655,567 +2946,94 @@ export type SysFilter = {
   publishedVersion_lte?: Maybe<Scalars['Float']>;
 };
 
+export type CfButtonNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  href_exists?: Maybe<Scalars['Boolean']>;
+  href?: Maybe<Scalars['String']>;
+  href_not?: Maybe<Scalars['String']>;
+  href_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  href_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  href_contains?: Maybe<Scalars['String']>;
+  href_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<CfButtonNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfButtonNestedFilter>>>;
+};
+
+export type CfCodeBlockNestedFilter = {
+  sys?: Maybe<SysFilter>;
+  contentfulMetadata?: Maybe<ContentfulMetadataFilter>;
+  title_exists?: Maybe<Scalars['Boolean']>;
+  title?: Maybe<Scalars['String']>;
+  title_not?: Maybe<Scalars['String']>;
+  title_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  title_contains?: Maybe<Scalars['String']>;
+  title_not_contains?: Maybe<Scalars['String']>;
+  description_exists?: Maybe<Scalars['Boolean']>;
+  description_contains?: Maybe<Scalars['String']>;
+  description_not_contains?: Maybe<Scalars['String']>;
+  filename_exists?: Maybe<Scalars['Boolean']>;
+  filename?: Maybe<Scalars['String']>;
+  filename_not?: Maybe<Scalars['String']>;
+  filename_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filename_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  filename_contains?: Maybe<Scalars['String']>;
+  filename_not_contains?: Maybe<Scalars['String']>;
+  sourceCode_exists?: Maybe<Scalars['Boolean']>;
+  sourceCode?: Maybe<Scalars['String']>;
+  sourceCode_not?: Maybe<Scalars['String']>;
+  sourceCode_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  sourceCode_not_in?: Maybe<Array<Maybe<Scalars['String']>>>;
+  sourceCode_contains?: Maybe<Scalars['String']>;
+  sourceCode_not_contains?: Maybe<Scalars['String']>;
+  OR?: Maybe<Array<Maybe<CfCodeBlockNestedFilter>>>;
+  AND?: Maybe<Array<Maybe<CfCodeBlockNestedFilter>>>;
+};
+
 export type HomepageByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type HomepageByIdQuery = (
-  { __typename?: 'Query' }
-  & { homepage?: Maybe<(
-    { __typename?: 'Homepage' }
-    & Pick<Homepage, 'heroHeading' | 'heroSubHeading' | 'heroButtons' | 'section1Heading' | 'section1SubHeading' | 'section2Heading' | 'section2SubHeading' | 'section2Buttons' | 'section3Heading' | 'section3SubHeading' | 'section4Heading' | 'section4SubHeading' | 'section4Buttons' | 'section5Heading' | 'section5SubHeading' | 'section5Buttons'>
-    & { section3CardsCollection?: Maybe<(
-      { __typename?: 'HomepageSection3CardsCollection' }
-      & { items: Array<Maybe<(
-        { __typename?: 'SimpleCard' }
-        & Pick<SimpleCard, 'title' | 'titleColor' | 'description' | 'buttonHref' | 'buttonTitle'>
-      )>> }
-    )> }
-  )> }
-);
+export type HomepageByIdQuery = { __typename?: 'Query', homepage?: { __typename?: 'Homepage', heroHeading?: string | null | undefined, heroSubHeading?: string | null | undefined, heroButtons?: any | null | undefined, section1Heading?: string | null | undefined, section1SubHeading?: string | null | undefined, section2Heading?: string | null | undefined, section2SubHeading?: string | null | undefined, section2Buttons?: any | null | undefined, section3Heading?: string | null | undefined, section3SubHeading?: string | null | undefined, section4Heading?: string | null | undefined, section4SubHeading?: string | null | undefined, section4Buttons?: any | null | undefined, section5Heading?: string | null | undefined, section5SubHeading?: string | null | undefined, section5Buttons?: any | null | undefined, section1CardsCollection?: { __typename?: 'HomepageSection1CardsCollection', items: Array<{ __typename?: 'HeroCard', variant?: string | null | undefined, title?: string | null | undefined, description?: string | null | undefined, filesCollection?: { __typename?: 'AssetCollection', items: Array<{ __typename?: 'Asset', url?: string | null | undefined, title?: string | null | undefined } | null | undefined> } | null | undefined, code?: { __typename?: 'CodeBlock', sourceCode?: string | null | undefined } | null | undefined, callToAction?: { __typename?: 'Button', title?: string | null | undefined, href?: string | null | undefined } | null | undefined } | null | undefined> } | null | undefined, section3CardsCollection?: { __typename?: 'HomepageSection3CardsCollection', items: Array<{ __typename?: 'SimpleCard', title?: string | null | undefined, titleColor?: string | null | undefined, description?: string | null | undefined, buttonHref?: string | null | undefined, buttonTitle?: string | null | undefined } | null | undefined> } | null | undefined } | null | undefined };
 
 export type NavigationByIdQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type NavigationByIdQuery = (
-  { __typename?: 'Query' }
-  & { navigation?: Maybe<(
-    { __typename?: 'Navigation' }
-    & Pick<Navigation, 'title'>
-    & { childrenCollection?: Maybe<(
-      { __typename?: 'NavigationChildrenCollection' }
-      & { items: Array<Maybe<(
-        { __typename?: 'NavigationElement' }
-        & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-        & { page?: Maybe<(
-          { __typename?: 'Page' }
-          & { sys: (
-            { __typename?: 'Sys' }
-            & Pick<Sys, 'id'>
-          ) }
-        )>, childrenCollection?: Maybe<(
-          { __typename?: 'NavigationElementChildrenCollection' }
-          & { items: Array<Maybe<(
-            { __typename?: 'NavigationElement' }
-            & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-            & { page?: Maybe<(
-              { __typename?: 'Page' }
-              & { sys: (
-                { __typename?: 'Sys' }
-                & Pick<Sys, 'id'>
-              ) }
-            )> }
-          )>> }
-        )> }
-      )>> }
-    )> }
-  )> }
-);
+export type NavigationByIdQuery = { __typename?: 'Query', navigation?: { __typename?: 'Navigation', title?: string | null | undefined, childrenCollection?: { __typename?: 'NavigationChildrenCollection', items: Array<{ __typename?: 'NavigationElement', title?: string | null | undefined, path?: string | null | undefined, externalUri?: string | null | undefined, page?: { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null | undefined, childrenCollection?: { __typename?: 'NavigationElementChildrenCollection', items: Array<{ __typename?: 'NavigationElement', title?: string | null | undefined, path?: string | null | undefined, externalUri?: string | null | undefined, page?: { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null | undefined } | null | undefined> } | null | undefined } | null | undefined> } | null | undefined } | null | undefined };
 
 export type NavigationElementsFlatQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type NavigationElementsFlatQuery = (
-  { __typename?: 'Query' }
-  & { navigationElementCollection?: Maybe<(
-    { __typename?: 'NavigationElementCollection' }
-    & { items: Array<Maybe<(
-      { __typename?: 'NavigationElement' }
-      & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-      & { page?: Maybe<(
-        { __typename?: 'Page' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      )> }
-    )>> }
-  )> }
-);
+export type NavigationElementsFlatQuery = { __typename?: 'Query', navigationElementCollection?: { __typename?: 'NavigationElementCollection', items: Array<{ __typename?: 'NavigationElement', title?: string | null | undefined, path?: string | null | undefined, externalUri?: string | null | undefined, page?: { __typename?: 'Page', sys: { __typename?: 'Sys', id: string } } | null | undefined } | null | undefined> } | null | undefined };
 
 export type PageByPathQueryVariables = Exact<{
   path: Scalars['String'];
 }>;
 
 
-export type PageByPathQuery = (
-  { __typename?: 'Query' }
-  & { navigationElementCollection?: Maybe<(
-    { __typename?: 'NavigationElementCollection' }
-    & { items: Array<Maybe<(
-      { __typename?: 'NavigationElement' }
-      & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-      & { childrenCollection?: Maybe<(
-        { __typename?: 'NavigationElementChildrenCollection' }
-        & { items: Array<Maybe<(
-          { __typename?: 'NavigationElement' }
-          & Pick<NavigationElement, 'title' | 'path' | 'externalUri'>
-          & { contentfulMetadata: (
-            { __typename?: 'ContentfulMetadata' }
-            & { tags: Array<Maybe<(
-              { __typename?: 'ContentfulTag' }
-              & Pick<ContentfulTag, 'id' | 'name'>
-            )>> }
-          ) }
-        )>> }
-      )>, page?: Maybe<(
-        { __typename?: 'Page' }
-        & Pick<Page, 'title' | 'hideContentBanner' | 'contentBannerTitle' | 'contentBannerDescription'>
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), sectionCollection?: Maybe<(
-          { __typename?: 'PageSectionCollection' }
-          & { items: Array<Maybe<(
-            { __typename: 'ApiTable' }
-            & Pick<ApiTable, 'title'>
-            & { apiTableDescription: ApiTable['description'] }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ), apiFieldCollection?: Maybe<(
-              { __typename?: 'ApiTableApiFieldCollection' }
-              & { items: Array<Maybe<(
-                { __typename?: 'ApiField' }
-                & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
-            )>, apiReturnFieldCollection?: Maybe<(
-              { __typename?: 'ApiTableApiReturnFieldCollection' }
-              & { items: Array<Maybe<(
-                { __typename?: 'ApiField' }
-                & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-              ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
-            )> }
-          ) | (
-            { __typename: 'CodeBlock' }
-            & Pick<CodeBlock, 'title' | 'filename' | 'sourceCode'>
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ), description?: Maybe<(
-              { __typename?: 'CodeBlockDescription' }
-              & Pick<CodeBlockDescription, 'json'>
-            )> }
-          ) | (
-            { __typename: 'ContentBlock' }
-            & Pick<ContentBlock, 'title'>
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ), description?: Maybe<(
-              { __typename?: 'ContentBlockDescription' }
-              & Pick<ContentBlockDescription, 'json'>
-              & { links: (
-                { __typename?: 'ContentBlockDescriptionLinks' }
-                & { assets: (
-                  { __typename?: 'ContentBlockDescriptionAssets' }
-                  & { block: Array<Maybe<(
-                    { __typename?: 'Asset' }
-                    & Pick<Asset, 'fileName' | 'title' | 'description' | 'url' | 'width' | 'height'>
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  )>>, hyperlink: Array<Maybe<(
-                    { __typename?: 'Asset' }
-                    & Pick<Asset, 'url'>
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  )>> }
-                ), entries: (
-                  { __typename?: 'ContentBlockDescriptionEntries' }
-                  & { block: Array<Maybe<(
-                    { __typename: 'ApiField' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'ApiTable' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'CodeBlock' }
-                    & Pick<CodeBlock, 'sourceCode'>
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'ContentBlock' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Hero' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Homepage' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'LiveExample' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'MarkdownTable' }
-                    & Pick<MarkdownTable, 'markdown'>
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Navigation' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'NavigationElement' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Page' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Section' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'SimpleCard' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Swatch' }
-                    & { colourCollection?: Maybe<(
-                      { __typename?: 'SwatchColourCollection' }
-                      & { items: Array<Maybe<(
-                        { __typename?: 'SwatchColour' }
-                        & Pick<SwatchColour, 'name' | 'colour' | 'isDark'>
-                      )>> }
-                    )>, sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'SwatchColour' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  )>>, inline: Array<Maybe<(
-                    { __typename: 'ApiField' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'ApiTable' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'CodeBlock' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'ContentBlock' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Hero' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Homepage' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'LiveExample' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'MarkdownTable' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Navigation' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'NavigationElement' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Page' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Section' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'SimpleCard' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'Swatch' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  ) | (
-                    { __typename: 'SwatchColour' }
-                    & { sys: (
-                      { __typename?: 'Sys' }
-                      & Pick<Sys, 'id'>
-                    ) }
-                  )>> }
-                ) }
-              ) }
-            )>, image?: Maybe<(
-              { __typename?: 'Asset' }
-              & Pick<Asset, 'title' | 'url'>
-            )> }
-          ) | (
-            { __typename: 'Hero' }
-            & Pick<Hero, 'title' | 'heading'>
-            & { heroDescription: Hero['description'] }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          ) | (
-            { __typename: 'LiveExample' }
-            & Pick<LiveExample, 'title'>
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ), description?: Maybe<(
-              { __typename?: 'LiveExampleDescription' }
-              & Pick<LiveExampleDescription, 'json'>
-            )> }
-          ) | (
-            { __typename: 'Section' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          )>> }
-        )> }
-      )> }
-    )>> }
-  )> }
-);
+export type PageByPathQuery = { __typename?: 'Query', navigationElementCollection?: { __typename?: 'NavigationElementCollection', items: Array<{ __typename?: 'NavigationElement', title?: string | null | undefined, path?: string | null | undefined, externalUri?: string | null | undefined, childrenCollection?: { __typename?: 'NavigationElementChildrenCollection', items: Array<{ __typename?: 'NavigationElement', title?: string | null | undefined, path?: string | null | undefined, externalUri?: string | null | undefined, contentfulMetadata: { __typename?: 'ContentfulMetadata', tags: Array<{ __typename?: 'ContentfulTag', id?: string | null | undefined, name?: string | null | undefined } | null | undefined> } } | null | undefined> } | null | undefined, page?: { __typename?: 'Page', title?: string | null | undefined, hideContentBanner?: boolean | null | undefined, contentBannerTitle?: string | null | undefined, contentBannerDescription?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, sectionCollection?: { __typename?: 'PageSectionCollection', items: Array<{ __typename: 'ApiTable', title?: string | null | undefined, apiTableDescription?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, apiFieldCollection?: { __typename?: 'ApiTableApiFieldCollection', items: Array<{ __typename?: 'ApiField', name?: string | null | undefined, dataType?: string | null | undefined, defaultValue?: any | null | undefined, description?: string | null | undefined, required?: boolean | null | undefined } | { __typename?: 'ApiTable' } | { __typename?: 'Button' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'HeroCard' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' } | null | undefined> } | null | undefined, apiReturnFieldCollection?: { __typename?: 'ApiTableApiReturnFieldCollection', items: Array<{ __typename?: 'ApiField', name?: string | null | undefined, dataType?: string | null | undefined, defaultValue?: any | null | undefined, description?: string | null | undefined, required?: boolean | null | undefined } | { __typename?: 'ApiTable' } | { __typename?: 'Button' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'HeroCard' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' } | null | undefined> } | null | undefined } | { __typename: 'CodeBlock', title?: string | null | undefined, filename?: string | null | undefined, sourceCode?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'CodeBlockDescription', json: any } | null | undefined } | { __typename: 'ContentBlock', title?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'ContentBlockDescription', json: any, links: { __typename?: 'ContentBlockDescriptionLinks', assets: { __typename?: 'ContentBlockDescriptionAssets', block: Array<{ __typename?: 'Asset', fileName?: string | null | undefined, title?: string | null | undefined, description?: string | null | undefined, url?: string | null | undefined, width?: number | null | undefined, height?: number | null | undefined, sys: { __typename?: 'Sys', id: string } } | null | undefined>, hyperlink: Array<{ __typename?: 'Asset', url?: string | null | undefined, sys: { __typename?: 'Sys', id: string } } | null | undefined> }, entries: { __typename?: 'ContentBlockDescriptionEntries', block: Array<{ __typename: 'ApiField', sys: { __typename?: 'Sys', id: string } } | { __typename: 'ApiTable', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Button', sys: { __typename?: 'Sys', id: string } } | { __typename: 'CodeBlock', sourceCode?: string | null | undefined, sys: { __typename?: 'Sys', id: string } } | { __typename: 'ContentBlock', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Hero', sys: { __typename?: 'Sys', id: string } } | { __typename: 'HeroCard', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Homepage', sys: { __typename?: 'Sys', id: string } } | { __typename: 'LiveExample', sys: { __typename?: 'Sys', id: string } } | { __typename: 'MarkdownTable', markdown?: string | null | undefined, sys: { __typename?: 'Sys', id: string } } | { __typename: 'Navigation', sys: { __typename?: 'Sys', id: string } } | { __typename: 'NavigationElement', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Page', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Section', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SimpleCard', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Swatch', colourCollection?: { __typename?: 'SwatchColourCollection', items: Array<{ __typename?: 'SwatchColour', name?: string | null | undefined, colour?: string | null | undefined, isDark?: boolean | null | undefined } | null | undefined> } | null | undefined, sys: { __typename?: 'Sys', id: string } } | { __typename: 'SwatchColour', sys: { __typename?: 'Sys', id: string } } | null | undefined>, inline: Array<{ __typename: 'ApiField', sys: { __typename?: 'Sys', id: string } } | { __typename: 'ApiTable', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Button', sys: { __typename?: 'Sys', id: string } } | { __typename: 'CodeBlock', sys: { __typename?: 'Sys', id: string } } | { __typename: 'ContentBlock', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Hero', sys: { __typename?: 'Sys', id: string } } | { __typename: 'HeroCard', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Homepage', sys: { __typename?: 'Sys', id: string } } | { __typename: 'LiveExample', sys: { __typename?: 'Sys', id: string } } | { __typename: 'MarkdownTable', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Navigation', sys: { __typename?: 'Sys', id: string } } | { __typename: 'NavigationElement', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Page', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Section', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SimpleCard', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Swatch', sys: { __typename?: 'Sys', id: string } } | { __typename: 'SwatchColour', sys: { __typename?: 'Sys', id: string } } | null | undefined> } } } | null | undefined, image?: { __typename?: 'Asset', title?: string | null | undefined, url?: string | null | undefined } | null | undefined } | { __typename: 'Hero', title?: string | null | undefined, heading?: string | null | undefined, heroDescription?: string | null | undefined, sys: { __typename?: 'Sys', id: string } } | { __typename: 'LiveExample', title?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'LiveExampleDescription', json: any } | null | undefined } | { __typename: 'Section', sys: { __typename?: 'Sys', id: string } } | null | undefined> } | null | undefined } | null | undefined } | null | undefined> } | null | undefined };
 
 export type PageStructureQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type PageStructureQuery = (
-  { __typename?: 'Query' }
-  & { page?: Maybe<(
-    { __typename?: 'Page' }
-    & Pick<Page, 'title'>
-    & { sectionCollection?: Maybe<(
-      { __typename?: 'PageSectionCollection' }
-      & { items: Array<Maybe<(
-        { __typename?: 'ApiTable' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename?: 'CodeBlock' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename?: 'ContentBlock' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename?: 'Hero' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename?: 'LiveExample' }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename?: 'Section' }
-        & Pick<Section, 'title'>
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), contentCollection?: Maybe<(
-          { __typename?: 'SectionContentCollection' }
-          & { items: Array<Maybe<(
-            { __typename: 'ApiTable' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          ) | (
-            { __typename: 'CodeBlock' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          ) | (
-            { __typename: 'ContentBlock' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          ) | (
-            { __typename: 'Hero' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          ) | (
-            { __typename: 'LiveExample' }
-            & { sys: (
-              { __typename?: 'Sys' }
-              & Pick<Sys, 'id'>
-            ) }
-          )>> }
-        )> }
-      )>> }
-    )> }
-  )> }
-);
+export type PageStructureQuery = { __typename?: 'Query', page?: { __typename?: 'Page', title?: string | null | undefined, sectionCollection?: { __typename?: 'PageSectionCollection', items: Array<{ __typename?: 'ApiTable', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'CodeBlock', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'ContentBlock', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Hero', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'LiveExample', sys: { __typename?: 'Sys', id: string } } | { __typename?: 'Section', title?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, contentCollection?: { __typename?: 'SectionContentCollection', items: Array<{ __typename: 'ApiTable', sys: { __typename?: 'Sys', id: string } } | { __typename: 'CodeBlock', sys: { __typename?: 'Sys', id: string } } | { __typename: 'ContentBlock', sys: { __typename?: 'Sys', id: string } } | { __typename: 'Hero', sys: { __typename?: 'Sys', id: string } } | { __typename: 'LiveExample', sys: { __typename?: 'Sys', id: string } } | null | undefined> } | null | undefined } | null | undefined> } | null | undefined } | null | undefined };
 
 export type SectionContentQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
 
-export type SectionContentQuery = (
-  { __typename?: 'Query' }
-  & { section?: Maybe<(
-    { __typename?: 'Section' }
-    & Pick<Section, 'title'>
-    & { contentCollection?: Maybe<(
-      { __typename?: 'SectionContentCollection' }
-      & { items: Array<Maybe<(
-        { __typename: 'ApiTable' }
-        & Pick<ApiTable, 'title'>
-        & { apiTableDescription: ApiTable['description'] }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), apiFieldCollection?: Maybe<(
-          { __typename?: 'ApiTableApiFieldCollection' }
-          & { items: Array<Maybe<(
-            { __typename?: 'ApiField' }
-            & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
-        )>, apiReturnFieldCollection?: Maybe<(
-          { __typename?: 'ApiTableApiReturnFieldCollection' }
-          & { items: Array<Maybe<(
-            { __typename?: 'ApiField' }
-            & Pick<ApiField, 'name' | 'dataType' | 'defaultValue' | 'description' | 'required'>
-          ) | { __typename?: 'ApiTable' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' }>> }
-        )> }
-      ) | (
-        { __typename: 'CodeBlock' }
-        & Pick<CodeBlock, 'title' | 'filename' | 'sourceCode'>
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), description?: Maybe<(
-          { __typename?: 'CodeBlockDescription' }
-          & Pick<CodeBlockDescription, 'json'>
-        )> }
-      ) | (
-        { __typename: 'ContentBlock' }
-        & Pick<ContentBlock, 'title'>
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), description?: Maybe<(
-          { __typename?: 'ContentBlockDescription' }
-          & Pick<ContentBlockDescription, 'json'>
-        )>, image?: Maybe<(
-          { __typename?: 'Asset' }
-          & Pick<Asset, 'title' | 'url'>
-        )> }
-      ) | (
-        { __typename: 'Hero' }
-        & Pick<Hero, 'title' | 'heading'>
-        & { heroDescription: Hero['description'] }
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ) }
-      ) | (
-        { __typename: 'LiveExample' }
-        & Pick<LiveExample, 'title'>
-        & { sys: (
-          { __typename?: 'Sys' }
-          & Pick<Sys, 'id'>
-        ), description?: Maybe<(
-          { __typename?: 'LiveExampleDescription' }
-          & Pick<LiveExampleDescription, 'json'>
-        )> }
-      )>> }
-    )> }
-  )> }
-);
+export type SectionContentQuery = { __typename?: 'Query', section?: { __typename?: 'Section', title?: string | null | undefined, contentCollection?: { __typename?: 'SectionContentCollection', items: Array<{ __typename: 'ApiTable', title?: string | null | undefined, apiTableDescription?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, apiFieldCollection?: { __typename?: 'ApiTableApiFieldCollection', items: Array<{ __typename?: 'ApiField', name?: string | null | undefined, dataType?: string | null | undefined, defaultValue?: any | null | undefined, description?: string | null | undefined, required?: boolean | null | undefined } | { __typename?: 'ApiTable' } | { __typename?: 'Button' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'HeroCard' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' } | null | undefined> } | null | undefined, apiReturnFieldCollection?: { __typename?: 'ApiTableApiReturnFieldCollection', items: Array<{ __typename?: 'ApiField', name?: string | null | undefined, dataType?: string | null | undefined, defaultValue?: any | null | undefined, description?: string | null | undefined, required?: boolean | null | undefined } | { __typename?: 'ApiTable' } | { __typename?: 'Button' } | { __typename?: 'CodeBlock' } | { __typename?: 'ContentBlock' } | { __typename?: 'Hero' } | { __typename?: 'HeroCard' } | { __typename?: 'Homepage' } | { __typename?: 'LiveExample' } | { __typename?: 'MarkdownTable' } | { __typename?: 'Navigation' } | { __typename?: 'NavigationElement' } | { __typename?: 'Page' } | { __typename?: 'Section' } | { __typename?: 'SimpleCard' } | { __typename?: 'Swatch' } | { __typename?: 'SwatchColour' } | null | undefined> } | null | undefined } | { __typename: 'CodeBlock', title?: string | null | undefined, filename?: string | null | undefined, sourceCode?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'CodeBlockDescription', json: any } | null | undefined } | { __typename: 'ContentBlock', title?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'ContentBlockDescription', json: any } | null | undefined, image?: { __typename?: 'Asset', title?: string | null | undefined, url?: string | null | undefined } | null | undefined } | { __typename: 'Hero', title?: string | null | undefined, heading?: string | null | undefined, heroDescription?: string | null | undefined, sys: { __typename?: 'Sys', id: string } } | { __typename: 'LiveExample', title?: string | null | undefined, sys: { __typename?: 'Sys', id: string }, description?: { __typename?: 'LiveExampleDescription', json: any } | null | undefined } | null | undefined> } | null | undefined } | null | undefined };
