@@ -1,3 +1,10 @@
+## [1.9.1](https://github.com/defencedigital/design-system-docs/compare/1.9.0...1.9.1) (2021-10-15)
+
+
+### Bug Fixes
+
+* **Homepage:** Add hero card resources ([1038858](https://github.com/defencedigital/design-system-docs/commit/103885843ea722006007f9f362a06663375df141))
+
 # [1.9.0](https://github.com/defencedigital/design-system-docs/compare/1.8.0...1.9.0) (2021-10-14)
 
 
