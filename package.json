@@ -31,7 +31,7 @@
     "@graphql-codegen/typescript-operations": "1.17.12",
     "@royalnavy/css-framework": "^2.59.3",
     "@royalnavy/design-tokens": "^2.59.3",
-    "@royalnavy/eslint-config-react": "^2.59.11",
+    "@royalnavy/eslint-config-react": "^2.59.12",
     "@royalnavy/fonts": "^2.59.3",
     "@royalnavy/icon-library": "^2.59.3",
     "@royalnavy/react-component-library": "^2.59.11",
