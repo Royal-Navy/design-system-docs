@@ -11,8 +11,12 @@ export const StyledDescription = styled.p`
   padding: ${spacing('8')} 0;
   max-width: 550px;
 
+  ${mq({ gte: 's' })`
+    padding: ${spacing('8')};
+  `}
+
   ${mq({ gte: 'm' })`
-    padding: ${spacing('12')} 0;
+    padding: ${spacing('12')} ${spacing('8')};
     font-size: 18px;
     max-width: 660px;
   `}
