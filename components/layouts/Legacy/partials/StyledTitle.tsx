@@ -3,7 +3,7 @@ import { selectors } from '@royalnavy/design-tokens'
 
 const { mq, spacing } = selectors
 
-export const StyledTitle = styled.h2`
+export const StyledTitle = styled.h1`
   position: relative;
   margin: ${spacing('10')} ${spacing('10')} ${spacing('12')};
   padding-left: 16px;
