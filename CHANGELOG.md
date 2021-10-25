@@ -1,3 +1,10 @@
+## [1.9.2](https://github.com/defencedigital/design-system-docs/compare/1.9.1...1.9.2) (2021-10-25)
+
+
+### Bug Fixes
+
+* **Hero:** Adjust description spacing ([38043d5](https://github.com/defencedigital/design-system-docs/commit/38043d50d9f7e87930987fa3c6efbb5053b055be))
+
 ## [1.9.1](https://github.com/defencedigital/design-system-docs/compare/1.9.0...1.9.1) (2021-10-15)
 
 
