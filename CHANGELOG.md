@@ -1,3 +1,10 @@
+## [1.9.3](https://github.com/defencedigital/design-system-docs/compare/1.9.2...1.9.3) (2021-10-26)
+
+
+### Bug Fixes
+
+* **LayoutLegacy:** Change `StyledTitle` to `h1` tag ([87ff5e1](https://github.com/defencedigital/design-system-docs/commit/87ff5e165ef603b8378369e06eca72cd26de2796))
+
 ## [1.9.2](https://github.com/defencedigital/design-system-docs/compare/1.9.1...1.9.2) (2021-10-25)
 
 
