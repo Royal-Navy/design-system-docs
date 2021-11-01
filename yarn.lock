@@ -2710,20 +2710,20 @@
     prop-types "^15.6.1"
     react-lifecycles-compat "^3.0.4"
 
-"@royalnavy/css-framework@^2.59.11", "@royalnavy/css-framework@^2.59.3":
-  version "2.59.11"
-  resolved "https://registry.yarnpkg.com/@royalnavy/css-framework/-/css-framework-2.59.11.tgz#834a33db1dbb39489ec4b5fa1a591aa1174f6398"
-  integrity sha512-IYTTn1czUrAqZQeHSFRg30Hrjw+NdUFQLmDG85xWbjm2SqQ8U7QAJ7AU5ZX88mTX1LRQ+HF8DeVREEgX7Bqsdg==
+"@royalnavy/css-framework@^2.59.11", "@royalnavy/css-framework@^2.59.12":
+  version "2.59.12"
+  resolved "https://registry.yarnpkg.com/@royalnavy/css-framework/-/css-framework-2.59.12.tgz#45c269d4bb4a5614081113dc40e77800b8ab1341"
+  integrity sha512-zBrCTsNKAlEOjrv4pRvrDWKI5aNpz0g1FxwzhgFVJnGIk7/6ONUtBbH1oe8D6N6teXJRvJuVlF26hxdrlnM+4Q==
   dependencies:
-    "@royalnavy/design-tokens" "^2.59.11"
-    "@royalnavy/eslint-config-react" "^2.59.11"
+    "@royalnavy/design-tokens" "^2.59.12"
+    "@royalnavy/eslint-config-react" "^2.59.12"
 
-"@royalnavy/design-tokens@^2.59.11", "@royalnavy/design-tokens@^2.59.3":
-  version "2.59.11"
-  resolved "https://registry.yarnpkg.com/@royalnavy/design-tokens/-/design-tokens-2.59.11.tgz#e7a3442f912476c588a76f222a10aa1f100dcd18"
-  integrity sha512-ml9FD1CYAO8mi1dIoHwo40E4Yb6Ww059jCM3QVdrPDWkpq99+dN6jXipHkZLHnRWmnbJxLDL4+C2ZK7Auf054w==
+"@royalnavy/design-tokens@^2.59.11", "@royalnavy/design-tokens@^2.59.12", "@royalnavy/design-tokens@^2.59.3":
+  version "2.59.12"
+  resolved "https://registry.yarnpkg.com/@royalnavy/design-tokens/-/design-tokens-2.59.12.tgz#b94b9d260268ae73adfcd2b049270196553a829a"
+  integrity sha512-giyl7CSOtmwSMmXGaPrymKdclp2/bMV/2gswMNYv0I4N9mYdhHge+NAJ5bFWZp+ShAIQ/uUHZhakvfBwFOttLQ==
   dependencies:
-    "@royalnavy/eslint-config-react" "^2.59.11"
+    "@royalnavy/eslint-config-react" "^2.59.12"
     lodash "^4.17.20"
 
 "@royalnavy/eslint-config-react@^2.59.11", "@royalnavy/eslint-config-react@^2.59.12":
