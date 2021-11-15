@@ -17,6 +17,9 @@ const sections = [
   'Get Involved',
 ]
 
+const COLOUR_TOKENS = 'Colour Tokens'
+const LEARNING_RESOURCES = 'Learning resources'
+
 function assertSectionTitle(expected: string) {
   cy.get(selectors.homepage.sectionTitles)
     .eq(sections.indexOf(expected))
@@ -137,22 +140,22 @@ describe('Docs Site: Homepage', () => {
         describe('and the first sub menu group is expanded', () => {
           it('should expand the relevant sub menu', () => {
             cy.get(selectors.layout.mastheadMenuExpandButton).eq(0).click()
-            cy.get('a').contains('Learning resources').should('be.visible')
-            cy.get('a').contains('Colours').should('not.exist')
+            cy.get('a').contains(LEARNING_RESOURCES).should('be.visible')
+            cy.get('a').contains(COLOUR_TOKENS).should('not.exist')
           })
 
           describe('and the second sub menu group is expanded', () => {
             it('should expand the relevant sub menu', () => {
               cy.get(selectors.layout.mastheadMenuExpandButton).eq(1).click()
-              cy.get('a').contains('Learning resources').should('be.visible')
-              cy.get('a').contains('Colours').should('be.visible')
+              cy.get('a').contains(LEARNING_RESOURCES).should('be.visible')
+              cy.get('a').contains(COLOUR_TOKENS).should('be.visible')
             })
 
             describe('and the first sub menu group is collapsed', () => {
               it('should collapse the relevant sub menu', () => {
                 cy.get(selectors.layout.mastheadMenuExpandButton).eq(0).click()
-                cy.get('a').contains('Learning resources').should('not.exist')
-                cy.get('a').contains('Colours').should('be.visible')
+                cy.get('a').contains(LEARNING_RESOURCES).should('not.exist')
+                cy.get('a').contains(COLOUR_TOKENS).should('be.visible')
               })
             })
           })
