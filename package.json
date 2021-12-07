@@ -27,7 +27,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.5.1",
     "@graphql-codegen/cli": "^1.19.4",
-    "@graphql-codegen/typescript": "^2.2.2",
+    "@graphql-codegen/typescript": "^2.4.1",
     "@graphql-codegen/typescript-operations": "1.17.12",
     "@royalnavy/css-framework": "^2.59.12",
     "@royalnavy/design-tokens": "^2.59.3",
@@ -66,7 +66,7 @@
     "@semantic-release/git": "^9.0.0",
     "@storybook/addon-a11y": "^6.3.9",
     "@storybook/addon-actions": "^6.3.9",
-    "@storybook/addon-essentials": "^6.3.12",
+    "@storybook/addon-essentials": "^6.4.8",
     "@storybook/addon-knobs": "^6.1.20",
     "@storybook/addon-links": "^6.3.12",
     "@storybook/addon-postcss": "^2.0.0",
