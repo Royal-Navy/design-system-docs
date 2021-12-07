@@ -2704,7 +2704,7 @@
     "@royalnavy/eslint-config-react" "^2.59.12"
     lodash "^4.17.20"
 
-"@royalnavy/eslint-config-react@^2.59.11", "@royalnavy/eslint-config-react@^2.59.12":
+"@royalnavy/eslint-config-react@^2.59.12":
   version "2.59.12"
   resolved "https://registry.yarnpkg.com/@royalnavy/eslint-config-react/-/eslint-config-react-2.59.12.tgz#1667fa16590d6f7efab9aad79cc02b4fc525f8d1"
   integrity sha512-3DlF/Eiw4FiffBeIfUI8jaLkit2S8g4d0l6HpfsNqwJWHIp78Q+bKRISx22tD2mnnDnFVNGE9ybDlPKvEInm5w==
@@ -2727,12 +2727,12 @@
   resolved "https://registry.yarnpkg.com/@royalnavy/fonts/-/fonts-2.59.11.tgz#05cf798b5f8890908e5a7a2c4dcdc5dbf7c3dfc1"
   integrity sha512-wF4yioKmipD7SsMqcPJdK+N2jI/g8ilNKLiMz+IEgn4TxPMHvMOW7AIm7yniQrIc0v/X4HPkm79t+vzg3VOklQ==
 
-"@royalnavy/icon-library@^2.59.11", "@royalnavy/icon-library@^2.59.3":
-  version "2.59.11"
-  resolved "https://registry.yarnpkg.com/@royalnavy/icon-library/-/icon-library-2.59.11.tgz#e3b2bfc794ea299dfca549f7a20071cc7ac71566"
-  integrity sha512-PBrST6qnp1tYQEkKBThmm1NnOpuXgh5grHLdssHZSybBppNPGG8njYg+aftoVYJ0Hfrn4ZWTU4bw3GB25IKwPw==
+"@royalnavy/icon-library@^2.59.11", "@royalnavy/icon-library@^2.59.12":
+  version "2.59.12"
+  resolved "https://registry.yarnpkg.com/@royalnavy/icon-library/-/icon-library-2.59.12.tgz#4b1e98df380c75021bc72c729bd62fb04dfbd65e"
+  integrity sha512-WnoKsGq0Hr3/y1QEEeWDef38a89tBSU2YhvqxyNXudatzodBr3F+cRqotYWsF1bKNdUAliVdbz8CDXdO+HuXhQ==
   dependencies:
-    "@royalnavy/eslint-config-react" "^2.59.11"
+    "@royalnavy/eslint-config-react" "^2.59.12"
     react "^17.0.1"
     react-svg-unique-id "^1.3.3"
 

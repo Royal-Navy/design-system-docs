@@ -33,7 +33,7 @@
     "@royalnavy/design-tokens": "^2.59.3",
     "@royalnavy/eslint-config-react": "^2.59.12",
     "@royalnavy/fonts": "^2.59.3",
-    "@royalnavy/icon-library": "^2.59.3",
+    "@royalnavy/icon-library": "^2.59.12",
     "@royalnavy/react-component-library": "^2.59.11",
     "@types/lodash": "^4.14.175",
     "autoprefixer": "^10.4.0",
