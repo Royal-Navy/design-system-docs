@@ -27,7 +27,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.5.1",
     "@graphql-codegen/cli": "^1.19.4",
-    "@graphql-codegen/typescript": "^2.2.2",
+    "@graphql-codegen/typescript": "^2.4.1",
     "@graphql-codegen/typescript-operations": "1.17.12",
     "@royalnavy/css-framework": "^2.59.12",
     "@royalnavy/design-tokens": "^2.59.3",
