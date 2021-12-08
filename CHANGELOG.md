@@ -1,3 +1,10 @@
+## [1.9.4](https://github.com/defencedigital/design-system-docs/compare/1.9.3...1.9.4) (2021-12-08)
+
+
+### Bug Fixes
+
+* **Cypress:** Add missing types post upgrade ([4ee3911](https://github.com/defencedigital/design-system-docs/commit/4ee39116eeb4e76e55b90a4d2d870b0ecaffe371))
+
 ## [1.9.3](https://github.com/defencedigital/design-system-docs/compare/1.9.2...1.9.3) (2021-10-26)
 
 
