@@ -1,6 +1,6 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
-import { IconLightbulbOutline } from '@royalnavy/icon-library'
+import { IconLightbulbOutline } from '@defencedigital/icon-library'
 
 import { ContentBanner } from '.'
 

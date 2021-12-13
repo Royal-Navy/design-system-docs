@@ -18,7 +18,7 @@ export function useActiveItem(children: React.ReactNode): {
 
   useEffect(() => {
     setActiveItemIndex(getActiveIndex(children))
-  }, [])
+  }, [children])
 
   function isActive(index) {
     return index === activeItemIndex

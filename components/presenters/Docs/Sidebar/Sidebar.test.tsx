@@ -1,10 +1,10 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { IconBookmark } from '@royalnavy/icon-library'
+import { IconBookmark } from '@defencedigital/icon-library'
 import Link from 'next/link'
 import { render, RenderResult, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 
 import { Sidebar } from './Sidebar'
 import { SidebarFilter } from './SidebarFilter'

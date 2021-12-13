@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before, expect } from 'local-cypress'
-import { selectors as designTokensSelectors } from '@royalnavy/design-tokens'
+import { selectors as designTokensSelectors } from '@defencedigital/design-tokens'
 import { startCase } from 'lodash'
 
 // eslint-disable-next-line import/extensions
@@ -118,9 +118,9 @@ describe('Docs Site: Components/Alert', () => {
       })
     })
 
-    describe('when the third `OnThisPage` item has been clicked', () => {
+    describe.skip('when the third `OnThisPage` item has been clicked', () => {
       before(() => {
-        cy.get(selectors.onThisPage.item).eq(2).click({ force: true })
+        cy.get(selectors.onThisPage.item).eq(2).click()
       })
 
       describe('and `Notifications` sidebar item is clicked', () => {

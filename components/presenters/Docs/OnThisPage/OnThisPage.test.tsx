@@ -1,6 +1,6 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { ColorNeutral400 } from '@royalnavy/design-tokens'
+import { ColorNeutral400 } from '@defencedigital/design-tokens'
 import { render, RenderResult } from '@testing-library/react'
 
 import { OnThisPage } from './OnThisPage'

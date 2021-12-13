@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IconMenu } from '@royalnavy/icon-library'
+import { IconMenu } from '@defencedigital/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMasthead } from './partials/StyledMasthead'

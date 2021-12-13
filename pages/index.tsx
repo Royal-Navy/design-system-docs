@@ -3,8 +3,8 @@ import { useMediaQuery } from 'react-responsive'
 import styled from 'styled-components'
 import Link from 'next/link'
 import { GetStaticProps } from 'next'
-import { selectors } from '@royalnavy/design-tokens'
-import { IconFileDownload } from '@royalnavy/icon-library'
+import { selectors } from '@defencedigital/design-tokens'
+import { IconFileDownload } from '@defencedigital/icon-library'
 
 import { Footer } from '../components/presenters/Docs/Footer'
 import { FooterExternalLink } from '../components/presenters/Docs/Footer/FooterExternalLink'
@@ -190,7 +190,7 @@ export const Home: React.FC<HomeProps> = ({
   mobileNavigation,
   pageData,
 }) => {
-  const { version } = useDesignSystemVersion()
+  const { version = '0.1.0' } = useDesignSystemVersion()
   const {
     heroHeading,
     heroSubHeading,
@@ -348,6 +348,7 @@ export const Home: React.FC<HomeProps> = ({
             }) => {
               return (
                 <HeroCard
+                  key={title}
                   variant={variant as HeroCardVariantType}
                   title={title}
                   description={description}
@@ -362,7 +363,7 @@ export const Home: React.FC<HomeProps> = ({
                 >
                   {filesCollection.items.map(({ title: fileTitle, url }) => {
                     return (
-                      <HeroCardChild>
+                      <HeroCardChild key={fileTitle}>
                         <a href={url}>Download {fileTitle.toLowerCase()}</a>
                         &nbsp;&nbsp;
                         <IconFileDownload />

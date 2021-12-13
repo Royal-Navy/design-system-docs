@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconBookmark } from '@royalnavy/icon-library'
+import { IconBookmark } from '@defencedigital/icon-library'
 import Link from 'next/link'
 import '@testing-library/jest-dom/extend-expect'
 import { render, RenderResult } from '@testing-library/react'

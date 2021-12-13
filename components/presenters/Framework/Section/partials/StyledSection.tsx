@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 
 import { StyledContentPanel } from '../../ContentPanel/partials/StyledContentPanel'
 import { StyledLeftCol } from '../../ContentPanel/partials/StyledLeftCol'

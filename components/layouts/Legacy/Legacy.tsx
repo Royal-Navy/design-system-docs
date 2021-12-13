@@ -1,7 +1,7 @@
 import React from 'react'
-import { BreadcrumbsItemProps } from '@royalnavy/react-component-library'
+import { BreadcrumbsItemProps } from '@defencedigital/react-component-library'
 import Head from 'next/head'
-import { Nav } from '@royalnavy/react-component-library/dist/types/common/Nav'
+import { Nav } from '@defencedigital/react-component-library/dist/types/common/Nav'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import { ContentBannerProps } from '../../presenters/Docs/ContentBanner'

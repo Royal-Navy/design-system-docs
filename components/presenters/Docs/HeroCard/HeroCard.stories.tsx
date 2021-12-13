@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 import { storiesOf } from '@storybook/react'
-import { IconFileDownload } from '@royalnavy/icon-library'
+import { IconFileDownload } from '@defencedigital/icon-library'
 
 import { HeroCard, HeroCardChild } from '.'
 import { Button, BUTTON_VARIANT } from '../Button'
@@ -64,7 +64,7 @@ stories.add('Secondary', () => (
   >
     <HeroCardChild>
       <StyledDollar>$</StyledDollar>
-      &nbsp;npm&nbsp;install&nbsp;@royalnavy/react-component-library
+      &nbsp;npm&nbsp;install&nbsp;@defencedigital/react-component-library
     </HeroCardChild>
   </HeroCard>
 ))

@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconBookmark } from '@royalnavy/icon-library'
+import { IconBookmark } from '@defencedigital/icon-library'
 import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
 

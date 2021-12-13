@@ -1,7 +1,7 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, RenderResult } from '@testing-library/react'
-import { IconHome } from '@royalnavy/icon-library'
+import { IconHome } from '@defencedigital/icon-library'
 
 import { ContentBanner } from '.'
 

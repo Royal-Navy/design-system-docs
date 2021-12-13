@@ -5,7 +5,7 @@ import {
   BADGE_COLOR_VARIANT,
   BADGE_SIZE,
   BADGE_VARIANT,
-} from '@royalnavy/react-component-library'
+} from '@defencedigital/react-component-library'
 
 import { ApiTableDefaultValueProps } from './ApiTableDefaultValue'
 import { ApiTableDescriptionProps } from './ApiTableDescription'

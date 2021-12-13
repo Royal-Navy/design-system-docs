@@ -1,6 +1,6 @@
 import React from 'react'
 import Markdown from 'markdown-to-jsx'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 import styled from 'styled-components'
 
 const { color, mq, fontSize, spacing } = selectors

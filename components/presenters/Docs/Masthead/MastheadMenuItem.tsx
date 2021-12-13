@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React from 'react'
-import { IconExpandLess, IconExpandMore } from '@royalnavy/icon-library'
+import { IconExpandLess, IconExpandMore } from '@defencedigital/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 

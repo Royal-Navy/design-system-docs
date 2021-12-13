@@ -1,13 +1,25 @@
 import React from 'react'
 import type { AppProps } from 'next/app'
-import '@royalnavy/fonts'
+import '@defencedigital/fonts'
+import { selectors } from '@defencedigital/design-tokens'
+import { GlobalStyleProvider } from '@defencedigital/react-component-library'
 import { createGlobalStyle } from 'styled-components'
 
-import '../global.scss'
+const { color } = selectors
 
-const GlobalStyle = createGlobalStyle`
+const AppGlobalStyle = createGlobalStyle`
   html {
     scroll-behavior: smooth;
+    font-size: 100% !important;
+  }
+
+  a {
+    color: ${color('action', '500')};
+    text-decoration: none;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 `
 
@@ -16,9 +28,9 @@ export default function MyApp({
   pageProps,
 }: AppProps): React.ReactElement {
   return (
-    <>
-      <GlobalStyle />
+    <GlobalStyleProvider>
+      <AppGlobalStyle />
       <Component {...pageProps} />
-    </>
+    </GlobalStyleProvider>
   )
 }
