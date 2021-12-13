@@ -190,7 +190,7 @@ export const Home: React.FC<HomeProps> = ({
   mobileNavigation,
   pageData,
 }) => {
-  const { version } = useDesignSystemVersion()
+  const { version = '0.1.0' } = useDesignSystemVersion()
   const {
     heroHeading,
     heroSubHeading,

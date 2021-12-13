@@ -369,7 +369,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
   parentPage,
 }) => {
   const [filterString, setFilterString] = useState<string>(null)
-  const { version } = useDesignSystemVersion()
+  const { version = '0.1.0' } = useDesignSystemVersion()
   const {
     title,
     sectionCollection,
