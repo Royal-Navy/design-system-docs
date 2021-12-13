@@ -118,9 +118,9 @@ describe('Docs Site: Components/Alert', () => {
       })
     })
 
-    describe('when the third `OnThisPage` item has been clicked', () => {
+    describe.skip('when the third `OnThisPage` item has been clicked', () => {
       before(() => {
-        cy.get(selectors.onThisPage.item).eq(2).click({ force: true })
+        cy.get(selectors.onThisPage.item).eq(2).click()
       })
 
       describe('and `Notifications` sidebar item is clicked', () => {

@@ -49,7 +49,6 @@ describe('Masthead', () => {
               .click()
               .get(selectors.layout.h1)
               .should('have.text', title)
-              .go('back')
           })
         })
       } else {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { selectors } from '@defencedigital/design-tokens'
 import { useMediaQuery } from 'react-responsive'
 import groupBy from 'lodash/groupBy'
@@ -252,48 +252,6 @@ function renderSidebarItems(
 }
 
 /**
- * Generate `OnThisPage` items based on sub-headings within document
- *
- */
-function renderOnThisPageItems(
-  contentBlock: ContentBlockType
-): React.ReactElement | React.ReactElement[] {
-  const h2Collection = contentBlock?.description?.json?.content.filter(
-    ({ nodeType }) => {
-      return nodeType === BLOCKS.HEADING_2
-    }
-  )
-
-  const { push } = useRouter()
-
-  function getCurrentSectionNumber() {
-    if (typeof window === 'undefined') {
-      return 0
-    }
-
-    return parseInt(window.location.hash.split('-')[0].substring(1), 10)
-  }
-
-  const currentSectionNumber = getCurrentSectionNumber()
-
-  return h2Collection.map((item: Record<string, any>, index: number) => {
-    const title = item?.content[0]?.value
-    const sectionNumber = index + 1
-    const href = `#${kebabCase(`${sectionNumber}${title}`)}`
-
-    return (
-      <OnThisPageItem
-        isActive={currentSectionNumber === sectionNumber}
-        key={href}
-        onClick={(_) => push(href)}
-      >
-        {title}
-      </OnThisPageItem>
-    )
-  })
-}
-
-/**
  * Map content types to components using adapters
  *
  */
@@ -350,6 +308,57 @@ function mapMenuItem({
 }
 
 const { breakpoint } = selectors
+
+interface OnThisPageItemsProps {
+  contentBlock: ContentBlockType
+}
+
+/**
+ * Generate `OnThisPage` items based on sub-headings within document
+ *
+ */
+const OnThisPageItems: React.FC<OnThisPageItemsProps> = ({ contentBlock }) => {
+  const [currentSectionNumber, setCurrentSectionNumber] = useState<number>(1)
+
+  const h2Collection = contentBlock?.description?.json?.content.filter(
+    ({ nodeType }) => {
+      return nodeType === BLOCKS.HEADING_2
+    }
+  )
+
+  const { push } = useRouter()
+
+  function getCurrentSectionNumber() {
+    if (typeof window === 'undefined') {
+      return 1
+    }
+
+    return parseInt(window.location.hash.split('-')[0].substring(1), 10) || 1
+  }
+
+  useEffect(() => {
+    setCurrentSectionNumber(getCurrentSectionNumber())
+  }, [])
+
+  return h2Collection.map((item: Record<string, any>, index: number) => {
+    const title = item?.content[0]?.value
+    const sectionNumber = index + 1
+    const href = `#${kebabCase(`${sectionNumber}${title}`)}`
+
+    return (
+      <OnThisPageItem
+        isActive={currentSectionNumber === sectionNumber}
+        key={href}
+        onClick={(_) => {
+          push(href)
+          setCurrentSectionNumber(getCurrentSectionNumber())
+        }}
+      >
+        {title}
+      </OnThisPageItem>
+    )
+  })
+}
 
 export const GenericPage: React.FC<GenericPageProps> = ({
   slugs,
@@ -429,7 +438,9 @@ export const GenericPage: React.FC<GenericPageProps> = ({
 
   const onThisPage = (
     <OnThisPage>
-      {renderOnThisPageItems(sectionCollection.items[0] as ContentBlockType)}
+      <OnThisPageItems
+        contentBlock={sectionCollection.items[0] as ContentBlockType}
+      />
     </OnThisPage>
   )
 
