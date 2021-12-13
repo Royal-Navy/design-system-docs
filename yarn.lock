@@ -1314,17 +1314,19 @@
   dependencies:
     chalk "^4.0.0"
 
-"@contentful/rich-text-react-renderer@^15.5.1":
-  version "15.5.1"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.5.1.tgz#af68bdf17133bb5c4f18ea82da1ce2bcbbcb7680"
-  integrity sha512-veHBG7NJjE8UdntQyYII98tc8EPDVEVYfbpM9eV7djVDxuCifU9w7D1hCw4+xxKoaZfyJ4pNQuR55eWrrXIoeg==
+"@contentful/rich-text-react-renderer@^15.9.1":
+  version "15.9.1"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-react-renderer/-/rich-text-react-renderer-15.9.1.tgz#ba44acf181f8b4f30552aa913003eb3818e5a60d"
+  integrity sha512-bkreSqJmMkWoyfBgRpwo/a3vA+ryqG30I52bYxThzm6/BO0ORvnawxYnT8A5cEp6Y6CrJgkMSzFYFIMVF8LDQA==
   dependencies:
-    "@contentful/rich-text-types" "^15.5.1"
+    "@contentful/rich-text-types" "^15.9.1"
 
-"@contentful/rich-text-types@^15.5.1":
-  version "15.5.1"
-  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-15.5.1.tgz#1fa318564307635225116502b2e120b130cb97c2"
-  integrity sha512-FEFyPv4s6yoBMONSabbnZQn2o6n89bwIvD+y1uqgi48qnsOf7LoodNIL7t7vaSzHCUj5wU3zKUiTmMaSB5Uptw==
+"@contentful/rich-text-types@^15.9.1":
+  version "15.9.1"
+  resolved "https://registry.yarnpkg.com/@contentful/rich-text-types/-/rich-text-types-15.9.1.tgz#fc4ee83239cff7daaef439b5ca8297489ed59f61"
+  integrity sha512-Ef9cJCosgBzJajOaxGJQqMWw/Y/thwaKZ5y6VjBwG1JURbAXUqN1uYoukQjboxOAhwUMY9mU8EwB6dZtnzL0xw==
+  dependencies:
+    ajv "^8.8.2"
 
 "@cypress/request@^2.88.10":
   version "2.88.10"
@@ -5416,6 +5418,16 @@ ajv@^8.0.1:
   version "8.6.3"
   resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.6.3.tgz#11a66527761dc3e9a3845ea775d2d3c0414e8764"
   integrity sha512-SMJOdDP6LqTkD0Uq8qLi+gMwSt0imXLSV080qFVwJCpH9U6Mb+SUGHAXM0KNbcBPguytWyvFxcHgMLe2D2XSpw==
+  dependencies:
+    fast-deep-equal "^3.1.1"
+    json-schema-traverse "^1.0.0"
+    require-from-string "^2.0.2"
+    uri-js "^4.2.2"
+
+ajv@^8.8.2:
+  version "8.8.2"
+  resolved "https://registry.yarnpkg.com/ajv/-/ajv-8.8.2.tgz#01b4fef2007a28bf75f0b7fc009f62679de4abbb"
+  integrity sha512-x9VuX+R/jcFj1DHo/fCp99esgGDWiHENrKxaCENuCxpoMCmAt/COCGVDwA7kleEpEzJjDnvh3yGoOuLu0Dtllw==
   dependencies:
     fast-deep-equal "^3.1.1"
     json-schema-traverse "^1.0.0"
