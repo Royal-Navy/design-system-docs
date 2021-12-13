@@ -348,6 +348,7 @@ export const Home: React.FC<HomeProps> = ({
             }) => {
               return (
                 <HeroCard
+                  key={title}
                   variant={variant as HeroCardVariantType}
                   title={title}
                   description={description}
@@ -362,7 +363,7 @@ export const Home: React.FC<HomeProps> = ({
                 >
                   {filesCollection.items.map(({ title: fileTitle, url }) => {
                     return (
-                      <HeroCardChild>
+                      <HeroCardChild key={fileTitle}>
                         <a href={url}>Download {fileTitle.toLowerCase()}</a>
                         &nbsp;&nbsp;
                         <IconFileDownload />
