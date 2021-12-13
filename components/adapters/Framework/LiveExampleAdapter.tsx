@@ -12,7 +12,7 @@ import {
   TimelineRow,
   TimelineEvents,
   TimelineEvent,
-} from '@royalnavy/react-component-library'
+} from '@defencedigital/react-component-library'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import {

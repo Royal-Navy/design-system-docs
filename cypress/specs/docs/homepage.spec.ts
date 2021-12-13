@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before } from 'local-cypress'
-import { selectors as tokenSelectors } from '@royalnavy/design-tokens'
+import { selectors as tokenSelectors } from '@defencedigital/design-tokens'
 
 // eslint-disable-next-line import/extensions
 import { hexToRgb } from '../../helpers'

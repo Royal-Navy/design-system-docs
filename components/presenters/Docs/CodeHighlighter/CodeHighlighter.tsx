@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { IconContentCopy } from '@royalnavy/icon-library'
+import { IconContentCopy } from '@defencedigital/icon-library'
 import { Language } from 'prism-react-renderer'
 import Prism from 'prismjs'
 import 'prismjs/plugins/line-numbers/prism-line-numbers'

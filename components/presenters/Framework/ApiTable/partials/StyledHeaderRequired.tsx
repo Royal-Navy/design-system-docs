@@ -1,5 +1,5 @@
-import { Badge } from '@royalnavy/react-component-library'
-import { selectors } from '@royalnavy/design-tokens'
+import { Badge } from '@defencedigital/react-component-library'
+import { selectors } from '@defencedigital/design-tokens'
 import styled from 'styled-components'
 
 const { spacing } = selectors

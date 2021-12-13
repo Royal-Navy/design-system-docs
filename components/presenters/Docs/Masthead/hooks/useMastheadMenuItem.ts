@@ -1,5 +1,5 @@
-import { selectors } from '@royalnavy/design-tokens'
-import { useDocumentClick } from '@royalnavy/react-component-library'
+import { selectors } from '@defencedigital/design-tokens'
+import { useDocumentClick } from '@defencedigital/react-component-library'
 import {
   Dispatch,
   MutableRefObject,

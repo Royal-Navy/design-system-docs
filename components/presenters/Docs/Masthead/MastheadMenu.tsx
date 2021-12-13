@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
-import { IconClose } from '@royalnavy/icon-library'
-import { useDocumentClick } from '@royalnavy/react-component-library'
+import { IconClose } from '@defencedigital/icon-library'
+import { useDocumentClick } from '@defencedigital/react-component-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Badge } from '@royalnavy/react-component-library'
+import { Badge } from '@defencedigital/react-component-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledMasthead } from './partials/StyledMasthead'

@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import Highlight, { defaultProps, Language } from 'prism-react-renderer'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 import 'firacode'
 
 import theme from './theme'

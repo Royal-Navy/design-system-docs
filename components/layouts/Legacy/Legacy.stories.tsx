@@ -3,8 +3,11 @@ import { action } from '@storybook/addon-actions'
 import {
   Breadcrumbs,
   BreadcrumbsItem,
-} from '@royalnavy/react-component-library'
-import { IconBookmark, IconLightbulbOutline } from '@royalnavy/icon-library'
+} from '@defencedigital/react-component-library'
+import {
+  IconBookmark,
+  IconLightbulbOutline,
+} from '@defencedigital/icon-library'
 import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
 

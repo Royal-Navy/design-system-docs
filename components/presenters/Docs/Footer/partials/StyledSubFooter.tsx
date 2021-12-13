@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components'
 import hexRgb from 'hex-rgb'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 
 const { color, mq, spacing, zIndex } = selectors
 

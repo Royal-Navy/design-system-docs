@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { IconClose } from '@royalnavy/icon-library'
+import { IconClose } from '@defencedigital/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 

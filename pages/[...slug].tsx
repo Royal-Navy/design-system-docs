@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { selectors } from '@royalnavy/design-tokens'
+import { selectors } from '@defencedigital/design-tokens'
 import { useMediaQuery } from 'react-responsive'
 import groupBy from 'lodash/groupBy'
 import upperFirst from 'lodash/upperFirst'
@@ -12,8 +12,8 @@ import {
   Breadcrumbs,
   BreadcrumbsItem,
   BreadcrumbsItemProps,
-} from '@royalnavy/react-component-library'
-import { IconLightbulbOutline } from '@royalnavy/icon-library'
+} from '@defencedigital/react-component-library'
+import { IconLightbulbOutline } from '@defencedigital/icon-library'
 
 import Axure from '../public/Axure.svg'
 import Storybook from '../public/Storybook.svg'

@@ -1,6 +1,6 @@
 /* eslint-disable jest/expect-expect */
 import { describe, cy, it, before, expect } from 'local-cypress'
-import { selectors as designTokensSelectors } from '@royalnavy/design-tokens'
+import { selectors as designTokensSelectors } from '@defencedigital/design-tokens'
 import { startCase } from 'lodash'
 
 // eslint-disable-next-line import/extensions

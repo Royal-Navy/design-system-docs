@@ -1,6 +1,6 @@
 import React from 'react'
-import { Badge } from '@royalnavy/react-component-library'
-import { IconChevronLeft } from '@royalnavy/icon-library'
+import { Badge } from '@defencedigital/react-component-library'
+import { IconChevronLeft } from '@defencedigital/icon-library'
 
 import { ComponentWithClass } from '../../../../common/ComponentWithClass'
 import { StyledFrame } from './partials/StyledFrame'
