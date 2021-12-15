@@ -1,3 +1,11 @@
+## [1.9.5](https://github.com/defencedigital/design-system-docs/compare/1.9.4...1.9.5) (2021-12-15)
+
+
+### Bug Fixes
+
+* **Homepage:** Add some missing keys ([6e88aa3](https://github.com/defencedigital/design-system-docs/commit/6e88aa3f8184bdc46a3e6c58d9789ad644c2d7cc))
+* **Version:** Add sensible default ([b20c7b0](https://github.com/defencedigital/design-system-docs/commit/b20c7b0ae2643efef991dede40bb6459f46e80f4))
+
 ## [1.9.4](https://github.com/defencedigital/design-system-docs/compare/1.9.3...1.9.4) (2021-12-08)
 
 
