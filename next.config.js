@@ -14,7 +14,7 @@ module.exports = withPlugins([withTM], {
           options: {
             prettier: false,
             svgo: true,
-            svgoConfig: { plugins: [{ removeViewBox: false }] },
+            svgoConfig: { plugins: [] },
             titleProp: true,
           },
         },
