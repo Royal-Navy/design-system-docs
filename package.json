@@ -31,7 +31,7 @@
     "@defencedigital/fonts": "^2.69.0",
     "@defencedigital/icon-library": "^2.69.0",
     "@defencedigital/react-component-library": "^2.69.0",
-    "@graphql-codegen/cli": "^1.19.4",
+    "@graphql-codegen/cli": "^2.3.0",
     "@graphql-codegen/typescript": "^2.4.1",
     "@graphql-codegen/typescript-operations": "1.17.12",
     "@types/lodash": "^4.14.177",
