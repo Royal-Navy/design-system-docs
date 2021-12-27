@@ -29,7 +29,7 @@
     "@defencedigital/design-tokens": "^2.69.0",
     "@defencedigital/eslint-config-react": "^2.69.0",
     "@defencedigital/fonts": "^2.69.0",
-    "@defencedigital/icon-library": "^2.69.0",
+    "@defencedigital/icon-library": "^2.72.0",
     "@defencedigital/react-component-library": "^2.69.0",
     "@graphql-codegen/cli": "^2.3.0",
     "@graphql-codegen/typescript": "^2.4.1",
