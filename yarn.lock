@@ -1289,20 +1289,20 @@
   dependencies:
     date-fns "^2.14.0"
 
-"@defencedigital/css-framework@^2.69.0":
-  version "2.69.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/css-framework/-/css-framework-2.69.0.tgz#1db38cef743cdb2197fdac5f14ab456665fe7b72"
-  integrity sha512-PmxkY8H1gEe8swa10aMJFHxMK5B6D/HV0x2DmAl5dGA/YyRFvoLBiukFhTdkTEomgDya/9Ezh7Nc3Vo8YjGNEw==
+"@defencedigital/css-framework@^2.72.0":
+  version "2.72.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/css-framework/-/css-framework-2.72.0.tgz#e0d98800f4e91bdbae97334f3cf7bbd0e03d5ccd"
+  integrity sha512-lBv1zN8AietjVOyPjyvyqo8tustqhV2q04tVOL0fopuV9nXXEYO3CrPJSTk4W+W1VM+G+lhLB1QeLrtT7rXwcw==
   dependencies:
-    "@defencedigital/design-tokens" "^2.69.0"
-    "@defencedigital/eslint-config-react" "^2.69.0"
+    "@defencedigital/design-tokens" "^2.72.0"
+    "@defencedigital/eslint-config-react" "^2.72.0"
 
-"@defencedigital/design-tokens@^2.69.0":
-  version "2.69.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-2.69.0.tgz#e4070c4631382fe5e70447d67c0fa9efc3834474"
-  integrity sha512-1f46Y1oSy15+bfibePU5P+GntjyRWQqFme4rUHZFhjjnaqqyAI++rbS4ec/HvVPYlhSQO2sf06vUiZqhHsSVrA==
+"@defencedigital/design-tokens@^2.69.0", "@defencedigital/design-tokens@^2.72.0":
+  version "2.72.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-2.72.0.tgz#fd8dcdbae886e6e8854bfc3553b969b6fbee6fb6"
+  integrity sha512-aQ/ZEqp8P7Yxi0ULkSPEb/mwNuOGSNcJ9VIWDUD8cgOePh8RSETQY5AXALxpUHieCYulkO2JhBp9TB13V7hEMw==
   dependencies:
-    "@defencedigital/eslint-config-react" "^2.69.0"
+    "@defencedigital/eslint-config-react" "^2.72.0"
     lodash "^4.17.20"
 
 "@defencedigital/eslint-config-react@^2.69.0", "@defencedigital/eslint-config-react@^2.72.0":
@@ -1323,12 +1323,12 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^2.69.0":
-  version "2.69.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.69.0.tgz#ae61e6f1cf8ce374b6de1cfd3842dd509448be58"
-  integrity sha512-VTEb7D/PKbMAKK0ZMwKxCEKC0C5+zX6Eb7DPaW+O5f3iicH1xo8N3CHge0+C73+gkpJ8o+D+gz3kQ5LKzlK/sw==
+"@defencedigital/fonts@^2.69.0", "@defencedigital/fonts@^2.72.0":
+  version "2.72.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.72.0.tgz#4e6e7a0e288c46f3990f4ff27b0a78c97101ab80"
+  integrity sha512-xSK42bPNz6njfjTgAyEpJ7u0DJF3vktuN17PpM7WcAxUT36Zf+fgh9YmvrY5RpJQlYI6iYHtXzbpHwuXj32RWA==
 
-"@defencedigital/icon-library@^2.69.0", "@defencedigital/icon-library@^2.72.0":
+"@defencedigital/icon-library@^2.72.0":
   version "2.72.0"
   resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-2.72.0.tgz#87da9b6b71b1187fb58f33f1fc6e8f833cb61670"
   integrity sha512-9E5UEz4CUHRYswTEPE70UVbVL/p3KJNQt9Iepv2tRUxbf8X1s7YWFvkgsPOo5ZervABdjd49/jNiUYfrk3sYTQ==
@@ -1337,16 +1337,16 @@
     react "^17.0.1"
     react-svg-unique-id "^1.3.3"
 
-"@defencedigital/react-component-library@^2.69.0":
-  version "2.69.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-2.69.0.tgz#9ae4bba40ae8479deaf21ea53863c99bddaa07ee"
-  integrity sha512-U9BH3xyIcLk1q9A0JCvpYPstuU/mX/OJaxztM1hn51ZVXe/j5JU/E+pxcciM59S+Qcfwwk6j/QqySK0XFXDD0Q==
+"@defencedigital/react-component-library@^2.72.0":
+  version "2.72.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-2.72.0.tgz#9e66c9361dd0af8a3e846ceae956c451cb53cecd"
+  integrity sha512-/y02u0nHyJ5yo7qHcbhfNw3lztqFKxm4hWJe+bpNX+CtCUOQ6t1QD7KzBco9J9A4QeZg6rhc0PG8P/+7hVMCkw==
   dependencies:
     "@datepicker-react/hooks" "^2.4.1"
-    "@defencedigital/css-framework" "^2.69.0"
-    "@defencedigital/design-tokens" "^2.69.0"
-    "@defencedigital/fonts" "^2.69.0"
-    "@defencedigital/icon-library" "^2.69.0"
+    "@defencedigital/css-framework" "^2.72.0"
+    "@defencedigital/design-tokens" "^2.72.0"
+    "@defencedigital/fonts" "^2.72.0"
+    "@defencedigital/icon-library" "^2.72.0"
     "@popperjs/core" "^2.9.2"
     "@types/react-responsive" "^8.0.2"
     "@types/react-toast-notifications" "^2.4.0"
