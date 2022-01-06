@@ -20,8 +20,6 @@ jobs:
             yarn install --cache-folder ~/.cache/yarn
             node ./scripts/commitlint ${{ github.event.pull_request._links.html.href }}
             node ./scripts/check-fixup ${{ github.event.pull_request._links.html.href }}
-
-
     Security_audit:
       runs-on: ubuntu-latest
       steps:
@@ -30,7 +28,6 @@ jobs:
 
         - name: Run audit
           run: yarn run audit
-
 
     Lint_docs-site:
       runs-on: ubuntu-latest
@@ -51,10 +48,10 @@ jobs:
             yarn install --cache-folder ~/.cache/yarn
             yarn lint:ci
 
-
     Test_docs-site:
       runs-on: ubuntu-latest
       needs: [Lint_docs-site]
+      # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
       if: ${{ github.actor != 'dependabot[bot]' }}
       steps:
         - name: Git clone repository
@@ -91,10 +88,10 @@ jobs:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-
     Test-e2e_docs-site:
       runs-on: ubuntu-latest
       needs: [Lint_docs-site]
+      # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
       if: ${{ github.actor != 'dependabot[bot]' }}
       env:
             NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
@@ -120,5 +117,3 @@ jobs:
           with:
             name: cypress_screenshots
             path: cypress/screenshots/
-
-

@@ -1,4 +1,4 @@
-name: Automerge
+name: Dependabot Automerge
 
 on:
   workflow_run:
@@ -9,9 +9,7 @@ on:
     branches:
       - 'dependabot/**'
 
-
 jobs:
-
   Test_docs-site:
       runs-on: ubuntu-latest
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -44,8 +42,6 @@ jobs:
           env:
            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
            SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
-
   Test-e2e_docs-site:
       runs-on: ubuntu-latest
       if: ${{ github.event.workflow_run.conclusion == 'success' }}
@@ -68,15 +64,13 @@ jobs:
           with:
             name: cypress_screenshots
             path: cypress/screenshots/
-
-
   Automerge:
     name: Merge Dependabot PR's
     runs-on: ubuntu-latest
     needs: [Test_docs-site, Test-e2e_docs-site]
     steps:
-
-      - name: Run merge me action
+      - name: Auto merge Dependabot minor and patch version bumps
         uses: defencedigital/design-system-mergeme-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.MERGE_BOT }}
+          PRESET: DEPENDABOT_MINOR
