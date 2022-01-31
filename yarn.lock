@@ -109,7 +109,7 @@
     "@babel/helper-explode-assignable-expression" "^7.16.0"
     "@babel/types" "^7.16.0"
 
-"@babel/helper-compilation-targets@^7.13.0", "@babel/helper-compilation-targets@^7.16.0", "@babel/helper-compilation-targets@^7.16.3", "@babel/helper-compilation-targets@^7.16.7":
+"@babel/helper-compilation-targets@^7.13.0", "@babel/helper-compilation-targets@^7.16.3", "@babel/helper-compilation-targets@^7.16.7":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/helper-compilation-targets/-/helper-compilation-targets-7.16.7.tgz#06e66c5f299601e6c7da350049315e83209d551b"
   integrity sha512-mGojBwIWcwGD6rfqgRXVlVYmPAv7eOpIemUG3dGnDdCY4Pae70ROij3XmfrH6Fa1h1aiDylpglbZyktfzyo/hA==
@@ -1422,10 +1422,10 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^2.69.0", "@defencedigital/fonts@^2.72.0":
-  version "2.72.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.72.0.tgz#4e6e7a0e288c46f3990f4ff27b0a78c97101ab80"
-  integrity sha512-xSK42bPNz6njfjTgAyEpJ7u0DJF3vktuN17PpM7WcAxUT36Zf+fgh9YmvrY5RpJQlYI6iYHtXzbpHwuXj32RWA==
+"@defencedigital/fonts@^2.72.0", "@defencedigital/fonts@^2.79.1":
+  version "2.79.1"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.79.1.tgz#caccf90a5109688fcb0b726e197e8affd44c6158"
+  integrity sha512-LEateMYjJEEtC5TEqiJZiTF9dJKyG/JK2TiRNrgDthzg2M9cx/R8cBtJTulStXevRaJniMXi/M34VbwaMn9DHw==
 
 "@defencedigital/icon-library@^2.72.0":
   version "2.72.0"
