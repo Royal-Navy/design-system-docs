@@ -109,7 +109,7 @@
     "@babel/helper-explode-assignable-expression" "^7.16.0"
     "@babel/types" "^7.16.0"
 
-"@babel/helper-compilation-targets@^7.13.0", "@babel/helper-compilation-targets@^7.16.0", "@babel/helper-compilation-targets@^7.16.3", "@babel/helper-compilation-targets@^7.16.7":
+"@babel/helper-compilation-targets@^7.13.0", "@babel/helper-compilation-targets@^7.16.3", "@babel/helper-compilation-targets@^7.16.7":
   version "7.16.7"
   resolved "https://registry.yarnpkg.com/@babel/helper-compilation-targets/-/helper-compilation-targets-7.16.7.tgz#06e66c5f299601e6c7da350049315e83209d551b"
   integrity sha512-mGojBwIWcwGD6rfqgRXVlVYmPAv7eOpIemUG3dGnDdCY4Pae70ROij3XmfrH6Fa1h1aiDylpglbZyktfzyo/hA==
@@ -1404,10 +1404,10 @@
     "@defencedigital/eslint-config-react" "^2.72.0"
     lodash "^4.17.20"
 
-"@defencedigital/eslint-config-react@^2.69.0", "@defencedigital/eslint-config-react@^2.72.0":
-  version "2.72.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-2.72.0.tgz#179044680b969b9f328651fe5b7057abf8b5caf4"
-  integrity sha512-pJUF8zXyaeu4QUZPTxCNH4LdBW3aMW62uob55R8uI7D0mmzFC33sOyjxNNgUiPwbSBOKaFc/OvXM07TQ3sfDCQ==
+"@defencedigital/eslint-config-react@^2.72.0", "@defencedigital/eslint-config-react@^2.79.3":
+  version "2.79.3"
+  resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-2.79.3.tgz#3346cd509d59e51be0ee419eb27f878441de6311"
+  integrity sha512-y8F8Ef0RE7VbactsRlE+Uz3mooYdIygQr/pLjrgbwUmhQsrimyKZzf3AaK7zsmbKB5uTti1RFAduphfpUljYPg==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.3.1"
     "@typescript-eslint/parser" "^5.4.0"
