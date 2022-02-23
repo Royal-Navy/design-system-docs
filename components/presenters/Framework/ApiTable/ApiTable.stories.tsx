@@ -25,7 +25,7 @@ stories.add('Default', () => (
 stories.add('Function', () => (
   <ApiTable>
     <ApiTableItem name="render" type="Func">
-      <ApiTableDefaultValue>
+      <ApiTableDefaultValue type="(props: { name1, name2, name3 }) => void">
         <ApiTableFunctionParameter type="date">name1</ApiTableFunctionParameter>
         <ApiTableFunctionParameter type="number">
           name2

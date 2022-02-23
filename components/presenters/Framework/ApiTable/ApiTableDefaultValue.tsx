@@ -8,6 +8,7 @@ import { StyledBodyRowValue } from './partials/StyledBodyRowValue'
 import { StyledParameters } from './partials/StyledParameters'
 
 export interface ApiTableDefaultValueProps {
+  type?: string
   children?:
     | string
     | React.ReactElement<ApiTableFunctionParameterProps>
@@ -15,6 +16,7 @@ export interface ApiTableDefaultValueProps {
 }
 
 export const ApiTableDefaultValue: React.FC<ApiTableDefaultValueProps> = ({
+  type,
   children,
 }) => {
   if (isNil(children) || isString(children)) {
@@ -32,7 +34,9 @@ export const ApiTableDefaultValue: React.FC<ApiTableDefaultValueProps> = ({
     <StyledBodyRow>
       <StyledBodyRowItem>Default Value</StyledBodyRowItem>
       <StyledBodyRowValue>
-        <code>Function</code>
+        <code data-testid="api-table-default-value-type">
+          {type || 'Function'}
+        </code>
         <StyledParameters>{children}</StyledParameters>
       </StyledBodyRowValue>
     </StyledBodyRow>

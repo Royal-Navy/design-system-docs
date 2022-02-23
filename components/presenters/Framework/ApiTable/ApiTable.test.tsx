@@ -71,8 +71,8 @@ describe('API table', () => {
     beforeEach(() => {
       wrapper = render(
         <ApiTable>
-          <ApiTableItem name="startDate" type="Date">
-            <ApiTableDefaultValue>
+          <ApiTableItem name="render" type="func">
+            <ApiTableDefaultValue type="() => void">
               <ApiTableFunctionParameter type="date">
                 name1
               </ApiTableFunctionParameter>
@@ -86,6 +86,12 @@ describe('API table', () => {
           </ApiTableItem>
         </ApiTable>
       )
+    })
+
+    it('renders the function type', () => {
+      expect(
+        wrapper.getByTestId('api-table-default-value-type')
+      ).toHaveTextContent('() => void')
     })
 
     it('should render the parameter names', () => {
@@ -102,6 +108,28 @@ describe('API table', () => {
       expect(parameterTypes[1]).toHaveTextContent('number')
       expect(parameterTypes[2]).toHaveTextContent('string')
       expect(parameterTypes).toHaveLength(3)
+    })
+  })
+
+  describe('function item with default type', () => {
+    beforeEach(() => {
+      wrapper = render(
+        <ApiTable>
+          <ApiTableItem name="render" type="func">
+            <ApiTableDefaultValue>
+              <ApiTableFunctionParameter type="date">
+                name1
+              </ApiTableFunctionParameter>
+            </ApiTableDefaultValue>
+          </ApiTableItem>
+        </ApiTable>
+      )
+    })
+
+    it('renders the default function type', () => {
+      expect(
+        wrapper.getByTestId('api-table-default-value-type')
+      ).toHaveTextContent('Function')
     })
   })
 })
