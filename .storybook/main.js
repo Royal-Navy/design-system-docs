@@ -16,22 +16,53 @@ module.exports = {
     },
     '@storybook/preset-scss',
   ],
-  webpackFinal: async (config) => {
-    config.module.rules.unshift({
-      test: /\.svg$/i,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            prettier: false,
-            svgo: true,
-            svgoConfig: { plugins: [{ removeViewBox: false }] },
-            titleProp: true,
+  core: {
+    builder: 'webpack5',
+  },
+  webpackFinal: (config) => {
+    const svgrOptions = {
+      prettier: false,
+      svgo: true,
+      svgoConfig: {
+        plugins: [
+          {
+            name: 'preset-default',
+            params: {
+              overrides: {
+                removeViewBox: false,
+                minifyStyles: false,
+              },
+            },
           },
-        },
-      ],
-    })
+          'convertStyleToAttrs',
+        ],
+      },
+      titleProp: true,
+    }
 
-    return config
+    return {
+      ...config,
+      module: {
+        ...config.module,
+        rules: [
+          {
+            oneOf: [
+              {
+                test: /\.svg$/i,
+                use: [
+                  {
+                    loader: '@svgr/webpack',
+                    options: svgrOptions,
+                  },
+                ],
+              },
+              {
+                rules: [...config.module.rules],
+              },
+            ],
+          },
+        ],
+      },
+    }
   },
 }
