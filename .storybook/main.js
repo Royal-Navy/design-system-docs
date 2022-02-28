@@ -1,11 +1,9 @@
 module.exports = {
   stories: ['../**/*.stories.tsx'],
   addons: [
-    '@storybook/addon-postcss',
     '@storybook/addon-a11y',
     '@storybook/addon-actions',
     '@storybook/addon-links',
-    '@storybook/addon-knobs',
     {
       name: '@storybook/addon-storysource',
       options: {
@@ -14,7 +12,6 @@ module.exports = {
         },
       },
     },
-    '@storybook/preset-scss',
   ],
   core: {
     builder: 'webpack5',
