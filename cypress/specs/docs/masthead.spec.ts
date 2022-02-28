@@ -16,7 +16,7 @@ const items = [
   },
   {
     title: 'Reference',
-    subItems: ['Tokens', 'Components', 'Patterns', 'Frameworks'],
+    subItems: ['Tokens', 'Components', 'Patterns', 'Compound Timeline'],
   },
   {
     title: 'Resources',
