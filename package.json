@@ -16,9 +16,6 @@
     "codegen": "gql-gen --config codegen.yml",
     "audit": "./scripts/audit/audit.sh"
   },
-  "jest": {
-    "testResultsProcessor": "jest-sonar-reporter"
-  },
   "jestSonar": {
     "reportPath": "coverage",
     "reportFile": "sonar-report.xml",
