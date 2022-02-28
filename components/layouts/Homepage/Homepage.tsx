@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import Script from 'next/script'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import { FooterProps } from '../../presenters/Docs/Footer'
@@ -24,11 +25,11 @@ export const LayoutHomepage: React.FC<LayoutHomepageProps> = ({
   title,
 }) => (
   <>
+    <Script src="/static/newrelic.js" strategy="beforeInteractive" />
     <Head>
       <title>{title} | MOD.UK Design System</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-      <script type="text/javascript" src="/static/newrelic.js" />
     </Head>
     <StyledPageWrapper>
       {pageBanner}
