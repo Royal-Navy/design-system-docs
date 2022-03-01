@@ -45,11 +45,6 @@ const content = [
     link: 'timelineTodayMarker',
     hasApiTable: true,
   },
-  {
-    text: 'TimelineSide (Deprecated)',
-    link: 'timelineSideDeprecated',
-    hasApiTable: true,
-  },
   { text: 'TimelineMonths', link: 'timelineMonths', hasApiTable: true },
   { text: 'TimelineWeeks', link: 'timelineWeeks', hasApiTable: true },
   { text: 'TimelineDays', link: 'timelineDays', hasApiTable: true },

@@ -11,7 +11,7 @@ const items = [
       'Development',
       'Installation & quick start',
       'Learning resources',
-      'Migrating to v2',
+      'Migrating to v3',
     ],
   },
   {
