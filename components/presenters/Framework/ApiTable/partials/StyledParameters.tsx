@@ -9,5 +9,5 @@ export const StyledParameters = styled.ul`
   justify-content: flex-start;
   border-radius: 4px;
   padding: 0;
-  margin: 0 0 ${spacing('4')} -4px;
+  margin: ${spacing('6')} 0 ${spacing('4')} -4px;
 `

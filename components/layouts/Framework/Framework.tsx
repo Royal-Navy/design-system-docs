@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Head from 'next/head'
+import Script from 'next/script'
 
 import { Masthead } from '../../presenters/Framework/Masthead'
 import { Sidebar } from '../../presenters/Framework/Sidebar'
@@ -22,11 +23,11 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
 
   return (
     <>
+      <Script src="/static/newrelic.js" strategy="beforeInteractive" />
       <Head>
         <title>{title}</title>
         <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <script type="text/javascript" src="/static/newrelic.js" />
       </Head>
       <Masthead
         title="MOD.UK Design System"

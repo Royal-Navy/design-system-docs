@@ -28,14 +28,14 @@ interface ApiTableAdapterProps extends ComponentWithClass {
 function renderDefaultValue(
   defaultValue: ApiFieldDefaultValueType
 ): React.ReactElement {
-  const { value, args } = defaultValue || {}
+  const { value, args, type } = defaultValue || {}
 
   if (args) {
     return (
-      <ApiTableDefaultValue>
-        {args.map(({ type, name }) => {
+      <ApiTableDefaultValue type={type}>
+        {args.map(({ type: argType, name }) => {
           return (
-            <ApiTableFunctionParameter key={name} type={type}>
+            <ApiTableFunctionParameter key={name} type={argType}>
               {name}
             </ApiTableFunctionParameter>
           )

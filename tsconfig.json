@@ -21,7 +21,8 @@
       "jest",
       "@testing-library/jest-dom"
     ],
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "incremental": true
   },
   "include": [
     "next-env.d.ts",
