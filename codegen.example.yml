@@ -1,8 +1,8 @@
 overwrite: true
 schema:
   - https://graphql.contentful.com/content/v1/spaces/SPACE_ID:
-headers:
-  Authorization: Bearer TOKEN
+      headers:
+        Authorization: Bearer TOKEN
 documents: './graphql/queries/**/*.graphql'
 generates:
     ./graphql/index.ts:
