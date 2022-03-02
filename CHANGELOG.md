@@ -1,3 +1,15 @@
+# [1.10.0](https://github.com/defencedigital/design-system-docs/compare/1.9.5...1.10.0) (2022-03-02)
+
+
+### Bug Fixes
+
+* **Storybook:** Get working again ([9aebac1](https://github.com/defencedigital/design-system-docs/commit/9aebac1362eb30084c77db22818362dd6be6081e))
+
+
+### Features
+
+* **ApiTable:** Add ability to specify function type ([a76fb00](https://github.com/defencedigital/design-system-docs/commit/a76fb006ae697db62ed1037652e9703f239b4b5d))
+
 ## [1.9.5](https://github.com/defencedigital/design-system-docs/compare/1.9.4...1.9.5) (2021-12-15)
 
 
