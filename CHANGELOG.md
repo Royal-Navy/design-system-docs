@@ -1,3 +1,10 @@
+## [1.10.1](https://github.com/defencedigital/design-system-docs/compare/1.10.0...1.10.1) (2022-03-02)
+
+
+### Bug Fixes
+
+* **PageBanner:** Update upgrade guide link ([81f2a75](https://github.com/defencedigital/design-system-docs/commit/81f2a7513cc6a6c83c11ee41f4bc6293732809af))
+
 # [1.10.0](https://github.com/defencedigital/design-system-docs/compare/1.9.5...1.10.0) (2022-03-02)
 
 
