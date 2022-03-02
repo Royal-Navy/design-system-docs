@@ -40,6 +40,11 @@ describe('Docs Site: Homepage', () => {
         cy.visit('/')
       })
 
+      it('should render the page banner', () => {
+        cy.get(selectors.homepage.pageBanner.link).should('have.text', 'Read the upgrade guide')
+        cy.get(selectors.homepage.pageBanner.link).should('have.attr', 'href', '/guidance/migrating-to-v3')
+      })
+
       it('should render the hero', () => {
         cy.get(selectors.homepage.hero.title).should('be.visible')
       })

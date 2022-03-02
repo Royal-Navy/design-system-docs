@@ -216,7 +216,7 @@ export const Home: React.FC<HomeProps> = ({
     <PageBanner>
       Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
       released!&nbsp;
-      <a href="/guidance/migrating-to-v2">
+      <a data-testid="page-banner-link" href="/guidance/migrating-to-v3">
         Read the <strong>upgrade guide</strong>
       </a>
     </PageBanner>

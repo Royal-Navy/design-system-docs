@@ -6,5 +6,8 @@ export default {
   hero: {
     title: '[data-testid="hero-title"]',
   },
+  pageBanner: {
+    link: '[data-testid="page-banner-link"]',
+  },
   sectionTitles: '[data-testid="section-title"]',
 }
