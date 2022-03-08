@@ -382,7 +382,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
     <PageBanner>
       Version <Badge variant={BADGE_VARIANT.DARK}>{version}</Badge> has been
       released!&nbsp;
-      <a href="/upgrade-guide">
+      <a href="/guidance/migrating-to-v3">
         Read the <strong>upgrade guide</strong>
       </a>
     </PageBanner>
