@@ -1410,10 +1410,15 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^2.72.0", "@defencedigital/fonts@^2.80.3":
+"@defencedigital/fonts@^2.72.0":
   version "2.80.3"
   resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.80.3.tgz#1abcfc3c762c85b843a648bed30520b5d888203c"
   integrity sha512-qVmJzINi8aWNfRQx/u972MlvsKZ/Dhal79tG1tpQCeL9mlKzWvOH/iv1WseFxkPBclue3bG9BT8msjccU0IPow==
+
+"@defencedigital/fonts@^3.2.2":
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.2.2.tgz#31b061bfba4d0a1bbf6af541290422dafcc953e4"
+  integrity sha512-j6XAikLwmVYNCY08TrODwV/ykEIXf9SWyW0+kJ81FZFVtsAtlXx2SFs6vmIwOUhHxgqTRO5crlVr9UqveKHq9Q==
 
 "@defencedigital/icon-library@^2.72.0":
   version "2.72.0"
@@ -2742,12 +2747,12 @@
   resolved "https://registry.yarnpkg.com/@semantic-release/error/-/error-3.0.0.tgz#30a3b97bbb5844d695eb22f9d3aa40f6a92770c2"
   integrity sha512-5hiM4Un+tpl4cKw3lV4UgzJj+SmfNIDCLLw0TepzQxz9ZGV5ixnqkzIVF+3tp0ZHgcMKE+VNGHJjEeyFG2dcSw==
 
-"@semantic-release/git@^9.0.0":
-  version "9.0.1"
-  resolved "https://registry.yarnpkg.com/@semantic-release/git/-/git-9.0.1.tgz#7b5486578460084d8914c1aa4c4fff5087afa32a"
-  integrity sha512-75P03s9v0xfrH9ffhDVWRIX0fgWBvJMmXhUU0rMTKYz47oMXU5O95M/ocgIKnVJlWZYoC+LpIe4Ye6ev8CrlUQ==
+"@semantic-release/git@^10.0.1":
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/@semantic-release/git/-/git-10.0.1.tgz#c646e55d67fae623875bf3a06a634dd434904498"
+  integrity sha512-eWrx5KguUcU2wUPaO6sfvZI0wPafUKAMNC18aXY4EnNcrZL86dEmpNVnC9uMpGZkmZJ9EfCVJBQx4pV4EMGT1w==
   dependencies:
-    "@semantic-release/error" "^2.1.0"
+    "@semantic-release/error" "^3.0.0"
     aggregate-error "^3.0.0"
     debug "^4.0.0"
     dir-glob "^3.0.0"
