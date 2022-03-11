@@ -86,6 +86,11 @@ query PageByPath($path: String!) {
                         ... on CodeBlock {
                           sourceCode
                         }
+                        ... on StorybookStory {
+                          storyId
+                          args
+                          title
+                        }
                       }
                       inline {
                         sys {

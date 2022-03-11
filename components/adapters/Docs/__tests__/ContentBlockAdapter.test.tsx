@@ -2,7 +2,7 @@ import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
 import { render, RenderResult } from '@testing-library/react'
 
-import { ContentBlockAdapter } from '../ContentBlockAdapter'
+import { ContentBlockAdapter, STORYBOOK_BASE_URL } from '../ContentBlockAdapter'
 
 describe('Docs/ContentBlockAdapter', () => {
   let wrapper: RenderResult
@@ -383,6 +383,76 @@ describe('Docs/ContentBlockAdapter', () => {
 
     it('renders the link', () => {
       expect(wrapper.getByText('Link')).toHaveAttribute('href', 'https://url')
+    })
+  })
+
+  describe.each([
+    {
+      args: null,
+      expectedUrlPath:
+        '/iframe.html?args&id=autocomplete--default&viewMode=story',
+    },
+    {
+      args: 'isDisabled:true',
+      expectedUrlPath:
+        '/iframe.html?args=isDisabled%3Atrue&id=autocomplete--default&viewMode=story',
+    },
+  ])('with an embedded story, args: `$args`', ({ args, expectedUrlPath }) => {
+    beforeEach(() => {
+      const fields = {
+        title: 'Example Title',
+        description: {
+          json: {
+            nodeType: 'document',
+            data: {},
+            content: [
+              {
+                nodeType: 'embedded-entry-block',
+                content: [],
+                data: {
+                  target: {
+                    sys: {
+                      id: '1fzaGVgT83VYAg2xKvNXpU',
+                      type: 'Link',
+                      linkType: 'Entry',
+                    },
+                  },
+                },
+              },
+            ],
+          },
+          links: {
+            assets: {
+              block: [],
+              hyperlink: [],
+            },
+            entries: {
+              block: [
+                {
+                  sys: {
+                    id: '1fzaGVgT83VYAg2xKvNXpU',
+                  },
+                  __typename: 'StorybookStory',
+                  storyId: 'autocomplete--default',
+                  args,
+                  title: 'IFrame title',
+                },
+              ],
+              inline: [],
+            },
+          },
+        },
+        image: null,
+      }
+
+      wrapper = render(<ContentBlockAdapter fields={fields} />)
+    })
+
+    it('renders the story', () => {
+      expect(wrapper.getByTitle('IFrame title')).toHaveAttribute(
+        'src',
+        `${STORYBOOK_BASE_URL}${expectedUrlPath}`
+      )
     })
   })
 })

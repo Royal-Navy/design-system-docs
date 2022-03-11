@@ -2,6 +2,15 @@
 
 MOD.UK Design System documentation site.
 
+## Environment variables
+
+| Name                                | Required | Default value                                    | Description                                       |
+|-------------------------------------|----------|--------------------------------------------------|---------------------------------------------------|
+| NEXT_PUBLIC_CONTENTFUL_SPACE_ID     | Yes      |                                                  | Contentful space ID                               |
+| NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN | Yes      |                                                  | Contentful content delivery API token             |
+| NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT  | No       | master                                           | Custom Contentful environment to use              |
+| NEXT_PUBLIC_STORYBOOK_BASE_URL      | No       | `https://storybook.design-system.digital.mod.uk` | Base URL for Storybook; used for embedded stories |
+
 ## End to end tests
 
 Tests are dependent on the application running.

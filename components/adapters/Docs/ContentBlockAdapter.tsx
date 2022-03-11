@@ -4,11 +4,20 @@ import { selectors } from '@defencedigital/design-tokens'
 import kebabCase from 'lodash/kebabCase'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { BLOCKS, INLINES } from '@contentful/rich-text-types'
+import IframeResizer from 'iframe-resizer-react'
+import { stringify } from 'query-string'
+
 import { MarkdownTable } from '../../presenters/Docs/MarkdownTable'
 
 import { ComponentWithClass } from '../../../common/ComponentWithClass'
 import { CodeBlock } from '../../presenters/Framework/CodeBlock'
 import { Swatch, SwatchColour } from '../../presenters/Docs/Swatch'
+import { StorybookStory } from '../../../graphql'
+
+export const STORYBOOK_BASE_URL = (
+  process.env.NEXT_PUBLIC_STORYBOOK_BASE_URL ||
+  'https://storybook.design-system.digital.mod.uk'
+).replace(/\/$/, '')
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
   fields: Record<string, any>
@@ -82,6 +91,12 @@ function getEntryMap<T>(links, linkType, entryType = 'block') {
   )
 }
 
+const StyledIframeResizer = styled(IframeResizer)`
+  border: none;
+  width: 100%;
+  display: block;
+`
+
 function getRichTextRenderOptions(links) {
   let h2Index = 0
 
@@ -105,7 +120,7 @@ function getRichTextRenderOptions(links) {
       },
       [BLOCKS.EMBEDDED_ENTRY]: (node) => {
         const entryBlockMap = getEntryMap<
-          CodeBlockType | MarkdownTableType | SwatchType
+          CodeBlockType | MarkdownTableType | SwatchType | StorybookStory
         >(links, 'entries')
         const entry = entryBlockMap.get(node.data.target.sys.id)
 
@@ -136,6 +151,23 @@ function getRichTextRenderOptions(links) {
                 )
               )}
             </Swatch>
+          )
+        }
+
+        if (entry.__typename === 'StorybookStory') {
+          const story = entry as StorybookStory
+          const query = {
+            viewMode: 'story',
+            id: story.storyId,
+            args: story.args,
+          }
+
+          return (
+            <StyledIframeResizer
+              title={story.title}
+              height={0}
+              src={`${STORYBOOK_BASE_URL}/iframe.html?${stringify(query)}`}
+            />
           )
         }
 
