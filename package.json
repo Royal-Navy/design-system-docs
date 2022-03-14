@@ -78,7 +78,7 @@
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.38",
     "@typescript-eslint/eslint-plugin": "^5.6.0",
-    "babel-jest": "^27.4.5",
+    "babel-jest": "^27.5.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-import-graphql": "^2.8.1",
     "babel-plugin-styled-components": "^1.12.0",
