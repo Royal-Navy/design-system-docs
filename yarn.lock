@@ -1410,10 +1410,15 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^2.72.0", "@defencedigital/fonts@^2.80.3":
+"@defencedigital/fonts@^2.72.0":
   version "2.80.3"
   resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-2.80.3.tgz#1abcfc3c762c85b843a648bed30520b5d888203c"
   integrity sha512-qVmJzINi8aWNfRQx/u972MlvsKZ/Dhal79tG1tpQCeL9mlKzWvOH/iv1WseFxkPBclue3bG9BT8msjccU0IPow==
+
+"@defencedigital/fonts@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.3.0.tgz#c21a0be5c67da816d232578943194ceb39558d3d"
+  integrity sha512-1y12VCogAIcW2Gx+jV57X+NOgSo421pT9/afLVMg0Z7Ys2Cd8kgV0gPcQxtn/5ZNkhiaVwtGqg3MdjGAEQE6LA==
 
 "@defencedigital/icon-library@^2.72.0":
   version "2.72.0"
