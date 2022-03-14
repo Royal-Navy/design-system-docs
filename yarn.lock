@@ -1392,7 +1392,7 @@
     "@defencedigital/eslint-config-react" "^2.72.0"
     lodash "^4.17.20"
 
-"@defencedigital/eslint-config-react@^2.72.0", "@defencedigital/eslint-config-react@^2.80.3":
+"@defencedigital/eslint-config-react@^2.72.0":
   version "2.80.3"
   resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-2.80.3.tgz#172b72b445beda4a5437a68e69a778286ed81630"
   integrity sha512-xf3yOnVHsI/382VzF+mN1+tqWmgQh/4gZMtAOWj7s3BkYwRpB7ninZIaFFPY0FycdlU4P2wFGBTYHbQ++d7Uug==
@@ -1401,6 +1401,24 @@
     "@typescript-eslint/parser" "^5.4.0"
     eslint "^8.2.0"
     eslint-config-airbnb "^18.2.1"
+    eslint-config-prettier "^8.3.0"
+    eslint-plugin-import "^2.22.1"
+    eslint-plugin-jest "^25.3.0"
+    eslint-plugin-jsx-a11y "^6.5.1"
+    eslint-plugin-prettier "^4.0.0"
+    eslint-plugin-react "^7.21.5"
+    eslint-plugin-react-hooks "^4.3.0"
+    prettier "^2.2.1"
+
+"@defencedigital/eslint-config-react@^3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-3.3.0.tgz#c3685b3bd2d7cd40d485b7d5a20bafa48b5f29d4"
+  integrity sha512-pmRAMhiipsj+bhiI3CzYUFS9OqWeYHuZ+7IuHN7Qpo8zDYkjiRrlBYNGlfkdADpUaWudieMYWrlY1K++eguFrg==
+  dependencies:
+    "@typescript-eslint/eslint-plugin" "^5.3.1"
+    "@typescript-eslint/parser" "^5.4.0"
+    eslint "^8.2.0"
+    eslint-config-airbnb "^19.0.4"
     eslint-config-prettier "^8.3.0"
     eslint-plugin-import "^2.22.1"
     eslint-plugin-jest "^25.3.0"
@@ -8092,6 +8110,16 @@ eslint-config-airbnb-base@^14.2.1:
     object.assign "^4.1.2"
     object.entries "^1.1.2"
 
+eslint-config-airbnb-base@^15.0.0:
+  version "15.0.0"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb-base/-/eslint-config-airbnb-base-15.0.0.tgz#6b09add90ac79c2f8d723a2580e07f3925afd236"
+  integrity sha512-xaX3z4ZZIcFLvh2oUNvcX5oEofXda7giYmuplVxoOg5A7EXJMrUyqRgR+mhDhPK8LZ4PttFOBvCYDbX3sUoUig==
+  dependencies:
+    confusing-browser-globals "^1.0.10"
+    object.assign "^4.1.2"
+    object.entries "^1.1.5"
+    semver "^6.3.0"
+
 eslint-config-airbnb@^18.2.1:
   version "18.2.1"
   resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-18.2.1.tgz#b7fe2b42f9f8173e825b73c8014b592e449c98d9"
@@ -8100,6 +8128,15 @@ eslint-config-airbnb@^18.2.1:
     eslint-config-airbnb-base "^14.2.1"
     object.assign "^4.1.2"
     object.entries "^1.1.2"
+
+eslint-config-airbnb@^19.0.4:
+  version "19.0.4"
+  resolved "https://registry.yarnpkg.com/eslint-config-airbnb/-/eslint-config-airbnb-19.0.4.tgz#84d4c3490ad70a0ffa571138ebcdea6ab085fdc3"
+  integrity sha512-T75QYQVQX57jiNgpF9r1KegMICE94VYwoFQyMGhrvc+lB8YF2E/M/PYDaQe1AJcWaEgqLE+ErXV1Og/+6Vyzew==
+  dependencies:
+    eslint-config-airbnb-base "^15.0.0"
+    object.assign "^4.1.2"
+    object.entries "^1.1.5"
 
 eslint-config-next@^12.0.7:
   version "12.0.7"
