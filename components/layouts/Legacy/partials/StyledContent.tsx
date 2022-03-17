@@ -48,16 +48,20 @@ export const StyledContent = styled.div`
     color: ${color('neutral', '700')};
   }
 
+  iframe,
   p {
-    font-size: ${fontSize('m')};
-    color: ${color('neutral', '500')};
-    line-height: 1.75;
-    margin: ${spacing('8')} 0 ${spacing('4')} 0;
     max-width: 670px;
 
     ${mq({ gte: 'xl' })`
       max-width: 740px;
     `}
+  }
+
+  p {
+    font-size: ${fontSize('m')};
+    color: ${color('neutral', '500')};
+    line-height: 1.75;
+    margin: ${spacing('8')} 0 ${spacing('4')} 0;
 
     + ul {
       margin-top: 0;
