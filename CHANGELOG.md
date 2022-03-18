@@ -1,3 +1,10 @@
+# [1.11.0](https://github.com/defencedigital/design-system-docs/compare/1.10.2...1.11.0) (2022-03-18)
+
+
+### Features
+
+* **ContentBlockAdapter:** Add ability to embed stories ([4a390c3](https://github.com/defencedigital/design-system-docs/commit/4a390c3ede47aad2a02027522b80da8648b79dc1))
+
 ## [1.10.2](https://github.com/defencedigital/design-system-docs/compare/1.10.1...1.10.2) (2022-03-09)
 
 
