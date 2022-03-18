@@ -46,35 +46,33 @@ export const Footer: React.FC<FooterProps> = ({
   license,
   siteLinks,
 }) => (
-  <>
-    <StyledFooter>
-      <StyledFooterLogo>
-        <div>
-          <StyledLogo width={300} height={36} />
-          <StyledDescription>{description}</StyledDescription>
-          <StyledLinkList>
-            {mapLinks(
-              externalLinks,
-              'external-link',
-              'props.link.props.children'
-            )}
-          </StyledLinkList>
-        </div>
-      </StyledFooterLogo>
-      <StyledSubFooter>
-        <div>
-          <StyledLinkList data-testid="footer-site-links">
-            {mapLinks(siteLinks, 'site-link', 'props.children')}
-          </StyledLinkList>
-          <StyledCopyright>
-            <p>{license}</p>
-            <span>&copy; Crown copyright</span>
-          </StyledCopyright>
-        </div>
-      </StyledSubFooter>
-      <StyledLogoClip />
-    </StyledFooter>
-  </>
+  <StyledFooter>
+    <StyledFooterLogo>
+      <div>
+        <StyledLogo width={300} height={36} />
+        <StyledDescription>{description}</StyledDescription>
+        <StyledLinkList>
+          {mapLinks(
+            externalLinks,
+            'external-link',
+            'props.link.props.children'
+          )}
+        </StyledLinkList>
+      </div>
+    </StyledFooterLogo>
+    <StyledSubFooter>
+      <div>
+        <StyledLinkList data-testid="footer-site-links">
+          {mapLinks(siteLinks, 'site-link', 'props.children')}
+        </StyledLinkList>
+        <StyledCopyright>
+          <p>{license}</p>
+          <span>&copy; Crown copyright</span>
+        </StyledCopyright>
+      </div>
+    </StyledSubFooter>
+    <StyledLogoClip />
+  </StyledFooter>
 )
 
 Footer.displayName = 'Footer'

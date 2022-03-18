@@ -1,7 +1,7 @@
 import type { PrismTheme } from 'prism-react-renderer'
 import { selectors } from '@defencedigital/design-tokens'
 
-const { color, spacing } = selectors
+const { color } = selectors
 
 const theme: PrismTheme = {
   plain: {
