@@ -24,7 +24,7 @@
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^15.11.0",
     "@defencedigital/design-tokens": "^3.5.0",
-    "@defencedigital/eslint-config-react": "^3.5.0",
+    "@defencedigital/eslint-config-react": "^3.7.0",
     "@defencedigital/fonts": "^3.7.0",
     "@defencedigital/icon-library": "^3.5.0",
     "@defencedigital/react-component-library": "^3.5.0",
