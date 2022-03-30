@@ -27,7 +27,7 @@
     "@defencedigital/eslint-config-react": "^3.5.0",
     "@defencedigital/fonts": "^3.7.0",
     "@defencedigital/icon-library": "^3.5.0",
-    "@defencedigital/react-component-library": "^3.5.0",
+    "@defencedigital/react-component-library": "^3.7.0",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.5",
     "@graphql-codegen/typescript-operations": "2.3.5",
