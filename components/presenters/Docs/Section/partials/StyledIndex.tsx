@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { selectors } from '@defencedigital/design-tokens'
 
-const { fontSize, color, shadow, mq } = selectors
+const { fontSize, color, mq } = selectors
 
 export const StyledIndex = styled.span`
   display: inline-flex;

@@ -3,7 +3,7 @@ import Markdown from 'markdown-to-jsx'
 import { selectors } from '@defencedigital/design-tokens'
 import styled from 'styled-components'
 
-const { color, mq, fontSize, spacing } = selectors
+const { color, fontSize, spacing } = selectors
 
 interface MarkdownTableProps {
   children: string
