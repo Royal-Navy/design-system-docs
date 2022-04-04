@@ -1383,10 +1383,10 @@
   dependencies:
     lodash "^4.17.20"
 
-"@defencedigital/eslint-config-react@^3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-3.7.0.tgz#8b48c47c44d9be9777931014a1f882615eeab349"
-  integrity sha512-5F6x/Pbd9Vr0Aj1DHu/myCk8UjaqFMnxybMQMII+0nUhmtlGOVu0LO6+WBZOEZXWeY6f58Llnux9T+Ao017gpw==
+"@defencedigital/eslint-config-react@^3.7.1":
+  version "3.7.1"
+  resolved "https://registry.yarnpkg.com/@defencedigital/eslint-config-react/-/eslint-config-react-3.7.1.tgz#b6d98d7d37e9d4a07889520ceb4192311502a53e"
+  integrity sha512-bUP87Yh2+zOO1NfRpuUrF/Isrfhp7w6DdW+Q1QAa8lvFhnNc7y8xfIhPdqcHjoCIcZDNL4p/0CUJQLRfrwO6zA==
   dependencies:
     "@typescript-eslint/eslint-plugin" "^5.3.1"
     "@typescript-eslint/parser" "^5.4.0"
