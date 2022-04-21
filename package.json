@@ -22,7 +22,7 @@
     "indent": 4
   },
   "dependencies": {
-    "@contentful/rich-text-react-renderer": "^15.11.0",
+    "@contentful/rich-text-react-renderer": "^15.12.1",
     "@defencedigital/design-tokens": "^3.5.0",
     "@defencedigital/eslint-config-react": "^3.7.1",
     "@defencedigital/fonts": "^3.7.0",
@@ -40,14 +40,14 @@
     "graphql-tag": "^2.12.4",
     "hex-rgb": "^5.0.0",
     "lodash": "^4.17.21",
-    "next": "^12.1.4",
+    "next": "^12.1.5",
     "prism-react-renderer": "^1.2.0",
     "prismjs": "^1.27.0",
     "query-string": "^7.1.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-responsive": "^9.0.0-beta.6",
-    "styled-components": "^5.3.1"
+    "styled-components": "^5.3.5"
   },
   "devDependencies": {
     "@babel/core": "^7.17.5",
@@ -71,7 +71,7 @@
     "@storybook/addons": "^6.4.19",
     "@storybook/builder-webpack5": "^6.4.19",
     "@storybook/manager-webpack5": "^6.4.20",
-    "@storybook/react": "^6.4.19",
+    "@storybook/react": "^6.4.22",
     "@svgr/webpack": "^6.2.1",
     "@testing-library/jest-dom": "^5.11.9",
     "@testing-library/react": "^12.1.2",
