@@ -106,7 +106,7 @@
     "next-transpile-modules": "^8.0.0",
     "prettier": "^2.4.1",
     "semantic-release": "^19.0.2",
-    "typescript": "^4.5.4",
+    "typescript": "^4.6.4",
     "webpack": "^5.72.0"
   },
   "resolutions": {
