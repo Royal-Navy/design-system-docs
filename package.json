@@ -92,7 +92,7 @@
     "eslint-plugin-jest": "^26.1.5",
     "eslint-plugin-prettier": "^4.0.0",
     "iframe-resizer-react": "^1.1.0",
-    "jest": "^27.4.5",
+    "jest": "^28.1.0",
     "jest-canvas-mock": "^2.3.1",
     "jest-environment-jsdom": "^27.3.0",
     "jest-environment-jsdom-global": "^3.1.1",
