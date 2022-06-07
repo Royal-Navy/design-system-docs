@@ -1,7 +1,5 @@
 /* eslint-disable jest/expect-expect */
-import { describe, cy, it, before } from 'local-cypress'
-// eslint-disable-next-line import/extensions
-import { baseUrl } from '../../../cypress.json'
+import { Cypress, describe, cy, it, before } from 'local-cypress'
 import selectors from '../../selectors/timeline'
 
 const content = [
@@ -98,6 +96,8 @@ describe('Compound Timeline', () => {
 
           it(`should render the sidebar ${text} link`, () => {
             cy.get(selectors.sidebar.link).eq(index).should('have.text', text)
+
+            const baseUrl = Cypress.config().baseUrl
             cy.url().should('eq', `${baseUrl}/timeline#${link}`)
           })
 

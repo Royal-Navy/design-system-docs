@@ -113,7 +113,7 @@ jobs:
             echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
 
         - name: Run e2e tests
-          uses: cypress-io/github-action@v2
+          uses: cypress-io/github-action@v4
           with:
             build: yarn build
             start: yarn start
