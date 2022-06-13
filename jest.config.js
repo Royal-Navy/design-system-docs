@@ -15,5 +15,5 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!(@defencedigital/design-tokens|hex-rgb)).+\\.js$',
   ],
-  testEnvironment: 'jest-environment-jsdom-global',
+  testEnvironment: 'jsdom',
 }
