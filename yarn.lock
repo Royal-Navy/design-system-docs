@@ -1488,10 +1488,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@defencedigital/design-tokens@^3.7.0", "@defencedigital/design-tokens@^3.9.0":
-  version "3.9.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.9.0.tgz#985699e5e8ebbc3a9e7c36d5497c5d8f69169720"
-  integrity sha512-eCYqnCSolxLcMAhBjXW8vyt37K9/tBQgUN/6wx6I5xDaWe7WPsIPPOI6c53F63pJCRt3V1ZKp1csREd3ZS6l2Q==
+"@defencedigital/design-tokens@^3.11.2", "@defencedigital/design-tokens@^3.9.0":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.11.2.tgz#3cc7dd8f9d6fbcdb44eacb2a2891e1d772872f6c"
+  integrity sha512-6ISHNbp0RthhrACM2ETlWezXIlJQHwkFoWWJjSL41qVfzP7cQMl+17LnXHUqLpOpiHdWcDu/n5usD+FjnpkuMA==
   dependencies:
     lodash "^4.17.20"
 
@@ -1513,35 +1513,35 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^3.7.0", "@defencedigital/fonts@^3.9.2":
-  version "3.9.2"
-  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.9.2.tgz#6247c25056d59df86fcef25e5b1a68953060ff6f"
-  integrity sha512-bl8dpVvSsFhCBPNleJj5MtU0TIVsrF8lLmZ0rZB1d/TFWd/Smzm8K0yoVtUkfPusQBnX7xtQv41t5Y7No1jOGg==
+"@defencedigital/fonts@^3.11.2", "@defencedigital/fonts@^3.9.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.11.2.tgz#07c2b7de41247dcedc16184c3f0c6645b21ff0b7"
+  integrity sha512-+lNzs8hHoeaf03lm/qqFTkBBpvWDKyU4dgCVmkcB93MGCHMWfMKQaaOVRKlss7aNnecth3mty1tcFsm92WFHgA==
 
-"@defencedigital/icon-library@^3.5.0", "@defencedigital/icon-library@^3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.7.0.tgz#8cea737d97226c32a4c8ea2dbb8c3e5acd2d4f96"
-  integrity sha512-a6vOSniSNxkKtlboWgalp9RMgur8gbdDo2VAYrr0lUKI18ts820FCqhyjha8w/0OFV6fW/7tpwgVj6fUqwTu3g==
+"@defencedigital/icon-library@^3.11.2", "@defencedigital/icon-library@^3.5.0":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.11.2.tgz#63ba3eab287513f6953b231c87d32b42344e093f"
+  integrity sha512-Jbfh7s3pKW8a8tei5Idi3tiFvrxcBVxdjUOedOTqFbM/bIjfw4uelKdoqyNxV7gsTZ+Xo+vG1q2JBpUfNHCnaw==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
 
-"@defencedigital/react-component-library@^3.7.0":
-  version "3.7.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.7.0.tgz#51fac361677966a300a5a61c9927d041053f8a09"
-  integrity sha512-Ks3/B47Yk7OedAA/17oeWoOsZQNmAQml7PsA3Tc15xWQ//8OO6w3oTN/Flf4L1llwcYsmxVJzy6QLgt7jv2pAA==
+"@defencedigital/react-component-library@^3.11.2":
+  version "3.11.2"
+  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.11.2.tgz#133bd7f1a42c6ff7e780ac1cb673a2f69c3ea4d5"
+  integrity sha512-RG/AJ5OuU9g+44qibYwvDzj/fhX/X1F6w1x/h23PD885ph7RjVcIeZQMtQI60SedUsQBEuBAr0LjFphe+64QMQ==
   dependencies:
-    "@defencedigital/design-tokens" "^3.7.0"
-    "@defencedigital/fonts" "^3.7.0"
-    "@defencedigital/icon-library" "^3.7.0"
+    "@defencedigital/design-tokens" "^3.11.2"
+    "@defencedigital/fonts" "^3.11.2"
+    "@defencedigital/icon-library" "^3.11.2"
     "@popperjs/core" "^2.9.2"
     "@types/react-toast-notifications" "^2.4.0"
     classnames "^2.2.6"
     date-fns "^2.9.0"
     decimal.js "^10.3.1"
     downshift "^6.1.7"
-    focus-trap "^6.7.3"
-    focus-trap-react "^8.9.1"
+    focus-trap "^6.9.0"
+    focus-trap-react "^8.11.0"
     lodash "^4.17.21"
     polished "^4.0.3"
     react-compound-slider "^3.3.1"
@@ -1549,13 +1549,11 @@
     react-merge-refs "^1.1.0"
     react-popper "^2.2.5"
     react-select "^4.1.0"
-    react-string-replace "^0.4.4"
+    react-string-replace "^1.1.0"
     react-toast-notifications "^2.4.0"
     react-transition-group "^4.4.1"
     styled-normalize "^8.0.7"
     styled-theming "^2.2.0"
-    use-resize-observer "^8.0.0"
-    usehooks-ts "2.2.1"
     uuid "^8.3.2"
 
 "@discoveryjs/json-ext@^0.5.3":
@@ -2423,11 +2421,6 @@
   dependencies:
     "@jridgewell/resolve-uri" "^3.0.3"
     "@jridgewell/sourcemap-codec" "^1.4.10"
-
-"@juggle/resize-observer@^3.3.1":
-  version "3.3.1"
-  resolved "https://registry.yarnpkg.com/@juggle/resize-observer/-/resize-observer-3.3.1.tgz#b50a781709c81e10701004214340f25475a171a0"
-  integrity sha512-zMM9Ds+SawiUkakS7y94Ymqx+S0ORzpG3frZirN3l+UlXUmSUR7hF4wxCVqW+ei94JzV5kt0uXBcoOEAuiydrw==
 
 "@mdx-js/loader@^1.6.22":
   version "1.6.22"
@@ -10608,19 +10601,19 @@ flush-write-stream@^1.0.0:
     inherits "^2.0.3"
     readable-stream "^2.3.6"
 
-focus-trap-react@^8.9.1:
-  version "8.9.2"
-  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.9.2.tgz#af19c6d65bedeba925859d7ec51c41d8d2c30855"
-  integrity sha512-m6TQQHLcqkisc6Qq92q1yYzzOaxo34Szh5FQOXzky7028PXFEhuUxScTbT7EG9qL0QG7B+oR2ZbxyU0lK4kIwQ==
+focus-trap-react@^8.11.0:
+  version "8.11.3"
+  resolved "https://registry.yarnpkg.com/focus-trap-react/-/focus-trap-react-8.11.3.tgz#aa0ba3b17676abf8faf78c5e51d8cd8df83eec41"
+  integrity sha512-y126gMYuB1aVYiEZSP6/v9bAfVmAIUVixanhcoMelkz7bOh+l0c3h05CEHC8S63ztxdRI2AAPS9AsTat6jlDeQ==
   dependencies:
-    focus-trap "^6.7.3"
+    focus-trap "^6.9.4"
 
-focus-trap@^6.7.3:
-  version "6.7.3"
-  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.7.3.tgz#b5dc195b49c90001f08a63134471d1e6dd381ddd"
-  integrity sha512-8xCEKndV4KrseGhFKKKmczVA14yx1/hnmFICPOjcFjToxCJYj/NHH43tPc3YE/PLnLRNZoFug0EcWkGQde/miQ==
+focus-trap@^6.9.0, focus-trap@^6.9.4:
+  version "6.9.4"
+  resolved "https://registry.yarnpkg.com/focus-trap/-/focus-trap-6.9.4.tgz#436da1a1d935c48b97da63cd8f361c6f3aa16444"
+  integrity sha512-v2NTsZe2FF59Y+sDykKY+XjqZ0cPfhq/hikWVL88BqLivnNiEffAsac6rP6H45ff9wG9LL5ToiDqrLEP9GX9mw==
   dependencies:
-    tabbable "^5.2.1"
+    tabbable "^5.3.3"
 
 follow-redirects@^1.14.0:
   version "1.14.9"
@@ -16611,12 +16604,10 @@ react-sizeme@^3.0.1:
     shallowequal "^1.1.0"
     throttle-debounce "^3.0.1"
 
-react-string-replace@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/react-string-replace/-/react-string-replace-0.4.4.tgz#24006fbe0db573d5be583133df38b1a735cb4225"
-  integrity sha512-FAMkhxmDpCsGTwTZg7p/2v+/GTmxAp73so3fbSvlAcBBX36ujiGRNEaM/1u+jiYQrArhns+7eE92g2pi5E5FUA==
-  dependencies:
-    lodash "^4.17.4"
+react-string-replace@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/react-string-replace/-/react-string-replace-1.1.0.tgz#a3f7b458e697e77d70b0ea663caf38ab38f7cc17"
+  integrity sha512-N6RalSDFGbOHs0IJi1H611WbZsvk3ZT47Jl2JEXFbiS3kTwsdCYij70Keo/tWtLy7sfhDsYm7CwNM/WmjXIaMw==
 
 react-syntax-highlighter@^13.5.3:
   version "13.5.3"
@@ -18339,10 +18330,10 @@ synchronous-promise@^2.0.15:
   resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.15.tgz#07ca1822b9de0001f5ff73595f3d08c4f720eb8e"
   integrity sha512-k8uzYIkIVwmT+TcglpdN50pS2y1BDcUnBPK9iJeGu0Pl1lOI8pD6wtzgw91Pjpe+RxtTncw32tLxs/R0yNL2Mg==
 
-tabbable@^5.2.1:
-  version "5.2.1"
-  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.2.1.tgz#e3fda7367ddbb172dcda9f871c0fdb36d1c4cd9c"
-  integrity sha512-40pEZ2mhjaZzK0BnI+QGNjJO8UYx9pP5v7BGe17SORTO0OEuuaAwQTkAp8whcZvqon44wKFOikD+Al11K3JICQ==
+tabbable@^5.3.3:
+  version "5.3.3"
+  resolved "https://registry.yarnpkg.com/tabbable/-/tabbable-5.3.3.tgz#aac0ff88c73b22d6c3c5a50b1586310006b47fbf"
+  integrity sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
@@ -19166,22 +19157,10 @@ use-latest@^1.0.0:
   dependencies:
     use-isomorphic-layout-effect "^1.0.0"
 
-use-resize-observer@^8.0.0:
-  version "8.0.0"
-  resolved "https://registry.yarnpkg.com/use-resize-observer/-/use-resize-observer-8.0.0.tgz#69bd80c1ddd94f3758563fe107efb25fed85067a"
-  integrity sha512-n0iKSeiQpJCyaFh5JA0qsVLBIovsF4EIIR1G6XiBwKJN66ZrD4Oj62bjcuTAATPKiSp6an/2UZZxCf/67fk3sQ==
-  dependencies:
-    "@juggle/resize-observer" "^3.3.1"
-
 use@^3.1.0:
   version "3.1.1"
   resolved "https://registry.yarnpkg.com/use/-/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
   integrity sha512-cwESVXlO3url9YWlFW/TA9cshCEhtu7IKJ/p5soJ/gGpj7vbvFrAY/eIioQ6Dw23KjZhYgiIo8HOs1nQ2vr/oQ==
-
-usehooks-ts@2.2.1:
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/usehooks-ts/-/usehooks-ts-2.2.1.tgz#9bb9af81d4680cf9cdb9234331a37e4be39d1183"
-  integrity sha512-n6Rat52iF+Tz9CFU2IIuaFsm9uCXX4dU565lKaAKMEXLLGTg9qYwzDSpXkCPRnx9lTdkm8M+W+YJ36Lb13zjEA==
 
 util-deprecate@^1.0.1, util-deprecate@^1.0.2, util-deprecate@~1.0.1:
   version "1.0.2"
