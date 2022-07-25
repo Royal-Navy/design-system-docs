@@ -30,7 +30,7 @@
     "@defencedigital/react-component-library": "^3.7.0",
     "@graphql-codegen/cli": "^2.6.2",
     "@graphql-codegen/typescript": "^2.4.9",
-    "@graphql-codegen/typescript-operations": "2.3.5",
+    "@graphql-codegen/typescript-operations": "2.5.2",
     "@types/lodash": "^4.14.182",
     "autoprefixer": "^10.4.7",
     "contentful": "^9.1.32",
