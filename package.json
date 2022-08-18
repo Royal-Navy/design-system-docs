@@ -36,7 +36,7 @@
     "contentful": "^9.1.32",
     "firacode": "^6.2.0",
     "formik": "^2.2.9",
-    "graphql": "^15.7.2",
+    "graphql": "^16.6.0",
     "graphql-tag": "^2.12.4",
     "hex-rgb": "^5.0.0",
     "lodash": "^4.17.21",
