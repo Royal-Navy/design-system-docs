@@ -25,7 +25,7 @@
     "@contentful/rich-text-react-renderer": "^15.12.1",
     "@defencedigital/design-tokens": "^3.9.0",
     "@defencedigital/eslint-config-react": "^3.7.1",
-    "@defencedigital/fonts": "^3.9.2",
+    "@defencedigital/fonts": "^3.12.4",
     "@defencedigital/icon-library": "^3.5.0",
     "@defencedigital/react-component-library": "^3.12.0",
     "@graphql-codegen/cli": "^2.11.4",
