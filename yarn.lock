@@ -1485,10 +1485,10 @@
   resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.12.0.tgz#a09b4bfebd8de648a8852556d02dea7e450d5110"
   integrity sha512-3WfpAvc6DT34x4e7Io0IMctMsSj24ZnWdHClLQ2ZCTUg9sSJl5rVTqkrz0eeSCChwATgtRkhvIeIXcv0Bymq/g==
 
-"@defencedigital/icon-library@^3.12.0", "@defencedigital/icon-library@^3.5.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.0.tgz#7ea1ca155f1d07fcd5ca6d30dbba10a2de47071b"
-  integrity sha512-3Xn1EO4PsotCud9NcdL9F8uGQwvc3X0UWCZGYEXP62sVsQC0yl+P/O2eEHdV/pVLvEyeVvAwYYhjQJHdtdxA6Q==
+"@defencedigital/icon-library@^3.12.0", "@defencedigital/icon-library@^3.12.4":
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.4.tgz#614b3d8cc8620e8d8d73fcf40d292204d8ee79ee"
+  integrity sha512-pabkecZYmL6so9zCzbjro56uc7S31sAqICSI8HXqFvRkC2AbRI4u7yzsb9nII775NrgFHUEs8K3jZOoUdmEKPQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
