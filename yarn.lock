@@ -1480,15 +1480,15 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^3.12.0", "@defencedigital/fonts@^3.9.2":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.12.0.tgz#a09b4bfebd8de648a8852556d02dea7e450d5110"
-  integrity sha512-3WfpAvc6DT34x4e7Io0IMctMsSj24ZnWdHClLQ2ZCTUg9sSJl5rVTqkrz0eeSCChwATgtRkhvIeIXcv0Bymq/g==
+"@defencedigital/fonts@^3.12.0", "@defencedigital/fonts@^3.12.4":
+  version "3.12.4"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.12.4.tgz#7aa22c087e6bd77c68081b7a22243072023cb766"
+  integrity sha512-/tJ4PeJ6VKP9nccAXRQZlewqueYvyTTZxVu77W+o/oYBp1Lq5VfYHHetxDR7hxPqns0vpTttEdJaYp324WYkfg==
 
-"@defencedigital/icon-library@^3.12.0", "@defencedigital/icon-library@^3.5.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.0.tgz#7ea1ca155f1d07fcd5ca6d30dbba10a2de47071b"
-  integrity sha512-3Xn1EO4PsotCud9NcdL9F8uGQwvc3X0UWCZGYEXP62sVsQC0yl+P/O2eEHdV/pVLvEyeVvAwYYhjQJHdtdxA6Q==
+"@defencedigital/icon-library@^3.12.0", "@defencedigital/icon-library@^3.12.5":
+  version "3.12.5"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.5.tgz#b299f03eb0fe69e45b1bbf1b8a4a8f55de9973f3"
+  integrity sha512-q07QIX5zFJtbeisIyuE2OsGuXKXwFX8Ee4QUzN4EVEc9/Vo0dcQQ+daxhECw95NBzbTd0YcxD7S1UJaQfCVaIQ==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
@@ -5615,10 +5615,10 @@
     "@testing-library/dom" "^8.0.0"
     "@types/react-dom" "<18.0.0"
 
-"@testing-library/user-event@^14.4.2":
-  version "14.4.2"
-  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.2.tgz#d3fb5d24e2d7d019a7d2e9978a8deb90b0aa230b"
-  integrity sha512-1gVTWtueNimveOjcm2ApFCnCTeky7WqY3EX31/GRKLWyCd+HfH+Gd2l1J8go9FpDNe+0Mx8X4zbQHTg0WWNJwg==
+"@testing-library/user-event@^14.4.3":
+  version "14.4.3"
+  resolved "https://registry.yarnpkg.com/@testing-library/user-event/-/user-event-14.4.3.tgz#af975e367743fa91989cd666666aec31a8f50591"
+  integrity sha512-kCUc5MEwaEMakkO5x7aoD+DLi02ehmEM2QCGWvNqAS1dV/fAvORWEjnjsEIvml59M7Y5kCkWN6fCCyPOe8OL6Q==
 
 "@tootallnate/once@1":
   version "1.1.2"
