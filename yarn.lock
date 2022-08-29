@@ -1455,10 +1455,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@defencedigital/design-tokens@^3.12.0", "@defencedigital/design-tokens@^3.9.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.12.0.tgz#1d1ebf39c695250a337001cba8f9e51de74cf482"
-  integrity sha512-mmp40AqlQX+/PPsDh0dqzuJG+PdJYwDY2S2rq1VFfu11sAn3nLuIgFzMCXltbF9AXbfxGzrTmDAWce1gxMqnOg==
+"@defencedigital/design-tokens@^3.12.0", "@defencedigital/design-tokens@^3.12.5":
+  version "3.12.5"
+  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.12.5.tgz#6ab759024e0ab81780d60e296626997a6fe013f0"
+  integrity sha512-GAk9qkEHVWRGaZV01jzyjLRV1K3dgUFZCCA+dgvxzol9flbO/SdkPTq8xwg4lfag5l0ogVO5Xr7UNR/XZO1rlg==
   dependencies:
     lodash "^4.17.20"
 
