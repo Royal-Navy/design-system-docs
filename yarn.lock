@@ -1599,7 +1599,7 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@defencedigital/design-tokens@^3.12.0", "@defencedigital/design-tokens@^3.12.18":
+"@defencedigital/design-tokens@^3.12.18":
   version "3.12.18"
   resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.12.18.tgz#b88f82fec15be2e854d9fce51de4f28359c7c909"
   integrity sha512-7v8RQ1tCgM76TptOwBqmgPwy1uDhY2bXc7SAnH3/IPRBmmeF01WOqFmOkLQOwo5fp5sVZDzZGihT+0MH/9V7EA==
@@ -1624,27 +1624,27 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^3.12.0", "@defencedigital/fonts@^3.12.18":
+"@defencedigital/fonts@^3.12.18":
   version "3.12.18"
   resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.12.18.tgz#b7f469eb2b43beeaa7655a8caa34aafc4ab3155a"
   integrity sha512-U35xilKKOPRo7dcVEcV+fHiXy+IjpygJnqBKc+U/neBUZeCAwJAASoD4PdojLEEgdIQu8n6pu+GmqGAqnlFcKg==
 
-"@defencedigital/icon-library@^3.12.0", "@defencedigital/icon-library@^3.12.5":
-  version "3.12.5"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.5.tgz#b299f03eb0fe69e45b1bbf1b8a4a8f55de9973f3"
-  integrity sha512-q07QIX5zFJtbeisIyuE2OsGuXKXwFX8Ee4QUzN4EVEc9/Vo0dcQQ+daxhECw95NBzbTd0YcxD7S1UJaQfCVaIQ==
+"@defencedigital/icon-library@^3.12.18", "@defencedigital/icon-library@^3.12.5":
+  version "3.12.18"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.18.tgz#ead7b3f39dd772566ef045afd9a90b945b75a8df"
+  integrity sha512-WbUDaFDVCcE2sLunWQ2p58oc6GaOitFIDldPIGrHkk9rrSF/4UoGE/bHP29HD1GwZLnp/4uYugPe/WCigHiceg==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
 
-"@defencedigital/react-component-library@^3.12.0":
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.12.0.tgz#7bdf6ba85d883f97851878a6d92f228d63acfe5d"
-  integrity sha512-mV4HqUGrjBnygAnMwGGcgbfoJcURHtXn5YPFHLZHv6Q5kKFGTypyr1Ej5ai9xKnexUNcqtapqPoFqCDBtqhdCg==
+"@defencedigital/react-component-library@^3.12.18":
+  version "3.12.18"
+  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.12.18.tgz#ab6187f8ecdf31758fa112915c5d7b3842aab00f"
+  integrity sha512-HyL5Cx2+6Yybobl20FyeigFWXUsJ5duhAJTCgJ75LkL9fRNQFbPbEJhYUTrhdXqTC0A9CWrRfZRRi9BbSFD9tw==
   dependencies:
-    "@defencedigital/design-tokens" "^3.12.0"
-    "@defencedigital/fonts" "^3.12.0"
-    "@defencedigital/icon-library" "^3.12.0"
+    "@defencedigital/design-tokens" "^3.12.18"
+    "@defencedigital/fonts" "^3.12.18"
+    "@defencedigital/icon-library" "^3.12.18"
     "@popperjs/core" "^2.9.2"
     "@types/react-toast-notifications" "^2.4.0"
     classnames "^2.2.6"
@@ -9047,12 +9047,7 @@ decamelize@^1.1.0, decamelize@^1.2.0:
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
   integrity sha1-9lNNFRSCabIDUue+4m9QH5oZEpA=
 
-decimal.js@^10.3.1:
-  version "10.3.1"
-  resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.3.1.tgz#d8c3a444a9c6774ba60ca6ad7261c3a94fd5e783"
-  integrity sha512-V0pfhfr8suzyPGOx3nmq4aHqabehUZn6Ch9kyFpV79TGDTWFmHqUqXdabR7QHqxzrYolF4+tVmJhUG4OURg5dQ==
-
-decimal.js@^10.4.1:
+decimal.js@^10.3.1, decimal.js@^10.4.1:
   version "10.4.1"
   resolved "https://registry.yarnpkg.com/decimal.js/-/decimal.js-10.4.1.tgz#be75eeac4a2281aace80c1a8753587c27ef053e7"
   integrity sha512-F29o+vci4DodHYT9UrR5IEbfBw9pE5eSapIJdTqXK5+6hq+t8VRxwQyKlW2i+KDKFkkJQRvFyI/QXD83h8LyQw==
