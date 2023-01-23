@@ -31,7 +31,7 @@
     "@graphql-codegen/cli": "^2.16.3",
     "@graphql-codegen/typescript": "^2.8.7",
     "@graphql-codegen/typescript-operations": "2.5.12",
-    "@types/lodash": "^4.14.185",
+    "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
     "contentful": "^9.1.32",
     "firacode": "^6.2.0",
