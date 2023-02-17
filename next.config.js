@@ -1,9 +1,6 @@
-const withPlugins = require('next-compose-plugins')
 const withTM = require('next-transpile-modules')(['hex-rgb'])
 
-module.exports = withPlugins([withTM], {
-  // other configs...
-
+module.exports = withTM({
   webpack(config) {
     config.module.rules.push({
       test: /\.svg$/i,
