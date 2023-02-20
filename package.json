@@ -29,7 +29,7 @@
     "@defencedigital/icon-library": "^3.12.5",
     "@defencedigital/react-component-library": "^3.12.18",
     "@graphql-codegen/cli": "^2.16.3",
-    "@graphql-codegen/typescript": "^2.8.7",
+    "@graphql-codegen/typescript": "^3.0.0",
     "@graphql-codegen/typescript-operations": "2.5.12",
     "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
