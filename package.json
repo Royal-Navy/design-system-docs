@@ -33,7 +33,7 @@
     "@graphql-codegen/typescript-operations": "2.5.12",
     "@types/lodash": "^4.14.191",
     "autoprefixer": "^10.4.13",
-    "contentful": "^9.1.32",
+    "contentful": "^9.3.3",
     "firacode": "^6.2.0",
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
