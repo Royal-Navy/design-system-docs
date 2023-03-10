@@ -1585,10 +1585,10 @@
     debug "^3.1.0"
     lodash.once "^4.1.1"
 
-"@defencedigital/design-tokens@^3.12.18":
-  version "3.12.18"
-  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.12.18.tgz#b88f82fec15be2e854d9fce51de4f28359c7c909"
-  integrity sha512-7v8RQ1tCgM76TptOwBqmgPwy1uDhY2bXc7SAnH3/IPRBmmeF01WOqFmOkLQOwo5fp5sVZDzZGihT+0MH/9V7EA==
+"@defencedigital/design-tokens@^3.12.18", "@defencedigital/design-tokens@^3.13.12":
+  version "3.13.12"
+  resolved "https://registry.yarnpkg.com/@defencedigital/design-tokens/-/design-tokens-3.13.12.tgz#5de9dbecd29e9bec5db27ab726f9d83b0b1efbc1"
+  integrity sha512-dvfBjaObU9bXe34DBvyLU+6TXucZnNTqr5aVBsYFzKafIQJ2/PUioKmpYWmBk5pOcv3FV0qTXk+P54IwVl5NQw==
   dependencies:
     lodash "^4.17.20"
 
@@ -1610,33 +1610,33 @@
     eslint-plugin-react-hooks "^4.3.0"
     prettier "^2.2.1"
 
-"@defencedigital/fonts@^3.12.18":
-  version "3.12.18"
-  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.12.18.tgz#b7f469eb2b43beeaa7655a8caa34aafc4ab3155a"
-  integrity sha512-U35xilKKOPRo7dcVEcV+fHiXy+IjpygJnqBKc+U/neBUZeCAwJAASoD4PdojLEEgdIQu8n6pu+GmqGAqnlFcKg==
+"@defencedigital/fonts@^3.12.18", "@defencedigital/fonts@^3.13.12":
+  version "3.13.12"
+  resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.13.12.tgz#f19e8feb71cc1c0d0110935aa84f51178932858b"
+  integrity sha512-y06CwlQp1C/Zb7xmimWGhev+aQmdsr1mxsmnl6nPqldzpzHGi4Au8dvAdPRqOPskdnuA/MMc0Znf0OUy3o4J+A==
 
-"@defencedigital/icon-library@^3.12.18", "@defencedigital/icon-library@^3.12.5":
-  version "3.12.18"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.12.18.tgz#ead7b3f39dd772566ef045afd9a90b945b75a8df"
-  integrity sha512-WbUDaFDVCcE2sLunWQ2p58oc6GaOitFIDldPIGrHkk9rrSF/4UoGE/bHP29HD1GwZLnp/4uYugPe/WCigHiceg==
+"@defencedigital/icon-library@^3.12.5", "@defencedigital/icon-library@^3.13.12":
+  version "3.13.12"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.13.12.tgz#23d174a4a1baa5137aa4aa54719840f89a81f83b"
+  integrity sha512-xiqnKjIbuat/ogrL75liPcyJs2a+sjKJZ4YvosUXFGkg8Vv7ZzG8VZuU+IlG33hJjtefPqYdpjtZSciwkj33dA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
 
-"@defencedigital/react-component-library@^3.12.18":
-  version "3.12.18"
-  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.12.18.tgz#ab6187f8ecdf31758fa112915c5d7b3842aab00f"
-  integrity sha512-HyL5Cx2+6Yybobl20FyeigFWXUsJ5duhAJTCgJ75LkL9fRNQFbPbEJhYUTrhdXqTC0A9CWrRfZRRi9BbSFD9tw==
+"@defencedigital/react-component-library@^3.13.12":
+  version "3.13.12"
+  resolved "https://registry.yarnpkg.com/@defencedigital/react-component-library/-/react-component-library-3.13.12.tgz#2e8741c43a4f08b994ceb98f0bfde20113708927"
+  integrity sha512-bMy+ZLqLTcEPnXWmDkDeoSi+iCu0GTEaWr5CtM76MuurbVd0wVG+IBCCfkd6MvQGZAFnMFnnDsyF5A5fqS+5eg==
   dependencies:
-    "@defencedigital/design-tokens" "^3.12.18"
-    "@defencedigital/fonts" "^3.12.18"
-    "@defencedigital/icon-library" "^3.12.18"
+    "@defencedigital/design-tokens" "^3.13.12"
+    "@defencedigital/fonts" "^3.13.12"
+    "@defencedigital/icon-library" "^3.13.12"
     "@popperjs/core" "^2.9.2"
     "@types/react-toast-notifications" "^2.4.0"
     classnames "^2.2.6"
     date-fns "^2.9.0"
     decimal.js "^10.3.1"
-    downshift "^6.1.7"
+    downshift "^6.1.12"
     focus-trap "^6.9.0"
     focus-trap-react "^8.11.0"
     lodash "^4.17.21"
@@ -10007,10 +10007,10 @@ dotenv@^8.0.0:
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-8.6.0.tgz#061af664d19f7f4d8fc6e4ff9b584ce237adcb8b"
   integrity sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==
 
-downshift@^6.0.15, downshift@^6.1.7:
-  version "6.1.7"
-  resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.1.7.tgz#fdb4c4e4f1d11587985cd76e21e8b4b3fa72e44c"
-  integrity sha512-cVprZg/9Lvj/uhYRxELzlu1aezRcgPWBjTvspiGTVEU64gF5pRdSRKFVLcxqsZC637cLAGMbL40JavEfWnqgNg==
+downshift@^6.0.15, downshift@^6.1.12:
+  version "6.1.12"
+  resolved "https://registry.yarnpkg.com/downshift/-/downshift-6.1.12.tgz#f14476b41a6f6fd080c340bad1ddf449f7143f6f"
+  integrity sha512-7XB/iaSJVS4T8wGFT3WRXmSF1UlBHAA40DshZtkrIscIN+VC+Lh363skLxFTvJwtNgHxAMDGEHT4xsyQFWL+UA==
   dependencies:
     "@babel/runtime" "^7.14.8"
     compute-scroll-into-view "^1.0.17"
