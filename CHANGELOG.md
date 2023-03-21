@@ -1,3 +1,10 @@
+## [1.11.1](https://github.com/defencedigital/design-system-docs/compare/1.11.0...1.11.1) (2023-03-21)
+
+
+### Bug Fixes
+
+* **Sidebar:** Update storybook ([2309e3e](https://github.com/defencedigital/design-system-docs/commit/2309e3eae283c483383005d20ca9c888fc6a31df))
+
 # [1.11.0](https://github.com/defencedigital/design-system-docs/compare/1.10.2...1.11.0) (2022-03-18)
 
 
