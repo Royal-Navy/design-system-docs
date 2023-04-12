@@ -57,7 +57,7 @@
     "@babel/plugin-proposal-optional-chaining": "^7.21.0",
     "@babel/plugin-transform-modules-commonjs": "^7.19.6",
     "@babel/preset-typescript": "^7.21.4",
-    "@commitlint/lint": "^17.1.0",
+    "@commitlint/lint": "^17.4.4",
     "@octokit/rest": "^19.0.7",
     "@semantic-release/changelog": "^6.0.1",
     "@semantic-release/git": "^10.0.1",
