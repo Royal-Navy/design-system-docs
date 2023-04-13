@@ -10,7 +10,9 @@ describe('LayoutFramework', () => {
 
   it('fetches and displays the RNDS latest tag', async () => {
     fetch.mockResponseOnce(JSON.stringify({ tag_name: '1.2.3' }))
-    wrapper = render(<LayoutFramework>Hello, World!</LayoutFramework>)
+    wrapper = render(
+      <LayoutFramework navigation={null}>Hello, World!</LayoutFramework>
+    )
 
     expect(fetch).toHaveBeenCalledTimes(1)
 
