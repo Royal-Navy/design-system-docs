@@ -5,7 +5,7 @@ import selectors from '../../selectors/docs'
 
 describe('Docs Site: Tokens', () => {
   describe('when browsing on desktop', () => {
-    before(() => {
+    beforeEach(() => {
       cy.blockNewRelic()
 
       cy.browseTo('Reference', 'Tokens')

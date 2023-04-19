@@ -28,7 +28,7 @@ const items = [
 
 describe('Masthead', () => {
   describe('default', () => {
-    before(() => {
+    beforeEach(() => {
       cy.blockNewRelic()
 
       cy.visit('/')
@@ -53,11 +53,7 @@ describe('Masthead', () => {
         })
       } else {
         describe(`when the ${title} menu item is clicked`, () => {
-          before(() => {
-            cy.get(selectors.masthead.menuLinks).eq(itemIndex).click()
-          })
-
-          after(() => {
+          beforeEach(() => {
             cy.get(selectors.masthead.menuLinks).eq(itemIndex).click()
           })
 
@@ -73,11 +69,7 @@ describe('Masthead', () => {
 
       if (subItems) {
         describe(`should render the ${title} sub items`, () => {
-          before(() => {
-            cy.get(selectors.masthead.expandButtons).eq(itemIndex).click()
-          })
-
-          after(() => {
+          beforeEach(() => {
             cy.get(selectors.masthead.expandButtons).eq(itemIndex).click()
           })
 
