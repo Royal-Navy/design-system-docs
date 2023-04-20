@@ -59,7 +59,7 @@ const content = [
 
 describe('Compound Timeline', () => {
   describe('when browsing on desktop', () => {
-    before(() => {
+    beforeEach(() => {
       // Block newrelic.js due to issues with Cypress networking
       cy.intercept('**/newrelic.js', (req) => {
         req.reply("console.log('Fake New Relic script loaded');")
