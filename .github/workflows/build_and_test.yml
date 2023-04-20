@@ -122,6 +122,7 @@ jobs:
         - name: Run e2e tests
           uses: cypress-io/github-action@v5
           with:
+            browser: chrome
             build: yarn build
             start: yarn start
 
