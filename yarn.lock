@@ -1719,10 +1719,10 @@
   resolved "https://registry.yarnpkg.com/@defencedigital/fonts/-/fonts-3.13.12.tgz#f19e8feb71cc1c0d0110935aa84f51178932858b"
   integrity sha512-y06CwlQp1C/Zb7xmimWGhev+aQmdsr1mxsmnl6nPqldzpzHGi4Au8dvAdPRqOPskdnuA/MMc0Znf0OUy3o4J+A==
 
-"@defencedigital/icon-library@^3.12.5", "@defencedigital/icon-library@^3.13.12":
-  version "3.13.12"
-  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.13.12.tgz#23d174a4a1baa5137aa4aa54719840f89a81f83b"
-  integrity sha512-xiqnKjIbuat/ogrL75liPcyJs2a+sjKJZ4YvosUXFGkg8Vv7ZzG8VZuU+IlG33hJjtefPqYdpjtZSciwkj33dA==
+"@defencedigital/icon-library@^3.13.12", "@defencedigital/icon-library@^3.13.15":
+  version "3.13.15"
+  resolved "https://registry.yarnpkg.com/@defencedigital/icon-library/-/icon-library-3.13.15.tgz#007690faa7ba2f78246fb312dd7e2116c25c3632"
+  integrity sha512-uFBobINXZ9lQknQ/t7Cj3db4GdF3rF1mvK6Z/jHJ6pF0/xjpRZpVkmv40x2JpA0qkyqQxNpCryAjTPQPEW4ggA==
   dependencies:
     "@babel/runtime" "^7.16.7"
     "@inline-svg-unique-id/react" "^1.2.2"
