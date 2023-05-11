@@ -66,6 +66,8 @@ describe('Compound Timeline', () => {
       })
 
       cy.visit('/timeline')
+
+      cy.get('main').invoke('css', 'scroll-behavior', 'auto')
     })
 
     it('should render the sidebar title', () => {
