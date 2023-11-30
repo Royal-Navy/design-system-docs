@@ -70,7 +70,7 @@ jobs:
     needs: [Test_docs-site, Test-e2e_docs-site]
     steps:
       - name: Auto merge Dependabot minor and patch version bumps
-        uses: defencedigital/design-system-mergeme-action@master
+        uses: Royal-Navy/design-system-mergeme-action@master
         with:
           GITHUB_TOKEN: ${{ secrets.MERGE_BOT }}
           PRESET: DEPENDABOT_MINOR
