@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Move small/med labeled issues to Candidates column
-      uses: defencedigital/design-system-moveissue-action@master
+      uses: Royal-Navy/design-system-moveissue-action@master
       with:
         action-token: "${{ secrets.GHA_ISSUES_TOKEN }}"
         project-url: "https://github.com/${{ github.repository }}/projects/1"
