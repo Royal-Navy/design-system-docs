@@ -34,7 +34,7 @@
     "@types/lodash": "^4.14.194",
     "autoprefixer": "^10.4.13",
     "browserslist": "^4.16.5",
-    "contentful": "^9.3.3",
+    "contentful": "^10.6.14",
     "firacode": "^6.2.0",
     "formik": "^2.2.9",
     "graphql": "^16.6.0",
