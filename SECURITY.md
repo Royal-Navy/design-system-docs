@@ -1,11 +1,11 @@
 # Security Policy
 The Defence Digital Security Policy is to avoid leaving the ecosystem worse than we found it. Meaning we are not planning to introduce vulnerabilities into the ecosystem.
 
-The MOD.UK Design System team takes security vulnerabilities in the MOD.UK Design System seriously.  We appreciate your efforts to responsibly disclose your findings, and will make every effort to acknowledge your contributions.
+The Royal Navy Design System team takes security vulnerabilities in the Royal Navy Design System seriously.  We appreciate your efforts to responsibly disclose your findings, and will make every effort to acknowledge your contributions.
 
 ## Supported Versions
 
-The below table details which versions of the MOD.UK Design System documentation site are supported with bug fixes and security updates:
+The below table details which versions of the Royal Navy Design System documentation site are supported with bug fixes and security updates:
 
 | Version | Supported          |
 | ------- | ------------------ |
@@ -28,7 +28,7 @@ Please include:
 - Optionally the type of vulnerability and any OWASP category
 
 
-The MOD.UK Digital Standards team will send a response indicating the next steps in handling your report. After the initial reply to your report, the team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
+The Royal Navy Digital Standards team will send a response indicating the next steps in handling your report. After the initial reply to your report, the team will keep you informed of the progress towards a fix and full announcement, and may ask for additional information or guidance.
 
 
 ## Qualifying Vulnerabilities

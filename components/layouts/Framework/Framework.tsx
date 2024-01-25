@@ -15,7 +15,7 @@ export interface LayoutFrameworkProps {
 
 export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
   children,
-  title = 'MOD.UK Design System',
+  title = 'Royal Navy Design System',
   navigation,
 }) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -30,7 +30,7 @@ export const LayoutFramework: React.FC<LayoutFrameworkProps> = ({
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Masthead
-        title="MOD.UK Design System"
+        title="Royal Navy Design System"
         version={version || '0.1.0'}
         onToggle={(_) => setIsOpen(!isOpen)}
       />
