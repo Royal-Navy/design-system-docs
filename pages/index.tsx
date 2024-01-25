@@ -296,7 +296,7 @@ export const Home: React.FC<HomeProps> = ({
         <FooterExternalLink
           icon={<Storybook />}
           link={
-            <Link href="https://storybook.design-system.digital.mod.uk/">
+            <Link href="https://storybook.design-system.navy.digital.mod.uk/">
               Storybook
             </Link>
           }

@@ -412,7 +412,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
         ) : null}
         <SidebarMenuItem
           icon={<Storybook />}
-          link={<Link href="https://storybook.design-system.digital.mod.uk/">Storybook</Link>}
+          link={<Link href="https://storybook.design-system.navy.digital.mod.uk/">Storybook</Link>}
         />
         <SidebarMenuItem
           icon={<Axure />}
@@ -474,7 +474,7 @@ export const GenericPage: React.FC<GenericPageProps> = ({
         <FooterExternalLink
           icon={<Storybook />}
           link={
-            <Link href="https://storybook.design-system.digital.mod.uk/">
+            <Link href="https://storybook.design-system.navy.digital.mod.uk/">
               Storybook
             </Link>
           }
