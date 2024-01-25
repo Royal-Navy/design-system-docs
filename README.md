@@ -1,6 +1,6 @@
-# MOD.UK Design System Documentation
+# Royal Navy Design System Documentation
 
-MOD.UK Design System documentation site.
+Royal Navy Design System documentation site.
 
 ## Environment variables
 
@@ -21,4 +21,4 @@ Tests are dependent on the application running.
 
 ## Licensing
 
-The MOD.UK Design System documentation site is licensed under the [Apache License 2.0](https://github.com/defencedigital/design-system-docs/blob/master/LICENSE).
+The Royal Navy Design System documentation site is licensed under the [Apache License 2.0](https://github.com/defencedigital/design-system-docs/blob/master/LICENSE).

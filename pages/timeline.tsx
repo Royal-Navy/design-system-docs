@@ -156,7 +156,7 @@ function renderContentCollection(
 export const Timeline: React.FC<TimelineProps> = ({ sectionCollection }) => {
   return (
     <LayoutFramework
-      title="Compound Timeline | MOD.UK Design System"
+      title="Compound Timeline | Royal Navy Design System"
       navigation={renderNavigation(sectionCollection)}
     >
       {sectionCollection?.items.map(({ title, contentCollection }) => {

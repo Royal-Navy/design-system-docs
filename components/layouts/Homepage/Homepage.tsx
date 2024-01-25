@@ -27,7 +27,7 @@ export const LayoutHomepage: React.FC<LayoutHomepageProps> = ({
   <>
     <Script src="/static/newrelic.js" strategy="beforeInteractive" />
     <Head>
-      <title>{title} | MOD.UK Design System</title>
+      <title>{title} | Royal Navy Design System</title>
       <meta charSet="utf-8" />
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
