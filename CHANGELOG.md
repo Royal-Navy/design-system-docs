@@ -1,3 +1,13 @@
+# [1.12.0](https://github.com/Royal-Navy/design-system-docs/compare/1.11.1...1.12.0) (2024-01-26)
+
+
+### Features
+
+* **Artwork:** Update artwork with Royal Navy assets ([4e05ca5](https://github.com/Royal-Navy/design-system-docs/commit/4e05ca52e00a228b18e7cd3d50c80e2e97d1539c))
+* **Content:** Update broken links to Storybook ([8290df9](https://github.com/Royal-Navy/design-system-docs/commit/8290df98a050f0f75ca26aa0d6bc38fe152a9ec7))
+* **Content:** Update footer text to RN ([aa3bd4a](https://github.com/Royal-Navy/design-system-docs/commit/aa3bd4a43b3705863ad58885f0f630c5e10b2019))
+* **Content:** Update text to Royal Navy ([7c70177](https://github.com/Royal-Navy/design-system-docs/commit/7c70177f72c0a362be8f4430af66a136a23bdf7e))
+
 ## [1.11.1](https://github.com/defencedigital/design-system-docs/compare/1.11.0...1.11.1) (2023-03-21)
 
 
