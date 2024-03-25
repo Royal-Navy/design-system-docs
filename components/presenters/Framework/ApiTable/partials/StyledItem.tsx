@@ -12,4 +12,5 @@ export const StyledItem = styled.div`
     margin-top: ${spacing('9')};
   }
   max-width: 750px;
+  overflow: hidden;
 `
