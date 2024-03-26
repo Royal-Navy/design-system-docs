@@ -1,3 +1,10 @@
+## [1.12.1](https://github.com/Royal-Navy/design-system-docs/compare/1.12.0...1.12.1) (2024-03-26)
+
+
+### Bug Fixes
+
+* **ApiTable:** Resolve overflow issue at mobile ([607be52](https://github.com/Royal-Navy/design-system-docs/commit/607be527a0478b74fd79fcf054ab7e8ab82386cf))
+
 # [1.12.0](https://github.com/Royal-Navy/design-system-docs/compare/1.11.1...1.12.0) (2024-01-26)
 
 
