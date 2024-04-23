@@ -13,7 +13,6 @@ import { StyledPageWrapper } from '../Legacy/partials/StyledPageWrapper'
 export interface LayoutHomepageProps {
   footer: React.ReactElement<FooterProps>
   masthead: React.ReactElement<MastheadProps>
-  pageBanner?: React.ReactElement<ComponentWithClass>
   title: string
 }
 
@@ -21,7 +20,6 @@ export const LayoutHomepage: React.FC<LayoutHomepageProps> = ({
   children,
   footer,
   masthead,
-  pageBanner,
   title,
 }) => (
   <>
@@ -32,7 +30,6 @@ export const LayoutHomepage: React.FC<LayoutHomepageProps> = ({
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <StyledPageWrapper>
-      {pageBanner}
       <StyledMastheadWrapper>{masthead}</StyledMastheadWrapper>
       <StyledBody>
         <StyledMain>{children}</StyledMain>

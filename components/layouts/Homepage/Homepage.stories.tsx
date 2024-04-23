@@ -2,8 +2,6 @@ import React from 'react'
 import { IconBookmark } from '@defencedigital/icon-library'
 import Link from 'next/link'
 import { storiesOf } from '@storybook/react'
-
-import { Badge, BADGE_VARIANT } from '../../presenters/Docs/Badge'
 import { LayoutHomepage } from './Homepage'
 import { Footer } from '../../presenters/Docs/Footer'
 import { FooterExternalLink } from '../../presenters/Docs/Footer/FooterExternalLink'
@@ -14,7 +12,6 @@ import {
   MastheadSubMenu,
   MastheadSubMenuItem,
 } from '../../presenters/Docs/Masthead'
-import { PageBanner } from '../../presenters/Docs/PageBanner'
 
 const stories = storiesOf('Docs/Layouts/Homepage', module)
 
@@ -72,23 +69,8 @@ stories.add('Default', () => {
     </Masthead>
   )
 
-  const pageBanner = (
-    <PageBanner>
-      Version <Badge variant={BADGE_VARIANT.DARK}>3.0.0</Badge> has been
-      released!&nbsp;
-      <a href="#">
-        Read the <strong>upgrade guide</strong>
-      </a>
-    </PageBanner>
-  )
-
   return (
-    <LayoutHomepage
-      footer={footer}
-      masthead={masthead}
-      pageBanner={pageBanner}
-      title="Home"
-    >
+    <LayoutHomepage footer={footer} masthead={masthead} title="Home">
       Content
     </LayoutHomepage>
   )
