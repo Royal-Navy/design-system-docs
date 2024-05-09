@@ -16,7 +16,7 @@ import { StorybookStory } from '../../../graphql'
 
 export const STORYBOOK_BASE_URL = (
   process.env.NEXT_PUBLIC_STORYBOOK_BASE_URL ||
-  'https://storybook.design-system.digital.mod.uk'
+  'https://storybook.design-system.navy.digital.mod.uk'
 ).replace(/\/$/, '')
 
 interface ContentBlockAdapterProps extends ComponentWithClass {
