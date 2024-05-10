@@ -1,3 +1,10 @@
+## [1.12.2](https://github.com/Royal-Navy/design-system-docs/compare/1.12.1...1.12.2) (2024-05-10)
+
+
+### Bug Fixes
+
+* **Documentation:** Resolve some broken links ([ae409ea](https://github.com/Royal-Navy/design-system-docs/commit/ae409ea0fca2740e28d2557f64545bee00595a12))
+
 ## [1.12.1](https://github.com/Royal-Navy/design-system-docs/compare/1.12.0...1.12.1) (2024-03-26)
 
 
