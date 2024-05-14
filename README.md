@@ -17,8 +17,8 @@ Tests are dependent on the application running.
 
 ### Run all specs
 
-`yarn test:e2e`
+`pnpm run test:e2e`
 
 ## Licensing
 
-The Royal Navy Design System documentation site is licensed under the [Apache License 2.0](https://github.com/defencedigital/design-system-docs/blob/master/LICENSE).
+The Royal Navy Design System documentation site is licensed under the [Apache License 2.0](https://github.com/Royal-Navy/design-system-docs/blob/master/LICENSE).

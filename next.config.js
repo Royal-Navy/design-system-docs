@@ -1,4 +1,6 @@
-const withTM = require('next-transpile-modules')(['hex-rgb'])
+const withTM = require('next-transpile-modules')([
+  // ...
+])
 
 module.exports = withTM({
   webpack(config) {

@@ -8,127 +8,125 @@ on:
   workflow_dispatch:
 
 jobs:
-    Check_commits:
-      runs-on: ubuntu-latest
-      if: ${{ github.event_name == 'pull_request' }}
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+  Check_commits:
+    runs-on: ubuntu-latest
+    if: ${{ github.event_name == 'pull_request' }}
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Cache Node modules
-          uses: actions/cache@v3
-          with:
-            path: '**/node_modules'
-            key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Install dependencies
-          run: yarn install --cache-folder ~/.cache/yarn
+      - name: Check commits
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { runCommitLint } = await import('${{ github.workspace }}/scripts/github-actions/runCommitlint.mjs')
+            await runCommitLint({ github, context, core })
 
-        - name: Check commits
-          uses: actions/github-script@v6
-          with:
-            script: |
-              const { runCommitLint } = await import('${{ github.workspace }}/scripts/github-actions/runCommitlint.mjs')
-              await runCommitLint({ github, context, core })
+            const { checkForFixups } = await import('${{ github.workspace }}/scripts/github-actions/checkForFixups.mjs')
+            await checkForFixups({ github, context, core })
 
-              const { checkForFixups } = await import('${{ github.workspace }}/scripts/github-actions/checkForFixups.mjs')
-              await checkForFixups({ github, context, core })
+  Security_audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-    Security_audit:
-      runs-on: ubuntu-latest
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Run audit
-          run: yarn run audit
+      - name: Run audit
+        run: pnpm run audit
 
-    Lint_docs-site:
-      runs-on: ubuntu-latest
-      env:
-        ESLINT_JUNIT_OUTPUT: "test-results/eslint/docs-site-results.xml"
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+  Lint_docs-site:
+    runs-on: ubuntu-latest
+    env:
+      ESLINT_JUNIT_OUTPUT: 'test-results/eslint/docs-site-results.xml'
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Cache Node modules
-          uses: actions/cache@v3
-          with:
-            path: '**/node_modules'
-            key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Get dependencies & run lint
-          run: |
-            yarn install --cache-folder ~/.cache/yarn
-            yarn lint:ci
+      - name: Get dependencies & run lint
+        run: |
+          pnpm install
+          pnpm run lint:ci
 
-    Test_docs-site:
-      runs-on: ubuntu-latest
-      needs: [Lint_docs-site]
-      # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
-      if: ${{ github.actor != 'dependabot[bot]' }}
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+  Test_docs-site:
+    runs-on: ubuntu-latest
+    needs: [Lint_docs-site]
+    # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Cache Node modules
-          uses: actions/cache@v3
-          with:
-            path: '**/node_modules'
-            key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Switch Contentful Environment
-          if: contains(github.ref, 'staging')
-          run: |
-            echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
+      - name: Switch Contentful Environment
+        if: contains(github.ref, 'staging')
+        run: |
+          echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
 
-        - name: Build site
-          env:
-            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
-            NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
-          run: |
-            yarn build
+      - name: Build site
+        env:
+          NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
+          NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
+        run: |
+          pnpm run build
 
-        - name: Jest
-          env:
-            JEST_JUNIT_OUTPUT_DIR: test-results/jest
-            JEST_JUNIT_OUTPUT_NAME: docs-site-results.xml
-          run: |
-            yarn test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
+      - name: Jest
+        env:
+          JEST_JUNIT_OUTPUT_DIR: test-results/jest
+          JEST_JUNIT_OUTPUT_NAME: docs-site-results.xml
+        run: |
+          pnpm run test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
 
-        - name: SonarCloud Scan
-          uses: defencedigital/design-system-sonarcloud-action@master
-          env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: defencedigital/design-system-sonarcloud-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-    Test-e2e_docs-site:
-      runs-on: ubuntu-latest
-      needs: [Lint_docs-site]
-      # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
-      if: ${{ github.actor != 'dependabot[bot]' }}
-      env:
-            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
-            NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+  Test-e2e_docs-site:
+    runs-on: ubuntu-latest
+    needs: [Lint_docs-site]
+    # https://github.blog/changelog/2021-02-19-github-actions-workflows-triggered-by-dependabot-prs-will-run-with-read-only-permissions/
+    if: ${{ github.actor != 'dependabot[bot]' }}
+    env:
+      NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
+      NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Switch Contentful Environment
-          if: contains(github.ref, 'staging')
-          run: |
-            echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Run e2e tests
-          uses: cypress-io/github-action@v5
-          with:
-            browser: chrome
-            build: yarn build
-            start: yarn start
+      - name: Set up Cypress
+        run: |
+          pnpm run cypress:install
 
-        - name: Save images for failed tests
-          if: failure()
-          uses: actions/upload-artifact@v3
-          with:
-            name: cypress_screenshots
-            path: cypress/screenshots/
+      - name: Switch Contentful Environment
+        if: contains(github.ref, 'staging')
+        run: |
+          echo "NEXT_PUBLIC_CONTENTFUL_ENVIRONMENT=staging" >> $GITHUB_ENV
+
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
+          build: pnpm run build
+          start: pnpm start
+
+      - name: Save images for failed tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress_screenshots
+          path: cypress/screenshots/

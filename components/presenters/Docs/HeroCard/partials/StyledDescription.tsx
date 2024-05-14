@@ -1,16 +1,9 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { selectors } from '@defencedigital/design-tokens'
-import hexRgb from 'hex-rgb'
+
+import { getColorWithOpacity } from '../../../../helpers'
 
 const { fontSize, spacing, color, mq } = selectors
-
-function getColorWithOpacity(hexColor: string) {
-  const values = hexRgb(hexColor, { format: 'object' })
-
-  return css`
-    rgba(${values.red}, ${values.green}, ${values.blue}, 0.23);
-  `
-}
 
 export const StyledDescription = styled.p`
   font-size: ${fontSize('m')};
