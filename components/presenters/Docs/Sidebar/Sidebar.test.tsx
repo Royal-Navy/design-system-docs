@@ -4,14 +4,11 @@ import { IconBookmark } from '@defencedigital/icon-library'
 import Link from 'next/link'
 import { render, RenderResult, waitFor } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
-import { selectors } from '@defencedigital/design-tokens'
 
 import { Sidebar } from './Sidebar'
 import { SidebarFilter } from './SidebarFilter'
 import { SidebarMenu } from './SidebarMenu'
 import { SidebarMenuItem } from './SidebarMenuItem'
-
-const { color } = selectors
 
 describe('Sidebar', () => {
   let onChangeSpy: jest.SpyInstance

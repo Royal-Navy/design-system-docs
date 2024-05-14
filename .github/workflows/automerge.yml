@@ -11,59 +11,56 @@ on:
 
 jobs:
   Test_docs-site:
-      runs-on: ubuntu-latest
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Cache Node modules
-          uses: actions/cache@v3
-          with:
-            path: '**/node_modules'
-            key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
+      - name: Set up environment
+        uses: ./.github/actions/prepare-environment
 
-        - name: Build site
-          env:
-            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
-            NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
-          run: |
-            yarn build
+      - name: Build site
+        env:
+          NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
+          NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
+        run: |
+          pnpm run build
 
-        - name: Jest
-          env:
-            JEST_JUNIT_OUTPUT_DIR: test-results/jest
-            JEST_JUNIT_OUTPUT_NAME: docs-site-results.xml
-          run: |
-            yarn test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
+      - name: Jest
+        env:
+          JEST_JUNIT_OUTPUT_DIR: test-results/jest
+          JEST_JUNIT_OUTPUT_NAME: docs-site-results.xml
+        run: |
+          pnpm run test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
 
-        - name: SonarCloud Scan
-          uses: defencedigital/design-system-sonarcloud-action@master
-          env:
-           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: SonarCloud Scan
+        uses: defencedigital/design-system-sonarcloud-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
   Test-e2e_docs-site:
-      runs-on: ubuntu-latest
-      if: ${{ github.event.workflow_run.conclusion == 'success' }}
-      env:
-            NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
-            NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
-      steps:
-        - name: Git clone repository
-          uses: actions/checkout@v3
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    env:
+      NEXT_PUBLIC_CONTENTFUL_SPACE_ID: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_SPACE_ID }}
+      NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
+    steps:
+      - name: Git clone repository
+        uses: actions/checkout@v4
 
-        - name: Run e2e tests
-          uses: cypress-io/github-action@v5
-          with:
-            build: yarn build
-            start: yarn start
+      - name: Run e2e tests
+        uses: cypress-io/github-action@v6
+        with:
+          build: pnpm run build
+          start: pnpm start
 
-        - name: Save images for failed tests
-          if: failure()
-          uses: actions/upload-artifact@v3
-          with:
-            name: cypress_screenshots
-            path: cypress/screenshots/
+      - name: Save images for failed tests
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress_screenshots
+          path: cypress/screenshots/
   Automerge:
     name: Merge Dependabot PR's
     runs-on: ubuntu-latest

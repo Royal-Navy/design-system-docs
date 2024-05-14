@@ -1,16 +1,9 @@
-import styled, { css } from 'styled-components'
-import hexRgb from 'hex-rgb'
+import styled from 'styled-components'
 import { selectors } from '@defencedigital/design-tokens'
 
+import { getColorWithOpacity } from '../../../../helpers'
+
 const { color, mq, spacing, zIndex } = selectors
-
-function getColorWithOpacity(hexColor: string) {
-  const values = hexRgb(hexColor, { format: 'object' })
-
-  return css`
-    rgba(${values.red}, ${values.green}, ${values.blue}, 0.4);
-  `
-}
 
 export const StyledSubFooter = styled.div`
   display: flex;

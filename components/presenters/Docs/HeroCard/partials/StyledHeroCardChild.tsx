@@ -1,16 +1,9 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import { selectors } from '@defencedigital/design-tokens'
-import hexRgb from 'hex-rgb'
+
+import { getColorWithOpacity } from '../../../../helpers'
 
 const { spacing, color, shadow } = selectors
-
-function getColorWithOpacity(hexColor: string) {
-  const values = hexRgb(hexColor, { format: 'object' })
-
-  return css`
-    rgba(${values.red}, ${values.green}, ${values.blue}, 0.6);
-  `
-}
 
 export const StyledHeroCardChild = styled.div`
   display: inline-flex;
