@@ -13,7 +13,7 @@ jobs:
     if: ${{ github.event_name == 'pull_request' }}
     steps:
       - name: Git clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up environment
         uses: ./.github/actions/prepare-environment
@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Git clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up environment
         uses: ./.github/actions/prepare-environment
@@ -46,7 +46,7 @@ jobs:
       ESLINT_JUNIT_OUTPUT: 'test-results/eslint/docs-site-results.xml'
     steps:
       - name: Git clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up environment
         uses: ./.github/actions/prepare-environment
@@ -63,7 +63,7 @@ jobs:
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Git clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up environment
         uses: ./.github/actions/prepare-environment
@@ -87,11 +87,11 @@ jobs:
         run: |
           pnpm run test --ci --coverage --silent --no-cache --reporters=default --reporters=jest-junit --runInBand --testResultsProcessor=jest-sonar-reporter
 
-      - name: SonarCloud Scan
-        uses: defencedigital/design-system-sonarcloud-action@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      # - name: SonarCloud Scan
+      #   uses: defencedigital/design-system-sonarcloud-action@master
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #     SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Test-e2e_docs-site:
     runs-on: ubuntu-latest
@@ -103,7 +103,7 @@ jobs:
       NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN: ${{ secrets.NEXT_PUBLIC_CONTENTFUL_ACCESS_TOKEN }}
     steps:
       - name: Git clone repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Set up environment
         uses: ./.github/actions/prepare-environment

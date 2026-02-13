@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next build && next export",
     "start": "next start",
     "lint": "eslint . --ext .ts --ext .tsx",
     "lint:ci": "eslint -f ./node_modules/eslint-junit/index.js . --ext .ts --ext .tsx",
